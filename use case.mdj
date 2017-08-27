@@ -30,7 +30,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Model1",
+			"name": "Use Case",
 			"ownedElements": [
 				{
 					"_type": "UMLUseCaseDiagram",
@@ -8379,7 +8379,7 @@
 											"containerExtending": false,
 											"left": -144,
 											"top": -32,
-											"width": 80.9072265625,
+											"width": 81,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
@@ -10834,6 +10834,26 @@
 				}
 			],
 			"visibility": "public"
+		},
+		{
+			"_type": "FCFlowchart",
+			"_id": "AAAAAAFeI40YsPFL/8Y=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Flowchart",
+			"ownedElements": [
+				{
+					"_type": "FCFlowchartDiagram",
+					"_id": "AAAAAAFeI40YsPFMGZs=",
+					"_parent": {
+						"$ref": "AAAAAAFeI40YsPFL/8Y="
+					},
+					"name": "Mengelola Informasi Minimarket",
+					"visible": true,
+					"defaultDiagram": false
+				}
+			]
 		}
 	]
 }
