@@ -947,6 +947,174 @@
 									"wordWrap": true
 								},
 								{
+									"_type": "FCDataView",
+									"_id": "AAAAAAFeOU3mfAUV54o=",
+									"_parent": {
+										"$ref": "AAAAAAFeKTgYPzlpcsE="
+									},
+									"model": {
+										"$ref": "AAAAAAFeOU3mfAUT+6M="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFeOU3mfAUWLDo=",
+											"_parent": {
+												"$ref": "AAAAAAFeOU3mfAUV54o="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 385,
+											"top": 1194,
+											"width": 43.708984375,
+											"height": 39,
+											"autoResize": false,
+											"underline": false,
+											"text": "Nominal Uang Pembayaran",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5,
+											"wordWrap": true
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 360,
+									"top": 1184,
+									"width": 93.708984375,
+									"height": 59,
+									"autoResize": false,
+									"nameLabel": {
+										"$ref": "AAAAAAFeOU3mfAUWLDo="
+									},
+									"wordWrap": true
+								},
+								{
+									"_type": "FCDataView",
+									"_id": "AAAAAAFeOU3mfAUV54o=",
+									"_parent": {
+										"$ref": "AAAAAAFeKTgYPzlpcsE="
+									},
+									"model": {
+										"$ref": "AAAAAAFeOU3mfAUT+6M="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFeOU3mfAUWLDo=",
+											"_parent": {
+												"$ref": "AAAAAAFeOU3mfAUV54o="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 385,
+											"top": 1194,
+											"width": 43.708984375,
+											"height": 39,
+											"autoResize": false,
+											"underline": false,
+											"text": "Nominal Uang Pembayaran",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5,
+											"wordWrap": true
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 360,
+									"top": 1184,
+									"width": 93.708984375,
+									"height": 59,
+									"autoResize": false,
+									"nameLabel": {
+										"$ref": "AAAAAAFeOU3mfAUWLDo="
+									},
+									"wordWrap": true
+								},
+								{
+									"_type": "FCDataView",
+									"_id": "AAAAAAFeOU3mfAUV54o=",
+									"_parent": {
+										"$ref": "AAAAAAFeKTgYPzlpcsE="
+									},
+									"model": {
+										"$ref": "AAAAAAFeOU3mfAUT+6M="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFeOU3mfAUWLDo=",
+											"_parent": {
+												"$ref": "AAAAAAFeOU3mfAUV54o="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 385,
+											"top": 1194,
+											"width": 43.708984375,
+											"height": 39,
+											"autoResize": false,
+											"underline": false,
+											"text": "Nominal Uang Pembayaran",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5,
+											"wordWrap": true
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 360,
+									"top": 1184,
+									"width": 93.708984375,
+									"height": 59,
+									"autoResize": false,
+									"nameLabel": {
+										"$ref": "AAAAAAFeOU3mfAUWLDo="
+									},
+									"wordWrap": true
+								},
+								{
 									"_type": "FCProcessView",
 									"_id": "AAAAAAFeOU5kuwUgldk=",
 									"_parent": {
