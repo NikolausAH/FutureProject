@@ -4,27 +4,6 @@
 	"name": "Untitled",
 	"ownedElements": [
 		{
-			"_type": "UMLModel",
-			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
-			"_parent": {
-				"$ref": "AAAAAAFF+h6SjaM2Hec="
-			},
-			"name": "Model",
-			"ownedElements": [
-				{
-					"_type": "UMLClassDiagram",
-					"_id": "AAAAAAFF+qBtyKM79qY=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "Main",
-					"visible": true,
-					"defaultDiagram": true
-				}
-			],
-			"visibility": "public"
-		},
-		{
 			"_type": "FCFlowchart",
 			"_id": "AAAAAAFeJNpHCs3ueTo=",
 			"_parent": {
@@ -241,7 +220,7 @@
 									"height": 39,
 									"autoResize": false,
 									"underline": false,
-									"text": "Tanggal Akhir=Tanggal Mulai+7",
+									"text": "Tanggal Akhir=Tanggal Mulai+7 hari",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -1160,9 +1139,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 184,
+									"left": 183,
 									"top": 574,
-									"width": 31.7890625,
+									"width": 32,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -3.0479893506337525,
@@ -1527,9 +1506,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 329,
+									"left": 328,
 									"top": 100,
-									"width": 31.7890625,
+									"width": 32,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 1.5707963267948966,
@@ -1783,9 +1762,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 489,
+									"left": 488,
 									"top": 105,
-									"width": 31.7890625,
+									"width": 32,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 1.5707963267948966,
@@ -2112,7 +2091,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeJNpHCs3ueTo="
 					},
-					"name": "Tanggal Akhir=Tanggal Mulai+7",
+					"name": "Tanggal Akhir=Tanggal Mulai+7 hari",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",

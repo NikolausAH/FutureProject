@@ -17,7 +17,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Tambah Barang",
+					"name": "Tambah Produk ",
 					"visible": true,
 					"defaultDiagram": false,
 					"ownedViews": [
@@ -108,7 +108,7 @@
 									"height": 52,
 									"autoResize": false,
 									"underline": false,
-									"text": "Data Barang Sudah Ada?",
+									"text": "Data Produk Sudah Ada?",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -164,7 +164,7 @@
 									"height": 26,
 									"autoResize": false,
 									"underline": false,
-									"text": "Kode Barang Baru",
+									"text": "Kode Produk Baru",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -220,7 +220,7 @@
 									"height": 26,
 									"autoResize": false,
 									"underline": false,
-									"text": "Nama Kategori Barang",
+									"text": "Nama Kategori Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -276,7 +276,7 @@
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
-									"text": "Nama Barang",
+									"text": "Nama Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -455,7 +455,7 @@
 									"height": 26,
 									"autoResize": false,
 									"underline": false,
-									"text": "Tambah Data Barang",
+									"text": "Tambah Data Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -633,7 +633,7 @@
 									"height": 26,
 									"autoResize": false,
 									"underline": false,
-									"text": "Pencarian Kode Barang",
+									"text": "Pencarian Kode Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -1266,7 +1266,7 @@
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
-									"text": "Deskripsi Barang",
+									"text": "Deskripsi Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -1830,7 +1830,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Data Barang Sudah Ada?",
+					"name": "Data Produk Sudah Ada?",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -1882,7 +1882,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Kode Barang Baru",
+					"name": "Kode Produk Baru",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -1905,7 +1905,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Nama Kategori Barang",
+					"name": "Nama Kategori Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -1941,7 +1941,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Nama Barang",
+					"name": "Nama Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -2000,7 +2000,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Tambah Data Barang",
+					"name": "Tambah Data Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -2044,7 +2044,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Pencarian Kode Barang",
+					"name": "Pencarian Kode Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -2067,7 +2067,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Tampil Barang",
+					"name": "Tampil Produk ",
 					"visible": true,
 					"defaultDiagram": false,
 					"ownedViews": [
@@ -2158,7 +2158,7 @@
 									"height": 26,
 									"autoResize": false,
 									"underline": false,
-									"text": "Kode atau Nama Barang",
+									"text": "Kode atau Nama Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -2214,7 +2214,7 @@
 									"height": 26,
 									"autoResize": false,
 									"underline": false,
-									"text": "Pencarian Data Barang",
+									"text": "Pencarian Data Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -2702,7 +2702,7 @@
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
-									"text": "Data Barang",
+									"text": "Data Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -3014,7 +3014,7 @@
 									"height": 39,
 									"autoResize": false,
 									"underline": false,
-									"text": "Export Data Barang",
+									"text": "Export Data Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -3471,7 +3471,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Kode atau Nama Barang",
+					"name": "Kode atau Nama Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -3494,7 +3494,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Pencarian Data Barang",
+					"name": "Pencarian Data Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -3614,7 +3614,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Ubah Barang",
+					"name": "Ubah Produk ",
 					"visible": true,
 					"defaultDiagram": false,
 					"ownedViews": [
@@ -3761,7 +3761,7 @@
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
-									"text": "Cari Barang",
+									"text": "Cari Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -4183,7 +4183,7 @@
 									"height": 39,
 									"autoResize": false,
 									"underline": false,
-									"text": "Perbarui Data Barang?",
+									"text": "Perbarui Data Produk ?",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -4770,7 +4770,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Cari Barang",
+					"name": "Cari Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -4901,7 +4901,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Hapus Barang",
+					"name": "Hapus Produk ",
 					"visible": true,
 					"defaultDiagram": false,
 					"ownedViews": [
@@ -5048,7 +5048,7 @@
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
-									"text": "Cari Barang",
+									"text": "Cari Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -5104,7 +5104,7 @@
 									"height": 26,
 									"autoResize": false,
 									"underline": false,
-									"text": "Hapus Barang?",
+									"text": "Hapus Produk ?",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -5160,7 +5160,7 @@
 									"height": 26,
 									"autoResize": false,
 									"underline": false,
-									"text": "Menghapus Barang",
+									"text": "Menghapus Produk ",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -6127,7 +6127,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Cari Barang",
+					"name": "Cari Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -6163,7 +6163,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Hapus Barang?",
+					"name": "Hapus Produk ?",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -6215,7 +6215,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Menghapus Barang",
+					"name": "Menghapus Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -6289,7 +6289,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Perbarui Data Barang?",
+					"name": "Perbarui Data Produk ?",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -6350,7 +6350,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Data Barang",
+					"name": "Data Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -6386,7 +6386,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Deskripsi Barang",
+					"name": "Deskripsi Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -6565,7 +6565,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFeI40YsPFL/8Y="
 					},
-					"name": "Export Data Barang",
+					"name": "Export Data Produk ",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
