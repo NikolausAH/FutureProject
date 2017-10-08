@@ -1,0 +1,647 @@
+/* `Font Face
+----------------------------------------------------------------------------------------------------*/
+
+@font-face {
+	font-family: Aller;
+    src: url(../fonts/Aller_0.ttf);
+}
+
+@font-face {
+	font-family: PT_Sans;
+    src: url(../fonts/PT_Sans-Web-Regular.ttf);
+}
+
+/* `Misscellaneous
+----------------------------------------------------------------------------------------------------*/
+
+body {
+	color: #fff;
+	font-family: Aller;
+}
+
+p {
+	font-family: PT_Sans;
+}
+
+li {
+	font-family: PT_Sans;
+	margin-left: 0;
+	list-style: none;
+}
+
+table {
+	font-family: PT_Sans;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+input,
+select,
+textarea {
+	outline: none;
+	font-family: PT_Sans;
+}
+
+.btn {
+	background: #16a085;
+	padding: 10px 15px;
+    border-radius: 10px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+input[type="range"],
+textarea,
+select {
+	padding: 5px;
+    border: 2px #1abc9c solid;
+    font-size: 12px;
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* `Header
+----------------------------------------------------------------------------------------------------*/
+
+header {
+	background: #1abc9c;
+}
+
+#section_header {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+#section_header.index {
+	padding-top: 30px;
+	padding-bottom: 60px;
+}
+
+#logo {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+nav {
+	text-align: right;
+}
+
+nav a {
+	display: inline-block;
+	margin-left: 5px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    transition: .2s ease background;
+}
+
+nav a:hover,
+nav .active {
+	background: #16a085;
+}
+
+/* `Main
+----------------------------------------------------------------------------------------------------*/
+
+#section_promotion h1 {
+	font-size: 36px;
+}
+
+#section_promotion p {
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+#section_promotion .image {
+	width: 100%;
+	height: 250px;
+	background-size: cover !important;
+    background-position: left !important;
+}
+
+.flexslider {
+	background: transparent;
+	border: none;
+}
+
+.flex-direction-nav a {
+	height: 50px;
+}
+
+#section_work_title {
+	padding-top: 20px;
+}
+
+#section_work_title h1 {
+	font-size: 24px;
+}
+
+#breadcrumb p {
+	text-align: right;
+    margin-top: 6.5px;
+    color: #fff;
+    font-size: 14px;
+}
+
+#breadcrumb p a {
+	color: #FFF;
+}
+
+#breadcrumb p a:hover {
+	color: #bebebe;
+}
+
+#section_searching {
+	padding-top: 20px;
+	padding-bottom: 10px;
+	text-align: center;
+	background: #16a085;
+    position: relative;
+    z-index: 1;
+}
+
+#section_searching h1 {
+	font-size: 24px;
+}
+
+#search {
+	padding: 30px 20px;
+	padding-top: 20px;
+	margin: 0 10px;
+	text-align: center;
+	color: #16a085;
+	background: #fff;
+}
+
+#search .form_group {
+	float: left;
+	padding: 0 1%;
+	text-align: left;
+}
+
+#search button {
+	border: none;
+    background: #16a085;
+    padding: 8.5px 0;
+    width: 100%;
+    color: #fff;
+    cursor: pointer;
+}
+
+#search label {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 12pt;
+}
+
+#section_pencarian #search {
+	padding: 30px 0;
+	padding-top: 20px;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+#testimoni {
+	background: #fff;
+	position: relative;
+    z-index: 0;
+    margin-top: -71px;
+    padding-top: 100px;
+    text-align: center;
+}
+
+#testimoni h3 {
+	color: #16a085;
+}
+
+#section_testimoni {
+	text-align: left;
+	padding: 30px 0;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+#section_testimoni .box {
+	background: #16a085;
+    padding: 15px;
+    border-radius: 2%;
+}
+
+.author h3 {
+	font-family: PT_Sans;
+	font-size: 14px;
+	margin: 0;
+	margin-top: 15px;
+	color: #fff !important;
+}
+
+.author p {
+	font-family: PT_Sans;
+	font-size: 12px;
+	margin: 0;
+}
+
+.quote p {
+	margin-top: 10px;
+}
+
+.quote .fa {
+	color: #1abc9c;
+}
+
+.picture {
+	width: 100%;
+	border-radius: 100%;
+	border: 2px #7d99c0 solid;
+	transition: .2s ease border-color;
+}
+
+.picture:hover {
+	border-color: #16a085;
+}
+
+#blog {
+	background: #27ae60;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+#breadcrumb {
+	background: #16a085;
+}
+
+#searching {
+	color: #16a085;
+}
+
+#searching_tools {
+	padding: 10px;
+	box-sizing: border-box;
+	background: #16a085;
+	color: #fff;
+	margin: 20px 0;
+	text-align: center;
+	position: fixed;
+	z-index: 9;
+}
+
+#searching_tools h4 {
+	margin: 0;
+}
+
+#searching_tools .box {
+	padding: 10px;
+	background: #fff;
+	color: #16a085;
+	margin-top: 10px;
+	text-align: left;
+}
+
+#searching_tools .box label {
+	margin-bottom: 5px;
+	display: block;
+}
+
+#searching_tools .box .form_group {
+	margin-bottom: 10px;
+}
+
+#searching_tools .box #textInput {
+	border: none;
+	width: 60%;
+	padding: 0 2px;
+	color: #16a085;
+}
+
+#searching_tools .box #check label {
+	display: inline-block;
+    vertical-align: top;
+    padding-left: 5px;
+    margin-right: 10px;
+}
+
+#car_list {
+	list-style: none;
+}
+
+#car_list > li {
+	margin-top: 30px;
+	margin-bottom: 30px;
+    border-bottom: 1px #16a085 solid;
+    padding-bottom: 30px;
+}
+
+#car_list > li:last-child {
+	border-bottom: none;
+}
+
+#car_list > li li {
+	margin-bottom: 10px;
+}
+
+#car_list .image {
+	width: 100%;
+    height: 250px;
+    background-size: cover !important;
+    background-position: left !important;
+}
+
+#car_list h4 {
+	margin-bottom: 15px;
+}
+
+#car_list h4 a {
+	color: #16a085;
+}
+
+#car_list .btn {
+	font-size: 10pt;
+	padding: 5px 10px;
+	border-radius: 5px;
+	background: #1abc9c;
+	transition: .2s all ease;
+}
+
+#car_list .btn:hover {
+	background: #16a085;
+}
+
+#section_pencarian .title {
+	margin-top: 20px;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 2px #16a085 solid;
+}
+
+#section_pencarian .title p {
+	text-align: right;
+	margin-top: 10px;
+}
+
+#load_more {
+	text-align: center;
+    margin-bottom: 30px;
+}
+
+#load_more .btn {
+	display: block;
+    width: 25%;
+    margin: auto;
+    background: #1abc9c;
+    transition: .2s all ease;
+}
+
+#load_more .btn:hover {
+	background: #16a085;
+}
+
+#section_order {
+	margin: 30px 0;
+}
+
+#form_order label {
+	color: #16a085;
+	margin-bottom: 10px;
+    display: block;
+}
+
+#form_order .form_group {
+	margin-bottom: 20px;
+}
+
+#form_order textarea {
+	resize: none;
+	height: 200px;
+}
+
+#form_order button {
+	border: none;
+    background: #16a085;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#order_detail {
+	padding: 10px;
+	box-sizing: border-box;
+	background: #16a085;
+	color: #fff;
+	margin: 20px 0;
+	text-align: center;
+	margin-top: 0;
+}
+
+#order_detail li {
+	margin-bottom: 10px;
+}
+
+#order_detail h4 {
+	margin: 0;
+}
+
+#order_detail h5 a {
+	color: #16a085;
+}
+
+#order_detail .box {
+	background: #fff;
+	color: #16a085;
+	margin-top: 10px;
+	text-align: left;
+	padding: 0 30px;
+	padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+#order_detail .box label {
+	margin-bottom: 5px;
+	display: block;
+}
+
+#order_detail .box .form_group {
+	margin-bottom: 15px;
+}
+
+#order_detail img {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#order_detail .btn {
+	font-size: 10pt;
+    border-radius: 5px;
+    background: #1abc9c;
+    transition: .2s all ease;
+}
+
+#order_detail .btn:hover {
+	background: #16a085;
+}
+
+#section_kendaraan #order_detail ul {
+	margin-bottom: 30px;
+}
+
+#section_kendaraan {
+	margin: 30px 0;
+}
+
+#section_kendaraan .image {
+	width: 100%;
+	height: 250px;
+	background-size: cover !important;
+    background-position: left !important;
+}
+
+#spesification {
+	color: #16a085;
+}
+
+#spesification table {
+	width: 100%;
+}
+
+#spesification table th,
+#spesification table td {
+	padding: 10px;
+	border: 1px #16a085 solid;
+}
+
+#spesification table th {
+	width: 25%;
+}
+
+#spesification table tr:nth-child(odd) {
+	background: rgba(22, 160, 133, 0.05);
+}
+
+#section_about, #section_kritiksaran {
+    margin-top: 30px;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+#section_about img {
+    width: 100%;
+    border: 10px solid #ccc;
+}
+
+#section_kritiksaran #map {
+    width: 100%;
+    height: 300px;
+    border: 5px solid #ccc;
+}
+
+#section_kritiksaran p {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+#form_kritiksaran label {
+	color: #16a085;
+	margin-bottom: 10px;
+    display: block;
+}
+
+#form_kritiksaran .form_group {
+	margin-bottom: 20px;
+}
+
+#form_kritiksaran textarea {
+	resize: none;
+	height: 200px;
+}
+
+#form_kritiksaran button {
+	border: none;
+    background: #16a085;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: 0.1s;
+}
+
+#form_kritiksaran button:hover {
+    background: #34495e;
+}
+
+#section_kritiksaran h3 {
+	color: #16a085;
+}
+
+#section_about h3 {
+	color: #16a085;
+}
+
+/* `Footer
+----------------------------------------------------------------------------------------------------*/
+
+footer {
+	background: #34495e;
+}
+
+footer h1 {
+	font-size: 18px;
+	font-weight: bold;
+	color: #ecf0f1;
+}
+
+footer p {
+	font-size: 12px;
+	color: #ecf0f1;
+	margin: 0;
+}
+
+#section_footer {
+	padding-top: 30px;
+	margin-bottom: 40px;
+}
+
+#contact_list {
+	margin-top: 15px;
+	margin-bottom: 0;
+}
+
+#contact_list li {
+	list-style: none;
+	margin: 0;
+	font-family: PT_Sans;
+	font-size: 12px;
+	line-height: 16pt;
+}
+
+#contact_list li img {
+	margin-right: 10px;
+}
+
+#follow_list {
+	margin-top: 15px;
+}
+
+#follow_list li {
+	display: inline-block;
+	margin: 0;
+	margin-right: 10px;
+}
+
+#follow_list li:hover img {
+	border-color: #3498db;
+}
+
+#follow_list li img {
+	border: 2px #7d99c0 solid;
+	border-radius: 100%;
+	transition: .2s ease border-color;
+}
+
+#section_copyright {
+	text-align: center;
+	margin-bottom: 30px;
+}
