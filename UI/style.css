@@ -5,57 +5,201 @@
 }
 
 body{
-  background: #60feee;
+  background: #edeeee;
+  margin: 0;
+  padding: 0;
 }
 
 .header{
-    background: #00c4a8;
-    height: 60px;
+    background: #fff;
+    height: 70px;
+    border-top: 10px solid #edeeee;
 }
 
 .header .logo{
   height: 100%;
+  text-align: center;
+  padding: 5px;
+  margin: 0px;
+
 }
 
-.header .judul{
+.header .icon-user{
   height: 100%;
-  color: #fff;
+  float: left;
+  padding: 6px;
+  margin: 0px;
+  font-size: 48px;
+  color: #037e83;
+  cursor: pointer;
+}
+
+.judul h1{
+  height: 100%;
+  color: #004b4b;
   text-align: center;
+  font-size: 45px;
+  margin: 0;
+  padding: 5px 0 0 0;
 }
 
 .header .user{
   height: 100%;
-  text-align: center;
+}
+
+.header .user h5{
+  text-align: justify;
+  font-size: 16px;
+  overflow: hidden;
+  color: #004b4b;
+  padding-left: 50px;
+}
+
+/*Navigation*/
+.navigation{
+  height: 40px;
+  background: #46c6cb;
+  margin: 0;
+  padding: 0 2px 0 45px;
+  border-top: 10px solid #edeeee;
+
+  font-size: 26px;
   color: #fff;
+}
+#home-icon{
+  color: #fff;
+}
+#home-icon:hover{
+  color: #2ef2ff;
 }
 
 /* Sidebar Styles */
 .sidebar{
-  margin-top: 20px;
+  height: 510px;
+  padding: 0px;
+  background: #fff;
+  border-right: 10px solid #edeeee;
+  border-top: 10px solid #edeeee;
+}
+
+.menu h3{
+  margin: 0;
+  padding: 7px 0 0 0;
+  border: 0px;
+  font-size: 25px;
+  text-align: center;
+}
+
+#name{
+  word-spacing: 10px;
+}
+
+#role-text{
+  word-spacing: 69px;
 }
 
 .sidebar-nav li {
   list-style: none;
   width: 100%;
-  text-indent:35%;
   font-size: 100%;
+
 }
 
 .sidebar-nav li a {
   display: block;
-  line-height: 300%;
+  line-height: 40px;
   text-decoration: none;
-  color: #000;
+  color: #00524f;
+  padding-left: 30px;
+  font-size: 14px;
+}
+.nav1{
+  color: #808dff;
 }
 
-.sidebar-nav li a:hover {
+.sidebar-nav li a:hover{
   text-decoration: none;
   color: #fff;
-  background: #006a6a;
+}
+
+#nav_1:hover{
+  background: #0038ff;
+}
+
+#nav_2:hover {
+  background: #6a003f;
+}
+
+#nav_3:hover {
+  background: #cc0000;
+}
+
+#nav_4:hover {
+  background: #00f919;
+}
+
+#nav_5:hover {
+  background: #adff00;
+}
+
+#nav_6:hover {
+  background: #ff8f0b;
+}
+
+#nav_7:hover {
+  background: #004545;
+}
+/*Content*/
+.content{
+  height: 510px;
+  background: #fff;
+  border-left: 10px solid #edeeee;
+  border-top: 10px solid #edeeee;
+}
+/*end of content*/
+
+/*Sidebar hamberger*/
+.menu{
+  height: 40px;
+  border-bottom: 1px solid #EAEAEB;
+}
+label{
+  margin: 0 40px 0 0;
+    font-size: 26px;
+    line-height: 70px;
+    display: none;
+    width: 26px;
+    float: right;
+}
+
+#toggle{
+  display: none;
+}
+
+@media only screen and (max-width: 991px) {
+  label{
+    display: block;
+    cursor: pointer;
+  }
+  .sidebar{
+    margin-top: 10px;
+    height: 373px;
+  }
+  .sidebar-nav{
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+  .sidebar-nav a{
+    display: block;
+        border-bottom: 1px solid #EAEAEB;
+        margin: 0;
+  }
+  #toggle:checked + .sidebar-nav {
+        display: block;
+    }
+  .header .user h5{
+    display: none;
+  }
 }
 /*sidebar style end*/
-
-.content{
-  margin-top: 20px;
-  height: 500px
-}
