@@ -1,91 +1,130 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<meta charset="utf-8">
-			<title>Home</title>
-			<meta name="viewport" content="width=device-width, initial-scale-1.0">
-			<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-			<link rel="stylesheet" type="text/css" href="style.css">
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		</head>
-											<!--akhir head-->
-		<body>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Home</title>
+		<meta name="viewport" content="width=device-width, initial-scale-1.0">
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+										<!--akhir head-->
+	<body>
 
-			<div class="container-fluid">
-					<div class="row">
-						<div class="header">
-						<div class="col-xs-3 col-md-2 logo">
-							<a href="home.html"><img src="image/logo-alfamarts.png" class="logo" alt="Cinque Terre"></a>
+		<div class="container-fluid">
+				<div class="row">
+					<div class="header">
+					<div class="col-xs-3 col-md-2 logo">
+						<a href="home.html"><img src="image/logo-alfamarts.png" class="logo" alt="Cinque Terre"></a>
+					</div>
+					<div class="col-xs-7 col-md-6 judul">
+							<h1>POS Alfamart</h1>
+					</div>
+					<div class="col-xs-2 col-md-4 user">
+							<i class="fa icon-user">&#xf2be;</i>
+							<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+							<h5 id="role-text">Role :Admin</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+
+			<!--SIDEBAR-->
+			<div class="container">
+				<div class="row">
+					<div class ="col-md-12 navigation">
+						<a href="home.html"><i class="fa" id="home-icon">&#xf015;</i></a>
+				</div>
+				<div class="row">
+					<div class ="col-md-2 sidebar">
+						<!--Start Responsif Menu-->
+						<div class="menu">
+							<label for="toggle">&#9776;</label>
+							<input type="checkbox" id="toggle"/>
+							<h3>Menu</h3>
 						</div>
-						<div class="col-xs-7 col-md-6 judul">
-								<h1>POS Alfamart</h1>
-						</div>
-						<div class="col-xs-2 col-md-4 user">
-								<i class="fa icon-user">&#xf2be;</i>
-								<h5 id="name">Nama / ID :SUTARTO/1011</h5>
-								<h5 id="role-text">Role :Admin</h5>
-						</div>
+						<!--End Responsif Menu
+							icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+						<div class="sidebar-nav">
+						<ul>
+								<li>
+										<i class="fa">&#xf19c;</i>
+											<div class="dropdown">
+													<button class="dropbtn">Minimarket</button>
+													<div class="dropdown-content">
+													</div>
+												</div>
+								</li>
+								<li>
+										<i class="fa">&#xf0c0;</i>
+											<div class="dropdown">
+													<button class="dropbtn">Pegawai</button>
+													<div class="dropdown-content">
+													  <a href="#">Tambah Pegawai</a>
+													  <a href="#">Ubah Informasi Pegawai</a>
+													</div>
+												</div>
+								</li>
+								<li>
+											<i class="fa">&#xf288;</i>
+												<div class="dropdown">
+														<button class="dropbtn">Produk</button>
+														<div class="dropdown-content">
+														  <a href="#">Tambah Produk</a>
+														  <a href="#">Ubah Informasi Produk</a>
+														</div>
+													</div>
+								</li>
+								<li>
+												<i class="fa">&#xf1b3;</i>
+													<div class="dropdown">
+															<button class="dropbtn">Stok</button>
+															<div class="dropdown-content">
+															</div>
+														</div>
+								</li>
+								<li>
+											<i class="fa">&#xf217;</i>
+												<div class="dropdown">
+														<button class="dropbtn">Transaksi</button>
+														<div class="dropdown-content">
+														</div>
+													</div>
+								</li>
+								<li>
+												<i class="fa">&#xf02c;</i>
+													<div class="dropdown">
+															<button class="dropbtn">Promo</button>
+															<div class="dropdown-content">
+																	<a href="#">Tambah Promo</a>
+																	<a href="#">Mengubah Promo</a>
+															</div>
+														</div>
+								
+								</li>
+								<li>
+												<i class="fa">&#xf080;</i>
+													<div class="dropdown">
+															<button class="dropbtn">Laporan</button>
+															<div class="dropdown-content">
+																	<a href="#">Laporan Transaksi</a>
+																	<a href="#">Laporan Statistik</a>
+															</div>
+														</div>
+										
+								</li>
+
+						</ul>
+					</div>
+			</div>
+			<!--SIDEBAR END-->
+					<div class="col-md-10 content">
+							
+								  </div>
+
 					</div>
 				</div>
 			</div>
 
-				<!--SIDEBAR-->
-				<div class="container">
-					<div class="row">
-						<div class ="col-md-12 navigation">
-							<a href="home.html"><i class="fa" id="home-icon">&#xf015;</i></a>
-					</div>
-					<div class="row">
-						<div class ="col-md-2 sidebar">
-							<!--Start Responsif Menu-->
-							<div class="menu">
-								<label for="toggle">&#9776;</label>
-								<input type="checkbox" id="toggle"/>
-								<h3>Menu</h3>
-							</div>
-							<!--End Responsif Menu
-								icon reference https://www.w3schools.com/icons/icons_reference.asp-->
-							<div class="sidebar-nav">
-							<ul>
-									<li>
-											<a id="nav_1" href="#">
-												<i class="fa">&#xf19c;</i> Minimarket
-											</a>
-									</li>
-									<li>
-											<a id="nav_2" href="#">
-												<i class="fa">&#xf0c0;</i> Pegawai
-											</a>
-									</li>
-									<li>
-											<a id="nav_3" href="#">
-												<i class="fa">&#xf288;</i> Produk</a>
-									</li>
-									<li>
-											<a id="nav_4" href="#">
-												<i class="fa">&#xf1b3;</i> Stok</a>
-									</li>
-									<li>
-											<a id="nav_5" href="#">
-												<i class="fa">&#xf217;</i> Transaksi</a>
-									</li>
-									<li>
-											<a id="nav_5" href="#">
-												<i class="fa">&#xf02c;</i> Promo</a>
-									</li>
-									<li>
-											<a id="nav_6" href="#">
-												<i class="fa">&#xf080;</i> Laporan</a>
-									</li>
-							</ul>
-						</div>
-				</div>
-				<!--SIDEBAR END-->
-						<div class="col-md-10 content">
-
-						</div>
-					</div>
-				</div>
-
-		</body>
-	</html>
+	</body>
+</html>
