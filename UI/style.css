@@ -10,13 +10,16 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  height: 40px;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
   left:100%;
+  width: 200px;
   top:0%;
+  height: auto;
   background-color: #f9f9f9;
   min-width: 60px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -25,7 +28,6 @@
 
 .dropdown-content a {
   color: black;
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
@@ -204,6 +206,8 @@ body{
   list-style: none;
   width: 100%;
   font-size: 100%;
+  left: 20%;  
+  position: relative;
 
 }
 
@@ -272,6 +276,10 @@ label{
 #toggle{
   display: none;
 }
+.sidebutton{
+  padding-top: 15%;
+  position: absolute;
+}
 
 @media only screen and (max-width: 991px) {
   label{
@@ -284,7 +292,6 @@ label{
   }
   .sidebar-nav{
     text-align: center;
-    width: 100%;
     display: block;
   }
   .sidebar-nav a{
