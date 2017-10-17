@@ -1,5 +1,4 @@
 /*dropdown*/
-
 .dropbtn {
   background-color: white;
   color: #00524f;
@@ -43,7 +42,63 @@
 .dropdown:hover .dropbtn {
   background-color: #037e83;
 }	
+/*dropdown buat user icon*/
+.dropbtn-user {
+  background-color: white;
+  color: #00524f;
+  font-size: 16px;
+  border: n one;
+  cursor: pointer;
+} 
+
+.dropdown-user {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content-user {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 60px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top:80%;
+}
+
+.dropdown-content-user d {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content-user d:hover {
+  background-color: #f1f1f1 ;
+  cursor: pointer;
+}
+
+.dropdown-user:hover .dropdown-content-user {
+  display: block;
+}
+
+.dropdown-user:hover .dropbtn-user {
+  background-color: #037e83;
+}	
 /* dropdown kelar */
+.user_icon{
+  width: 65px;
+  height: 65px;
+  float: left;
+  padding: 6px;
+  margin: 0px;
+}
+.admin_info{
+  position: absolute;
+  bottom: 0.5px;
+  left: 50px;
+  top: 1px;
+
 }
 *{
   margin:0px;
