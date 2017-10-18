@@ -1,107 +1,6 @@
-/*dropdown*/
-.dropbtn {
-  background-color: white;
-  color: #00524f;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-} 
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  height: 40px;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  left:100%;
-  width: 200px;
-  top:0%;
-  height: auto;
-  background-color: #f9f9f9;
-  min-width: 60px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #f1f1f1 ;
-
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #037e83;
-}	
-/*dropdown buat user icon*/
-.dropbtn-user {
-  background-color: white;
-  color: #00524f;
-  font-size: 16px;
-  border: n one;
-  cursor: pointer;
-} 
-
-.dropdown-user {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content-user {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 60px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  top:80%;
-}
-
-.dropdown-content-user d {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content-user d:hover {
-  background-color: #f1f1f1 ;
-  cursor: pointer;
-}
-
-.dropdown-user:hover .dropdown-content-user {
-  display: block;
-}
-
-.dropdown-user:hover .dropbtn-user {
-  background-color: #037e83;
-}	
-/* dropdown kelar */
-.user_icon{
-  width: 65px;
-  height: 65px;
-  float: left;
-  padding: 6px;
-  margin: 0px;
-}
-.admin_info{
-  position: absolute;
-  bottom: 0.5px;
-  left: 50px;
-  top: 1px;
-
-}
+/*============================================================================*/
+/*-----------------------------------GLOBAL-----------------------------------*/
+/*============================================================================*/
 *{
   margin:0px;
   padding: 0px;
@@ -113,22 +12,47 @@ body{
   margin: 0;
   padding: 0;
 }
-
+/*============================================================================*/
+/*-----------------------------------HEADER-----------------------------------*/
+/*============================================================================*/
 .header{
     background: #fff;
     height: 70px;
     border-top: 10px solid #edeeee;
+    padding: 0;
+    margin: 0px;
 }
-
-.header .logo{
+/*---------------------------LOGO.START---------------------------*/
+.logo{
   height: 100%;
   text-align: center;
   padding: 5px;
   margin: 0px;
-
 }
-
-.header .icon-user{
+/*---------------------------LOGO.END---------------------------*/
+/*---------------------------JUDUL.START------------------------*/
+.judul{
+  padding: 0;
+  height: 100%;
+}
+.judul h1{
+  color: #004b4b;
+  text-align: center;
+  font-size: 45px;
+  margin:0;
+  padding: 5px 0 0 0;
+}
+/*---------------------------JUDUL.END--------------------------*/
+/*---------------------------USER.START-------------------------*/
+.user{
+  height: 100%;
+  padding: 0;
+}
+/*--------avatar.start--------*/
+.dropdown-avatar ul{
+    list-style: none;
+}
+.user .icon-user{
   height: 100%;
   float: left;
   padding: 6px;
@@ -137,81 +61,120 @@ body{
   color: #037e83;
   cursor: pointer;
 }
-
-.judul h1{
-  height: 100%;
-  color: #004b4b;
-  text-align: center;
-  font-size: 45px;
-  margin: 0;
-  padding: 5px 0 0 0;
+#dr-down{
+  display: none;
 }
-
-.header .user{
-  height: 100%;
+.segitiga{
+    display: block;
+    font-size: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 33px;
+    bottom: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #65e600;
+    margin-left: -10px;
 }
-
-.header .user h5{
+.dropdown-avatar{
+  display: block;
+  position: absolute;
+  width: 130px;
+  top:60px;
+  left: -8%;
+  word-spacing: 10px;
+  border-radius: 5%;
+  border-top: 8px solid #65e600;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);;
+  z-index: 1;
+}
+.dropdown-avatar a{
+  display: block;
+  line-height: 40px;
+  text-decoration: none;
+  color: #00524f;
+  padding-left: 10%;
+  font-size: 14px;
+}
+.dropdown-avatar #drop_u1:hover{
+  color: #168200;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #EAEAEB;
+}
+.dropdown-avatar #drop_u2:hover{
+  color: #cc0000;
+  text-decoration: none;
+  display: block;
+  border-top: 1px solid #EAEAEB;
+}
+/*--------avatar.end--------*/
+/*--------identitas.start--------*/
+.identitas{
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left:80px;
+}
+.identitas h5{
   text-align: justify;
   font-size: 16px;
   overflow: hidden;
   color: #004b4b;
-  padding-left: 50px;
 }
+/*--------identitas.end--------*/
+/*---------------------------USER.END-------------------------*/
 
-/*Navigation*/
+/*============================================================================*/
+/*-----------------------------------NAVIGATION-------------------------------*/
+/*============================================================================*/
 .navigation{
-  height: 40px;
   background: #46c6cb;
-  margin: 0;
-  padding: 0 2px 0 45px;
   border-top: 10px solid #edeeee;
-
+  width: 100%;
   font-size: 26px;
   color: #fff;
+  padding: 0;
 }
 #home-icon{
   color: #fff;
+  padding-left: 30px;
 }
 #home-icon:hover{
   color: #2ef2ff;
 }
-
-/* Sidebar Styles */
+/*============================================================================*/
+/*-----------------------------------SIDEBAR----------------------------------*/
+/*============================================================================*/
 .sidebar{
-  height: 510px;
   padding: 0px;
   background: #fff;
   border-right: 10px solid #edeeee;
   border-top: 10px solid #edeeee;
 }
-
-.menu h3{
+.toggle h3{
   margin: 0;
   padding: 7px 0 0 0;
   border: 0px;
   font-size: 25px;
   text-align: center;
+  color: #004b4b;
 }
-
 #name{
   word-spacing: 10px;
 }
-
 #role-text{
   word-spacing: 69px;
 }
-
-.sidebar-nav li {
+.sidebar li {
   list-style: none;
   width: 100%;
   font-size: 100%;
-  left: 20%;  
-  position: relative;
 
 }
-
-.sidebar-nav li a {
+.sidebar li a {
   display: block;
   line-height: 40px;
   text-decoration: none;
@@ -219,91 +182,137 @@ body{
   padding-left: 30px;
   font-size: 14px;
 }
-.nav1{
-  color: #808dff;
-}
-
-.sidebar-nav li a:hover{
+.sidebar li a:hover{
   text-decoration: none;
   color: #fff;
 }
-
-#nav_1:hover{
+#sid_1:hover{
   background: #0038ff;
 }
-#nav_3:hover {
+#sid_2:hover {
+  background: #6a003f;
+}
+#sid_3:hover {
   background: #cc0000;
 }
-
-#nav_4:hover {
+#sid_4:hover {
   background: #00f919;
 }
-
-#nav_5:hover {
+#sid_5:hover {
   background: #adff00;
 }
-
-#nav_6:hover {
-  background: #ff8f0b;
+#sid_6:hover {
+  background: #14dbb1;
 }
-
-#nav_7:hover {
+#sid_7:hover {
   background: #004545;
 }
-/*Content*/
+/*--------dropdown-produk.start--------*/
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 100%;
+  width: 200px;
+  top:0%;
+  border-radius: 2%;
+  border-top-left-radius: 0%;
+  border-top: 4px solid #cc0000;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);;
+  z-index: 1;
+}
+.dropdown:hover #sid_3 {
+  background-color: #cc0000;
+  color: #fff;
+}
+.dropdown-content #drop_p1:hover{
+  color: #cc0000;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #EAEAEB;
+}
+.dropdown-content #drop_p2:hover{
+  color: #cc0000;
+  text-decoration: none;
+  display: block;
+  border-top: 1px solid #EAEAEB;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/*--------dropdown-produk.end--------*/
+/*============================================================================*/
+/*-----------------------------------CONTENT----------------------------------*/
+/*============================================================================*/
 .content{
-  height: 510px;
+  height: 80vh;
   background: #fff;
-  border-left: 10px solid #edeeee;
   border-top: 10px solid #edeeee;
 }
-/*end of content*/
 
-/*Sidebar hamberger*/
-.menu{
+
+/*==============================under construction============================*/
+/*-----------------------------------HAMBURGER--------------------------------*/
+/*============================================================================*/
+.toggle{
   height: 40px;
   border-bottom: 1px solid #EAEAEB;
 }
-label{
-  margin: 0 40px 0 0;
-    font-size: 26px;
-    line-height: 70px;
-    display: none;
-    width: 26px;
-    float: right;
-}
-
-#toggle{
+.toggle .fa{
+  padding: 0;
+  margin: -30px 15px 0 0;
+  font-size: 24px;
+  text-align: center;
+  line-height: 30px;
   display: none;
+  width: 30px;
+  float: right;
+  color: #004b4b;
+  border: 1px solid #EAEAEB;
 }
-.sidebutton{
-  padding-top: 15%;
-  position: absolute;
+.icon-ublok{
+  width: 15%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
-
 @media only screen and (max-width: 991px) {
-  label{
+  .toggle .fa{
     display: block;
     cursor: pointer;
   }
   .sidebar{
-    margin-top: 10px;
-    height: 373px;
+    padding: 0;
+    margin: 0;
+    border-right:0;
   }
-  .sidebar-nav{
-    text-align: center;
+  ul{
+    width: 100%;
+    display: none;
+  }
+  ul i{
+    margin-left: 40%;
+  }
+  .sid a{
     display: block;
+    border-bottom: 1px solid #EAEAEB;
+    margin: 0;
   }
-  .sidebar-nav a{
-    display: block;
-        border-bottom: 1px solid #EAEAEB;
-        margin: 0;
-  }
-  #toggle:checked + .sidebar-nav {
-        display: block;
-    }
   .header .user h5{
     display: none;
-  } 
-/*sidebar style end*/
+  }
+  .toggle .fa:hover{
+    color: #0017da;
+  }
+  .judul h1{
+    font-size: 36px;
+    height: 36px;
+    padding: 0;
+    margin-top: 15px;
+    padding-left: 30px;
+  }
+  .active{
+    display: block;
+  }
 }
+/*hamburger end*/

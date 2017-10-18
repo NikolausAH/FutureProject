@@ -1,139 +1,101 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Home</title>
-		<meta name="viewport" content="width=device-width, initial-scale-1.0">
-		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	</head>
-										<!--akhir head-->
-	<body>
-
-		<div class="container-fluid">
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<title>Home</title>
+			<meta name="viewport" content="width=device-width, initial-scale-1.0">
+			<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+			<link rel="stylesheet" type="text/css" href="style.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+			<script type="text/javascript" src="script.js"></script>
+		</head>
+										<!--==========head.end==========-->
+		<body>
+										<!--==========header.start==========-->
+			<div class="container-fluid">
 				<div class="row">
-					<div class="header">
-					<div class="col-xs-3 col-md-2 logo">
-						<a href="home.html"><img src="image/logo-alfamarts.png" class="logo" alt="Cinque Terre"></a>
+						<div class="header">
+							<div class="col-xs-3 col-md-2 col-lg-2 logo">
+								<a href="home.html"><img src="image/blibli.png" class="logo" alt="Cinque Terre"></a>
+							</div>
+							<div class="col-xs-7 col-md-6 col-lg-6 judul">
+									<h1>POS Blibli</h1>
+							</div>
+							<div class="col-xs-2 col-md-4 col-lg-4 user">
+								<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+								<div class="identitas">
+									<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+									<h5 id="role-text">Role :Admin</h5>
+								</div>
+								<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+									<div class="segitiga">
+										<p>sgt</p>
+									</div>
+									<div class="dropdown-avatar">
+										<ul>
+											<li><a id="drop_u1" href="#"><i class="fa">&#xf007;</i> Akun</a></li>
+											<li><a id="drop_u2" href="#"><i class="glyphicon">&#xe163</i> Keluar</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
 					</div>
-					<div class="col-xs-7 col-md-6 judul">
-							<h1>POS Alfamart</h1>
-					</div>
-					<div class="col-xs-2 col-md-4 user">
-						<!--<i class="fa icon-user">&#xf2be;</i>         // ganti icon mang-->
-						<div class="dropdown-user">
-							<input class ="user_icon"type="image" id="myimage" src="image/user.png" />
-							<div class="dropdown-content-user">
-									<d href="#">Akun</d>
-									<d href="#">Keluar</d>
-						</div>
-					</div>
-					<div class="admin_info">
-							<h5 id="name">Nama / ID :SUTARTO/1011</h5>
-							<h5 id="role-text">Role :Admin</h5>
-						</div>
-					</div>
-				</div>
 			</div>
-		</div>
-
-			<!--SIDEBAR-->
+			</div>
+										<!--==========header.end==========-->
 			<div class="container">
+										<!--==========navigation.start==========-->
 				<div class="row">
-					<div class ="col-md-12 navigation">
+					<div class ="col-xs-12 navigation">
 						<a href="home.html"><i class="fa" id="home-icon">&#xf015;</i></a>
+					</div>
 				</div>
+										<!--==========navigation.end==========-->
 				<div class="row">
-					<div class ="col-md-2 sidebar">
-						<!--Start Responsif Menu-->
-						<div class="menu">
-							<label for="toggle">&#9776;</label>
-							<input type="checkbox" id="toggle"/>
-							<h3>Menu</h3>
+										<!--==========sidebar.start==========-->
+					<div class ="col-md-2 col-lg-2 sidebar">
+							<!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+						<div class="toggle">
+							<h3>Menu</h3> <i class="fa menu" aria-hidden="true">&#9776;</i>
 						</div>
-						<!--End Responsif Menu
-							icon reference https://www.w3schools.com/icons/icons_reference.asp-->
-						<div class="sidebar-nav">
-						<ul class="sidebutton">
+						<ul>
+							<li>
+								<a id="sid_1" href="#"><i class="fa">&#xf19c;</i> Minimarket</a>
+							</li>
+							<li>
+								<a id="sid_2" href="#"><i class="fa">&#xf0c0;</i> Pegawai</a>
+							</li>
 								<li>
-										<i class="fa">&#xf19c;</i>
-											<div class="dropdown">
-													<button class="dropbtn">Minimarket</button>
-													<div class="dropdown-content">
-													</div>
-											</div>
+									<div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+										<div class="dropdown-content">
+											<a id="drop_p1" href="#">Kategori</a>
+											<a id="drop_p2" href="#">Kelola Produk</a>
+										</div>
+									</div>
 								</li>
-								<li>
-										<i class="fa">&#xf0c0;</i>
-											<div class="dropdown">
-													<button class="dropbtn">Pegawai</button>
-													<div class="dropdown-content">
-													  <a href="#">Tambah Pegawai</a>
-													  <a href="#">Ubah Informasi Pegawai</a>
-													</div>
-												</div>
-								</li>
-								<li>
-											<i class="fa">&#xf288;</i>
-												<div class="dropdown">
-														<button class="dropbtn">Produk</button>
-														<div class="dropdown-content">
-														  <a href="#">Tambah Produk</a>
-														  <a href="#">Ubah Informasi Produk</a>
-														</div>
-													</div>
-								</li>
-								<li>
-												<i class="fa">&#xf1b3;</i>
-													<div class="dropdown">
-															<button class="dropbtn">Stok</button>
-															<div class="dropdown-content">
-															</div>
-														</div>
-								</li>
-								<li>
-											<i class="fa">&#xf217;</i>
-												<div class="dropdown">
-														<button class="dropbtn">Transaksi</button>
-														<div class="dropdown-content">
-														</div>
-													</div>
-								</li>
-								<li>
-												<i class="fa">&#xf02c;</i>
-													<div class="dropdown">
-															<button class="dropbtn">Promo</button>
-															<div class="dropdown-content">
-																	<a href="#">Tambah Promo</a>
-																	<a href="#">Mengubah Promo</a>
-															</div>
-														</div>
-								
-								</li>
-								<li>
-												<i class="fa">&#xf080;</i>
-													<div class="dropdown">
-															<button class="dropbtn">Laporan</button>
-															<div class="dropdown-content">
-																	<a href="#">Laporan Transaksi</a>
-																	<a href="#">Laporan Statistik</a>
-															</div>
-														</div>
-										
-								</li>
-
+							<li>
+								<a id="sid_4" href="#"><i class="fa">&#xf1b3;</i> Stok</a>
+							</li>
+							<li>
+								<a id="sid_5" href="#"><i class="fa">&#xf217;</i> Transaksi</a>
+							</li>
+							<li>
+								<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+							</li>
+							<li>
+								<a id="sid_7" href="#"><i class="fa">&#xf080;</i> Laporan</a>
+							</li>
 						</ul>
 					</div>
-			</div>
-			<!--SIDEBAR END-->
-					<div class="col-md-10 content">
-							
-								  </div>
+										<!--==========sidebar.end==========-->
+										<!--==========content.start==========-->
+					<div class="col-md-10 col-lg-10 content">
 
 					</div>
+										<!--==========content.end==========-->
 				</div>
 			</div>
-
-	</body>
-</html>
+		</body>
+										<!--==========head.end==========-->
+	</html>
