@@ -61,9 +61,6 @@ body{
   color: #037e83;
   cursor: pointer;
 }
-#dr-down{
-  display: none;
-}
 .segitiga{
     display: block;
     font-size: 0;
@@ -109,6 +106,9 @@ body{
   text-decoration: none;
   display: block;
   border-top: 1px solid #EAEAEB;
+}
+#dr-down{
+  display: none;
 }
 /*--------avatar.end--------*/
 /*--------identitas.start--------*/
@@ -286,12 +286,14 @@ body{
     margin: 0;
     border-right:0;
   }
-  ul{
+  .sidebar ul{
     width: 100%;
     display: none;
   }
-  ul i{
-    margin-left: 40%;
+  .sidebar ul li{
+    width: 100%;
+    text-indent: 16%;
+    overflow-x:inline;
   }
   .sid a{
     display: block;
@@ -311,8 +313,23 @@ body{
     margin-top: 15px;
     padding-left: 30px;
   }
-  .active{
+  .sidebar .active{
     display: block;
+  }
+  .dropdow{
+    display: block;
+    width: 100%;
+    z-index: 1;
+  }
+  #dr-down{
+    display: none;
+    z-index: 1;
+  }
+  .dropdown-avatar{
+    position: absolute;
+    width: 130px;
+    top:60px;
+    left: -90%;
   }
 }
 /*hamburger end*/
