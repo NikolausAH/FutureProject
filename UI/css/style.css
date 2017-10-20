@@ -61,6 +61,9 @@ body{
   color: #037e83;
   cursor: pointer;
 }
+#dr-down{
+  display: none;
+}
 .segitiga{
     display: block;
     font-size: 0;
@@ -106,9 +109,6 @@ body{
   text-decoration: none;
   display: block;
   border-top: 1px solid #EAEAEB;
-}
-#dr-down{
-  display: none;
 }
 /*--------avatar.end--------*/
 /*--------identitas.start--------*/
@@ -316,20 +316,9 @@ body{
   .sidebar .active{
     display: block;
   }
-  .dropdow{
-    display: block;
-    width: 100%;
-    z-index: 1;
-  }
-  #dr-down{
-    display: none;
-    z-index: 1;
-  }
   .dropdown-avatar{
-    position: absolute;
-    width: 130px;
-    top:60px;
-    left: -90%;
+    left: -50px;
+    width: 100px;
   }
 }
 /*hamburger end*/
