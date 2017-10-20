@@ -134,13 +134,13 @@ body{
   background: #46c6cb;
   border-top: 10px solid #edeeee;
   width: 100%;
-  font-size: 26px;
   color: #fff;
-  padding: 0;
+  height: 40px;
 }
 #home-icon{
   color: #fff;
   padding-left: 30px;
+  font-size: 26px;
 }
 #home-icon:hover{
   color: #2ef2ff;
