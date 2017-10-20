@@ -277,14 +277,19 @@ body{
   padding: 0;
 }
 @media only screen and (max-width: 991px) {
+   .dropdown-content{
+    position: static;
+    width: 100%;
+    text-indent: 30%;
+    box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);;
+    z-index: 1;
+  }
+  .sidebar{
+    border: 0;
+  }
   .toggle .fa{
     display: block;
     cursor: pointer;
-  }
-  .sidebar{
-    padding: 0;
-    margin: 0;
-    border-right:0;
   }
   .sidebar ul{
     width: 100%;
@@ -295,10 +300,10 @@ body{
     text-indent: 16%;
     overflow-x:inline;
   }
-  .sid a{
+  .sidebar li a{
     display: block;
     border-bottom: 1px solid #EAEAEB;
-    margin: 0;
+    padding-left: 10%;
   }
   .header .user h5{
     display: none;
@@ -320,5 +325,6 @@ body{
     left: -50px;
     width: 100px;
   }
+
 }
 /*hamburger end*/
