@@ -16,3 +16,14 @@
   display: inline-block;
   width: 100%;
 }
+#btn-tambah,
+#btn-ubah{
+  margin-left: 35%;
+}
+#btn-hapus{
+  margin-right: 35%;
+}
+.three-button{
+  position: absolute;
+  bottom: 20px;
+}
