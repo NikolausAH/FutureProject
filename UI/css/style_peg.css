@@ -7,3 +7,12 @@
 #pos:hover{
   color: #2ef2ff;
 }
+.form-inline .form-control{
+  width: 65%;
+  margin-left: 10%;
+  margin-right: 5%;
+}
+.pencarian{
+  display: inline-block;
+  width: 100%;
+}
