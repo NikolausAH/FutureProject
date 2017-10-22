@@ -75,9 +75,10 @@
   font-size: 18px;
   position: absolute;
   left: 49.5%;
-  bottom: 3%;
+  top: 20%;
   color: #fff;
   cursor: pointer;
+  z-index: 1;
 }
 .control-label{
   float: left;
@@ -91,4 +92,13 @@
   padding-bottom: 10px;
   background: #fff;
   padding-left: 25%;
+}
+.dropdown{
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  z-index: 1;
+}
+#menu1{
+  width: 100%;
 }
