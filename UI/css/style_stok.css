@@ -1,0 +1,14 @@
+#aksi-stok{
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  height: auto;
+}
+/*atas hapus*/
+.top-form{
+  padding-top:5%;
+}
+.form-search{
+  margin-bottom: 2%;
+}
