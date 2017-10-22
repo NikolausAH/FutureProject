@@ -230,7 +230,7 @@
 							<br>
 							<div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
 								<div class="col-xs-4 col-md-4 col-lg-4">
-									<button type="button" class="btn btn-success" id="btn-tambah">Tambah</button>
+									<button type="button" class="btn btn-success" id="btn-tambah" onclick="openTambah()">Tambah</button>
 								</div>
 								<div class="col-xs-4 col-md-4 col-lg-4">
 									<button type="button" class="btn btn-warning" id="btn-ubah">Ubah</button>
@@ -242,7 +242,7 @@
 							<!--Akhir Button tambah ubah hapus-->
 							<!--Aksi tambah-->
 								<div class="col-xs-6 col-md-6 col-lg-6" id="aksi-tambah">
-									<i class="fa" id="btn-close">&#xf00d;</i>
+									<i class="fa" id="btn-close" onclick="closeTambah()">&#xf00d;</i>
 									<i class="fa" id="user-avatar"  onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
 									<i class="fa" id="edit-avatar"  onmouseover="openNav()" onmouseout="closeNav()">&#xf030;</i>
 									<br>
@@ -260,7 +260,7 @@
 												<label class="control-label" for="nama">Nama :</label>
 											</div>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="nama" placeholder="0112" name="nama">
+												<input type="text" class="form-control" id="nama" placeholder="Nama Baru" name="nama">
 											</div>
 										</div>
 										<div class="dropdown">
@@ -297,6 +297,14 @@
 										<!--==========content.end==========-->
 				</div>
 			</div>
+			<script>
+				function openTambah() {
+						document.getElementById("aksi-tambah").style.display="block";
+				}
+				function closeTambah() {
+						document.getElementById("aksi-tambah").style.display="none";
+				}
+			</script>
 		</body>
 										<!--==========head.end==========-->
 	</html>
