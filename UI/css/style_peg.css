@@ -50,7 +50,7 @@
     max-height: 600px;
   }
 }
-#aksi-tambah{
+.aksi{
   display: none;
   position: absolute;
   top: 20%;
@@ -90,7 +90,6 @@
 #two-button{
   padding-top: 10px;
   padding-bottom: 10px;
-  background: #fff;
   padding-left: 25%;
 }
 .dropdown{
@@ -99,6 +98,19 @@
   margin-bottom: 15px;
   z-index: 1;
 }
+.caret{
+  float: right;
+}
 #menu1{
   width: 100%;
+  text-align: justify;
+}
+#btn-batal{
+  margin-left: 10px;
+}
+#btn-tambah2{
+  float: right;
+}
+#btn-ubah2{
+  float: right;
 }
