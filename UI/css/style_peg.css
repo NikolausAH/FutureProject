@@ -50,3 +50,43 @@
     max-height: 600px;
   }
 }
+#aksi-tambah{
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  background: #fff;
+  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
+  z-index: 1;
+}
+#btn-close{
+  float: right;
+  font-size: 20px;
+}
+#user-avatar{
+  font-size: 60px;
+  padding-top: 20px;
+  padding-left: 45%;
+  color: #037e83;
+  cursor: pointer;
+}
+#edit-avatar{
+  font-size: 18px;
+  position: absolute;
+  left: 49.5%;
+  bottom: 3%;
+  color: #fff;
+  cursor: pointer;
+}
+.control-label{
+  float: left;
+}
+.form-horizontal .form-group{
+    margin-right: 15px;
+    margin-left:  15px;
+}
+#two-button{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #fff;
+  padding-left: 25%;
+}

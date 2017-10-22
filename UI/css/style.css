@@ -218,7 +218,7 @@ body{
   border-top-left-radius: 0%;
   border-top: 4px solid #cc0000;
   background-color: #fff;
-  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);;
+  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
   z-index: 1;
 }
 .dropdown:hover #sid_3 {
