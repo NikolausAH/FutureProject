@@ -328,3 +328,6 @@ body{
 
 }
 /*hamburger end*/
+.control-label{
+  float: right;
+}

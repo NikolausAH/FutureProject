@@ -1,9 +1,8 @@
 #aksi-stok{
   display: block;
   position: absolute;
-  top: 20%;
-  left: 0;
-  height: auto;
+  margin-top: 60px;
+  left: 5%;
 }
 /*atas hapus*/
 .top-form{

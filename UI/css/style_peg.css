@@ -80,9 +80,6 @@
   cursor: pointer;
   z-index: 1;
 }
-.control-label{
-  float: left;
-}
 .form-horizontal .form-group{
     margin-right: 15px;
     margin-left:  15px;
@@ -104,6 +101,7 @@
 #menu1{
   width: 100%;
   text-align: justify;
+  margin-left: 15px;
 }
 #btn-batal{
   margin-left: 10px;
@@ -113,4 +111,14 @@
 }
 #btn-ubah2{
   float: right;
+}
+#role-label{
+  padding-right: 45px;
+  padding-left: 0px;
+}
+.dropdown-role{
+  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-right: 30px;
+
 }
