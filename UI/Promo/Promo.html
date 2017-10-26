@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale-1.0">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="Promo.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="../js/script.js"></script>
+</head>
+<!--==========head.end==========-->
+
+<body>
+	<!--==========header.start==========-->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="header">
+				<div class="col-xs-3 col-md-2 col-lg-2 logo">
+					<a href="home.html">
+						<img src="../image/blibli.png" class="logo" alt="Cinque Terre">
+					</a>
+				</div>
+				<div class="col-xs-7 col-md-6 col-lg-6 judul">
+					<h1>POS Blibli</h1>
+				</div>
+				<div class="col-xs-2 col-md-4 col-lg-4 user">
+					<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+					<div class="identitas">
+						<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+						<h5 id="role-text">Role :Admin</h5>
+					</div>
+					<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+						<div class="segitiga">
+							<p>sgt</p>
+						</div>
+						<div class="dropdown-avatar">
+							<ul>
+								<li>
+									<a id="drop_u1" href="#">
+										<i class="fa">&#xf007;</i> Akun</a>
+								</li>
+								<li>
+									<a id="drop_u2" href="#">
+										<i class="glyphicon">&#xe163</i> Keluar</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--==========header.end==========-->
+	<div class="container">
+		<!--==========navigation.start==========-->
+		<div class="row">
+			<div class="col-xs-12 navigation">
+				<a href="home.html">
+					<i class="fa" id="home-icon">&#xf015;</i>
+				</a>
+			</div>
+		</div>
+		<!--==========navigation.end==========-->
+		<div class="row">
+			<!--==========sidebar.start==========-->
+			<div class="col-md-2 col-lg-2 sidebar">
+				<!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+				<div class="toggle">
+					<h3>Menu</h3>
+					<i class="fa menu" aria-hidden="true">&#9776;</i>
+				</div>
+				<ul>
+					<li>
+						<a id="sid_1" href="#">
+							<i class="fa">&#xf19c;</i> Minimarket</a>
+					</li>
+					<li>
+						<a id="sid_2" href="#">
+							<i class="fa">&#xf0c0;</i> Pegawai</a>
+					</li>
+					<li>
+						<div class="dropdown">
+							<a id="sid_3">
+								<i class="fa">&#xf288;</i> Produk</a>
+							<div class="dropdown-content">
+								<a id="drop_p1" href="#">Kategori</a>
+								<a id="drop_p2" href="#">Kelola Produk</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a id="sid_4" href="#">
+							<i class="fa">&#xf1b3;</i> Stok</a>
+					</li>
+					<li>
+						<a id="sid_5" href="#">
+							<i class="fa">&#xf217;</i> Transaksi</a>
+					</li>
+					<li>
+						<a id="sid_6" href="#">
+							<i class="fa">&#xf02c;</i> Promo</a>
+					</li>
+					<li>
+						<a id="sid_7" href="#">
+							<i class="fa">&#xf080;</i> Laporan</a>
+					</li>
+				</ul>
+			</div>
+			<!--==========sidebar.end==========-->
+			<!--==========content.start==========-->
+			<div class="col-md-10 col-lg-10 content">
+				<br>
+				<form class="form-inline">
+					<input class="form-control src" name="search" placeholder="Kode Promo...">
+					<button type="button" class="btn btn-success" id="btn-export">Export</button>
+				</form>
+				<br>
+				<!--Table-->
+				<div class="col-md-12 drop">
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+						 aria-expanded="false">
+							Diskon Barang
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-lg-12">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Kode Promo</th>
+									<th>Nama Barang</th>
+									<th>Tanggal Mulai</th>
+									<th>Diskon</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>M00001</td>
+									<td>Giacomo Guiilzzani</td>
+									<td>Admin</td>
+									<td>gianicomo@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>M00002</td>
+									<td>Mariah</td>
+									<td>Kasir</td>
+									<td>mariah@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>M00003</td>
+									<td>Maclochlan Guilizzani</td>
+									<td>Admin</td>
+									<td>Maclochlan@yahoo.com</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--end of table-->
+
+				<!--Button tambah ubah hapus-->
+				<br>
+				<div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
+					<div class="col-xs-4 col-md-4 col-lg-4">
+						<button type="button" class="btn btn-success" id="btn-tambah" onclick="openTambah()">Tambah</button>
+					</div>
+					<div class="col-xs-4 col-md-4 col-lg-4">
+						<button type="button" class="btn btn-warning" id="btn-ubah" onclick="openUbah()">Ubah</button>
+					</div>
+					<div class="col-xs-4 col-md-4 col-lg-4">
+						<button type="button" class="btn btn-danger" id="btn-hapus">Hapus</button>
+					</div>
+				</div>
+				<!--Akhir Button tambah ubah hapus-->
+				<!--Aksi tambah-->
+				<div class="col-xs-10 col-md-10 col-lg-10" id="aksi-tambah">
+					<div class="col-md-12">
+						<form>
+							<div class="col-md-6">
+								<p>Data promo</p>
+							</div>
+							<div class="col-md-5">
+								<p>Data barang x</p>
+							</div>
+							<div class="col-md-1">
+								<button type="button" class="close" aria-label="Close" onclick="closeTambah()">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							Kode Promo:
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="Kode-promo" placeholder="kode...">
+						</div>
+						<div class="col-md-3">
+							<p>Kode barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="Kode-promo" placeholder="kode...">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Tanggal Mulai:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="date" name="Tanggal Mulai" placeholder="automatic">
+						</div>
+						<div class="col-md-3">
+							<p>Nama barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="Nama-barang" placeholder="automatic">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Tanggal Berakhir:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="date" name="tanggal-berakhir" placeholder="automatic">
+						</div>
+						<div class="col-md-3">
+							<p>Jumlah barang minimal:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="number" name="Jumlah-min" min=1 max=10>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Jenis Promo:</p>
+						</div>
+						<div class="col-md-3">
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+								 aria-expanded="false">
+									Dropdown button
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="#">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<p>Data Barang y</p>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Belanja Minimal(Rp):</p>
+						</div>
+						<div class="col-md-3">
+							<input type="number" name="tanggal-berakhir">
+						</div>
+						<div class="col-md-3">
+							<p>Kode Barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="Jumlah-min">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Diskon(%):</p>
+						</div>
+						<div class="col-md-3">
+							<input type="number" name="pajak" max=20 min=1>
+						</div>
+						<div class="col-md-3">
+							<p>Nama Barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="nama-barang-y">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-6 two-buttons">
+							<button type="button" class="btn btn-primary batal">Batal</button>
+							<button type="button" class="btn btn-success tambah">Tambah</button>
+						</div>
+						<div class="col-md-3">
+							<p>Jumlah Barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="number" name="jumlah-barang-y" max=10 min=1>
+						</div>
+						</form>
+					</div>
+				</div>
+				<!--Akhir Aksi tambah-->
+				<!--Aksi Ubah-->
+				<div class="col-xs-10 col-md-10 col-lg-10" id="aksi-ubah">
+					<div class="col-md-12">
+						<form>
+							<div class="col-md-6">
+								<p>Data promo</p>
+							</div>
+							<div class="col-md-5">
+								<p>Data barang x</p>
+							</div>
+							<div class="col-md-1">
+								<button type="button" class="close" aria-label="Close" onclick="closeUbah()">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							Kode Promo:
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="Kode-promo" placeholder="kode...">
+						</div>
+						<div class="col-md-3">
+							<p>Kode barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="Kode-promo" placeholder="kode...">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Tanggal Mulai:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="date" name="Tanggal Mulai" placeholder="automatic">
+						</div>
+						<div class="col-md-3">
+							<p>Nama barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="Nama-barang" placeholder="automatic">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Tanggal Berakhir:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="date" name="tanggal-berakhir" placeholder="automatic">
+						</div>
+						<div class="col-md-3">
+							<p>Jumlah barang minimal:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="number" name="Jumlah-min" min=1 max=10>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Jenis Promo:</p>
+						</div>
+						<div class="col-md-3">
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+								 aria-expanded="false">
+									Dropdown button
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="#">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<p>Data Barang y</p>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Belanja Minimal(Rp):</p>
+						</div>
+						<div class="col-md-3">
+							<input type="number" name="tanggal-berakhir">
+						</div>
+						<div class="col-md-3">
+							<p>Kode Barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="Jumlah-min">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<p>Diskon(%):</p>
+						</div>
+						<div class="col-md-3">
+							<input type="number" name="pajak" max=20 min=1>
+						</div>
+						<div class="col-md-3">
+							<p>Nama Barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="text" name="nama-barang-y">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-6 two-buttons">
+							<button type="button" class="btn btn-primary batal">Batal</button>
+							<button type="button" class="btn btn-success tambah">Ubah</button>
+						</div>
+						<div class="col-md-3">
+							<p>Jumlah Barang:</p>
+						</div>
+						<div class="col-md-3">
+							<input type="number" name="jumlah-barang-y" max=10 min=1>
+						</div>
+						</form>
+					</div>
+				</div>
+				<!--Akhir Aksi Ubah-->
+			</div>
+			<!--==========content.end==========-->
+		</div>
+	</div>
+	<script>
+		function openTambah() {
+			document.getElementById("aksi-tambah").style.display = "block";
+		}
+		function closeTambah() {
+			document.getElementById("aksi-tambah").style.display = "none";
+		}
+		function openUbah() {
+			document.getElementById("aksi-ubah").style.display = "block";
+		}
+		function closeUbah() {
+			document.getElementById("aksi-ubah").style.display = "none";
+		}
+	</script>
+</body>
+<!--==========head.end==========-->
+
+</html>
