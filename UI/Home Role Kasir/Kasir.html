@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale-1.0">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="role.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="../js/script.js"></script>
+</head>
+<!--==========head.end==========-->
+
+<body>
+	<!--==========header.start==========-->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="header">
+				<div class="col-xs-3 col-md-2 col-lg-2 logo">
+					<a href="home.html">
+						<img src="../image/blibli.png" class="logo" alt="Cinque Terre">
+					</a>
+				</div>
+				<div class="col-xs-7 col-md-6 col-lg-6 judul">
+					<h1>POS Blibli</h1>
+				</div>
+				<div class="col-xs-2 col-md-4 col-lg-4 user">
+					<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+					<div class="identitas">
+						<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+						<h5 id="role-text">Role :Kasir</h5>
+					</div>
+					<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+						<div class="segitiga">
+							<p>sgt</p>
+						</div>
+						<div class="dropdown-avatar">
+							<ul>
+								<li>
+									<a id="drop_u1" href="#">
+										<i class="fa">&#xf007;</i> Akun</a>
+								</li>
+								<li>
+									<a id="drop_u2" href="#">
+										<i class="glyphicon">&#xe163</i> Keluar</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--==========header.end==========-->
+	<div class="container">
+		<!--==========navigation.start==========-->
+		<div class="row">
+			<div class="col-xs-12 navigation">
+				<a href="home.html">
+					<i class="fa" id="home-icon">&#xf015;</i>
+				</a>
+			</div>
+		</div>
+		<!--==========navigation.end==========-->
+		<div class="row">
+			<!--==========sidebar.start==========-->
+
+			<!--==========sidebar.end==========-->
+			<!--==========content.start==========-->
+			<div class="col-md-10 col-lg-12 content">
+				<div class="top-layer border border-primary">
+					<!--First Layer-->
+					<div class="col-sm-12">
+						<div class="col-sm-3">
+							<p>
+								Nomor Penjualan:
+							</p>
+						</div>
+						<div class="col-sm-3">
+							<p>
+								120
+							</p>
+						</div>
+						<div class="col-sm-3">
+							<p>
+								Pajak:
+							</p>
+						</div>
+						<div class="col-sm-3">
+							<p>
+								Rp.0,-
+							</p>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-3">
+							<p>
+								Waktu/Tanggal:
+							</p>
+						</div>
+						<div class="col-sm-3">
+							<input type="time">
+							<input type="date">
+						</div>
+						<div class="total-akhir">
+							<div class="col-sm-3">
+								<p>
+									Total Akhir:
+								</p>
+							</div>
+							<div class="col-sm-3">
+								<p>
+									Rp.0,-
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-3">
+							<p>
+								Nama Kasir:
+							</p>
+						</div>
+						<div class="col-sm-3">
+							<p>
+								Sutarto
+							</p>
+						</div>
+						<div class="col-sm-12">
+							<hr>
+						</div>
+						<!--second layer-->
+						<div class="col-sm-12">
+							<div class="col-sm-3">
+								<p>Kode Produk</p>
+							</div>
+							<div class="col-sm-3">
+								<input type="text">
+							</div>
+							<div class="col-sm-3">
+								<p>Jumlah</p>
+							</div>
+							<div class="col-sm-3">
+								<input type="number" name="quantity" min="1" max="100" id="jumlah">
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="col-sm-3">
+								<p>Nama Produk</p>
+							</div>
+							<div class="col-sm-3">
+								<input type="text">
+							</div>
+						</div>
+						<!--Table-->
+
+						<div class="col-md-12 col-lg-12">
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Kode Produk</th>
+											<th>Nama Produk</th>
+											<th>Harga</th>
+											<th>Jumlah</th>
+											<th>Diskon</th>
+											<th>Subtotal</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>M00001</td>
+											<td>Giacomo Guiilzzani</td>
+											<td>Admin</td>
+											<td>gianicomo@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>M00002</td>
+											<td>Mariah</td>
+											<td>Kasir</td>
+											<td>mariah@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>M00003</td>
+											<td>Maclochlan Guilizzani</td>
+											<td>Admin</td>
+											<td>Maclochlan@yahoo.com</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--end of table-->
+						<!--Tambah Button-->
+						<div class="col-xs-12 col-md-12 col-lg-12" id="four-buttons">
+							<div class="col-xs-3 col-md-3 col-lg-3">
+								<button type="button" class="btn btn-success" id="btn-tambah" onclick="openTambah()">Tambah</button>
+							</div>
+							<div class="col-xs-3 col-md-3 col-lg-3">
+								<button type="button" class="btn btn-warning" id="btn-ubah">Ubah</button>
+							</div>
+							<div class="col-xs-3 col-md-3 col-lg-3">
+								<button type="button" class="btn btn-primary" id="btn-bayar">bayar</button>
+							</div>
+							<div class="col-xs-3 col-md-3 col-lg-3">
+								<button type="button" class="btn btn-danger" id="btn-bayar">batal (esc)</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--==========content.end==========-->
+			</div>
+		</div>
+</body>
+<!--==========head.end==========-->
+
+</html>
