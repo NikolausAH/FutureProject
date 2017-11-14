@@ -2,12 +2,13 @@
 	<html>
 		<head>
 			<meta charset="utf-8">
-			<title>POS | Stok</title>
+			<title>POS | Laporan</title>
 			<meta name="viewport" content="width=device-width, initial-scale-1.0">
 			<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 			<link rel="stylesheet" type="text/css" href="css/style.css">
 			<link rel="stylesheet" type="text/css" href="css/style_peg.css">
-			<link rel="stylesheet" type="text/css" href="css/style_stok.css">
+			<link rel="stylesheet" type="text/css" href="css/style_lap.css">
+			<link rel="stylesheet" type="text/css" href="css/style_bayar.css">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 			<script type="text/javascript" src="js/script.js"></script>
@@ -52,7 +53,9 @@
 					<div class ="col-xs-12 navigation">
 						<a href="home.html"><i class="fa" id="home-icon"> &#xf015;</i></a>
 						<i class="glyphicon">&#xe080;</i>
-						<a href="Stok.html" id="pos">Stok</a>
+						<a href="Transaksi.html" id="pos">Transaksi</a>
+						<i class="glyphicon">&#xe080;</i>
+						<a href="Transaksi.html" id="pos">Bayar</a>
 					</div>
 				</div>
 										<!--==========navigation.end==========-->
@@ -72,7 +75,7 @@
 							</li>
 								<li>
 									<div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
-										<div class="dropdown-content">
+										<div class="dropdown-content" id="dr-produk">
 											<a id="drop_p1" href="#">Kategori</a>
 											<a id="drop_p2" href="#">Kelola Produk</a>
 										</div>
@@ -88,102 +91,94 @@
 								<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
 							</li>
 							<li>
-								<a id="sid_7" href="#"><i class="fa">&#xf080;</i> Laporan</a>
+								<li>
+									<div class="dropdown"><a id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
+										<div class="dropdown-content" id="dr-laporan">
+											<a id="drop_p1" href="#">Transaksi</a>
+											<a id="drop_p2" href="#">Statistik</a>
+										</div>
+									</div>
+								</li>
 							</li>
 						</ul>
 					</div>
 										<!--==========sidebar.end==========-->
 										<!--==========content.start==========-->
 					<div class="col-md-10 col-lg-10 content">
-						<br>
-						<form class="form-inline">
-							<div class="col-md-4">
-							</div>
-							<div class="col-md-8 form-search">
-								<input class="form-control src" name="search" placeholder="ID atau Nama Produk...">
-								<button type="button" class="btn btn-success" id="btn-export">Export</button>
-							</div>
-						</form>
-						<br>
-						<!--Start Bagian Form-->
-
-						<div class="col-md-4">
-							<div class="aksi" id="aksi-stok">
+						<!--Start bagan filter-->
+						<section >
+							<div class="col-xs-8 col-md-8 col-lg-8" id="form-bayar">
+								<i class="fa" id="btn-close" onclick="closeBayar()">&#xf00d;</i>
 								<br>
 								<form class="form-horizontal" action="">
 									<div class="form-group top-form">
-										<div class="col-md-4">
-											<label class="control-label" for="kode-kategori">Kode :</label>
+										<div class="col-sm-3">
+											<label class="control-label" for="kode-kategori">Total Bersih :</label>
 										</div>
-										<div class="col-md-8">
-											<input type="number" class="form-control" id="kode" name="kode">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-4">
-											<label class="control-label" for="nama">Nama :</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control" id="nama" name="nama">
+										<div class="col-sm-9">
+											<h1 id="total">32000</h1>
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-4">
-											<label class="control-label" for="jumlah">Jumlah :</label>
+										<div class="col-sm-3">
+											<label class="control-label" for="metode-bayar">Metode Bayar :</label>
 										</div>
-										<div class="col-md-8">
-											<input type="number" class="form-control" id="jumlah" name="jumlah">
+										<div class="col-sm-7">
+											<select  id="comboMetode">
+												<option>Tunai</option>
+										    <option>Debit</option>
+										    <option>Kredit</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-3">
+											<label class="control-label" for="harga">Nomor Kartu :</label>
+										</div>
+										<div class="col-sm-9">
+											<input type="number" class="form-control" id="harga" name="no-kar">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-3">
+											<label class="control-label" for="harga">Nominal Bayar :</label>
+										</div>
+										<div class="col-sm-9">
+											<input type="number" class="form-control" id="nominal-bayar" name="nom-bayar">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-3">
+											<label class="control-label" for="harga">Kembalian :</label>
+										</div>
+										<div class="col-sm-9">
+											<h1 id="total">32000</h1>
 										</div>
 									</div>
 								</form>
 								<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<button type="button" class="btn btn-primary" id="btn-batal">Batal</button>
+										<button type="button" class="btn btn-primary" id="btn-batal" onclick="closeBayar()">Batal</button>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<button type="button" class="btn btn-success" id="btn-tambah2">Tambah</button>
+										<button type="button" class="btn btn-warning" id="btn-ubah2">Ubah</button>
 									</div>
 								</div>
 							</div>
-							</div>
-						<!--Akhir Aksi tambah-->
-
-						<!--End Bagian Form-->
-						<!--Start Bagian Tabel-->
-						<div class="col-md-8">
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>No</th>
-											<th>Kode</th>
-											<th>Nama</th>
-											<th>Kategori</th>
-											<th>Deskripsi</th>
-											<th>Stok</th>
-											<th>Harga</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>1001</td>
-											<td>Indomie Goreng</td>
-											<td>Mie Instant</td>
-											<td>Selera anak kos</td>
-											<td>500</td>
-											<td>2500</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<!--End Bagian Tabel-->
+						<section>
 
 					</div>
 										<!--==========content.end==========-->
 				</div>
 			</div>
+			<script>
+			function openBayar() {
+					document.getElementById("form-bayar").style.display="block";
+			}
+			function closeBayar() {
+					document.getElementById("form-bayar").style.display="none";
+			}
+			</script>
 		</body>
 										<!--==========head.end==========-->
 	</html>

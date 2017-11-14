@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<title>POS | Stok</title>
+			<meta name="viewport" content="width=device-width, initial-scale-1.0">
+			<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+			<link rel="stylesheet" type="text/css" href="css/style_peg.css">
+			<link rel="stylesheet" type="text/css" href="css/style_stok.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+			<script type="text/javascript" src="js/script.js"></script>
+		</head>
+										<!--==========head.end==========-->
+		<body>
+										<!--==========header.start==========-->
+			<div class="container-fluid">
+				<div class="row">
+						<div class="header">
+							<div class="col-xs-3 col-md-2 col-lg-2 logo">
+								<a href="home.html"><img src="image/blibli.png" class="logo" alt="Cinque Terre"></a>
+							</div>
+							<div class="col-xs-7 col-md-6 col-lg-6 judul">
+									<h1>POS Blibli</h1>
+							</div>
+							<div class="col-xs-2 col-md-4 col-lg-4 user">
+								<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+								<div class="identitas">
+									<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+									<h5 id="role-text">Role :Admin</h5>
+								</div>
+								<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+									<div class="segitiga">
+										<p>sgt</p>
+									</div>
+									<div class="dropdown-avatar">
+										<ul>
+											<li><a id="drop_u1" href="#"><i class="fa">&#xf007;</i> Akun</a></li>
+											<li><a id="drop_u2" href="#"><i class="glyphicon">&#xe163</i> Keluar</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+					</div>
+			</div>
+			</div>
+										<!--==========header.end==========-->
+			<div class="container">
+										<!--==========navigation.start==========-->
+				<div class="row">
+					<div class ="col-xs-12 navigation">
+						<a href="home.html"><i class="fa" id="home-icon"> &#xf015;</i></a>
+						<i class="glyphicon">&#xe080;</i>
+						<a href="Stok.html" id="pos">Stok</a>
+					</div>
+				</div>
+										<!--==========navigation.end==========-->
+				<div class="row">
+										<!--==========sidebar.start==========-->
+					<div class ="col-md-2 col-lg-2 sidebar">
+							<!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+						<div class="toggle">
+							<h3>Menu</h3> <i class="fa menu" aria-hidden="true">&#9776;</i>
+						</div>
+						<ul>
+							<li>
+								<a id="sid_1" href="#"><i class="fa">&#xf19c;</i> Minimarket</a>
+							</li>
+							<li>
+								<a id="sid_2" href="Pegawai.html"><i class="fa">&#xf0c0;</i> Pegawai</a>
+							</li>
+								<li>
+									<div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+										<div class="dropdown-content">
+											<a id="drop_p1" href="#">Kategori</a>
+											<a id="drop_p2" href="#">Kelola Produk</a>
+										</div>
+									</div>
+								</li>
+							<li>
+								<a id="sid_4" href="#"><i class="fa">&#xf1b3;</i> Stok</a>
+							</li>
+							<li>
+								<a id="sid_5" href="#"><i class="fa">&#xf217;</i> Transaksi</a>
+							</li>
+							<li>
+								<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+							</li>
+							<li>
+								<a id="sid_7" href="#"><i class="fa">&#xf080;</i> Laporan</a>
+							</li>
+						</ul>
+					</div>
+										<!--==========sidebar.end==========-->
+										<!--==========content.start==========-->
+					<div class="col-md-10 col-lg-10 content">
+						<br>
+						<form class="form-inline">
+							<div class="col-md-4">
+							</div>
+							<div class="col-md-8 form-search">
+								<input class="form-control src" name="search" placeholder="ID atau Nama Produk...">
+								<button type="button" class="btn btn-success" id="btn-export">Export</button>
+							</div>
+						</form>
+						<br>
+						<!--Start Bagian Form-->
+
+						<div class="col-md-4">
+							<div id="aksi-stok">
+								<br>
+								<form class="form-horizontal" action="">
+									<div class="form-group top-form">
+										<div class="col-md-4">
+											<label class="control-label" for="kode-kategori">Kode :</label>
+										</div>
+										<div class="col-md-8">
+											<input type="number" class="form-control" id="kode" name="kode">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-4">
+											<label class="control-label" for="nama">Nama :</label>
+										</div>
+										<div class="col-md-8">
+											<input type="text" class="form-control" id="nama" name="nama">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-4">
+											<label class="control-label" for="jumlah">Jumlah :</label>
+										</div>
+										<div class="col-md-8">
+											<input type="number" class="form-control" id="jumlah" name="jumlah">
+										</div>
+									</div>
+								</form>
+								<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+									<div class="col-xs-6 col-md-6 col-lg-6">
+										<button type="button" class="btn btn-primary" id="btn-batal">Batal</button>
+									</div>
+									<div class="col-xs-6 col-md-6 col-lg-6">
+										<button type="button" class="btn btn-success" id="btn-tambah2">Tambah</button>
+									</div>
+								</div>
+							</div>
+							</div>
+						<!--Akhir Aksi tambah-->
+
+						<!--End Bagian Form-->
+						<!--Start Bagian Tabel-->
+						<div class="col-md-8">
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>Kode</th>
+											<th>Nama</th>
+											<th>Kategori</th>
+											<th>Deskripsi</th>
+											<th>Stok</th>
+											<th>Harga</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>1001</td>
+											<td>Indomie Goreng</td>
+											<td>Mie Instant</td>
+											<td>Selera anak kos</td>
+											<td>500</td>
+											<td>2500</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--End Bagian Tabel-->
+
+					</div>
+										<!--==========content.end==========-->
+				</div>
+			</div>
+		</body>
+										<!--==========head.end==========-->
+	</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<title>POS | Laporan</title>
+			<meta name="viewport" content="width=device-width, initial-scale-1.0">
+			<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+			<link rel="stylesheet" type="text/css" href="css/style_peg.css">
+			<link rel="stylesheet" type="text/css" href="css/style_lap.css">
+			<link rel="stylesheet" type="text/css" href="css/style_text.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+			<script type="text/javascript" src="js/script.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		</head>
+										<!--==========head.end==========-->
+		<body>
+										<!--==========header.start==========-->
+			<div class="container-fluid">
+				<div class="row">
+						<div class="header">
+							<div class="col-xs-3 col-md-2 col-lg-2 logo">
+								<a href="home.html"><img src="image/blibli.png" class="logo" alt="Cinque Terre"></a>
+							</div>
+							<div class="col-xs-7 col-md-6 col-lg-6 judul">
+									<h1>POS Blibli</h1>
+							</div>
+							<div class="col-xs-2 col-md-4 col-lg-4 user">
+								<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+								<div class="identitas">
+									<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+									<h5 id="role-text">Role :Admin</h5>
+								</div>
+								<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+									<div class="segitiga">
+										<p>sgt</p>
+									</div>
+									<div class="dropdown-avatar">
+										<ul>
+											<li><a id="drop_u1" href="#"><i class="fa">&#xf007;</i> Akun</a></li>
+											<li><a id="drop_u2" href="#"><i class="glyphicon">&#xe163</i> Keluar</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+					</div>
+			</div>
+			</div>
+										<!--==========header.end==========-->
+			<div class="container">
+										<!--==========navigation.start==========-->
+				<div class="row">
+					<div class ="col-xs-12 navigation">
+						<a href="home.html"><i class="fa" id="home-icon"> &#xf015;</i></a>
+						<i class="glyphicon">&#xe080;</i>
+						<a href="Transaksi.html" id="pos">Transaksi</a>
+						<i class="glyphicon">&#xe080;</i>
+						<a href="Transaksi.html" id="pos">Bayar</a>
+					</div>
+				</div>
+										<!--==========navigation.end==========-->
+				<div class="row">
+										<!--==========sidebar.start==========-->
+					<div class ="col-md-2 col-lg-2 sidebar">
+							<!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+						<div class="toggle">
+							<h3>Menu</h3> <i class="fa menu" aria-hidden="true">&#9776;</i>
+						</div>
+						<ul>
+							<li>
+								<a id="sid_1" href="#"><i class="fa">&#xf19c;</i> Minimarket</a>
+							</li>
+							<li>
+								<a id="sid_2" href="Pegawai.html"><i class="fa">&#xf0c0;</i> Pegawai</a>
+							</li>
+								<li>
+									<div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+										<div class="dropdown-content" id="dr-produk">
+											<a id="drop_p1" href="#">Kategori</a>
+											<a id="drop_p2" href="#">Kelola Produk</a>
+										</div>
+									</div>
+								</li>
+							<li>
+								<a id="sid_4" href="#"><i class="fa">&#xf1b3;</i> Stok</a>
+							</li>
+							<li>
+								<a id="sid_5" href="#"><i class="fa">&#xf217;</i> Transaksi</a>
+							</li>
+							<li>
+								<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+							</li>
+							<li>
+								<li>
+									<div class="dropdown"><a id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
+										<div class="dropdown-content" id="dr-laporan">
+											<a id="drop_p1" href="#">Transaksi</a>
+											<a id="drop_p2" href="#">Statistik</a>
+										</div>
+									</div>
+								</li>
+							</li>
+						</ul>
+					</div>
+										<!--==========sidebar.end==========-->
+										<!--==========content.start==========-->
+					<div class="col-md-10 col-lg-10 content">
+						<!--Start bagan triger-->
+						  <!-- Trigger the modal with a button -->
+						  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Receipt</button>
+						<!-- Modal -->
+						  <div class="modal fade" id="myModal" role="dialog">
+						    <div class="modal-dialog">
+
+						      <!-- Modal content-->
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <h3 class="modal-title align-center">POS Blibli</h3>
+											<h5 class="modal-title align-center">Jalan Babarsari 43 Yogyakarta</h5>
+						        </div>
+						        <div class="modal-body">
+											<div class="row">
+												<div class="col-sm-6">
+						          		<p>dd.mmm.yy-hh:mm</p>
+												</div>
+												<div class="col-sm-6">
+						          		<p>no Penjualan/Kasir</p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+						          		<p>Kopiko 76</p>
+												</div>
+												<div class="col-sm-2">
+						          		<p>3</p>
+												</div>
+												<div class="col-sm-2">
+						          		<p>5000</p>
+												</div>
+												<div class="col-sm-2">
+						          		<p>15000</p>
+												</div>
+											</div>
+											<br>
+											<div class="row">
+												<div class="col-sm-6">
+												</div>
+												<div class="col-sm-3 align-right">
+						          		<p>Harga Jual : </p>
+												</div>
+												<div class="col-sm-3">
+						          		<p>Rp. 15000</p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+												</div>
+												<div class="col-sm-3 align-right">
+						          		<p>Diskon : </p>
+												</div>
+												<div class="col-sm-3">
+						          		<p>0</p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+												</div>
+												<div class="col-sm-3 align-right">
+						          		<p>Pajak : </p>
+												</div>
+												<div class="col-sm-3">
+						          		<p>1500</p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+												</div>
+												<div class="col-sm-3 align-right">
+						          		<p>Total Akhir : </p>
+												</div>
+												<div class="col-sm-3">
+						          		<p>16500</p>
+												</div>
+											</div>
+						        </div>
+						        <div class="modal-footer">
+											<div class="row col-sm-11 align-center">
+						          		<p>Keterangan Receipt : Terimakasih telah berbelanja di POS Blibli, Dapatkan diskon belanja sampai 5% dengan menjadi member di POS Blibli</p>
+											</div>
+											<div class="row col-sm-1 align-center">
+						          	<button type="button" class="btn btn-success" data-dismiss="modal">Cetak</button>
+											</div>
+						        </div>
+						      </div>
+
+						    </div>
+						  </div>
+
+					</div>
+										<!--==========content.end==========-->
+				</div>
+			</div>
+			<script>
+			function openBayar() {
+					document.getElementById("form-bayar").style.display="block";
+			}
+			function closeBayar() {
+					document.getElementById("form-bayar").style.display="none";
+			}
+			</script>
+		</body>
+										<!--==========head.end==========-->
+	</html>
