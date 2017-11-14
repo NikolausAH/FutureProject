@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+		<head>
+			<title>POS | Stok</title>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+            <link th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet" type="text/css"/>
+            <link th:href="@{../css/bootstrap.min.css}" href="../static/css/bootstrap.min.css"  rel="stylesheet" type="text/css"/>
+			<link th:href="@{../css/style.css}" href="../static/css/style.css"  rel="stylesheet" type="text/css"/>
+			<link th:href="@{../css/style_peg.css}" href="../static/css/style_peg.css"  rel="stylesheet" type="text/css"/>
+			<link th:href="@{../css/style_stok.css}" href="../static/css/style_stock.css"  rel="stylesheet" type="text/css"/>
+			<!--for fa icon-->
+
+            <script type="text/javascript" th:src="@{../js/script.js}"></script>
+        </head>
+										<!--==========head.end==========-->
+		<body>
+		<!--==========header.start==========-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="header">
+					<div class="col-xs-3 col-md-2 col-lg-2 logo">
+						<a th:href="@{#}"> <img src="../images/BliBli.png" th:src="@{../images/BliBli.png}" class="logo"/></a>
+					</div>
+					<div class="col-xs-7 col-md-6 col-lg-6 judul" >
+						<h1>POS Blibli</h1>
+					</div>
+					<div class="col-xs-2 col-md-4 col-lg-4 user">
+						<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+						<div class="identitas">
+							<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+							<h5 id="role-text">Role :Admin</h5>
+						</div>
+						<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+							<div class="segitiga">
+								<p>sgt</p>
+							</div>
+							<div class="dropdown-avatar">
+								<ul>
+									<li><a id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
+									<li><a id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--==========header.end==========-->
+		<div class="container">
+			<!--==========navigation.start==========-->
+			<div class="row">
+				<div class ="col-xs-12 navigation">
+					<a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
+					<i class="fa">&#xf105;</i>
+					<a href="#" id="pos">Produk</a>
+				</div>
+			</div>
+			<!--==========navigation.end==========-->
+			<div class="row">
+				<!--==========sidebar.start==========-->
+				<div class ="col-md-2 col-lg-2 sidebar">
+					<!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+					<div class="toggle">
+						<h3>Menu</h3> <i class="fa menu" aria-hidden="true">&#9776;</i>
+					</div>
+					<ul>
+						<li>
+							<a id="sid_1" href="#"><i class="fa">&#xf19c;</i> Minimarket</a>
+						</li>
+						<li>
+							<a id="sid_2" href="#"><i class="fa">&#xf0c0;</i> Pegawai</a>
+						</li>
+						<li>
+							<div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+								<div class="dropdown-content" id="dr-produk">
+									<a id="drop_p1" href="#">Kategori</a>
+									<a id="drop_p2" href="#">Kelola Produk</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a id="sid_4" href="#"><i class="fa">&#xf1b3;</i> Stok</a>
+						</li>
+						<li>
+							<a id="sid_5" href="#"><i class="fa">&#xf217;</i> Transaksi</a>
+						</li>
+						<li>
+							<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+						</li>
+						<li>
+							<li>
+								<div class="dropdown"><a id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
+									<div class="dropdown-content" id="dr-laporan">
+										<a id="drop_p1" href="#">Transaksi</a>
+										<a id="drop_p2" href="#">Statistik</a>
+									</div>
+								</div>
+							</li>
+						</li>
+					</ul>
+				</div>
+				<!--==========sidebar.end==========-->
+                <!--==========content.start==========-->
+                <div class="col-md-10 col-lg-10 content">
+                    <br />
+                    <form class="form-inline" th:object="${form}">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-8 form-search">
+                            <input class="form-control src" name="search" placeholder="ID atau Nama Produk..."
+                                   type="text" />
+                            <button type="button" class="btn btn-success" id="btn-export">Export</button>
+                        </div>
+                    </form>
+                    <br />
+                    <!--Start Aksi Tambah-->
+                    <!--Start Bagian Form-->
+
+                    <div class="col-md-4">
+                        <div id="aksi-stok">
+                            <br />
+                            <form class="form-horizontal" th:form="${form}" th:object="${produk}" th:action="@{/updateStock}"  method="post">
+                                <div class="form-group top-form">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="kode">Kode product :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="number" class="form-control" id="kode" name="kode" th:value="${kode}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="nama">Nama :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="nama" name="nama" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="stok">Jumlah :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="number" class="form-control" id="stok" name="stok" th:value="${stok}"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <button type="button" class="btn btn-primary" id="btn-batal">Batal</button>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <button type="submit" class="btn btn-success" id="btn-tambah2">Tambah</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--End Bagian Form-->
+                    <!--Start Bagian Tabel-->
+                    <div class="col-md-8">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Nama</th>
+                                    <th>Kategori</th>
+                                    <th>Stok</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="prod : ${product}">
+                                    <tr>
+                                        <td th:text="${prod.kode}" />
+                                        <td th:text="${prod.nama}"/>
+                                        <td th:text="${prod.kategoriId}"/>
+                                        <td th:text="${prod.stok}"/>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--end of table-->
+                    <!--==========content.end==========-->
+			</div>
+		</div>
+        </div>
+        </body>
+	</html>
