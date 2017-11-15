@@ -20,16 +20,16 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping("/Category")
+    @RequestMapping(value = "Category")
     public String showAllCategory(Model model) {
-        model.addAttribute("category", categoryService.showAllCategory());
+        model.addAttribute("category", categoryService.showAll());
         return "Category";
     }
 
-    @PostMapping(value = "/createCategory")
-    public ModelAndView createCategory(@ModelAttribute("category") Category category){
+    @PostMapping(value = "createCategory")
+    public ModelAndView addCategory(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
-        categoryService.createCategory(category);
+        categoryService.add(category);
         mav.setViewName("redirect:/Category");
         return mav;
     }
@@ -37,15 +37,15 @@ public class CategoryController {
     @PostMapping(value = "updateCategory")
     public ModelAndView updateCategory(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
-        categoryService.updateCategory(category);
+        categoryService.update(category);
         mav.setViewName("redirect:/Category");
         return mav;
     }
 
     @RequestMapping(value = "deleteCategory")
-    public ModelAndView deleteCategory(@ModelAttribute("kode")Integer kode){
+    public ModelAndView deleteCategory(@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
-        categoryService.deleteCategory(kode);
+        categoryService.delete(categoryId);
         mav.setViewName("redirect:/Category");
         return mav;
     }

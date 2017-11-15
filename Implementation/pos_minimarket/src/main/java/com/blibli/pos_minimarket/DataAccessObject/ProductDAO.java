@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProductDAO extends MyConnection{
-    public List<Product> getAllProduct() {
+public class ProductDAO extends ConnectionSettings {
+ /*   public List<Product> getAllProduct() {
         List<Product> productList = new ArrayList<>();
 
         String sql = "select * from product";
@@ -130,4 +130,5 @@ public class ProductDAO extends MyConnection{
             System.out.println(EX);
         }
     }
+    */
 }

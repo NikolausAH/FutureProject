@@ -1,36 +1,36 @@
 package com.blibli.pos_minimarket.Model;
 
 public class Category {
-    private Integer kode;
-    private String nama,deskripsi;
+    private Integer categoryId;
+    private String name,description;
     public Category() {}
 
-    public Category(Integer kode, String nama, String deskripsi){
-        this.kode=kode;
-        this.nama=nama;
-        this.deskripsi=deskripsi;
+    public Category(Integer categoryId, String name, String description){
+        this.categoryId=categoryId;
+        this.name=name;
+        this.description=description;
     }
-    public int getKode() {
-        return kode;
-    }
-
-    public void setKode(Integer kode) {
-        this.kode = kode;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public String getNama() {
-        return nama;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public String getName() {
+        return name;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

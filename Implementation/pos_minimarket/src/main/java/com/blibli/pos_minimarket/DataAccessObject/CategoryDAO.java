@@ -3,86 +3,94 @@ package com.blibli.pos_minimarket.DataAccessObject;
 import com.blibli.pos_minimarket.Model.Category;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CategoryDAO extends MyConnection {
+public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Category,Integer>{
 
-    public List<Category> getAllCategory() {
+    @Override
+    public List<Category> getAll() {
         List<Category> categoryList = new ArrayList<>();
-
-        String sql = "select * from Category";
+        String sql = "SELECT * FROM category;";
         try {
-            //c koneksi global dari extends myConn
-            Statement state = c.createStatement();
-            ResultSet rs = state.executeQuery(sql);
-            if (rs != null) {
-                while (rs.next()) {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
                     Category category = new Category();
-                    category.setKode(rs.getInt("kode"));
-                    category.setNama(rs.getString("nama"));
-                    category.setDeskripsi(rs.getString("deskripsi"));
+                    category.setCategoryId(resultSet.getInt("categoryId"));
+                    category.setName(resultSet.getString("name"));
+                    category.setDescription(resultSet.getString("description"));
                     categoryList.add(category);
                 }
+                resultSet.close();
             }
-            rs.close();
-            state.close();
+            this.closeConnection();
+
         } catch (Exception EX) {
-            System.out.println("Error CategoryDAO getAllCategory");
-            System.out.println(EX);
+            System.out.println("Error CategoryDAO getAll");
+            System.out.println(EX.toString());
         }
         return categoryList;
     }
 
+    @Override
+    public void add(Category category) {
 
-    public void createCategory(Category category) {
-        Integer tkode=category.getKode();
-        String tNama=category.getNama();
-        String tdeskripsi=category.getDeskripsi();
-        String sql = "INSERT INTO Category (kode,nama,deskripsi)"
-                +"VALUES('"+tkode+"','"+tNama+"','"+tdeskripsi+"');";
+        String sql = "INSERT INTO category (name,description) VALUES (?,?);";
         try {
-            //c koneksi global dari extends myConn
-            Statement state = c.createStatement();
-            state.executeUpdate(sql);
-            state.close();
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1, category.getName());
+            preparedStatement.setString(2, category.getDescription());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
         } catch (Exception EX) {
-            System.out.println("Error CategoryDAO addCategory");
-            System.out.println(EX);
+            System.out.println("Error CategoryDAO Add");
+            System.out.println(EX.toString());
         }
     }
 
-    public void updateCategory(Category category) {
-        Integer tkode=category.getKode();
-        String tNama=category.getNama();
-        String tdeskripsi=category.getDeskripsi();
-        String sql = "UPDATE Category "
-                + "SET NAMA='"+tNama+"',"
-                + "DESKRIPSI='"+tdeskripsi+"'"
-                +"WHERE KODE='"+tkode+"'";
+    @Override
+    public void update(Category category) {
+        String sql = "UPDATE category SET name = ?, description = ? "
+                    +"WHERE categoryid = ?;";
         try {
-            //c koneksi global dari extends myConn
-            Statement state = c.createStatement();
-            state.executeUpdate(sql);
-            state.close();
+            this.makeConnection();
+            System.out.println(category.getName());
+            System.out.println(category.getDescription());
+            System.out.println(category.getCategoryId());
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1,category.getName());
+            preparedStatement.setString(2,category.getDescription());
+            preparedStatement.setInt(3,category.getCategoryId());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
         } catch (Exception EX) {
-            System.out.println("Error CategoryDAO UpdateCategory");
-            System.out.println(EX);
+            System.out.println("Error CategoryDAO Update");
+            System.out.println(EX.toString());
         }
     }
 
-    public void deleteCategory(Integer kode){
-        String sql="DELETE FROM Category WHERE KODE='"+kode+"'";
+    @Override
+    public void delete(Integer categoryId) {
+        String sql="DELETE FROM category WHERE categoryId = ? ;";
         try {
-            Statement state = c.createStatement();
-            state.executeUpdate(sql);
-            state.close();
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setInt(1,categoryId);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
         } catch (Exception EX) {
-            System.out.println("Error CategoryDAO DeleteCategory");
-            System.out.println(EX);
+            System.out.println("Error CategoryDAO Delete");
+            System.out.println(EX.toString());
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.blibli.pos_minimarket.Services;
 
-import com.blibli.pos_minimarket.DataAccessObject.MyConnection;
+import com.blibli.pos_minimarket.DataAccessObject.ConnectionSettings;
 import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.Model.Product;
 import org.springframework.stereotype.Service;
@@ -9,35 +9,36 @@ import java.util.List;
 
 @Service
 public class ProductService {
-    private MyConnection myConnection = new MyConnection();
+    private ConnectionSettings connectionSettings = new ConnectionSettings();
     private ProductDAO productDAO = new ProductDAO();
 
-    public List<Product> showAllProduct() {
-        myConnection.makeConnection();
+ /*   public List<Product> showAllProduct() {
+        connectionSettings.makeConnection();
         List<Product> productList = productDAO.getAllProduct();
-        myConnection.closeConnection();
+        connectionSettings.closeConnection();
         return productList;
     }
     public void createProduct(Product product){
-        myConnection.makeConnection();
+        connectionSettings.makeConnection();
         productDAO.createProduct(product);
-        myConnection.closeConnection();
+        connectionSettings.closeConnection();
     }
     public void updateProduct(Product product){
-        myConnection.makeConnection();
+        connectionSettings.makeConnection();
         productDAO.updateProduct(product);
-        myConnection.closeConnection();
+        connectionSettings.closeConnection();
     }
 
     public void deleteProduct(Integer kode){
-        myConnection.makeConnection();
+        connectionSettings.makeConnection();
         productDAO.deleteProduct(kode);
-        myConnection.closeConnection();
+        connectionSettings.closeConnection();
     }
 
     public void updateStock(Product product){
-        myConnection.makeConnection();
+        connectionSettings.makeConnection();
         productDAO.updateStock(product);
-        myConnection.closeConnection();
+        connectionSettings.closeConnection();
     }
+    */
 }

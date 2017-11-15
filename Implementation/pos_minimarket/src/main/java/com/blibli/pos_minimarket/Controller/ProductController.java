@@ -20,7 +20,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping("/Product")
+/*    @RequestMapping("/Product")
     public String showAllProduct(Model model) {
         model.addAttribute("product", productService.showAllProduct());
         return "Product";
@@ -63,4 +63,5 @@ public class ProductController {
         mav.setViewName("redirect:/Stock");
         return mav;
     }
+    */
 }

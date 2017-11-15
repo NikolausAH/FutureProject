@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TransactionDetailDAO extends MyConnection {
-
+public class TransactionDetailDAO extends ConnectionSettings {
+/*
     public List<TransactionDetail> getAllTransactionDetail() {
         List<TransactionDetail> transactionDetailList = new ArrayList<>();
 
@@ -36,9 +36,10 @@ public class TransactionDetailDAO extends MyConnection {
             rs.close();
             state.close();
         } catch (Exception EX) {
-            System.out.println("Error TransactionDetailDAO getAllTransactionDetail");
-            System.out.println(EX);
+            //System.out.println("Error TransactionDetailDAO getAllTransactionDetail");
+            System.out.println(EX.toString());
         }
         return transactionDetailList;
     }
+    */
 }

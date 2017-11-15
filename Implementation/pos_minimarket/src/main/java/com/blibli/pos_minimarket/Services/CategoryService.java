@@ -1,40 +1,55 @@
 package com.blibli.pos_minimarket.Services;
 
 import com.blibli.pos_minimarket.DataAccessObject.CategoryDAO;
-import com.blibli.pos_minimarket.DataAccessObject.MyConnection;
 import com.blibli.pos_minimarket.Model.Category;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CategoryService {
-    private MyConnection myConnection = new MyConnection();
     private CategoryDAO categoryDAO = new CategoryDAO();
 
-    public List<Category> showAllCategory() {
-        myConnection.makeConnection();
-        List<Category> listCategory = categoryDAO.getAllCategory();
-        myConnection.closeConnection();
+    public List<Category> showAll() {
+        List<Category> listCategory = new ArrayList<>();
+        try {
+            listCategory = categoryDAO.getAll();
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryServices showAll");
+            System.out.println(EX.toString());
+        }
         return listCategory;
     }
 
-    public void createCategory(Category category) {
-        myConnection.makeConnection();
-        categoryDAO.createCategory(category);
-        myConnection.closeConnection();
+    public void add(Category category) {
+        try {
+            categoryDAO.add(category);
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryServices Add");
+            System.out.println(EX.toString());
+        }
     }
 
-    public void updateCategory(Category category){
-        myConnection.makeConnection();
-        categoryDAO.updateCategory(category);
-        myConnection.closeConnection();
+    public void update(Category category){
+        try {
+            categoryDAO.update(category);
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryServices Update");
+            System.out.println(EX.toString());
+        }
     }
 
-    public void deleteCategory(Integer kode){
-        myConnection.makeConnection();
-        categoryDAO.deleteCategory(kode);
-        myConnection.closeConnection();
+    public void delete(Integer kode){
+        try {
+            categoryDAO.delete(kode);
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryServices Delete");
+            System.out.println(EX.toString());
+        }
     }
 }

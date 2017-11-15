@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TransactionDAO extends MyConnection{
+public class TransactionDAO extends ConnectionSettings {
 
+    /*
     public List<Transaction> getAllTransaction() {
         List<Transaction> transactionList = new ArrayList<>();
 
@@ -42,4 +43,5 @@ public class TransactionDAO extends MyConnection{
         }
         return transactionList;
     }
+    */
 }

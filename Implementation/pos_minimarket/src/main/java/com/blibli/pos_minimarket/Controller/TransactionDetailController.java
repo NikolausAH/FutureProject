@@ -14,10 +14,11 @@ public class TransactionDetailController {
     public TransactionDetailController(TransactionDetailService transactionDetailService) {
         this.transactionDetailService=transactionDetailService;
     }
-
+/*
     @RequestMapping("/Transaction")
     public String showAllTransactionDetail(Model model) {
         model.addAttribute("transactionDetail", transactionDetailService.showAll());
         return "Transaction";
     }
+    */
 }
