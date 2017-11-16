@@ -104,11 +104,11 @@
                                     <!--==========content.start==========-->
                     <div class="col-md-10 col-lg-10 content">
                         <br />
-                        <div class="form-inline" th:object="${form}">
-                            <input class="form-control src" name="search" placeholder="Kode atau Nama Kategori..."
-                                   type="text" />
+                        <form class="form-inline" th:object="${form}" th:action="@{/searchCategory}" method="post">
+                            <input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"  th:value="${searchKey}"/>
+                            <button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
                             <button type="button" class="btn btn-success" id="btn-export">Export</button>
-                        </div>
+                        </form>
                         <br />
                         <!--Table-->
                         <div class="col-md-12 col-lg-12">
@@ -119,6 +119,7 @@
                                         <th>Kode</th>
                                         <th>Nama</th>
                                         <th>Deskripsi</th>
+                                        <th>Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -127,6 +128,7 @@
                                             <td th:text="${cat.categoryId}" />
                                             <td th:text="${cat.name}"/>
                                             <td th:text="${cat.description}"/>
+                                            <td th:text="${cat.status}"/>
                                         </tr>
                                     </th:block>
                                     </tbody>
@@ -138,13 +140,13 @@
                         <br />
                         <div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
                             <div class="col-xs-4 col-md-4 col-lg-4">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModal">Tambah</button>
+                                <button type="button" class="btn btn-success" id="btn-tambah" data-toggle="modal" data-target="#createModal">Tambah</button>
                             </div>
                             <div class="col-xs-4 col-md-4 col-lg-4">
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal">Ubah</button>
+                                <button type="button" class="btn btn-warning" id="btn-ubah" data-toggle="modal" data-target="#updateModal">Ubah</button>
                             </div>
                             <div class="col-xs-4 col-md-4 col-lg-4">
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Hapus</button>
+                                <button type="button" class="btn btn-danger" id="btn-hapus" data-toggle="modal" data-target="#deleteModal">Hapus</button>
                             </div>
                         </div>
                         <!--Akhir Button tambah ubah hapus-->
@@ -256,7 +258,7 @@
                                         <h4 class="modal-title" style="text-align: center">Ubah Kategori</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal" th:action="@{/deleteCategory}"  method="post">
+                                        <form class="form-horizontal" th:action="@{/softDeleteCategory}"  method="post">
                                             <div class="form-group">
                                                 <div class="col-sm-4">
                                                     <label class="control-label" for="categoryId">Kode Kategori :</label>

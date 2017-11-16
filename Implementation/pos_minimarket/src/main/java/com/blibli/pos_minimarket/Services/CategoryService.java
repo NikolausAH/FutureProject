@@ -52,4 +52,31 @@ public class CategoryService {
             System.out.println(EX.toString());
         }
     }
+
+    public void softDelete(Integer kode){
+        try {
+            categoryDAO.softDelete(kode);
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryServices softDelete");
+            System.out.println(EX.toString());
+        }
+    }
+
+    public List<Category> search(String searchKey) {
+        List<Category> listCategory = new ArrayList<>();
+        System.out.println(searchKey.toString());
+        if (searchKey==null){
+            listCategory = categoryDAO.getAll();
+        }
+        else {
+            try {
+                listCategory = categoryDAO.search(searchKey);
+            } catch (Exception EX) {
+                System.out.println("Error CategoryServices search");
+                System.out.println(EX.toString());
+            }
+        }
+        return listCategory;
+    }
 }

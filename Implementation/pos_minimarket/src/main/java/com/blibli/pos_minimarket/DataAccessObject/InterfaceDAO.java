@@ -2,12 +2,13 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 import java.util.List;
 
-public interface InterfaceDAO<objectType,idType> {
-    public List<objectType> getAll();
+public interface InterfaceDAO<objectType,idType,keyType> {
+    List<objectType> getAll();
+    List<objectType> search(keyType key);
    // public objectType getOne(idType idType);
-    public void add(objectType t);
-    public void update(objectType t);
-    public void delete(idType id);
-    //public void softDelete(idType id);
+    void add(objectType t);
+    void update(objectType t);
+    void delete(idType id);
+    void softDelete(idType idType);
 
 }

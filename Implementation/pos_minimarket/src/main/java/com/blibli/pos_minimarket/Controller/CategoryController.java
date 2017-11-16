@@ -26,6 +26,12 @@ public class CategoryController {
         return "Category";
     }
 
+    @RequestMapping(value = "searchCategory")
+    public String searchCategory(@ModelAttribute("searchKey")String searchKey,Model model){
+        model.addAttribute("category", categoryService.search(searchKey));
+        return "Category";
+    }
+
     @PostMapping(value = "createCategory")
     public ModelAndView addCategory(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
@@ -42,10 +48,10 @@ public class CategoryController {
         return mav;
     }
 
-    @RequestMapping(value = "deleteCategory")
+    @RequestMapping(value = "softDeleteCategory")
     public ModelAndView deleteCategory(@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
-        categoryService.delete(categoryId);
+        categoryService.softDelete(categoryId);
         mav.setViewName("redirect:/Category");
         return mav;
     }
