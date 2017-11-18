@@ -17,7 +17,7 @@ public class CategoryService {
             listCategory = categoryDAO.getAll();
         }
         catch (Exception EX){
-            System.out.println("Error CategoryServices showAll");
+            System.out.println("Error CategoryService showAll");
             System.out.println(EX.toString());
         }
         return listCategory;
@@ -28,7 +28,7 @@ public class CategoryService {
             categoryDAO.add(category);
         }
         catch (Exception EX){
-            System.out.println("Error CategoryServices Add");
+            System.out.println("Error CategoryService Add");
             System.out.println(EX.toString());
         }
     }
@@ -38,44 +38,39 @@ public class CategoryService {
             categoryDAO.update(category);
         }
         catch (Exception EX){
-            System.out.println("Error CategoryServices Update");
+            System.out.println("Error CategoryService Update");
             System.out.println(EX.toString());
         }
     }
 
-    public void delete(Integer kode){
+    public void delete(Integer categoryId){
         try {
-            categoryDAO.delete(kode);
+            categoryDAO.delete(categoryId);
         }
         catch (Exception EX){
-            System.out.println("Error CategoryServices Delete");
+            System.out.println("Error CategoryService Delete");
             System.out.println(EX.toString());
         }
     }
 
-    public void softDelete(Integer kode){
+    public void softDelete(Integer categoryId){
         try {
-            categoryDAO.softDelete(kode);
+            categoryDAO.softDelete(categoryId);
         }
         catch (Exception EX){
-            System.out.println("Error CategoryServices softDelete");
+            System.out.println("Error CategoryService softDelete");
             System.out.println(EX.toString());
         }
     }
 
     public List<Category> search(String searchKey) {
         List<Category> listCategory = new ArrayList<>();
-        System.out.println(searchKey.toString());
-        if (searchKey==null){
-            listCategory = categoryDAO.getAll();
-        }
-        else {
-            try {
-                listCategory = categoryDAO.search(searchKey);
-            } catch (Exception EX) {
-                System.out.println("Error CategoryServices search");
-                System.out.println(EX.toString());
-            }
+
+        try {
+            listCategory = categoryDAO.search(searchKey);
+        } catch (Exception EX) {
+            System.out.println("Error CategoryServices search");
+            System.out.println(EX.toString());
         }
         return listCategory;
     }

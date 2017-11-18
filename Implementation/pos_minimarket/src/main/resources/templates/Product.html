@@ -127,12 +127,12 @@
                                 <tbody>
                                 <th:block th:each="prod : ${product}">
                                     <tr>
-                                        <td th:text="${prod.kode}" />
-                                        <td th:text="${prod.nama}"/>
-                                        <td th:text="${prod.kategoriId}"/>
-                                        <td th:text="${prod.deskripsi}"/>
-                                        <td th:text="${prod.stok}"/>
-                                        <td th:text="${prod.harga}"/>
+                                        <td th:text="${prod.productId}" />
+                                        <td th:text="${prod.name}"/>
+                                        <td th:text="${prod.categoryId}"/>
+                                        <td th:text="${prod.description}"/>
+                                        <td th:text="${prod.quantity}"/>
+                                        <td th:text="${prod.price}"/>
                                     </tr>
                                 </th:block>
                                 </tbody>
@@ -158,45 +158,37 @@
                     <div class="col-xs-6 col-md-6 col-lg-6 aksi" id="aksi-tambah">
                         <i class="fa" id="btn-close" onclick="closeTambah()">&#xf00d;</i>
                         <br />
-                        <form class="form-horizontal" th:form="${form}" th:object="${produk}" th:action="@{/createProduct}"  method="post">
-                            <div class="form-group top-form">
-                                <div class="col-sm-4">
-                                    <label class="control-label" for="kode">Kode Kategori :</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="number" class="form-control" id="kode" placeholder="Kode Produk" name="kode" th:value="${kode}"/>
-                                </div>
-                            </div>
+                        <form class="form-horizontal" th:form="${form}" th:object="${product}" th:action="@{/createProduct}"  method="post">
                             <div class="form-group">
                                 <div class="col-sm-4">
                                     <label class="control-label" for="nama">Nama :</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="nama" placeholder="Nama Produk" name="nama" th:value="${nama}"/>
+                                    <input type="text" class="form-control" id="nama" placeholder="Nama Produk" name="nama" th:value="${name}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <label class="control-label" for="kategoriId">KategoriIDuBAH :</label>
+                                    <label class="control-label" for="categoryId">KategoriIDuBAH :</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" id="kategoriId" placeholder="UBAH NANTI" name="kategoriId" th:value="${kategoriId}"/>
+                                    <input type="text" class="form-control" id="categoryId" placeholder="UBAH NANTI" name="categoryId" th:value="${categoryId}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <label class="control-label" for="harga">Harga :</label>
+                                    <label class="control-label" for="price">Harga :</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="harga" placeholder="Harga produk" name="harga" th:value="${harga}"/>
+                                    <input type="number" class="form-control" id="price" placeholder="Harga produk" name="price" th:value="${price}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <label class="control-label" for="deskripsi">Deskripsi :</label>
+                                    <label class="control-label" for="description">Deskripsi :</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" rows="5" id="deskripsi" name="deskripsi" th:value="${deskripsi}"></textarea>
+                                    <textarea class="form-control" rows="5" id="description" name="description" th:value="${description}"></textarea>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">

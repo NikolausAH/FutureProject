@@ -2,7 +2,6 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Category;
 import org.springframework.stereotype.Repository;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -19,6 +18,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
+            this.closeConnection();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Category category = new Category();
@@ -30,8 +30,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
                 }
                 resultSet.close();
             }
-            this.closeConnection();
-
+            preparedStatement.close();
         } catch (Exception EX) {
             System.out.println("Error CategoryDAO getAll");
             System.out.println(EX.toString());
@@ -40,15 +39,68 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     }
 
     @Override
+    public Category getById(Integer categoryId) {
+        Category category = new Category();
+        String sql = "SELECT * FROM category WHERE categoryId = ? ORDER BY categoryid;";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setInt(1, categoryId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            this.closeConnection();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    category.setCategoryId(resultSet.getInt("categoryId"));
+                    category.setName(resultSet.getString("name"));
+                    category.setDescription(resultSet.getString("description"));
+                    category.setStatus(resultSet.getString("status"));
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+        } catch (Exception EX) {
+            System.out.println("Error CategoryDAO getById");
+            System.out.println(EX.toString());
+        }
+        return category;
+    }
+
+    public Category getByName(String categoryName) {
+        Category category = new Category();
+        String sql = "SELECT * FROM category WHERE name = ? ORDER BY categoryid;";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1,categoryName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            this.closeConnection();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    category.setName(resultSet.getString("name"));
+                    category.setCategoryId(resultSet.getInt("categoryId"));
+                    category.setDescription(resultSet.getString("description"));
+                    category.setStatus(resultSet.getString("status"));
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+        } catch (Exception EX) {
+            System.out.println("Error CategoryDAO getByName");
+            System.out.println(EX.toString());
+        }
+        return category;
+    }
+
+    @Override
     public List<Category> search(String searchKey) {
         List<Category> categoryList = new ArrayList<>();
-        //String sql = "SELECT categoryid,name,description,status FROM category WHERE name LIKE '%'"+searchKey+"'%' ORDER BY categoryid;";
         String sql = "SELECT categoryid,name,description,status FROM category WHERE name = ? ORDER BY categoryid;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
             preparedStatement.setString(1,searchKey);
             ResultSet resultSet = preparedStatement.executeQuery();
+            this.closeConnection();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Category category = new Category();
@@ -60,8 +112,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
                 }
                 resultSet.close();
             }
-            this.closeConnection();
-
+            preparedStatement.close();
         } catch (Exception EX) {
             System.out.println("Error CategoryDAO search");
             System.out.println(EX.toString());
@@ -90,13 +141,9 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
 
     @Override
     public void update(Category category) {
-        String sql = "UPDATE category SET name = ?, description = ? "
-                    +"WHERE categoryid = ?;";
+        String sql = "UPDATE category SET name = ?, description = ? WHERE categoryid = ?;";
         try {
             this.makeConnection();
-            System.out.println(category.getName());
-            System.out.println(category.getDescription());
-            System.out.println(category.getCategoryId());
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
             preparedStatement.setString(1,category.getName());
             preparedStatement.setString(2,category.getDescription());
@@ -128,13 +175,12 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
 
     @Override
     public void softDelete(Integer categoryId) {
-        String sql = "UPDATE category SET status = ?"
-                +"WHERE categoryid = ?;";
+        String sql = "UPDATE category SET status = ? WHERE categoryid = ?;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1,"not active");
             preparedStatement.setInt(2,categoryId);
+            preparedStatement.setString(1,"not active");
             preparedStatement.executeUpdate();
             preparedStatement.close();
             this.closeConnection();

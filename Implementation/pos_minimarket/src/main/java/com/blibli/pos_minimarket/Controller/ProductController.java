@@ -20,16 +20,16 @@ public class ProductController {
         this.productService = productService;
     }
 
-/*    @RequestMapping("/Product")
+   @RequestMapping("/Product")
     public String showAllProduct(Model model) {
-        model.addAttribute("product", productService.showAllProduct());
+        model.addAttribute("product", productService.showAll());
         return "Product";
     }
 
     @PostMapping(value = "/createProduct")
     public ModelAndView createProduct(@ModelAttribute("product") Product product){
         ModelAndView mav = new ModelAndView();
-        productService.createProduct(product);
+        productService.add(product);
         mav.setViewName("redirect:/Product");
         return mav;
     }
@@ -37,31 +37,30 @@ public class ProductController {
     @PostMapping(value = "updateProduct")
     public ModelAndView updateProduct(@ModelAttribute("product") Product product){
         ModelAndView mav = new ModelAndView();
-        productService.updateProduct(product);
+        productService.update(product);
         mav.setViewName("redirect:/Product");
         return mav;
     }
 
     @RequestMapping(value = "deleteProduct")
-    public ModelAndView deleteProduct(@ModelAttribute("kode")Integer kode){
+    public ModelAndView deleteProduct(@ModelAttribute("productId")Integer productId){
         ModelAndView mav = new ModelAndView();
-        productService.deleteProduct(kode);
+        productService.delete(productId);
         mav.setViewName("redirect:/Product");
         return mav;
     }
 
     @RequestMapping("/Stock")
     public String showAllStock(Model model) {
-        model.addAttribute("product", productService.showAllProduct());
+        model.addAttribute("product", productService.showAll());
         return "Stock";
     }
 
     @PostMapping(value = "updateStock")
     public ModelAndView updateStock(@ModelAttribute("product") Product product){
         ModelAndView mav = new ModelAndView();
-        productService.updateStock(product);
+        productService.updateQuantity(product);
         mav.setViewName("redirect:/Stock");
         return mav;
     }
-    */
 }

@@ -2,65 +2,78 @@ package com.blibli.pos_minimarket.Model;
 
 public class Product {
 
-    private Integer kode,stok;
-    private Integer kategoriId;
-    private String nama,deskripsi;
-    private Integer harga;
+    private Integer productId;
+    private Integer quantity;
+    private String name;
+    private String description;
+    private String status;
+    private Double price;
+    private Category category;
     public Product() {}
-    public Product(Integer kode, String nama, Integer kategoriId, String deskripsi, Integer stok, Integer harga){
-        this.kode=kode;
-        this.nama=nama;
-        this.kategoriId=kategoriId;
-        this.deskripsi=deskripsi;
-        this.stok=stok;
-        this.harga=harga;
+    public Product(Integer productId, String name, Double price, Integer quantity, String description, Category category,String status){
+        this.productId=productId;
+        this.name=name;
+        this.price=price;
+        this.quantity=quantity;
+        this.description=description;
+        this.category=category;
+        this.status=status;
+
     }
 
-    public Integer getKode() {
-        return kode;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setKode(Integer kode) {
-        this.kode = kode;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public Integer getStok() {
-        return stok;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setStok(Integer stok) {
-        this.stok = stok;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public Integer getKategoriId() {
-        return kategoriId;
+    public String getName() {
+        return name;
     }
 
-    public void setKategoriId(Integer kategoriId) {
-        this.kategoriId = kategoriId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNama() {
-        return nama;
+    public String getDescription() {
+        return description;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public Integer getHarga() {
-        return harga;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setHarga(Integer harga) {
-        this.harga = harga;
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

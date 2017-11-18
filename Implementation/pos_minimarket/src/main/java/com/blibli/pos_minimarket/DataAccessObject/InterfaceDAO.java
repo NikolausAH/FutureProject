@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface InterfaceDAO<objectType,idType,keyType> {
     List<objectType> getAll();
+    objectType getById(idType key);
     List<objectType> search(keyType key);
    // public objectType getOne(idType idType);
     void add(objectType t);
