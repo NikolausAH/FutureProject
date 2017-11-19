@@ -92,6 +92,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
                     product.setQuantity(resultSet.getInt("quantity"));
                     product.setDescription(resultSet.getString("description"));
                     product.setCategory(categoryDAO.getById(resultSet.getInt("categoryId")));
+                    System.out.println(product.getCategory().getName());
                     product.setStatus(resultSet.getString("status"));
                     productList.add(product);
                 }
@@ -107,28 +108,17 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public void add(Product product) {
-        Category category = categoryDAO.getByName(product.getName());
         String sql = "INSERT INTO product (name,price,quantity,description,categoryid,status) VALUES (?,?,?,?,?,?);";
         try {
-            System.out.println("E5");
             this.makeConnection();
-            System.out.println("E6");
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            System.out.println("E7");
             preparedStatement.setString(1, product.getName());
-            System.out.println("E8");
             preparedStatement.setDouble(2, product.getPrice());
-            System.out.println("E9");
             preparedStatement.setInt(3, 0);
-            System.out.println("E10");
             preparedStatement.setString(4, product.getDescription());
-            System.out.println("E1 = "+ category.getCategoryId());
-            preparedStatement.setInt(5, category.getCategoryId());
-            System.out.println("E2");
+            preparedStatement.setInt(5, product.getCategory().getCategoryId());
             preparedStatement.setString(6, "active");
-            System.out.println("E3");
             preparedStatement.executeUpdate();
-            System.out.println("E4");
             preparedStatement.close();
             this.closeConnection();
         } catch (Exception EX) {
@@ -139,20 +129,27 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public void update(Product product) {
-        Category category = categoryDAO.getByName((product.getName()));
-        String sql = "UPDATE product SET name = ?, price = ?, quantity = ?, description = ?, categoryid = ? WHERE productid = ?;";
+        String sql = "UPDATE product SET name = ?, price = ?, description = ?, categoryid = ? WHERE productid = ?;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            System.out.println("E1");
             preparedStatement.setString(1, product.getName());
+            System.out.println("E2");
             preparedStatement.setDouble(2, product.getPrice());
-            preparedStatement.setInt(3, product.getQuantity());
-            preparedStatement.setString(4, product.getDescription());
-            preparedStatement.setInt(5, category.getCategoryId());
-            preparedStatement.setInt(6, product.getProductId());
+            System.out.println("E3");
+            preparedStatement.setString(3, product.getDescription());
+            System.out.println("E4");
+            preparedStatement.setInt(4, product.getCategory().getCategoryId());
+            System.out.println("E5");
+            preparedStatement.setInt(5, product.getProductId());
+            System.out.println("E6");
             preparedStatement.executeUpdate();
+            System.out.println("E7");
             preparedStatement.close();
+            System.out.println("E8");
             this.closeConnection();
+            System.out.println("E9");
         } catch (Exception EX) {
             System.out.println("Error ProductDAO Update");
             System.out.println(EX.toString());

@@ -1,10 +1,13 @@
 package com.blibli.pos_minimarket.Controller;
 
+import com.blibli.pos_minimarket.Model.Category;
 import com.blibli.pos_minimarket.Model.Product;
+import com.blibli.pos_minimarket.Services.CategoryService;
 import com.blibli.pos_minimarket.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProductController {
 
-    private final ProductService productService;
+    private ProductService productService;
+    private CategoryService categoryService = new CategoryService();
 
     @Autowired
     public ProductController(ProductService productService) {
@@ -21,33 +25,43 @@ public class ProductController {
     }
 
    @RequestMapping("/Product")
-    public String showAllProduct(Model model) {
+    public String showAllProduct(Model model, Model model1) {
         model.addAttribute("product", productService.showAll());
+        model1.addAttribute("categoryList", categoryService.showAll());
         return "Product";
     }
 
     @PostMapping(value = "/createProduct")
-    public ModelAndView createProduct(@ModelAttribute("product") Product product){
+    public ModelAndView createProduct(@ModelAttribute("product") Product product,@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
+        product.setCategory(categoryService.getById(categoryId));
         productService.add(product);
         mav.setViewName("redirect:/Product");
         return mav;
     }
 
-    @PostMapping(value = "updateProduct")
-    public ModelAndView updateProduct(@ModelAttribute("product") Product product){
+    @PostMapping(value = "/Product/Update")
+    public ModelAndView updateProduct(@ModelAttribute("product") Product product,@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
+        product.setCategory(categoryService.getById(categoryId));
         productService.update(product);
         mav.setViewName("redirect:/Product");
         return mav;
     }
 
-    @RequestMapping(value = "deleteProduct")
+    @RequestMapping(value = "/Product/Delete")
     public ModelAndView deleteProduct(@ModelAttribute("productId")Integer productId){
         ModelAndView mav = new ModelAndView();
-        productService.delete(productId);
+        productService.softdelete(productId);
         mav.setViewName("redirect:/Product");
         return mav;
+    }
+
+    @RequestMapping(value = "Product/Search")
+    public String searchCategory(@ModelAttribute("searchKey")String searchKey,Model model){
+        System.out.println(searchKey);
+        model.addAttribute("product", productService.search(searchKey));
+        return "Product";
     }
 
     @RequestMapping("/Stock")

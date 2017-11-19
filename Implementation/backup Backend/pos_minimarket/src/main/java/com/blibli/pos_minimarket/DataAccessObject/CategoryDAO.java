@@ -65,32 +65,6 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
         return category;
     }
 
-    public Category getByName(String categoryName) {
-        Category category = new Category();
-        String sql = "SELECT * FROM category WHERE name = ? ORDER BY categoryid;";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1,categoryName);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            this.closeConnection();
-            if (resultSet != null) {
-                while (resultSet.next()) {
-                    category.setName(resultSet.getString("name"));
-                    category.setCategoryId(resultSet.getInt("categoryId"));
-                    category.setDescription(resultSet.getString("description"));
-                    category.setStatus(resultSet.getString("status"));
-                }
-                resultSet.close();
-            }
-            preparedStatement.close();
-        } catch (Exception EX) {
-            System.out.println("Error CategoryDAO getByName");
-            System.out.println(EX.toString());
-        }
-        return category;
-    }
-
     @Override
     public List<Category> search(String searchKey) {
         List<Category> categoryList = new ArrayList<>();

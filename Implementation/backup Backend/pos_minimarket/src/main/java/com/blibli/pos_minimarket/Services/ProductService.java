@@ -43,12 +43,12 @@ public class ProductService {
         }
     }
 
-    public void delete(Integer productId){
+    public void softdelete(Integer productId){
         try {
-            productDAO.delete(productId);
+            productDAO.softDelete(productId);
         }
         catch (Exception EX){
-            System.out.println("Error ProductService Delete");
+            System.out.println("Error ProductService SoftDelete");
             System.out.println(EX.toString());
         }
     }
@@ -61,5 +61,16 @@ public class ProductService {
             System.out.println("Error ProductService Add");
             System.out.println(EX.toString());
         }
+    }
+
+    public List<Product> search(String searchKey) {
+        List<Product> productList = new ArrayList<>();
+        try {
+            productList = productDAO.search(searchKey);
+        } catch (Exception EX) {
+            System.out.println("Error CategoryServices search");
+            System.out.println(EX.toString());
+        }
+        return productList;
     }
 }

@@ -28,6 +28,7 @@ public class CategoryController {
 
     @RequestMapping(value = "searchCategory")
     public String searchCategory(@ModelAttribute("searchKey")String searchKey,Model model){
+        System.out.println(searchKey);
         model.addAttribute("category", categoryService.search(searchKey));
         return "Category";
     }

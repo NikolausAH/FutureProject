@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class CategoryService {
     private CategoryDAO categoryDAO = new CategoryDAO();
+    private Category category = new Category();
 
     public List<Category> showAll() {
         List<Category> listCategory = new ArrayList<>();
@@ -23,6 +24,17 @@ public class CategoryService {
         return listCategory;
     }
 
+    public Category getById(Integer categoryId){
+        try {
+
+            category=categoryDAO.getById(categoryId);
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryService Add");
+            System.out.println(EX.toString());
+        }
+        return category;
+    }
     public void add(Category category) {
         try {
             categoryDAO.add(category);

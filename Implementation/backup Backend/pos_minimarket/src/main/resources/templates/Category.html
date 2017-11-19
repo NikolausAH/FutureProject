@@ -211,7 +211,7 @@
                                                     <label class="control-label" for="categoryId">Id Edit nanti:</label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="categoryId" placeholder="ID akan dihapus" name="categoryId" th:value="${categoryId}"/>
+                                                    <input type="text" class="form-control" id="categoryId" placeholder="ID akan diubah" name="categoryId" th:value="${categoryId}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -255,7 +255,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title" style="text-align: center">Ubah Kategori</h4>
+                                        <h4 class="modal-title" style="text-align: center">Hapus Kategori</h4>
                                     </div>
                                     <div class="modal-body">
                                         <form class="form-horizontal" th:action="@{/softDeleteCategory}"  method="post">
