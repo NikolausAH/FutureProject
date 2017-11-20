@@ -1,11 +1,14 @@
 package com.blibli.pos_minimarket.Model;
 
 public class Transaction {
-    Integer transactionId;
-    String date;
-    String time;
-    Double tax,total,discount;
-    Integer discountPId,employeeId;
+    private Integer transactionId;
+    private String date;
+    private String time;
+    private Double tax;
+    private Double discount;
+    private Double total;
+    private String status;
+    //tambah entity promo total sama pegawai
     /* tax = total tax (money)
      * Foreign Key
      * discount = discount (money) from product discount, buy x get y, and discount product total buy
@@ -13,15 +16,14 @@ public class Transaction {
      * employeeId = employee ID
      */
     public Transaction() {}
-    public Transaction(Integer transactionId, String date, String time, Double tax, Double discount, Double total, Integer discountPId, Integer employeeId){
+    public Transaction(Integer transactionId, String date, String time, Double tax, Double discount, Double total, String status){
         this.transactionId=transactionId;
         this.date=date;
         this.time=time;
         this.tax=tax;
         this.discount=discount;
         this.total=total;
-        this.discountPId=discountPId;
-        this.employeeId=employeeId;
+        this.setStatus(status);
     }
 
     public Integer getTransactionId() {
@@ -72,19 +74,11 @@ public class Transaction {
         this.discount = discount;
     }
 
-    public Integer getDiscountPId() {
-        return discountPId;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDiscountPId(Integer discountPId) {
-        this.discountPId = discountPId;
-    }
-
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

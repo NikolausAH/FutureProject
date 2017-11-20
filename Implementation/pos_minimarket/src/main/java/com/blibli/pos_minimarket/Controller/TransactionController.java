@@ -15,9 +15,9 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-//    @RequestMapping("/Transaction")
-//    public String showAllTransaction(Model model) {
-//        model.addAttribute("transaction", transactionService.showAllTransaction());
-//        return "Transaction";
-//    }
+    @RequestMapping("/Transaction")
+    public String showAllTransaction(Model model) {
+        //model.addAttribute("transaction", transactionService.showAllTransaction());
+        return "Transaction";
+    }
 }
