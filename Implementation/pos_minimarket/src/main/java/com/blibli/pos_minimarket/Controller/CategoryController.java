@@ -26,14 +26,14 @@ public class CategoryController {
         return "Category";
     }
 
-    @RequestMapping(value = "searchCategory")
+    @RequestMapping(value = "Category/Search")
     public String searchCategory(@ModelAttribute("searchKey")String searchKey,Model model){
         System.out.println(searchKey);
         model.addAttribute("category", categoryService.search(searchKey));
         return "Category";
     }
 
-    @PostMapping(value = "createCategory")
+    @PostMapping(value = "/Category/Add")
     public ModelAndView addCategory(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
         categoryService.add(category);
@@ -41,7 +41,7 @@ public class CategoryController {
         return mav;
     }
 
-    @PostMapping(value = "updateCategory")
+    @PostMapping(value = "/Category/Update")
     public ModelAndView updateCategory(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
         categoryService.update(category);
@@ -49,7 +49,7 @@ public class CategoryController {
         return mav;
     }
 
-    @RequestMapping(value = "softDeleteCategory")
+    @RequestMapping(value = "/Category/Delete")
     public ModelAndView deleteCategory(@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
         categoryService.softDelete(categoryId);

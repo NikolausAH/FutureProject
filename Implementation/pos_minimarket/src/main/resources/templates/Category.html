@@ -104,7 +104,7 @@
                                     <!--==========content.start==========-->
                     <div class="col-md-10 col-lg-10 content">
                         <br />
-                        <form class="form-inline" th:object="${form}" th:action="@{/searchCategory}" method="post">
+                        <form class="form-inline" th:object="${form}" th:action="@{/Category/Search}" method="post">
                             <input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"  th:value="${searchKey}"/>
                             <button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
                             <button type="button" class="btn btn-success" id="btn-export">Export</button>
@@ -150,7 +150,7 @@
                             </div>
                         </div>
                         <!--Akhir Button tambah ubah hapus-->
-                        <!-- createModal -->
+                        <!-- addModal -->
                         <div class="modal fade" id="createModal" role="dialog">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
@@ -160,7 +160,7 @@
                                         <h4 class="modal-title" style="text-align: center">Tambah Kategori Baru</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/createCategory}"  method="post">
+                                        <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Add}"  method="post">
                                             <div class="form-group">
                                                 <div class="col-sm-4">
                                                     <label class="control-label" for="name">Nama:</label>
@@ -185,7 +185,7 @@
                                                     </div>
                                                     <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                                     <div class="col-xs-3 col-md-3 col-lg-3">
-                                                        <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah" action="/createCategory">Tambah</button>
+                                                        <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah">Tambah</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,7 +205,7 @@
                                         <h4 class="modal-title" style="text-align: center">Ubah Kategori</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/updateCategory}"  method="post">
+                                        <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Update}"  method="post">
                                             <div class="form-group">
                                                 <div class="col-sm-4">
                                                     <label class="control-label" for="categoryId">Id Edit nanti:</label>
@@ -238,7 +238,7 @@
                                                     </div>
                                                     <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                                     <div class="col-xs-3 col-md-3 col-lg-3">
-                                                        <button type="submit" value="Submit" class="btn btn-warning" id="btn-tambah" action="/updateCategory">Ubah</button>
+                                                        <button type="submit" value="Submit" class="btn btn-warning" id="btn-tambah">Ubah</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,7 +258,7 @@
                                         <h4 class="modal-title" style="text-align: center">Hapus Kategori</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal" th:action="@{/softDeleteCategory}"  method="post">
+                                        <form class="form-horizontal" th:action="@{/Category/Delete}"  method="post">
                                             <div class="form-group">
                                                 <div class="col-sm-4">
                                                     <label class="control-label" for="categoryId">Kode Kategori :</label>
@@ -288,28 +288,6 @@
                     <!--==========content.end==========-->
                 </div>
             </div>
-
-            <script type="text/javascript" th:inline="javascript">
-                function openTambah() {
-                    document.getElementById("aksi-tambah").style.display="block";
-                }
-                function closeTambah() {
-                    document.getElementById("aksi-tambah").style.display="none";
-                }
-                function openUbah() {
-                    document.getElementById("aksi-ubah").style.display="block";
-                }
-                function closeUbah() {
-                    document.getElementById("aksi-ubah").style.display="none";
-                }
-                //hapus nanti
-                function openHapus() {
-                    document.getElementById("aksi-hapus").style.display="block";
-                }
-                function closeHapus() {
-                    document.getElementById("aksi-hapus").style.display="none";
-                }
-            </script>
 		</body>
 										<!--==========head.end==========-->
 	</html>

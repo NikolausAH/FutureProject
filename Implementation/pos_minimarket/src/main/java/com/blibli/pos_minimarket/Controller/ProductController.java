@@ -1,13 +1,11 @@
 package com.blibli.pos_minimarket.Controller;
 
-import com.blibli.pos_minimarket.Model.Category;
 import com.blibli.pos_minimarket.Model.Product;
 import com.blibli.pos_minimarket.Services.CategoryService;
 import com.blibli.pos_minimarket.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +29,7 @@ public class ProductController {
         return "Product";
     }
 
-    @PostMapping(value = "/createProduct")
+    @PostMapping(value = "/Product/Add")
     public ModelAndView createProduct(@ModelAttribute("product") Product product,@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
         product.setCategory(categoryService.getById(categoryId));
@@ -52,29 +50,15 @@ public class ProductController {
     @RequestMapping(value = "/Product/Delete")
     public ModelAndView deleteProduct(@ModelAttribute("productId")Integer productId){
         ModelAndView mav = new ModelAndView();
-        productService.softdelete(productId);
+        productService.softDelete(productId);
         mav.setViewName("redirect:/Product");
         return mav;
     }
 
-    @RequestMapping(value = "Product/Search")
+    @RequestMapping(value = "/Product/Search")
     public String searchCategory(@ModelAttribute("searchKey")String searchKey,Model model){
         System.out.println(searchKey);
         model.addAttribute("product", productService.search(searchKey));
         return "Product";
-    }
-
-    @RequestMapping("/Stock")
-    public String showAllStock(Model model) {
-        model.addAttribute("product", productService.showAll());
-        return "Stock";
-    }
-
-    @PostMapping(value = "updateStock")
-    public ModelAndView updateStock(@ModelAttribute("product") Product product){
-        ModelAndView mav = new ModelAndView();
-        productService.updateQuantity(product);
-        mav.setViewName("redirect:/Stock");
-        return mav;
     }
 }

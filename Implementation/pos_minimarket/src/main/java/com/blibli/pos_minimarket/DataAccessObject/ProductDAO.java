@@ -1,6 +1,5 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
-import com.blibli.pos_minimarket.Model.Category;
 import com.blibli.pos_minimarket.Model.Product;
 import org.springframework.stereotype.Repository;
 
@@ -189,13 +188,12 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
         }
     }
 
-    public void updateQuantity(Product product) {
-        product = this.getById(product.getProductId());
+    public void updateQuantity(Product product, Integer oldQuantity) {
         String sql = "UPDATE product SET quantity = ? WHERE productid = ?;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setInt(1,product.getQuantity());
+            preparedStatement.setInt(1,product.getQuantity() + oldQuantity);
             preparedStatement.setInt(2,product.getProductId());
             preparedStatement.executeUpdate();
             preparedStatement.close();

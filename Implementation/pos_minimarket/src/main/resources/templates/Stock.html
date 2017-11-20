@@ -117,32 +117,32 @@
                     <!--Start Aksi Tambah-->
                     <!--Start Bagian Form-->
 
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div id="aksi-stok">
                             <br />
-                            <form class="form-horizontal" th:form="${form}" th:object="${produk}" th:action="@{/updateStock}"  method="post">
+                            <form class="form-horizontal" th:form="${form}" th:object="${product}" th:action="@{/Stock/Update}"  method="post">
                                 <div class="form-group top-form">
-                                    <div class="col-md-4">
-                                        <label class="control-label" for="kode">Kode product :</label>
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="productId">Kode produk :</label>
                                     </div>
-                                    <div class="col-md-8">
-                                        <input type="number" class="form-control" id="kode" name="kode" th:value="${kode}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label" for="nama">Nama :</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="nama" name="nama" />
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control" id="productId" name="productId" th:value="${productId}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label" for="stok">Jumlah :</label>
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="name">Nama E :</label>
                                     </div>
-                                    <div class="col-md-8">
-                                        <input type="number" class="form-control" id="stok" name="stok" th:value="${stok}"/>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="name" name="name" /><!--Edit Sebelah sini-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="quantity">Jumlah :</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control" id="quantity" name="quantity" th:value="${quantity}"/>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
@@ -158,25 +158,27 @@
                     </div>
                     <!--End Bagian Form-->
                     <!--Start Bagian Tabel-->
-                    <div class="col-md-8">
+					<br />
+
+                    <div class="col-md-7">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Kode</th>
-                                    <th>Nama</th>
-                                    <th>Kategori</th>
-                                    <th>Stok</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <th:block th:each="prod : ${product}">
-                                    <tr>
-                                        <td th:text="${prod.kode}" />
-                                        <td th:text="${prod.nama}"/>
-                                        <td th:text="${prod.kategoriId}"/>
-                                        <td th:text="${prod.stok}"/>
-                                    </tr>
+									<th>Kode</th>
+									<th>Nama</th>
+									<th>Stok</th>
+									<th>Status</th>
+								</tr>
+								</thead>
+								<tbody>
+								<th:block th:each="prod : ${product}">
+									<tr>
+										<td th:text="${prod.productId}" />
+										<td th:text="${prod.name}"/>
+										<td th:text="${prod.quantity}"/>
+										<td th:text="${prod.status}"/>
+									</tr>
                                 </th:block>
                                 </tbody>
                             </table>

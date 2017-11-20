@@ -1,6 +1,5 @@
 package com.blibli.pos_minimarket.Services;
 
-import com.blibli.pos_minimarket.DataAccessObject.ConnectionSettings;
 import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.Model.Product;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import java.util.List;
 
 @Service
 public class ProductService {
-    private ConnectionSettings connectionSettings = new ConnectionSettings();
     private ProductDAO productDAO = new ProductDAO();
 
    public List<Product> showAll() {
@@ -43,22 +41,12 @@ public class ProductService {
         }
     }
 
-    public void softdelete(Integer productId){
+    public void softDelete(Integer productId){
         try {
             productDAO.softDelete(productId);
         }
         catch (Exception EX){
             System.out.println("Error ProductService SoftDelete");
-            System.out.println(EX.toString());
-        }
-    }
-
-    public void updateQuantity(Product product){
-        try {
-            productDAO.updateQuantity(product);
-        }
-        catch (Exception EX){
-            System.out.println("Error ProductService Add");
             System.out.println(EX.toString());
         }
     }
