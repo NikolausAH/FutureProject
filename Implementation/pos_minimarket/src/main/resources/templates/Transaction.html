@@ -63,18 +63,18 @@
                         <div class="row">
                             <div class="col-sm-5">
                                 <div class="col-sm-4" id="col-padding5">
-                                    <label class="control-label" for="nomor">Nomor :</label>
+                                    <label class="control-label" for="transactionId">Nomor :</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="number" class="form-control" id="nomor" name="nomor" />
+                                    <input type="number" class="form-control" id="transactionId" name="transactionId" th:value="${transactionId}" disabled="true"/>
                                 </div>
                             </div>
                             <div class="col-sm-7">
                                 <div class="col-sm-4" id="col-padding5">
-                                    <label class="control-label" for="pajak">Pajak :</label>
+                                    <label class="control-label" for="tax">Pajak :</label>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" id="pajak" name="pajak" />
+                                    <input type="number" class="form-control" id="tax" name="pajak" th:value="${tax}" disabled="true"/>
                                 </div>
                             </div>
                         </div>
@@ -82,13 +82,10 @@
                         <div class="row">
                             <div class="col-sm-5">
                                 <div class="col-sm-4" id="col-padding5">
-                                    <label class="control-label" for="waktu">Waktu/Tanggal :</label>
+                                    <label class="control-label" for="date">Tanggal/Waktu :</label>
                                 </div>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="waktu" name="waktu" />
-                                </div>
-                                <div class="col-sm-4">
-                                    <input type="date" class="form-control" id="date" name="date" />
+                                <div class="col-sm-6">
+                                    <input type="datetime-local" class="form-control" id="date" name="date" th:value="${dateTime}" disabled="true"/>
                                 </div>
                             </div>
                             <div class="col-sm-7">
@@ -96,7 +93,7 @@
                                     <label class="control-label" for="total">Total :</label>
                                 </div>
                                 <div class="col-sm-4" id="col-padding5">
-                                    <input type="number" class="form-control" id="total" name="total" />
+                                    <input type="number" class="form-control" id="total" name="total" th:value="${total}" disabled="true"/>
                                 </div>
                             </div>
                         </div>

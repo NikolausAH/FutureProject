@@ -2,8 +2,7 @@ package com.blibli.pos_minimarket.Model;
 
 public class Transaction {
     private Integer transactionId;
-    private String date;
-    private String time;
+    private String dateTime;
     private Double tax;
     private Double discount;
     private Double total;
@@ -16,14 +15,13 @@ public class Transaction {
      * employeeId = employee ID
      */
     public Transaction() {}
-    public Transaction(Integer transactionId, String date, String time, Double tax, Double discount, Double total, String status){
+    public Transaction(Integer transactionId, String dateTime, Double tax, Double discount, Double total, String status){
         this.transactionId=transactionId;
-        this.date=date;
-        this.time=time;
+        this.dateTime=dateTime;
         this.tax=tax;
         this.discount=discount;
         this.total=total;
-        this.setStatus(status);
+        this.status=status;
     }
 
     public Integer getTransactionId() {
@@ -34,20 +32,12 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Double getTax() {
@@ -58,20 +48,20 @@ public class Transaction {
         this.tax = tax;
     }
 
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
     public Double getDiscount() {
         return discount;
     }
 
     public void setDiscount(Double discount) {
         this.discount = discount;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public String getStatus() {

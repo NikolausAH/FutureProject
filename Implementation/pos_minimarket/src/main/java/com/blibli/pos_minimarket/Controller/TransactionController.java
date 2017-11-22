@@ -16,8 +16,15 @@ public class TransactionController {
     }
 
     @RequestMapping("/Transaction")
-    public String showAllTransaction(Model model) {
-        //model.addAttribute("transaction", transactionService.showAllTransaction());
+    public String initialTransaction(Model model) {
+        try {
+            model.addAttribute("dateTime", transactionService.setDate());
+            model.addAttribute("transactionId",transactionService.setNextTransactionId());
+            model.addAttribute("tax",transactionService.setTax());
+            model.addAttribute("total",transactionService.setTotal());
+        }catch (Exception EX){
+            System.out.println("Error TransactionController initialTransaction");
+        }
         return "Transaction";
     }
 }
