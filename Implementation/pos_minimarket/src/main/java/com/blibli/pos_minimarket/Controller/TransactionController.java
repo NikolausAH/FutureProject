@@ -1,10 +1,14 @@
 package com.blibli.pos_minimarket.Controller;
 
+import com.blibli.pos_minimarket.Model.Transaction;
 import com.blibli.pos_minimarket.Services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TransactionController {
@@ -27,4 +31,13 @@ public class TransactionController {
         }
         return "Transaction";
     }
+
+    @PostMapping(value = "/Transaction/Add")
+    public ModelAndView addCategory(@ModelAttribute("transaction") Transaction transaction){
+        ModelAndView mav = new ModelAndView();
+        transactionService.add(transaction);
+        mav.setViewName("redirect:/Transaction");
+        return mav;
+    }
+
 }

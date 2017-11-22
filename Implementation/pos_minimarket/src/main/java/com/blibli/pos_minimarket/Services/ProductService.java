@@ -61,4 +61,14 @@ public class ProductService {
         }
         return productList;
     }
+
+    public boolean isExist(List<Product> productList, Product product){
+
+        for (Product ProductList : productList) {
+            if (ProductList.getProductId() == product.getProductId()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
