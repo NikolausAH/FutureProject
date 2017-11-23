@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MinimarketController {
     private final MinimarketService minimarketService;
 
-    @Autowired
+    @Autowired //menandakan fungsi/konstruktor akan di init secara otomatis saat program di Run.
     public MinimarketController(MinimarketService minimarketService) {
         this.minimarketService = minimarketService;
     }

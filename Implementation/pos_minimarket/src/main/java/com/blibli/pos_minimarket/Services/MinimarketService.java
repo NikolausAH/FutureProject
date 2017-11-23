@@ -11,8 +11,8 @@ public class MinimarketService {
     private MinimarketDAO minimarketDAO = new MinimarketDAO();
 
     public void updateMinimarket(Minimarket minimarket) {
-        myConnection.makeConnection();
+        myConnection.makeConnection(); //connection antar dao dan db
         minimarketDAO.updateMinimarket(minimarket);
-        myConnection.closeConnection();
+        myConnection.closeConnection();//nutup
     }
 }

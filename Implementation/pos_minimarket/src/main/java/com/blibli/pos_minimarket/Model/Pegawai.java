@@ -5,6 +5,7 @@ public class Pegawai {
     private String password;
     private String nama;
     private int idRole;
+    private String role;
     private String email;
 
     public Pegawai() {
@@ -56,5 +57,13 @@ public class Pegawai {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
