@@ -11,19 +11,25 @@ import java.util.List;
 @Service //menandakan class ini service
 public class PegawaiService {
     private PegawaiDAO pegawaiDAO = new PegawaiDAO();
-    private MyConnection myConnection = new MyConnection();
 
     public List<Pegawai> showAll() {
-        myConnection.makeConnection();
         List<Pegawai> listCategory = new ArrayList<>();
         try {
             listCategory = pegawaiDAO.getAll();
-            myConnection.makeConnection();
         }
         catch (Exception EX){
             System.out.println("Error CategoryServices showAll");
             System.out.println(EX.toString());
         }
         return listCategory;
+    }
+    public void add(Pegawai pegawai) {
+        try {
+            pegawaiDAO.add(pegawai);
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryServices Add");
+            System.out.println(EX.toString());
+        }
     }
 }

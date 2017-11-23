@@ -21,7 +21,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "Category")
-    public String showAllCategory(Model model) {
+    public String showAllCategory(Model model) { //model dari springnya
         model.addAttribute("category", categoryService.showAll());
         return "Category";
     }

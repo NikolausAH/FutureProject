@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
         String sql = "SELECT id,nama,email,namarole,pegawai.idrole,namarole FROM pegawai join role on (pegawai.idrole = role.idrole) ORDER BY id ;";
         try {
             this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            Statement preparedStatement = this.connection.createStatement();
+            ResultSet resultSet = preparedStatement.executeQuery(sql);
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Pegawai pegawai = new Pegawai();
@@ -54,20 +55,21 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
 
     @Override
     public void add(Pegawai pegawai) {
-//        String sql = "INSERT INTO pegawai (name,description,status) VALUES (?,?,?);";
-//        try {
-//            this.makeConnection();
-//            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-//            preparedStatement.setString(1, category.getName());
-//            preparedStatement.setString(2, category.getDescription());
-//            preparedStatement.setString(3, "active");
-//            preparedStatement.executeUpdate();
-//            preparedStatement.close();
-//            this.closeConnection();
-//        } catch (Exception EX) {
-//            System.out.println("Error CategoryDAO Add");
-//            System.out.println(EX.toString());
-//        }
+
+        String sql = "INSERT INTO pegawai (nama,idrole,email) VALUES (?,(SELECT idrole FROM role WHERE namarole LIKE ?),?);";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1, pegawai.getNama());
+            preparedStatement.setString(2, pegawai.getRole());
+            preparedStatement.setString(3, pegawai.getEmail());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println("Error PegawaiDAO Add");
+            System.out.println(EX.toString());
+        }
     }
 
     @Override
