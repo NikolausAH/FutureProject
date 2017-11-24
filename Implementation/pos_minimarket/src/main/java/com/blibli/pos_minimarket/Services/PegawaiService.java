@@ -28,7 +28,16 @@ public class PegawaiService {
             pegawaiDAO.add(pegawai);
         }
         catch (Exception EX){
-            System.out.println("Error CategoryServices Add");
+            System.out.println("Error PegawaiService Add");
+            System.out.println(EX.toString());
+        }
+    }
+    public void update(Pegawai pegawai){
+        try{
+            pegawaiDAO.update(pegawai);
+        }
+        catch (Exception EX){
+            System.out.println("Error PegawaiService Update");
             System.out.println(EX.toString());
         }
     }

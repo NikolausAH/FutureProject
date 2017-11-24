@@ -117,7 +117,7 @@
 			<!--==========content.start==========-->
 			<div class="col-md-10 col-lg-10 content">
 				<br></br>
-				<form class="form-inline" th:object="${form}" th:action="@{/searchCategory}" method="post">
+				<form class="form-inline" th:object="${form}" method="post">
 					<input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"
 					 th:value="${searchKey}" />
 					<button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
@@ -198,7 +198,7 @@
 							<div class="col-sm-9" id="role-label">
 								<select class="btn btn-default dropdown-toggle" type="button" id="role" data-toggle="dropdown" name="role" th:value="${role}">
 									<option>Kasir</option>
-									<option>Manager</option>
+									<option>Admin</option>
 								</select>
 							</div>
 						</div>

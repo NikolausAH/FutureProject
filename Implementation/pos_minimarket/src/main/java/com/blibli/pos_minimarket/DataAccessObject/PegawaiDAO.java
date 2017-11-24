@@ -73,8 +73,26 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     }
 
     @Override
-    public void update(Pegawai t) {
-
+    public void update(Pegawai pegawai) {
+        String sql = "UPDATE pegawai SET nama = ?, role = ? "
+                    +"WHERE id = ?;";
+        try {
+            this.makeConnection();
+            System.out.println("Run Update Pegawai");
+            System.out.println(pegawai.getNama());
+            System.out.println(pegawai.getRole());
+            System.out.println(pegawai.getId());
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1,pegawai.getNama());
+            preparedStatement.setString(2,pegawai.getRole());
+            preparedStatement.setInt(3,pegawai.getId());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println("Error PegawaiDAO Update");
+            System.out.println(EX.toString());
+        }
     }
 
     @Override

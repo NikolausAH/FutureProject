@@ -33,4 +33,8 @@ public class PegawaiController{
         mav.setViewName("redirect:/Pegawai");
         return mav;
     }
+    @PostMapping(value = "updatePegawai")
+    public ModelAndView updatePegawai(@ModelAttribute("pegawaiupdated") Pegawai pegawaiUpdated){
+        ModelAndView mav = new ModelAndView()
+    }
 }
