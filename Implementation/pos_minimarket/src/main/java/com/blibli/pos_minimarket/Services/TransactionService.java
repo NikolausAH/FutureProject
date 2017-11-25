@@ -17,6 +17,16 @@ public class TransactionService {
     private TransactionDAO transactionDAO = new TransactionDAO();
     private ProductDAO productDAO = new ProductDAO();
     private ProductService productService = new ProductService();
+
+    public void initTable(){
+        try {
+            transactionDAO.initTable();
+        }
+        catch (Exception EX){
+            System.out.println("Error TransactionService initTable");
+            System.out.println(EX.toString());
+        }
+    }
 /*
     public List<Transaction> showAllTransaction() {
         connectionSettings.makeConnection();

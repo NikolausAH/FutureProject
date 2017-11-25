@@ -11,7 +11,34 @@ import java.util.List;
 @Repository
 public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Product,Integer, String> {
     private CategoryDAO categoryDAO = new CategoryDAO();
-    private Product product = new Product();
+
+    @Override
+    public void initTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS public.product" +
+                "(" +
+                "    productId SERIAL PRIMARY KEY NOT NULL," +
+                "    name VARCHAR(50)," +
+                "    price FLOAT," +
+                "    quantity INTEGER," +
+                "    description VARCHAR(250)," +
+                "    categoryId INT NOT NULL," +
+                "    status VARCHAR(15) NOT NULL," +
+                "    CONSTRAINT FK_Product FOREIGN KEY (categoryId)" +
+                "    REFERENCES public.category(categoryId)"+
+                ");";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
+        }catch (Exception EX)
+        {
+            System.out.println("Error ProductDAO initTable");
+            System.out.println(EX.toString());
+        }
+    }
+
     @Override
     public List<Product> getAll() {
         List<Product> productList = new ArrayList<>();

@@ -11,6 +11,28 @@ import java.util.List;
 public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Category,Integer,String>{
 
     @Override
+    public void initTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS public.category" +
+                "(" +
+                "    categoryId SERIAL PRIMARY KEY NOT NULL," +
+                "    name VARCHAR(25)," +
+                "    description VARCHAR(250)," +
+                "    status VARCHAR(15) NOT NULL" +
+                ");";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
+        }catch (Exception EX)
+        {
+            System.out.println("Error CategoryDAO initTable");
+            System.out.println(EX.toString());
+        }
+    }
+
+    @Override
     public List<Category> getAll() {
         List<Category> categoryList = new ArrayList<>();
         String sql = "SELECT * FROM category ORDER BY categoryid;";

@@ -2,6 +2,8 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.TransactionDetail;
 import org.springframework.stereotype.Repository;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -9,6 +11,34 @@ import java.util.List;
 
 @Repository
 public class TransactionDetailDAO extends ConnectionSettings {
+
+    public void initTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS public.transactionDetail" +
+                "(" +
+                "    detailId SERIAL PRIMARY KEY NOT NULL," +
+                "    quantity INT," +
+                "    price FLOAT," +
+                "    discount FLOAT," +
+                "    productId INT," +
+                "    discountPid INT," +
+                "    discountPxy INT," +
+                "    column_8 INT," +
+                "    CONSTRAINT transactioDetail_product_productid_fk FOREIGN KEY (productId) REFERENCES product (productid)," +
+                "    CONSTRAINT transactioDetail_discountProduct_discountPid_fk FOREIGN KEY (discountPid) REFERENCES discountProduct (discountPid),"+
+                "    CONSTRAINT transactioDetail_discountProductXY_productPxy_fk FOREIGN KEY (discountPxy) REFERENCES discountProductXY (discountpxyid)"+
+                ");";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
+        }catch (Exception EX)
+        {
+            System.out.println("Error TransactionDetailDAO initTable");
+            System.out.println(EX.toString());
+        }
+    }
 /*
     public List<TransactionDetail> getAllTransactionDetail() {
         List<TransactionDetail> transactionDetailList = new ArrayList<>();

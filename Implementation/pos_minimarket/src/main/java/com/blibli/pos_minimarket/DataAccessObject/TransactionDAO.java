@@ -10,6 +10,28 @@ import java.util.List;
 @Repository
 public class TransactionDAO extends ConnectionSettings {
 
+    public void initTable() {
+        String sql = "CREATE TABLE public.transaction" +
+                "(" +
+                "    transactionId SERIAL PRIMARY KEY NOT NULL," +
+                "    dateTime TIMESTAMP," +
+                "    tax FLOAT," +
+                "    discount FLOAT," +
+                "    total FLOAT" +
+                ");";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
+        }catch (Exception EX)
+        {
+            System.out.println("Error TransactionDAO initTable");
+            System.out.println(EX.toString());
+        }
+    }
+
     public List<Transaction> getAll() {
         List<Transaction> transactionList = new ArrayList<>();
 
@@ -40,7 +62,7 @@ public class TransactionDAO extends ConnectionSettings {
     }
 
     public void add(Transaction transaction) {
-        String sql = "INSERT INTO transaction (dateTime,tax,discount,total,status) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO transaction (dateTime,tax,discount,total) VALUES (?,?,?,?,?);";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

@@ -12,6 +12,16 @@ public class CategoryService {
     private CategoryDAO categoryDAO = new CategoryDAO();
     private Category category = new Category();
 
+    public void initTable(){
+        try {
+            categoryDAO.initTable();
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryService initTable");
+            System.out.println(EX.toString());
+        }
+    }
+
     public List<Category> showAll() {
         List<Category> listCategory = new ArrayList<>();
         try {

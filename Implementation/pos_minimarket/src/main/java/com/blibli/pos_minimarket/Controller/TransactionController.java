@@ -26,13 +26,14 @@ public class TransactionController {
 
     @RequestMapping("/Transaction")
     public String initialTransaction(Model model) {
+        transactionService.initTable();
         try {
             List<Product> productList = new ArrayList<>();
             model.addAttribute("dateTime", transactionService.setDate());
             model.addAttribute("transactionId",transactionService.setNextTransactionId());
             model.addAttribute("tax",transactionService.setTax());
             model.addAttribute("total",transactionService.setTotal());
-            model.addAttribute("productList",productList);
+//            model.addAttribute("productList",productList);
         }catch (Exception EX){
             System.out.println("Error TransactionController initialTransaction");
         }

@@ -22,6 +22,7 @@ public class CategoryController {
 
     @RequestMapping(value = "Category")
     public String showAllCategory(Model model) {
+        categoryService.initTable();
         model.addAttribute("category", categoryService.showAll());
         return "Category";
     }

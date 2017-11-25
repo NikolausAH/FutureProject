@@ -85,4 +85,14 @@ public class ProductService {
         }
         return false;
     }
+
+    public void initTable(){
+        try {
+            productDAO.initTable();
+        }
+        catch (Exception EX){
+            System.out.println("Error ProductService initTable");
+            System.out.println(EX.toString());
+        }
+    }
 }
