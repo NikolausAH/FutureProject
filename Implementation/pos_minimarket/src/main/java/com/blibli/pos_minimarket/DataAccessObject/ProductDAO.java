@@ -46,6 +46,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     @Override
     public Product getById(Integer productId) {
         String sql = "SELECT * FROM product WHERE productid = ? ORDER BY productid";
+        Product product = new Product();
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

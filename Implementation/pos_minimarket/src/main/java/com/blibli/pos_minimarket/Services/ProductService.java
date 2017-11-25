@@ -22,6 +22,20 @@ public class ProductService {
        }
         return productList;
     }
+
+    public Product getById(Integer productId){
+       Product product = new Product();
+        try {
+
+            product = productDAO.getById(productId);
+        }
+        catch (Exception EX){
+            System.out.println("Error ProductService getById");
+            System.out.println(EX.toString());
+        }
+        return product;
+    }
+
     public void add(Product product){
         try {
             productDAO.add(product);
@@ -65,7 +79,7 @@ public class ProductService {
     public boolean isExist(List<Product> productList, Product product){
 
         for (Product ProductList : productList) {
-            if (ProductList.getProductId() == product.getProductId()) {
+            if (ProductList.getProductId().equals(product.getProductId())) {
                 return true;
             }
         }
