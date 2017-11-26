@@ -1,6 +1,8 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
+import com.blibli.pos_minimarket.Model.Product;
 import com.blibli.pos_minimarket.Model.Transaction;
+import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +13,7 @@ import java.util.List;
 public class TransactionDAO extends ConnectionSettings {
 
     public void initTable() {
-        String sql = "CREATE TABLE public.transaction" +
+        String sql = "CREATE TABLE IF NOT EXISTS public.transaction" +
                 "(" +
                 "    transactionId SERIAL PRIMARY KEY NOT NULL," +
                 "    dateTime TIMESTAMP," +
@@ -61,8 +63,53 @@ public class TransactionDAO extends ConnectionSettings {
         return transactionList;
     }
 
+    public void addToCart(Integer productId, Integer quantity){
+        String sql = "INSERT INTO tempdetail (productId,quantity) VALUES (?,?);";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setInt(1,productId);
+            preparedStatement.setInt(2,quantity);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
+        }catch (Exception EX){
+            System.out.print("Error Transaction DAO addToCart");
+            System.out.print(EX.toString());
+        }
+
+    }
+
+    public List<Product> getFromCart(){
+        String sql = "SELECT * FROM tempdetail ORDER BY productid;";
+//                +
+//                     "ALTER SEQUENCE tempdetail_productid_seq RESTART WITH 1;";
+
+        List<Product> productList = new ArrayList<>();
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            this.closeConnection();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    Product product = new Product();
+                    product.setProductId(resultSet.getInt("productId"));
+                    product.setQuantity(resultSet.getInt("quantity"));
+                    productList.add(product);
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+        }catch (Exception EX){
+            System.out.print("Error Transaction DAO getFromCart");
+            System.out.print(EX.toString());
+        }
+        return productList;
+    }
+
     public void add(Transaction transaction) {
-        String sql = "INSERT INTO transaction (dateTime,tax,discount,total) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO transaction (dateTime,tax,discount,total) VALUES (?,?,?,?);";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -70,7 +117,6 @@ public class TransactionDAO extends ConnectionSettings {
             preparedStatement.setDouble(2,transaction.getTax());
             preparedStatement.setDouble(3, transaction.getDiscount());
             preparedStatement.setDouble(4, transaction.getTotal());
-            preparedStatement.setString(5, transaction.getStatus());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             this.closeConnection();

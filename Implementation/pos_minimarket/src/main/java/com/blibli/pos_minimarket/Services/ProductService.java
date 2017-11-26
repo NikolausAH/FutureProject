@@ -76,8 +76,9 @@ public class ProductService {
         return productList;
     }
 
-    public boolean isExist(List<Product> productList, Product product){
-
+    boolean isAny(Product product){
+        List<Product> productList;
+        productList = productDAO.getAll();
         for (Product ProductList : productList) {
             if (ProductList.getProductId().equals(product.getProductId())) {
                 return true;

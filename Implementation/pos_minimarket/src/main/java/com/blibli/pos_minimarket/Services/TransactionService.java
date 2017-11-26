@@ -4,6 +4,7 @@ import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.DataAccessObject.TransactionDAO;
 import com.blibli.pos_minimarket.Model.Product;
 import com.blibli.pos_minimarket.Model.Transaction;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -77,19 +78,37 @@ public class TransactionService {
         }
     }
 
-    public void addToCart(List<Product> productList, Product product){
-        List<Product> productList1;
+    public void addToCart(Integer productId, Integer quantity){
+        Product product;
         try {
-            productList1 = productDAO.getAll();
-            if (productService.isExist(productList1,product)){
-                productList.add(product);
+            product=productDAO.getById(productId);
+            if (productService.isAny(product)){
+                transactionDAO.addToCart(productId,quantity);
             }
             else {
-                System.out.println("TransactionService AddToCart Product can not add to cart");
+                System.out.println("TransactionService AddToCart Product can not add to Cart");
             }
         }catch (Exception EX){
             System.out.println("Error TransactionService AddToCart");
             System.out.println(EX.toString());
         }
+    }
+
+    public List<Product> getFromCart() {
+        List<Product> productList;
+        List<Product> productList1 = new ArrayList<>();
+        try {
+            productList = transactionDAO.getFromCart();
+            for (Product ProductList : productList) {
+                Product product=productDAO.getById(ProductList.getProductId());
+                product.setQuantity(ProductList.getQuantity());
+                productList1.add(product);
+            }
+        }
+        catch (Exception EX){
+            System.out.println("Error TransactionService getFromCart");
+            System.out.println(EX.toString());
+        }
+        return productList1;
     }
 }

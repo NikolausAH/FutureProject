@@ -1,7 +1,6 @@
 package com.blibli.pos_minimarket.Controller;
 
 import com.blibli.pos_minimarket.Model.Product;
-import com.blibli.pos_minimarket.Model.Transaction;
 import com.blibli.pos_minimarket.Services.ProductService;
 import com.blibli.pos_minimarket.Services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -28,49 +27,37 @@ public class TransactionController {
     public String initialTransaction(Model model) {
         transactionService.initTable();
         try {
-            List<Product> productList = new ArrayList<>();
             model.addAttribute("dateTime", transactionService.setDate());
             model.addAttribute("transactionId",transactionService.setNextTransactionId());
             model.addAttribute("tax",transactionService.setTax());
             model.addAttribute("total",transactionService.setTotal());
-//            model.addAttribute("productList",productList);
         }catch (Exception EX){
             System.out.println("Error TransactionController initialTransaction");
         }
         return "Transaction";
     }
 
-    @RequestMapping(value = "Transaction/addToCart")
-    public String addToCart(@ModelAttribute("productId")Integer productId,Model model,@ModelAttribute("productList")String productList){
-//        System.out.println(productId);
+    @RequestMapping("/Transaction/Cart")
+    public String Transaction(Model model, @ModelAttribute("transactionId") Integer transactionId) {
+        List<Product> productList;
         try {
-            System.out.println(productList);
-           // productList.add(productService.getById(productId));System.out.println(productId);
-
-            model.addAttribute("productList", productService.getById(productId));
+            productList=transactionService.getFromCart();
+            model.addAttribute("cart", productList);
         }catch (Exception EX){
-            System.out.println(EX.toString()+"INI ERRRRRRROR");
+            System.out.println("Error TransactionController Transaction/Cart");
+            System.out.println(EX.toString());
         }
         return "Transaction";
     }
-//
-//    @PostMapping(value = "/Transaction/addToCart")
-//    public ModelAndView addToCart(@ModelAttribute("productId") Integer productId){
-//        ModelAndView mav = new ModelAndView();
-//        try {
-//            Product product = productService.getById(productId);
-//            this.Cart(product)
-//            //transactionService.addToCart(productList, product);
-//        }
-//        catch (Exception EX){
-//            System.out.println("Error di sini");
-//            System.out.println(EX.toString());
-//        }
-//        mav.setViewName("redirect:/Transaction/Cart");
-//
-//        return mav;
-//
-//        System.out.println("Error di sini");
-//    }
+
+    @PostMapping(value = "/Transaction/addToCart")
+    public ModelAndView addToCart(Model model,@ModelAttribute("productId") Integer productId, @ModelAttribute("quantity") Integer quantity, @ModelAttribute("transactionId") Integer transactionId){
+        ModelAndView mav = new ModelAndView();
+        model.addAttribute("transactionId",transactionId);
+        transactionService.addToCart(productId,quantity);
+      //  model.addAttribute("transactionId",transactionId);
+        mav.setViewName("redirect:/Transaction/Cart");
+        return mav;
+    }
 
 }
