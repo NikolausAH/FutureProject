@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.rmi.PortableRemoteObject;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,7 +28,10 @@ public class TransactionController {
     @RequestMapping("/Transaction")
     public String initialTransaction(Model model) {
         transactionService.initTable();
+        List<Product> productList;
         try {
+            productList=transactionService.getFromCart();
+            model.addAttribute("productList", productList);
             model.addAttribute("dateTime", transactionService.setDate());
             model.addAttribute("transactionId",transactionService.setNextTransactionId());
             model.addAttribute("tax",transactionService.setTax());
@@ -37,27 +42,38 @@ public class TransactionController {
         return "Transaction";
     }
 
-    @RequestMapping("/Transaction/Cart")
-    public String Transaction(Model model, @ModelAttribute("transactionId") Integer transactionId) {
-        List<Product> productList;
-        try {
-            productList=transactionService.getFromCart();
-            model.addAttribute("cart", productList);
-        }catch (Exception EX){
-            System.out.println("Error TransactionController Transaction/Cart");
-            System.out.println(EX.toString());
-        }
-        return "Transaction";
-    }
-
     @PostMapping(value = "/Transaction/addToCart")
-    public ModelAndView addToCart(Model model,@ModelAttribute("productId") Integer productId, @ModelAttribute("quantity") Integer quantity, @ModelAttribute("transactionId") Integer transactionId){
+    public ModelAndView addToCart(@ModelAttribute("productId") Integer productId, @ModelAttribute("quantity") Integer quantity){
         ModelAndView mav = new ModelAndView();
-        model.addAttribute("transactionId",transactionId);
         transactionService.addToCart(productId,quantity);
-      //  model.addAttribute("transactionId",transactionId);
-        mav.setViewName("redirect:/Transaction/Cart");
+        mav.setViewName("redirect:/Transaction");
         return mav;
     }
+
+    @RequestMapping(value = "/Product/Delete")
+    public ModelAndView payment(){
+//        ModelAndView mav = new ModelAndView();
+//        transactionService.addDetailTransaction();
+        mav.setViewName("redirect:/Product");
+        return mav;
+    }
+//
+//    @RequestMapping("/Transaction/getProduct")
+//    public String addToCart(Model model, @ModelAttribute("productId") Integer productId, @ModelAttribute("quantity") Integer quantity) {
+//        Product product;
+//        List<Product> productList = new ArrayList<>();
+//        try {
+//            product=productService.getById(productId);
+//            product.setQuantity(quantity);
+//            System.out.println(product.getProductId());
+//            System.out.println(product.getQuantity());
+//            productList.add(product);
+//            model.addAttribute("productList", productList);
+//        }catch (Exception EX){
+//            System.out.println("Error TransactionController Transaction/getProduct");
+//            System.out.println(EX.toString());
+//        }
+//        return "redirect:/Transaction";
+//    }
 
 }

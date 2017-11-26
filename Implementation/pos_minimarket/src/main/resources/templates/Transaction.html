@@ -8,11 +8,43 @@
 			<link th:href="@{../css/style_peg.css}" href="../static/css/style_peg.css"  rel="stylesheet" type="text/css"/>
             <link th:href="@{../css/cdnjs_Icons.css}" rel="stylesheet"/>
             <link th:href="@{../css/googleapis_Icons.css}" rel="stylesheet"/>
+            <script th:src="@{../js/jquery.js}" type="text/javascript"></script>
+            <script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
             <!--for fa icon-->
 
+<!--            <script>
+                var productIdA=[];
+                var quantityA=[];
+                function cart() {
+                    var productId = document.getElementById("productId").value;
+                    var quantity = document.getElementById("quantity").value;
+                    productIdA.push(productId);
+                    productIdA.push(productId);
+                    quantityA.push(quantity);
+                    localStorage.setItem("productIdA", JSON.stringify(productIdA));
+                    localStorage.setItem("quantityA", JSON.stringify(quantityA));
+
+                    var transactionId = document.getElementById("transactionId").value;
+                    var date = document.getElementById("date").value;
+                    var tax = document.getElementById("tax").value;
+                    var total = document.getElementById("total").value;
+
+                    localStorage.setItem("transactionId", transactionId);
+                    localStorage.setItem("date", date);
+                    localStorage.setItem("tax", tax);
+                    localStorage.setItem("total", total);
+
+                    console.log(localStorage.getItem("transactionId"));
+                    console.log(localStorage.getItem("date"));
+                    console.log(localStorage.getItem("tax"));
+                    console.log(localStorage.getItem("total"));
+                    console.log(localStorage.getItem("productIdA"))
+                }
+            </script>
+-->
         </head>
 										<!--==========head.end==========-->
-		<body onLoad="transaction();">
+		<body>
             <!--==========header.start==========-->
             <div class="container-fluid">
                 <div class="row">
@@ -98,13 +130,14 @@
                     </div>
 
                     <br />
-                    <form>
+                    <form th:action="@{Transaction/addToCart}" method="post">
                     <div class="col-sm-8" >
                         <input type="number" class="form-control" id="productId" th:object="${productId}" name="productId" th:value="${productId}"/>
                         <input type="number" class="form-control" id="quantity" th:object="${quantity}" name="quantity" th:value="${quantity}"/>
                         <button type="submit" class="btn btn-success" id="btn-ubah" onclick="cart()">Tambah</button>
                     </div>
                     </form>
+                    <button type="button" class="btn btn-warning" id="btn-hapus" data-toggle="modal" data-target="#paymentModal">Bayar</button>
                    <!-- <form th:form="${form}" th:object="${product}" th:action="@{Transaction/addToCart}"  method="post">
                     <div style="border: 1px solid yellow;">
                         <div class="row">
@@ -155,53 +188,40 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <th:block th:each="pList : ${cart}">
+                                <th:block th:each="pList : ${productList}">
                                     <tr>
                                         <td th:text="${pList.productId}" />
                                         <td th:text="${pList.name}" />
                                         <td th:text="${pList.price}"/>
                                         <td th:text="${pList.quantity}"/>
                                     </tr>
-                                </th:block>
+                                    </th:block>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <!--end of table-->
-
-
                 </div>
 
             </div>
             <!--==========content.end==========-->
-        <script>
-            function transaction() {
-                var transactionId = document.getElementById("transactionId").value;
-                var date = document.getElementById("date").value;
-                var tax = document.getElementById("tax").value;
-                var total = document.getElementById("total").value;
+            <!-- addModal -->
+            <div class="modal fade" id="paymentModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" style="text-align: center">Tambah Kategori Baru</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                <button type="submit" th:action="${Transaction/Pay}" class="btn btn-success" id="btn-ubah">Tambah</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                localStorage.setItem("transactionId", transactionId);
-                localStorage.setItem("date", date);
-                localStorage.setItem("tax", tax);
-                localStorage.setItem("total", total);
-
-                console.log(localStorage.getItem("transactionId"));
-                console.log(localStorage.getItem("date"));
-                console.log(localStorage.getItem("tax"));
-                console.log(localStorage.getItem("total"));
-            }
-            function cart() {
-                var productId = document.getElementById("productId").value;
-                var quantity = document.getElementById("quantity").value;
-
-                localStorage.setItem("productId", productId);
-                localStorage.setItem("quantity", quantity);
-
-                console.log(localStorage.getItem("quantity"));
-                console.log(localStorage.getItem("quantity"));
-
-            }
-        </script>
         </body>
     </html>
