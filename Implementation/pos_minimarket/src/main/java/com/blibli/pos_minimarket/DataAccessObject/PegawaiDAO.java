@@ -74,7 +74,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
 
     @Override
     public void update(Pegawai pegawai) {
-        String sql = "UPDATE pegawai SET nama = ?, role = ? "
+        String sql = "UPDATE pegawai SET nama = ?, idrole = (SELECT idrole from role WHERE namarole LIKE ?) "
                     +"WHERE id = ?;";
         try {
             this.makeConnection();
@@ -97,6 +97,19 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
 
     @Override
     public void delete(Integer id) {
+        String sql = "DELETE FROM pegawai where id=?;";
+        try {
+            this.makeConnection();
+            System.out.println("Run Delete Pegawai");
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println("Error PegawaiDAO Delete");
+            System.out.println(EX.toString());
+        }
 
     }
 

@@ -162,7 +162,7 @@
 						<button type="button" class="btn btn-warning" id="btn-ubah" onclick="openUbah()">Ubah</button>
 					</div>
 					<div class="col-xs-4 col-md-4 col-lg-4">
-						<button type="button" class="btn btn-danger" id="btn-hapus">Hapus</button>
+						<button type="button" class="btn btn-danger" id="btn-hapus" onclick="openHapus()">Hapus</button>
 					</div>
 				</div>
 				<!--Akhir Button tambah ubah hapus-->
@@ -220,8 +220,16 @@
 					<i class="fa" id="user-avatar">&#xf2be;</i>
 					<i class="fa" id="edit-avatar">&#xf030;</i>
 					<br></br>
-					<form class="form-horizontal" th:form="${form}" th:object="${pgw}" th:action="@{/createPegawai}" method="post">
+					<form class="form-horizontal" th:form="${form}" th:object="${pegawaiUpdated}" th:action="@{/updatePegawai}" method="post">
 						<br></br>
+						<div class="form-group">
+							<div class="col-sm-3">
+								<label class="control-label" for="id">ID :</label>
+							</div>
+							<div class="col-sm-9">
+								<input type="number" class="form-control" id="id" placeholder="ID Pegawai" name="id" th:value="${id}" />
+							</div>
+						</div>
 						<div class="form-group">
 							<div class="col-sm-3">
 								<label class="control-label" for="nama">Nama :</label>
@@ -235,23 +243,48 @@
 								<label class="control-label" for="role">Role :</label>
 							</div>
 							<div class="col-sm-9" id="role-label">
-								<select class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+								<select class="btn btn-default dropdown-toggle" type="button" id="role" data-toggle="dropdown" name="role" th:value="${role}">
 									<option>Kasir</option>
-									<option>Manager</option>
+									<option>Admin</option>
 								</select>
 							</div>
 						</div>
+						<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+							<div class="col-xs-6 col-md-6 col-lg-6">
+								<button type="button" class="btn btn-primary" id="btn-batal" onclick="closeUbah()">Batal</button>
+							</div>
+							<div class="col-xs-6 col-md-6 col-lg-6">
+								<button type="submit" class="btn btn-warning" value="Submit" id="btn-ubah2">Ubah</button>
+							</div>
+						</div>
 					</form>
-					<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
-						<div class="col-xs-6 col-md-6 col-lg-6">
-							<button type="button" class="btn btn-primary" id="btn-batal" onclick="closeUbah()">Batal</button>
-						</div>
-						<div class="col-xs-6 col-md-6 col-lg-6">
-							<button type="button" class="btn btn-warning" id="btn-ubah2">Ubah</button>
-						</div>
-					</div>
 				</div>
 				<!--Akhir Aksi Ubah-->
+				<!--Aksi Hapus-->
+				<div class="col-xs-6 col-md-6 col-lg-6 aksi" id="aksi-hapus">
+					<i class="fa" id="btn-close" onclick="closeHapus()">&#xf00d;</i>
+					<br></br>
+					<form class="form-horizontal" th:form="${form}" th:object="${pegawaiUpdated}" th:action="@{/updatePegawai}" method="post">
+						<br></br>
+						<div class="form-group">
+							<div class="col-sm-3">
+								<label class="control-label" for="id">ID :</label>
+							</div>
+							<div class="col-sm-9">
+								<input type="number" class="form-control" id="id" placeholder="ID Pegawai Dihapus" name="id" th:value="${id}" />
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+							<div class="col-xs-6 col-md-6 col-lg-6">
+								<button type="button" class="btn btn-primary" id="btn-batal" onclick="closeUbah()">Batal</button>
+							</div>
+							<div class="col-xs-6 col-md-6 col-lg-6">
+								<button type="submit" class="btn btn-danger" value="Submit" id="btn-ubah2">Hapus</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--Akhir Aksi Hapus-->
 			</div>
 			<!--==========content.end==========-->
 		</div>
@@ -260,6 +293,7 @@
 		function openTambah() {
 			document.getElementById("aksi-tambah").style.display = "block";
 			document.getElementById("aksi-ubah").style.display = "none";
+			document.getElementById("aksi-hapus").style.display = "none";
 		}
 		function closeTambah() {
 			document.getElementById("aksi-tambah").style.display = "none";
@@ -267,9 +301,18 @@
 		function openUbah() {
 			document.getElementById("aksi-ubah").style.display = "block";
 			document.getElementById("aksi-tambah").style.display = "none";
+			document.getElementById("aksi-hapus").style.display = "none";
 		}
 		function closeUbah() {
 			document.getElementById("aksi-ubah").style.display = "none";
+		}
+		function openHapus() {
+			document.getElementById("aksi-hapus").style.display = "block";
+			document.getElementById("aksi-tambah").style.display = "none";
+			document.getElementById("aksi-ubah").style.display = "none";
+		}
+		function closeHapus() {
+			document.getElementById("aksi-hapus").style.display = "none";
 		}
 	</script>
 </body>

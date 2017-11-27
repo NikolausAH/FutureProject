@@ -2,6 +2,7 @@ package com.blibli.pos_minimarket.Controller;
 
 import com.blibli.pos_minimarket.Model.Pegawai;
 import com.blibli.pos_minimarket.Services.PegawaiService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ public class PegawaiController{
         System.out.println(pegawaiService.showAll().size());
         model.addAttribute("pegawai", pegawaiService.showAll());
         model.addAttribute("pgw", new Pegawai());
+        model.addAttribute("pegawaiUpdated", new Pegawai());
         return "Pegawai";
     }
     @PostMapping(value = "createPegawai")
@@ -34,8 +36,17 @@ public class PegawaiController{
         return mav;
     }
     @PostMapping(value = "updatePegawai")
-    public ModelAndView updatePegawai(@ModelAttribute("pegawaiupdated") Pegawai pegawaiUpdated){
+    public ModelAndView updatePegawai(@ModelAttribute("pegawaiUpdated") Pegawai pegawaiUpdated){
         ModelAndView mav = new ModelAndView();
+        pegawaiService.update(pegawaiUpdated);
+        mav.setViewName("redirect:/Pegawai");
+        return mav;
+    }
+    @PostMapping(value = "deletePegawai")
+    public ModelAndView deletePegawai(@ModelAttribute("id") Integer id){
+        ModelAndView mav = new ModelAndView();
+        pegawaiService.delete(id);
+        mav.setViewName("redirect:/Pegawai");
         return mav;
     }
 }

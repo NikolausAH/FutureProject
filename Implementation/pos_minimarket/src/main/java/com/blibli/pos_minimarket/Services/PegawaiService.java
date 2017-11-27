@@ -41,4 +41,13 @@ public class PegawaiService {
             System.out.println(EX.toString());
         }
     }
+    public void delete(Integer id){
+        try {
+            pegawaiDAO.delete(id);
+        }
+        catch (Exception EX){
+            System.out.println("Error PegawaiService Delete");
+            System.out.println(EX.toString());
+        }
+    }
 }
