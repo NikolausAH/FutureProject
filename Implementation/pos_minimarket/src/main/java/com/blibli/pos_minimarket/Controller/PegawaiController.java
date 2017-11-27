@@ -20,7 +20,7 @@ public class PegawaiController{
         this.pegawaiService = pegawaiService;
     }
     @RequestMapping(value = "Pegawai")
-    public String showAllCategory(Model model) {
+    public String showAllPegawai(Model model) {
         System.out.println(pegawaiService.showAll().size());
         model.addAttribute("pegawai", pegawaiService.showAll());
         model.addAttribute("pgw", new Pegawai());
@@ -35,6 +35,7 @@ public class PegawaiController{
     }
     @PostMapping(value = "updatePegawai")
     public ModelAndView updatePegawai(@ModelAttribute("pegawaiupdated") Pegawai pegawaiUpdated){
-        ModelAndView mav = new ModelAndView()
+        ModelAndView mav = new ModelAndView();
+        return mav;
     }
 }
