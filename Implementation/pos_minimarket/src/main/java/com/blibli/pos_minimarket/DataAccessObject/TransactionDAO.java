@@ -109,7 +109,7 @@ public class TransactionDAO extends ConnectionSettings {
     }
 
     public void add(Transaction transaction) {
-        String sql = "INSERT INTO transaction (dateTime,tax,discount,total) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO transaction (date_time,tax,discount,total) VALUES (?,?,?,?);";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

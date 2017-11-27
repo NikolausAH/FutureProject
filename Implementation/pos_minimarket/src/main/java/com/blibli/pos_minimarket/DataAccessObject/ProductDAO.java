@@ -16,15 +16,15 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     public void initTable() {
         String sql = "CREATE TABLE IF NOT EXISTS public.product" +
                 "(" +
-                "    productId SERIAL PRIMARY KEY NOT NULL," +
-                "    name VARCHAR(50)," +
-                "    price FLOAT," +
-                "    quantity INTEGER," +
+                "    product_Id SERIAL PRIMARY KEY NOT NULL," +
+                "    name VARCHAR(50) NOT NULL ," +
+                "    price FLOAT NOT NULL ," +
+                "    quantity INTEGER NOT NULL ," +
                 "    description VARCHAR(250)," +
                 "    categoryId INT NOT NULL," +
                 "    status VARCHAR(15) NOT NULL," +
-                "    CONSTRAINT FK_Product FOREIGN KEY (categoryId)" +
-                "    REFERENCES public.category(categoryId)"+
+                "    CONSTRAINT category_id FOREIGN KEY (category_Id)" +
+                "    REFERENCES public.category(category_id)"+
                 ");";
         try {
             this.makeConnection();
@@ -42,7 +42,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     @Override
     public List<Product> getAll() {
         List<Product> productList = new ArrayList<>();
-        String sql = "SELECT * FROM product ORDER BY productId";
+        String sql = "SELECT * FROM product ORDER BY product_id";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -51,12 +51,12 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Product product = new Product();
-                    product.setProductId(resultSet.getInt("productId"));
+                    product.setProductId(resultSet.getInt("product_Id"));
                     product.setName(resultSet.getString("name"));
                     product.setPrice(resultSet.getDouble("price"));
                     product.setQuantity(resultSet.getInt("quantity"));
                     product.setDescription(resultSet.getString("description"));
-                    product.setCategory(categoryDAO.getById(resultSet.getInt("categoryId")));
+                    product.setCategory(categoryDAO.getById(resultSet.getInt("category_Id")));
                     product.setStatus(resultSet.getString("status"));
                     productList.add(product);
                 }
@@ -72,7 +72,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public Product getById(Integer productId) {
-        String sql = "SELECT * FROM product WHERE productid = ? ORDER BY productid";
+        String sql = "SELECT * FROM product WHERE product_id = ? ORDER BY product_id";
         Product product = new Product();
         try {
             this.makeConnection();
@@ -82,12 +82,12 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
             this.closeConnection();
             if (resultSet != null) {
                 while (resultSet.next()) {
-                    product.setProductId(resultSet.getInt("productId"));
+                    product.setProductId(resultSet.getInt("product_Id"));
                     product.setName(resultSet.getString("name"));
                     product.setPrice(resultSet.getDouble("price"));
                     product.setQuantity(resultSet.getInt("quantity"));
                     product.setDescription(resultSet.getString("description"));
-                    product.setCategory(categoryDAO.getById(resultSet.getInt("categoryId")));
+                    product.setCategory(categoryDAO.getById(resultSet.getInt("category_Id")));
                     product.setStatus(resultSet.getString("status"));
                 }
                 resultSet.close();
@@ -103,7 +103,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     @Override
     public List<Product> search(String searchKey) {
         List<Product> productList = new ArrayList<>();
-        String sql = "SELECT * FROM product WHERE name = ? ORDER BY productid;";
+        String sql = "SELECT * FROM product WHERE name = ? ORDER BY product_id;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -113,12 +113,12 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Product product = new Product();
-                    product.setProductId(resultSet.getInt("productId"));
+                    product.setProductId(resultSet.getInt("product_Id"));
                     product.setPrice(resultSet.getDouble("price"));
                     product.setName(resultSet.getString("name"));
                     product.setQuantity(resultSet.getInt("quantity"));
                     product.setDescription(resultSet.getString("description"));
-                    product.setCategory(categoryDAO.getById(resultSet.getInt("categoryId")));
+                    product.setCategory(categoryDAO.getById(resultSet.getInt("category_Id")));
                     System.out.println(product.getCategory().getName());
                     product.setStatus(resultSet.getString("status"));
                     productList.add(product);
@@ -135,7 +135,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public void add(Product product) {
-        String sql = "INSERT INTO product (name,price,quantity,description,categoryid,status) VALUES (?,?,?,?,?,?);";
+        String sql = "INSERT INTO product (name,price,quantity,description,category_id,status) VALUES (?,?,?,?,?,?);";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -156,27 +156,18 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public void update(Product product) {
-        String sql = "UPDATE product SET name = ?, price = ?, description = ?, categoryid = ? WHERE productid = ?;";
+        String sql = "UPDATE product SET name = ?, price = ?, description = ?, category_id = ? WHERE product_id = ?;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            System.out.println("E1");
             preparedStatement.setString(1, product.getName());
-            System.out.println("E2");
             preparedStatement.setDouble(2, product.getPrice());
-            System.out.println("E3");
             preparedStatement.setString(3, product.getDescription());
-            System.out.println("E4");
             preparedStatement.setInt(4, product.getCategory().getCategoryId());
-            System.out.println("E5");
             preparedStatement.setInt(5, product.getProductId());
-            System.out.println("E6");
             preparedStatement.executeUpdate();
-            System.out.println("E7");
             preparedStatement.close();
-            System.out.println("E8");
             this.closeConnection();
-            System.out.println("E9");
         } catch (Exception EX) {
             System.out.println("Error ProductDAO Update");
             System.out.println(EX.toString());
@@ -185,7 +176,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public void delete(Integer productId) {
-        String sql = "DELETE FROM product WHERE productid = ? ;";
+        String sql = "DELETE FROM product WHERE product_id = ? ;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -201,7 +192,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public void softDelete(Integer productId) {
-        String sql = "UPDATE product SET status = ? WHERE productid = ?;";
+        String sql = "UPDATE product SET status = ? WHERE product_id = ?;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -217,7 +208,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     }
 
     public void updateQuantity(Product product, Integer oldQuantity) {
-        String sql = "UPDATE product SET quantity = ? WHERE productid = ?;";
+        String sql = "UPDATE product SET quantity = ? WHERE product_id = ?;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

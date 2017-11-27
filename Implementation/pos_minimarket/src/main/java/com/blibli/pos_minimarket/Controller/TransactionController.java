@@ -50,13 +50,13 @@ public class TransactionController {
         return mav;
     }
 
-    @RequestMapping(value = "/Product/Delete")
-    public ModelAndView payment(){
-//        ModelAndView mav = new ModelAndView();
-//        transactionService.addDetailTransaction();
-        mav.setViewName("redirect:/Product");
-        return mav;
-    }
+//    @RequestMapping(value = "/Transaction/Add")
+//    public ModelAndView addTransaction(){
+////        ModelAndView mav = new ModelAndView();
+////        transactionService.addDetailTransaction();
+//        mav.setViewName("redirect:/Product");
+//        return mav;
+//    }
 //
 //    @RequestMapping("/Transaction/getProduct")
 //    public String addToCart(Model model, @ModelAttribute("productId") Integer productId, @ModelAttribute("quantity") Integer quantity) {

@@ -14,8 +14,8 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     public void initTable() {
         String sql = "CREATE TABLE IF NOT EXISTS public.category" +
                 "(" +
-                "    categoryId SERIAL PRIMARY KEY NOT NULL," +
-                "    name VARCHAR(25)," +
+                "    category_Id SERIAL PRIMARY KEY NOT NULL," +
+                "    name VARCHAR(25) NOT NULL ," +
                 "    description VARCHAR(250)," +
                 "    status VARCHAR(15) NOT NULL" +
                 ");";
@@ -35,7 +35,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     @Override
     public List<Category> getAll() {
         List<Category> categoryList = new ArrayList<>();
-        String sql = "SELECT * FROM category ORDER BY categoryid;";
+        String sql = "SELECT * FROM category ORDER BY category_id;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Category category = new Category();
-                    category.setCategoryId(resultSet.getInt("categoryId"));
+                    category.setCategoryId(resultSet.getInt("category_Id"));
                     category.setName(resultSet.getString("name"));
                     category.setDescription(resultSet.getString("description"));
                     category.setStatus(resultSet.getString("status"));
@@ -63,7 +63,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     @Override
     public Category getById(Integer categoryId) {
         Category category = new Category();
-        String sql = "SELECT * FROM category WHERE categoryId = ? ORDER BY categoryid;";
+        String sql = "SELECT * FROM category WHERE category_id = ? ORDER BY category_id;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -72,7 +72,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
             this.closeConnection();
             if (resultSet != null) {
                 while (resultSet.next()) {
-                    category.setCategoryId(resultSet.getInt("categoryId"));
+                    category.setCategoryId(resultSet.getInt("category_Id"));
                     category.setName(resultSet.getString("name"));
                     category.setDescription(resultSet.getString("description"));
                     category.setStatus(resultSet.getString("status"));
@@ -90,7 +90,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     @Override
     public List<Category> search(String searchKey) {
         List<Category> categoryList = new ArrayList<>();
-        String sql = "SELECT categoryid,name,description,status FROM category WHERE name = ? ORDER BY categoryid;";
+        String sql = "SELECT category_id,name,description,status FROM category WHERE name = ? ORDER BY category_id;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Category category = new Category();
-                    category.setCategoryId(resultSet.getInt("categoryId"));
+                    category.setCategoryId(resultSet.getInt("category_Id"));
                     category.setName(resultSet.getString("name"));
                     category.setStatus(resultSet.getString("status"));
                     category.setDescription(resultSet.getString("description"));
@@ -137,7 +137,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
 
     @Override
     public void update(Category category) {
-        String sql = "UPDATE category SET name = ?, description = ? WHERE categoryid = ?;";
+        String sql = "UPDATE category SET name = ?, description = ? WHERE category_id = ?;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -155,7 +155,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
 
     @Override
     public void delete(Integer categoryId) {
-        String sql="DELETE FROM category WHERE categoryId = ? ;";
+        String sql="DELETE FROM category WHERE category_id = ? ;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -171,7 +171,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
 
     @Override
     public void softDelete(Integer categoryId) {
-        String sql = "UPDATE category SET status = ? WHERE categoryid = ?;";
+        String sql = "UPDATE category SET status = ? WHERE category_id = ?;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

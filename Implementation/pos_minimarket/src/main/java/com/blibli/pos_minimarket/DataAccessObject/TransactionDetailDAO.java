@@ -23,7 +23,7 @@ public class TransactionDetailDAO extends ConnectionSettings {
                 "    discountPid INT," +
                 "    discountPxy INT," +
                 "    column_8 INT," +
-                "    CONSTRAINT transactioDetail_product_productid_fk FOREIGN KEY (productId) REFERENCES product (productid)," +
+                "    CONSTRAINT transactioDetail_product_productid_fk FOREIGN KEY (productId) REFERENCES product (product_id)," +
                 "    CONSTRAINT transactioDetail_discountProduct_discountPid_fk FOREIGN KEY (discountPid) REFERENCES discountProduct (discountPid),"+
                 "    CONSTRAINT transactioDetail_discountProductXY_productPxy_fk FOREIGN KEY (discountPxy) REFERENCES discountProductXY (discountpxyid)"+
                 ");";
