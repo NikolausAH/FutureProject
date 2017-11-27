@@ -29,16 +29,15 @@ public class TransactionService {
             System.out.println(EX.toString());
         }
     }
-/*
-    public List<Transaction> showAllTransaction() {
-        connectionSettings.makeConnection();
-        List<Transaction> transactionList = transactionDAO.getAllTransaction();
-        connectionSettings.closeConnection();
-        return transactionList;
+    public Double initTax(){
+        return 0.0;
     }
-    */
 
-    public LocalDateTime setDate(){
+    public Double initTotal(){
+        return 0.0;
+    }
+
+    public LocalDateTime initDate(){
         LocalDateTime localDateTime = null;
         try {
             localDateTime=LocalDateTime.now();
@@ -49,7 +48,7 @@ public class TransactionService {
         return localDateTime;
     }
 
-    public Integer setNextTransactionId(){
+    public Integer initTransactionId(){
         Integer nextId = 1;
         try{
             nextId = transactionDAO.getNextId();
@@ -59,24 +58,6 @@ public class TransactionService {
             System.out.println(EX.toString());
         }
         return nextId;
-    }
-
-    public Double setTax(){
-        return 0.0;
-    }
-
-    public Double setTotal(){
-        return 0.0;
-    }
-
-    public void add(Transaction transaction) {
-        try {
-            transactionDAO.add(transaction);
-        }
-        catch (Exception EX){
-            System.out.println("Error TransactionService Add");
-            System.out.println(EX.toString());
-        }
     }
 
     public void addToCart(Integer productId, Integer quantity){
@@ -112,4 +93,23 @@ public class TransactionService {
         }
         return productList1;
     }
+
+    /*
+
+    public void add(Transaction transaction) {
+        try {
+            transactionDAO.add(transaction);
+        }
+        catch (Exception EX){
+            System.out.println("Error TransactionService Add");
+            System.out.println(EX.toString());
+        }
+    }
+    public List<Transaction> showAllTransaction() {
+        connectionSettings.makeConnection();
+        List<Transaction> transactionList = transactionDAO.getAllTransaction();
+        connectionSettings.closeConnection();
+        return transactionList;
+    }
+    */
 }

@@ -24,29 +24,6 @@ public class CategoryService {
         }
     }
 
-    public List<Category> showAll() {
-        List<Category> listCategory = new ArrayList<>();
-        try {
-            listCategory = categoryDAO.getAll();
-        }
-        catch (Exception EX){
-            System.out.println("Error CategoryService showAll");
-            System.out.println(EX.toString());
-        }
-        return listCategory;
-    }
-
-    public Category getById(Integer categoryId){
-        try {
-
-            category=categoryDAO.getById(categoryId);
-        }
-        catch (Exception EX){
-            System.out.println("Error CategoryService Add");
-            System.out.println(EX.toString());
-        }
-        return category;
-    }
     public void add(Category category) {
         try {
             categoryDAO.add(category);
@@ -85,6 +62,30 @@ public class CategoryService {
             System.out.println("Error CategoryService softDelete");
             System.out.println(EX.toString());
         }
+    }
+
+    public Category getById(Integer categoryId){
+        try {
+
+            category=categoryDAO.getById(categoryId);
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryService Add");
+            System.out.println(EX.toString());
+        }
+        return category;
+    }
+
+    public List<Category> showAll() {
+        List<Category> listCategory = new ArrayList<>();
+        try {
+            listCategory = categoryDAO.getAll();
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryService showAll");
+            System.out.println(EX.toString());
+        }
+        return listCategory;
     }
 
     public List<Category> search(String searchKey) {

@@ -14,29 +14,14 @@ public class ProductService {
     public ProductService() {
     }
 
-    public List<Product> showAll() {
-       List<Product> productList = new ArrayList<>();
-       try {
-           productList = productDAO.getAll();
-       }
-       catch (Exception EX){
-           System.out.println("Error ProductService showAll");
-           System.out.println(EX.toString());
-       }
-        return productList;
-    }
-
-    public Product getById(Integer productId){
-       Product product = new Product();
+    public void initTable(){
         try {
-
-            product = productDAO.getById(productId);
+            productDAO.initTable();
         }
         catch (Exception EX){
-            System.out.println("Error ProductService getById");
+            System.out.println("Error ProductService initTable");
             System.out.println(EX.toString());
         }
-        return product;
     }
 
     public void add(Product product){
@@ -58,6 +43,16 @@ public class ProductService {
         }
     }
 
+    public void delete(Integer productId){
+        try {
+            productDAO.delete(productId);
+        }
+        catch (Exception EX){
+            System.out.println("Error ProductService Delete");
+            System.out.println(EX.toString());
+        }
+    }
+
     public void softDelete(Integer productId){
         try {
             productDAO.softDelete(productId);
@@ -66,6 +61,31 @@ public class ProductService {
             System.out.println("Error ProductService SoftDelete");
             System.out.println(EX.toString());
         }
+    }
+
+    public Product getById(Integer productId){
+        Product product = new Product();
+        try {
+
+            product = productDAO.getById(productId);
+        }
+        catch (Exception EX){
+            System.out.println("Error ProductService getById");
+            System.out.println(EX.toString());
+        }
+        return product;
+    }
+
+    public List<Product> showAll() {
+       List<Product> productList = new ArrayList<>();
+       try {
+           productList = productDAO.getAll();
+       }
+       catch (Exception EX){
+           System.out.println("Error ProductService showAll");
+           System.out.println(EX.toString());
+       }
+        return productList;
     }
 
     public List<Product> search(String searchKey) {
@@ -90,13 +110,5 @@ public class ProductService {
         return false;
     }
 
-    public void initTable(){
-        try {
-            productDAO.initTable();
-        }
-        catch (Exception EX){
-            System.out.println("Error ProductService initTable");
-            System.out.println(EX.toString());
-        }
-    }
+
 }

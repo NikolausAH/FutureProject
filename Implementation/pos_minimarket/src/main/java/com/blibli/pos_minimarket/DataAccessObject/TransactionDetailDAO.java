@@ -11,6 +11,10 @@ import java.util.List;
 
 @Repository
 public class TransactionDetailDAO extends ConnectionSettings {
+    private GeneralDAO generalDAO = new GeneralDAO();
+
+    public TransactionDetailDAO() {
+    }
 
     public void initTable() {
         String sql = "CREATE TABLE IF NOT EXISTS public.transactionDetail" +
@@ -27,17 +31,8 @@ public class TransactionDetailDAO extends ConnectionSettings {
                 "    CONSTRAINT transactioDetail_discountProduct_discountPid_fk FOREIGN KEY (discountPid) REFERENCES discountProduct (discountPid),"+
                 "    CONSTRAINT transactioDetail_discountProductXY_productPxy_fk FOREIGN KEY (discountPxy) REFERENCES discountProductXY (discountpxyid)"+
                 ");";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            this.closeConnection();
-        }catch (Exception EX)
-        {
-            System.out.println("Error TransactionDetailDAO initTable");
-            System.out.println(EX.toString());
-        }
+        String message = "Error TransactionDetailDAO initTable";
+        generalDAO.executeSet(sql,message);
     }
 /*
     public List<TransactionDetail> getAllTransactionDetail() {

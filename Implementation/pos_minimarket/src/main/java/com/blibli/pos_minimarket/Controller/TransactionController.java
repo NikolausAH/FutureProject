@@ -1,25 +1,16 @@
 package com.blibli.pos_minimarket.Controller;
 
 import com.blibli.pos_minimarket.Model.Product;
-import com.blibli.pos_minimarket.Services.ProductService;
 import com.blibli.pos_minimarket.Services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.rmi.PortableRemoteObject;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class TransactionController {
     private final TransactionService transactionService;
-    private ProductService productService = new ProductService();
     @Autowired
     public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
@@ -32,10 +23,10 @@ public class TransactionController {
         try {
             productList=transactionService.getFromCart();
             model.addAttribute("productList", productList);
-            model.addAttribute("dateTime", transactionService.setDate());
-            model.addAttribute("transactionId",transactionService.setNextTransactionId());
-            model.addAttribute("tax",transactionService.setTax());
-            model.addAttribute("total",transactionService.setTotal());
+            model.addAttribute("dateTime", transactionService.initDate());
+            model.addAttribute("transactionId",transactionService.initTransactionId());
+            model.addAttribute("tax",transactionService.initTax());
+            model.addAttribute("total",transactionService.initTotal());
         }catch (Exception EX){
             System.out.println("Error TransactionController initialTransaction");
         }

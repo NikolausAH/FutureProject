@@ -29,7 +29,54 @@ public class TransactionDAO extends ConnectionSettings {
                 ");";
         String message = "Error TransactionDAO initTable";
 
-        generalDAO.initTable(sql,message);
+        generalDAO.executeSet(sql,message);
+    }
+
+    public Integer getNextId(){
+        Integer nextId = 1;
+        String sql = "SELECT transaction_transaction_id_seq.last_value FROM transaction_transaction_id_seq;";
+        String message = "Error TransactionDAO getNextId";
+        ResultSet resultSet = generalDAO.executeGet(sql,message);
+        try {
+            if (resultSet != null)  {
+                while (resultSet.next()){
+                    nextId+=resultSet.getInt("last_value");
+                }
+            }
+        }
+        catch (Exception EX){
+            System.out.println(message);
+            System.out.println(EX.toString());
+        }
+        return nextId;
+    }
+
+    public void addToCart(Integer productId, Integer quantity) {
+        String sql = "INSERT INTO temp_cart (product_id,quantity) VALUES ('" + productId + "','" + quantity + "'?);";
+        String message = "Error Transaction DAO addToCart";
+        generalDAO.executeSet(sql, message);
+    }
+
+    public List<Product> getFromCart(){
+        List<Product> productList = new ArrayList<>();
+        String sql = "SELECT * FROM temp_cart";
+        String message = "Error Transaction DAO getFromCart";
+        ResultSet resultSet = generalDAO.executeGet(sql,message);
+        try {
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    Product product = new Product();
+                    product.setProductId(resultSet.getInt("product_id"));
+                    product.setQuantity(resultSet.getInt("quantity"));
+                    productList.add(product);
+                }
+                resultSet.close();
+            }
+        }catch (Exception EX){
+            System.out.print(message);
+            System.out.print(EX.toString());
+        }
+        return productList;
     }
 
 //    public List<Transaction> getAll() {
@@ -61,48 +108,6 @@ public class TransactionDAO extends ConnectionSettings {
 //        return transactionList;
 //    }
 
-    public void addToCart(Integer productId, Integer quantity){
-        String sql = "INSERT INTO temp_cart (product_d,quantity) VALUES (?,?);";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setInt(1,productId);
-            preparedStatement.setInt(2,quantity);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            this.closeConnection();
-        }catch (Exception EX){
-            System.out.print("Error Transaction DAO addToCart");
-            System.out.print(EX.toString());
-        }
-    }
-
-    public List<Product> getFromCart(){
-        String sql = "SELECT * FROM temp_cart";
-
-        List<Product> productList = new ArrayList<>();
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            this.closeConnection();
-            if (resultSet != null) {
-                while (resultSet.next()) {
-                    Product product = new Product();
-                    product.setProductId(resultSet.getInt("product_id"));
-                    product.setQuantity(resultSet.getInt("quantity"));
-                    productList.add(product);
-                }
-                resultSet.close();
-            }
-            preparedStatement.close();
-        }catch (Exception EX){
-            System.out.print("Error Transaction DAO getFromCart");
-            System.out.print(EX.toString());
-        }
-        return productList;
-    }
-
 //    public void add(Transaction transaction) {
 //        String sql = "INSERT INTO transaction (date_time,tax,discount,total) VALUES (?,?,?,?);";
 //        try {
@@ -121,28 +126,5 @@ public class TransactionDAO extends ConnectionSettings {
 //        }
 //    }
 
-    public Integer getNextId(){
-        Integer nextId = 1;
-        String sql = "SELECT transaction_transaction_id_seq.last_value FROM transaction_transaction_id_seq;";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet != null)  {
-                while (resultSet.next()){
-                    nextId+=resultSet.getInt("last_value");
-                }
-            }
-            else {
-                System.out.println("TransactionDao getNextId null ResultSet");
-            }
-            preparedStatement.close();
-            this.closeConnection();
-        }
-        catch (Exception EX){
-            System.out.println("Error TransactionDAO getNextId");
-            System.out.println(EX.toString());
-        }
-        return nextId;
-    }
+
 }
