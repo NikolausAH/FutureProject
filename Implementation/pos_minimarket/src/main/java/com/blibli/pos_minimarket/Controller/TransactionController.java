@@ -41,7 +41,7 @@ public class TransactionController {
         }
         return "Transaction";
     }
-
+/*
     @PostMapping(value = "/Transaction/addToCart")
     public ModelAndView addToCart(@ModelAttribute("productId") Integer productId, @ModelAttribute("quantity") Integer quantity){
         ModelAndView mav = new ModelAndView();
@@ -75,5 +75,7 @@ public class TransactionController {
 //        }
 //        return "redirect:/Transaction";
 //    }
+
+*/
 
 }

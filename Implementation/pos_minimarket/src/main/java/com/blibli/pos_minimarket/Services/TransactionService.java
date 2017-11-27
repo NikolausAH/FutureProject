@@ -14,10 +14,11 @@ import java.util.List;
 
 @Service
 public class TransactionService {
-
     private TransactionDAO transactionDAO = new TransactionDAO();
     private ProductDAO productDAO = new ProductDAO();
     private ProductService productService = new ProductService();
+    public TransactionService() {
+    }
 
     public void initTable(){
         try {

@@ -11,6 +11,8 @@ import java.util.List;
 public class TransactionDetailService {
     private ConnectionSettings connectionSettings = new ConnectionSettings();
     private TransactionDetailDAO transactionDetailDAO = new TransactionDetailDAO();
+    public TransactionDetailService() {
+    }
 /*
     public List<TransactionDetail> showAll() {
         connectionSettings.makeConnection();

@@ -11,7 +11,10 @@ import java.util.List;
 public class ProductService {
     private ProductDAO productDAO = new ProductDAO();
 
-   public List<Product> showAll() {
+    public ProductService() {
+    }
+
+    public List<Product> showAll() {
        List<Product> productList = new ArrayList<>();
        try {
            productList = productDAO.getAll();

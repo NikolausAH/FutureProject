@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class StockService {
     private ProductDAO productDAO = new ProductDAO();
+
+    public StockService() {
+    }
+
     public void updateQuantity(Product product){
         Product tempProduct = productDAO.getById(product.getProductId());
         try {

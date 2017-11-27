@@ -1,8 +1,6 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Product;
-import com.blibli.pos_minimarket.Model.Transaction;
-import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,60 +9,60 @@ import java.util.List;
 
 @Repository
 public class TransactionDAO extends ConnectionSettings {
+    private GeneralDAO generalDAO = new GeneralDAO();
+
+    public TransactionDAO() {
+    }
 
     public void initTable() {
         String sql = "CREATE TABLE IF NOT EXISTS public.transaction" +
                 "(" +
-                "    transactionId SERIAL PRIMARY KEY NOT NULL," +
-                "    dateTime TIMESTAMP," +
-                "    tax FLOAT," +
-                "    discount FLOAT," +
-                "    total FLOAT" +
+                "    transaction_id SERIAL PRIMARY KEY NOT NULL," +
+                "    date_time TIMESTAMP NOT NULL," +
+                "    tax DOUBLE PRECISION NOT NULL," +
+                "    discount DOUBLE PRECISION," +
+                "    total DOUBLE PRECISION NOT NULL," +
+                "    p_total_id INTEGER," +
+                "    employee_id INTEGER NOT NULL," +
+                "    CONSTRAINT p_total_id___fk FOREIGN KEY (p_total_id) REFERENCES promo_total_buy (p_total_id)," +
+                "    CONSTRAINT employee_id___fk FOREIGN KEY (employee_id) REFERENCES employees (employee_id)" +
                 ");";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            this.closeConnection();
-        }catch (Exception EX)
-        {
-            System.out.println("Error TransactionDAO initTable");
-            System.out.println(EX.toString());
-        }
+        String message = "Error TransactionDAO initTable";
+
+        generalDAO.initTable(sql,message);
     }
 
-    public List<Transaction> getAll() {
-        List<Transaction> transactionList = new ArrayList<>();
-
-        String sql = "SELECT * FROM transaction";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            this.closeConnection();
-            if (resultSet != null) {
-                while (resultSet.next()) {
-                    Transaction transaction = new Transaction();
-                    transaction.setTransactionId(resultSet.getInt("transactionId"));
-                    transaction.setDateTime(resultSet.getString("dateTime"));
-                    transaction.setTax(resultSet.getDouble("tax"));
-                    transaction.setDiscount(resultSet.getDouble("discount"));
-                    transaction.setTotal(resultSet.getDouble("total"));
-                    transactionList.add(transaction);
-                }
-                resultSet.close();
-            }
-            preparedStatement.close();
-        } catch (Exception EX) {
-            System.out.println("Error TransactionDAO getAll");
-            System.out.println(EX.toString());
-        }
-        return transactionList;
-    }
+//    public List<Transaction> getAll() {
+//        List<Transaction> transactionList = new ArrayList<>();
+//
+//        String sql = "SELECT * FROM transaction";
+//        try {
+//            this.makeConnection();
+//            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            this.closeConnection();
+//            if (resultSet != null) {
+//                while (resultSet.next()) {
+//                    Transaction transaction = new Transaction();
+//                    transaction.setTransactionId(resultSet.getInt("transactionId"));
+//                    transaction.setDateTime(resultSet.getString("dateTime"));
+//                    transaction.setTax(resultSet.getDouble("tax"));
+//                    transaction.setDiscount(resultSet.getDouble("discount"));
+//                    transaction.setTotal(resultSet.getDouble("total"));
+//                    transactionList.add(transaction);
+//                }
+//                resultSet.close();
+//            }
+//            preparedStatement.close();
+//        } catch (Exception EX) {
+//            System.out.println("Error TransactionDAO getAll");
+//            System.out.println(EX.toString());
+//        }
+//        return transactionList;
+//    }
 
     public void addToCart(Integer productId, Integer quantity){
-        String sql = "INSERT INTO tempdetail (productId,quantity) VALUES (?,?);";
+        String sql = "INSERT INTO temp_cart (product_d,quantity) VALUES (?,?);";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -77,13 +75,10 @@ public class TransactionDAO extends ConnectionSettings {
             System.out.print("Error Transaction DAO addToCart");
             System.out.print(EX.toString());
         }
-
     }
 
     public List<Product> getFromCart(){
-        String sql = "SELECT * FROM tempdetail ORDER BY productid;";
-//                +
-//                     "ALTER SEQUENCE tempdetail_productid_seq RESTART WITH 1;";
+        String sql = "SELECT * FROM temp_cart";
 
         List<Product> productList = new ArrayList<>();
         try {
@@ -94,7 +89,7 @@ public class TransactionDAO extends ConnectionSettings {
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Product product = new Product();
-                    product.setProductId(resultSet.getInt("productId"));
+                    product.setProductId(resultSet.getInt("product_id"));
                     product.setQuantity(resultSet.getInt("quantity"));
                     productList.add(product);
                 }
@@ -108,27 +103,27 @@ public class TransactionDAO extends ConnectionSettings {
         return productList;
     }
 
-    public void add(Transaction transaction) {
-        String sql = "INSERT INTO transaction (date_time,tax,discount,total) VALUES (?,?,?,?);";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1, transaction.getDateTime());
-            preparedStatement.setDouble(2,transaction.getTax());
-            preparedStatement.setDouble(3, transaction.getDiscount());
-            preparedStatement.setDouble(4, transaction.getTotal());
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            this.closeConnection();
-        } catch (Exception EX) {
-            System.out.println("Error TransactionDAO Add");
-            System.out.println(EX.toString());
-        }
-    }
+//    public void add(Transaction transaction) {
+//        String sql = "INSERT INTO transaction (date_time,tax,discount,total) VALUES (?,?,?,?);";
+//        try {
+//            this.makeConnection();
+//            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+//            preparedStatement.setString(1, transaction.getDateTime());
+//            preparedStatement.setDouble(2,transaction.getTax());
+//            preparedStatement.setDouble(3, transaction.getDiscount());
+//            preparedStatement.setDouble(4, transaction.getTotal());
+//            preparedStatement.executeUpdate();
+//            preparedStatement.close();
+//            this.closeConnection();
+//        } catch (Exception EX) {
+//            System.out.println("Error TransactionDAO Add");
+//            System.out.println(EX.toString());
+//        }
+//    }
 
     public Integer getNextId(){
         Integer nextId = 1;
-        String sql = "SELECT transaction_transactionid_seq.last_value FROM transaction_transactionid_seq;";
+        String sql = "SELECT transaction_transaction_id_seq.last_value FROM transaction_transaction_id_seq;";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

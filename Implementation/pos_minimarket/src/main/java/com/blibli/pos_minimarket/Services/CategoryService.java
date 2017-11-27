@@ -11,6 +11,8 @@ import java.util.List;
 public class CategoryService {
     private CategoryDAO categoryDAO = new CategoryDAO();
     private Category category = new Category();
+    public CategoryService() {
+    }
 
     public void initTable(){
         try {

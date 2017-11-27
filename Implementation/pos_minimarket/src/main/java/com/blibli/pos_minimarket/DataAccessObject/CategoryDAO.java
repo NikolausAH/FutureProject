@@ -9,27 +9,23 @@ import java.util.List;
 
 @Repository
 public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Category,Integer,String>{
+    private GeneralDAO generalDAO = new GeneralDAO();
+
+    public CategoryDAO() {
+    }
 
     @Override
     public void initTable() {
         String sql = "CREATE TABLE IF NOT EXISTS public.category" +
                 "(" +
-                "    category_Id SERIAL PRIMARY KEY NOT NULL," +
-                "    name VARCHAR(25) NOT NULL ," +
+                "    category_id SERIAL PRIMARY KEY NOT NULL," +
+                "    name VARCHAR(25) NOT NULL," +
                 "    description VARCHAR(250)," +
                 "    status VARCHAR(15) NOT NULL" +
                 ");";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            this.closeConnection();
-        }catch (Exception EX)
-        {
-            System.out.println("Error CategoryDAO initTable");
-            System.out.println(EX.toString());
-        }
+        String message = "Error CategoryDAO initTable";
+
+        generalDAO.initTable(sql,message);
     }
 
     @Override
