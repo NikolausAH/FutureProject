@@ -2,8 +2,6 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Product;
 import org.springframework.stereotype.Repository;
-
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,9 +71,9 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public Product getById(Integer productId) {
+        Product product = new Product();
         String sql = "SELECT * FROM product WHERE product_id ='"+productId+"';";
         String message = "Error ProductDAO getById";
-        Product product = new Product();
         ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
             if (resultSet != null) {
