@@ -3,11 +3,7 @@ package com.blibli.pos_minimarket.Services;
 import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.DataAccessObject.TransactionDAO;
 import com.blibli.pos_minimarket.Model.Product;
-import com.blibli.pos_minimarket.Model.Transaction;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.stereotype.Service;
-
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

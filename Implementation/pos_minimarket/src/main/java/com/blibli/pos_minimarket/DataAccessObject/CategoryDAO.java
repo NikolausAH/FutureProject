@@ -2,6 +2,8 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Category;
 import org.springframework.stereotype.Repository;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +64,10 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
         Category category = new Category();
         String sql = "SELECT * FROM category WHERE category_id = '"+categoryId+"';";
         String message = "Error CategoryDAO getById";
-        ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     category.setCategoryId(resultSet.getInt("category_Id"));
@@ -73,6 +77,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
                 }
                 resultSet.close();
             }
+            this.closeConnection();
         } catch (Exception EX) {
             System.out.println(message);
             System.out.println(EX.toString());
@@ -85,8 +90,10 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
         List<Category> categoryList = new ArrayList<>();
         String sql = "SELECT * FROM category ORDER BY category_id;";
         String message = "Error CategoryDAO getAll";
-        ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Category category = new Category();
@@ -98,8 +105,9 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
                 }
                 resultSet.close();
             }
+            this.closeConnection();
         } catch (Exception EX) {
-            System.out.println(message);
+            System.out.println(message+"2");
             System.out.println(EX.toString());
         }
         return categoryList;
@@ -110,9 +118,10 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
         List<Category> categoryList = new ArrayList<>();
         String sql = "SELECT category_id,name,description,status FROM category WHERE name = '"+searchKey+"' ORDER BY category_id;";
         String message = "Error CategoryDAO search";
-        ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
-            this.closeConnection();
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Category category = new Category();

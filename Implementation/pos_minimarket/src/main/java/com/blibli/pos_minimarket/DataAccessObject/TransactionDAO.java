@@ -36,13 +36,16 @@ public class TransactionDAO extends ConnectionSettings {
         Integer nextId = 1;
         String sql = "SELECT transaction_transaction_id_seq.last_value FROM transaction_transaction_id_seq;";
         String message = "Error TransactionDAO getNextId";
-        ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null)  {
                 while (resultSet.next()){
                     nextId+=resultSet.getInt("last_value");
                 }
             }
+            this.closeConnection();
         }
         catch (Exception EX){
             System.out.println(message);
@@ -61,8 +64,10 @@ public class TransactionDAO extends ConnectionSettings {
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM temp_cart";
         String message = "Error Transaction DAO getFromCart";
-        ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Product product = new Product();
@@ -72,6 +77,7 @@ public class TransactionDAO extends ConnectionSettings {
                 }
                 resultSet.close();
             }
+            this.closeConnection();
         }catch (Exception EX){
             System.out.print(message);
             System.out.print(EX.toString());

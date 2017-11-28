@@ -20,20 +20,4 @@ public class GeneralDAO extends ConnectionSettings{
             System.out.println(EX.toString());
         }
     }
-
-    ResultSet executeGet(String sql, String message) {
-        ResultSet resultSet = null;
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            resultSet = preparedStatement.executeQuery();
-            resultSet.close();
-            preparedStatement.close();
-            this.closeConnection();
-        } catch (Exception EX) {
-            System.out.println(message);
-            System.out.println(EX.toString());
-        }
-        return resultSet;
-    }
 }

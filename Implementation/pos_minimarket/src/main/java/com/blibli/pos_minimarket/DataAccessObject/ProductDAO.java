@@ -2,6 +2,8 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Product;
 import org.springframework.stereotype.Repository;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,8 +76,10 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
         Product product = new Product();
         String sql = "SELECT * FROM product WHERE product_id ='"+productId+"';";
         String message = "Error ProductDAO getById";
-        ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     product.setProductId(resultSet.getInt("product_Id"));
@@ -88,6 +92,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
                 }
                 resultSet.close();
             }
+            this.closeConnection();
         } catch (Exception EX) {
             System.out.println(message);
             System.out.println(EX.toString());
@@ -100,8 +105,10 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM product ORDER BY product_id";
         String message = "Error ProductDAO getAllProduct";
-        ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Product product = new Product();
@@ -116,6 +123,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
                 }
                 resultSet.close();
             }
+            this.closeConnection();
         }catch (Exception EX){
             System.out.println(message);
             System.out.println(EX.toString());
@@ -128,8 +136,10 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM product WHERE name = '"+searchKey+"' ORDER BY product_id;";
         String message = "Error ProductDAO search";
-        ResultSet resultSet = generalDAO.executeGet(sql,message);
         try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Product product = new Product();
@@ -145,6 +155,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
                 }
                 resultSet.close();
             }
+            this.closeConnection();
         } catch (Exception EX) {
             System.out.println(message);
             System.out.println(EX.toString());
