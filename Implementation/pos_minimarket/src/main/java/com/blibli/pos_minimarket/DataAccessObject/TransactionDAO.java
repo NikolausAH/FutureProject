@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public class TransactionDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
+    private ProductDAO productDAO = new ProductDAO();
 
     public TransactionDAO() {
     }
@@ -55,7 +56,8 @@ public class TransactionDAO extends ConnectionSettings {
     }
 
     public void addToCart(Integer productId, Integer quantity) {
-        String sql = "INSERT INTO temp_cart (product_id,quantity) VALUES ('" + productId + "','" + quantity + "'?);";
+        System.out.println(productId+quantity);
+        String sql = "INSERT INTO temp_cart (product_id,quantity) VALUES ('"+productId+"','"+quantity+"');";
         String message = "Error Transaction DAO addToCart";
         generalDAO.executeSet(sql, message);
     }

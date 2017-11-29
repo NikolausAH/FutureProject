@@ -1,13 +1,6 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
-import com.blibli.pos_minimarket.Model.TransactionDetail;
 import org.springframework.stereotype.Repository;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public class TransactionDetailDAO extends ConnectionSettings {

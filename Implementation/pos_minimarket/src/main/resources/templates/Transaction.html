@@ -11,40 +11,20 @@
             <script th:src="@{../js/jquery.js}" type="text/javascript"></script>
             <script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
             <!--for fa icon-->
-
-<!--            <script>
-                var productIdA=[];
-                var quantityA=[];
-                function cart() {
-                    var productId = document.getElementById("productId").value;
-                    var quantity = document.getElementById("quantity").value;
-                    productIdA.push(productId);
-                    productIdA.push(productId);
-                    quantityA.push(quantity);
-                    localStorage.setItem("productIdA", JSON.stringify(productIdA));
-                    localStorage.setItem("quantityA", JSON.stringify(quantityA));
-
-                    var transactionId = document.getElementById("transactionId").value;
-                    var date = document.getElementById("date").value;
-                    var tax = document.getElementById("tax").value;
-                    var total = document.getElementById("total").value;
-
-                    localStorage.setItem("transactionId", transactionId);
-                    localStorage.setItem("date", date);
-                    localStorage.setItem("tax", tax);
-                    localStorage.setItem("total", total);
-
-                    console.log(localStorage.getItem("transactionId"));
-                    console.log(localStorage.getItem("date"));
-                    console.log(localStorage.getItem("tax"));
-                    console.log(localStorage.getItem("total"));
-                    console.log(localStorage.getItem("productIdA"))
+            <script>
+                function loadDateTime() {
+                    if("date" in localStorage) {
+                        document.getElementById("dateTime").value = localStorage.getItem("date");
+                    }else {
+                        var date = document.getElementById("date").value;
+                        localStorage.setItem("date", date);
+                        console.log(localStorage.getItem("date"));
+                    }
                 }
             </script>
--->
         </head>
 										<!--==========head.end==========-->
-        <body>
+        <body onload="loadDateTime()">
         <!--==========header.start==========-->
         <div class="container-fluid">
             <div class="row">
@@ -159,10 +139,10 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="col-sm-4" id="col-padding5">
-                                    <label class="control-label" for="date" style="text-align: justify">Tanggal / Waktu :</label>
+                                    <label class="control-label" for="dateTime" style="text-align: justify">Tanggal / Waktu :</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="datetime-local" class="form-control" id="date" name="date" th:object="${dateTime}" th:value="${dateTime}" disabled="true"/>
+                                    <input type="datetime-local" class="form-control" id="dateTime" name="dateTime" th:object="${dateTime}" th:value="${dateTime}" disabled="true"/>
                                 </div>
                             </div>
                             <div class="col-sm-5">
@@ -180,6 +160,7 @@
                     <!--Group2 -->
                     <div style="border: 1px solid black;">
                         <br />
+                        <form id="addToCart"  th:action="@{Transaction/addToCart}" method="post">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="col-sm-4"></div>
@@ -200,6 +181,7 @@
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
+                        </form>
                         <br />
                         <div class="row">
                             <div class="col-sm-8">
@@ -227,6 +209,7 @@
                                     <th>NamaEdit</th>
                                     <th>Harga</th>
                                     <th>Jumlah</th>
+                                    <th>Sub Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -236,6 +219,7 @@
                                         <td th:text="${pList.name}" />
                                         <td th:text="${pList.price}"/>
                                         <td th:text="${pList.quantity}"/>
+                                        <td th:text="${pList.price}*${pList.quantity}"/>
                                     </tr>
                                 </th:block>
                                 </tbody>
@@ -247,7 +231,7 @@
                     <div class="row">
                         <div class="col-xs-11 col-md-11 col-lg-11" id="three-button">
                             <div class="col-xs-3 col-md-3 col-lg-3">
-                                <button type="button" class="btn btn-success" id="btn-tambah">Tambah </button>
+                                <button type="submit" class="btn btn-success" id="btn-tambah" form="addToCart">Tambah </button>
                             </div>
                             <div class="col-xs-3 col-md-3 col-lg-3">
                                 <button type="button" class="btn btn-danger" id="btn-hapus">Hapus</button>
