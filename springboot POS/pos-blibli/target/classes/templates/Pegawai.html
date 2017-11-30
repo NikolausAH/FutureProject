@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>POS | Pegawai</title>
+	<meta name="viewport" content="width=device-width, initial-scale-1.0">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style_peg.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+<!--==========head.end==========-->
+<body>
+<!--==========header.start==========-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="header">
+			<div class="col-xs-3 col-md-2 col-lg-2 logo">
+				<a href="home.html"><img src="image/blibli.png" class="logo" alt="Cinque Terre"></a>
+			</div>
+			<div class="col-xs-7 col-md-6 col-lg-6 judul">
+				<h1>POS Blibli</h1>
+			</div>
+			<div class="col-xs-2 col-md-4 col-lg-4 user">
+				<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+				<div class="identitas">
+					<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+					<h5 id="role-text">Role :Admin</h5>
+				</div>
+				<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+					<div class="segitiga">
+						<p>sgt</p>
+					</div>
+					<div class="dropdown-avatar">
+						<ul>
+							<li><a id="drop_u1" href="#"><i class="fa">&#xf007;</i> Akun</a></li>
+							<li><a id="drop_u2" href="#"><i class="glyphicon">&#xe163</i> Keluar</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--==========header.end==========-->
+<div class="container">
+	<!--==========navigation.start==========-->
+	<div class="row">
+		<div class ="col-xs-12 navigation">
+			<a href="home.html"><i class="fa" id="home-icon"> &#xf015;</i></a>
+			<i class="glyphicon">&#xe080;</i>
+			<a href="pegawai.html" id="pos">Pegawai</a>
+		</div>
+	</div>
+	<!--==========navigation.end==========-->
+	<div class="row">
+		<!--==========sidebar.start==========-->
+		<div class ="col-md-2 col-lg-2 sidebar">
+			<!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+			<div class="toggle">
+				<h3>Menu</h3> <i class="fa menu" aria-hidden="true">&#9776;</i>
+			</div>
+			<ul>
+				<li>
+					<a id="sid_1" href="#"><i class="fa">&#xf19c;</i> Minimarket</a>
+				</li>
+				<li>
+					<a id="sid_2" href="Pegawai.html"><i class="fa">&#xf0c0;</i> Pegawai</a>
+				</li>
+				<li>
+					<div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+						<div class="dropdown-content">
+							<a id="drop_p1" href="#">Kategori</a>
+							<a id="drop_p2" href="#">Kelola Produk</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a id="sid_4" href="#"><i class="fa">&#xf1b3;</i> Stok</a>
+				</li>
+				<li>
+					<a id="sid_5" href="#"><i class="fa">&#xf217;</i> Transaksi</a>
+				</li>
+				<li>
+					<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+				</li>
+				<li>
+					<a id="sid_7" href="#"><i class="fa">&#xf080;</i> Laporan</a>
+				</li>
+			</ul>
+		</div>
+		<!--==========sidebar.end==========-->
+		<!--==========content.start==========-->
+		<div class="col-md-10 col-lg-10 content">
+			<br>
+			<form class="form-inline">
+				<input class="form-control src" name="search" placeholder="ID atau Nama Pegawai...">
+				<button type="button" class="btn btn-success" id="btn-export">Export</button>
+			</form>
+			<br>
+			<!--Table-->
+
+			<div class="col-md-12 col-lg-12">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>ID</th>
+							<th>Nama</th>
+							<th>Role</th>
+							<th>Email</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="pegawai : ${pegawais}">
+							<td th:text="${pegawai.pegawaiId}"></td>
+							<td th:text="${pegawai.pegawaiId  }"></td>
+							<td th:text="${pegawai.namaPegawai  }"></td>
+							<td th:text="${pegawai.role.namaRole  }"></td>
+							<td th:text="${pegawai.email  }"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!--end of table-->
+			<!--Button tambah ubah hapus-->
+			<br>
+			<div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
+				<div class="col-xs-4 col-md-4 col-lg-4">
+					<button type="button" class="btn btn-success" id="btn-tambah" onclick="openTambah()">Tambah</button>
+				</div>
+				<div class="col-xs-4 col-md-4 col-lg-4">
+					<button type="button" class="btn btn-warning" id="btn-ubah" onclick="openUbah()">Ubah</button>
+				</div>
+				<div class="col-xs-4 col-md-4 col-lg-4">
+					<button type="button" class="btn btn-danger" id="btn-hapus">Hapus</button>
+				</div>
+			</div>
+			<!--Akhir Button tambah ubah hapus-->
+			<!--Aksi tambah-->
+			<div class="col-xs-6 col-md-6 col-lg-6 aksi" id="aksi-tambah">
+				<i class="fa" id="btn-close" onclick="closeTambah()">&#xf00d;</i>
+				<i class="fa" id="user-avatar">&#xf2be;</i>
+				<i class="fa" id="edit-avatar">&#xf030;</i>
+				<br>
+				<form class="form-horizontal" action="#" th:action="@{/pegawai}" th:object="${pegawai}" method="post">
+				<br>
+					<div class="form-group">
+						<div class="col-sm-3">
+							<label class="control-label" for="id">ID :</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="number" class="form-control" id="id" placeholder="ID Pegawai Baru" name="id">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3">
+							<label class="control-label" for="nama">Nama :</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="nama" th:field="*{namaPegawai}" placeholder="Nama Pegawai Baru" name="nama">
+						</div>
+					</div>
+					<div class="dropdown-role row">
+						<div class="col-sm-3" >
+							<label class="control-label" for="role">Role : </label>
+						</div>
+						<div class="col-sm-9" id="role-label">
+							<select class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+								<option th:each="role : ${roles}" th:value="${role.namaRole}" th:text="${role.namaRole}"></option>
+							</select>
+						</div>
+					</div>
+				</form>
+				<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+					<div class="col-xs-6 col-md-6 col-lg-6">
+						<button type="button" class="btn btn-primary" id="btn-batal" onclick="closeTambah()">Batal</button>
+					</div>
+					<div class="col-xs-6 col-md-6 col-lg-6">
+						<button type="button" class="btn btn-success" id="btn-tambah2">Tambah</button>
+					</div>
+				</div>
+			</div>
+			<!--Akhir Aksi tambah-->
+			<!--Aksi Ubah-->
+			<div class="col-xs-6 col-md-6 col-lg-6 aksi" id="aksi-ubah">
+				<i class="fa" id="btn-close" onclick="closeUbah()">&#xf00d;</i>
+				<i class="fa" id="user-avatar">&#xf2be;</i>
+				<i class="fa" id="edit-avatar">&#xf030;</i>
+				<br>
+				<form class="form-horizontal" action="">
+					<br>
+					<div class="form-group">
+						<div class="col-sm-3">
+							<label class="control-label" for="id">ID :</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="id" placeholder="0112" name="id" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3">
+							<label class="control-label" for="nama">Nama :</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="nama" placeholder="Nama Baru" name="nama">
+						</div>
+					</div>
+					<div class="dropdown-role row">
+						<div class="col-sm-3">
+							<label class="control-label" for="role">Role :</label>
+						</div>
+						<div class="col-sm-9" id="role-label">
+							<select class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+								<option th:each="role : ${roles}" th:value="${role.namaRole}" th:text="${role.namaRole}"></option>
+							</select>
+						</div>
+					</div>
+				</form>
+				<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+					<div class="col-xs-6 col-md-6 col-lg-6">
+						<button type="button" class="btn btn-primary" id="btn-batal" onclick="closeUbah()">Batal</button>
+					</div>
+					<div class="col-xs-6 col-md-6 col-lg-6">
+						<button type="button" class="btn btn-warning" id="btn-ubah2">Ubah</button>
+					</div>
+				</div>
+			</div>
+			<!--Akhir Aksi Ubah-->
+
+		</div>
+		<!--==========content.end==========-->
+	</div>
+</div>
+<script>
+    function openTambah() {
+        document.getElementById("aksi-tambah").style.display="block";
+        document.getElementById("aksi-ubah").style.display="none";
+    }
+    function closeTambah() {
+        document.getElementById("aksi-tambah").style.display="none";
+    }
+    function openUbah() {
+        document.getElementById("aksi-ubah").style.display="block";
+        document.getElementById("aksi-tambah").style.display="none";
+    }
+    function closeUbah() {
+        document.getElementById("aksi-ubah").style.display="none";
+    }
+</script>
+</body>
+<!--==========head.end==========-->
+</html>
