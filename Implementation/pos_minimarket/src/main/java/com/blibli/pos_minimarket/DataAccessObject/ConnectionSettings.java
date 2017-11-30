@@ -14,7 +14,7 @@ public class ConnectionSettings {
     public void makeConnection(){
         System.out.println("Opening Database...");
         try
-        {//
+        {
             String url="jdbc:postgresql://localhost:5432/db_pos";
             String user="postgres";
             String pass="admin";

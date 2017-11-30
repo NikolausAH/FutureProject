@@ -19,7 +19,7 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
-//
+
     @RequestMapping(value = "Category")
     public String showAllCategory(Model model) {
         categoryService.initTable();

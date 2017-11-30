@@ -21,7 +21,6 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-
     @RequestMapping("/Transaction")
     public String initialTransaction(Model model) {
         transactionService.initTable();
@@ -58,12 +57,4 @@ public class TransactionController {
         mav.setViewName("redirect:/Transaction");
         return mav;
     }
-
-//
-//    @RequestMapping("/Transaction")
-//    public String showAllTransaction(Model model) {
-//        model.addAttribute("transaction", transactionService.showAllTransaction());
-//        return "Transaction";
-//    }
-
 }

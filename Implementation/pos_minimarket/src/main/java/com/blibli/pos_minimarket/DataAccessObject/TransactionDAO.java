@@ -34,8 +34,7 @@ public class TransactionDAO extends ConnectionSettings {
         generalDAO.executeSet(sql,message);
     }
 
-<<<<<<< HEAD
-        public void add(Transaction transaction) {
+    public void add(Transaction transaction) {
         String sql = "INSERT INTO transaction (date_time,tax,discount,total,p_total_id,employee_id) VALUES (?,?,?,?,?,?);";
         try {
             this.makeConnection();
@@ -59,13 +58,6 @@ public class TransactionDAO extends ConnectionSettings {
         Integer nextId = 1;
         String sql = "SELECT transaction_transaction_id_seq.last_value FROM transaction_transaction_id_seq;";
         String message = "Error TransactionDAO getNextId";
-=======
-    /*
-    public List<Transaction> getAllTransaction() {
-        List<Transaction> transactionList = new ArrayList<>();
-//
-        String sql = "select * from Transaction";
->>>>>>> spring
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

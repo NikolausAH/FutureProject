@@ -1,24 +1,20 @@
 package com.blibli.pos_minimarket.Services;
 
-import com.blibli.pos_minimarket.DataAccessObject.MiniMarketDAO;
 import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.DataAccessObject.TransactionDAO;
 import com.blibli.pos_minimarket.Model.Product;
 import com.blibli.pos_minimarket.Model.Transaction;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class TransactionService {
     private TransactionDAO transactionDAO = new TransactionDAO();
     private ProductDAO productDAO = new ProductDAO();
-    private MiniMarketDAO miniMarketDAO = new MiniMarketDAO();
+    //private MiniMarketDAO miniMarketDAO = new MiniMarketDAO();
     private ProductService productService = new ProductService();
     public TransactionService() {
     }
@@ -32,9 +28,9 @@ public class TransactionService {
             System.out.println(EX.toString());
         }
     }
-    public Double updateTax(Double total){
+   /* public Double updateTax(Double total){
         return total * miniMarketDAO.getTax();
-    }
+    }*/
 
     public Double updateTotal(){
         Double total = 0.0;
@@ -118,10 +114,10 @@ public class TransactionService {
     }
 
 
-    public void addTransaction(String dateTime) {
+   /* public void addTransaction(String dateTime) {
         Transaction transaction = new Transaction();
-        Double tax = this.updateTax(this.updateTotal());
-        Double finalTotal = this.updateTotal() + tax;
+       // Double tax = this.updateTax(this.updateTotal());
+      //  Double finalTotal = this.updateTotal() + tax;
         Double discount = 0.0; //belum
         Integer p_total_id = 0; //belum
         Integer employee_id = 0; //belum

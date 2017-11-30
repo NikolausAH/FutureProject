@@ -1,7 +1,6 @@
 package com.blibli.pos_minimarket.Model;
 
 public class Product {
-<<<<<<< HEAD
 
     private Integer productId;
     private Integer quantity;
@@ -10,13 +9,6 @@ public class Product {
     private String status;
     private Double price;
     private Category category;
-=======
-//
-    private Integer kode,stok;
-    private Integer kategoriId;
-    private String nama,deskripsi;
-    private Integer harga;
->>>>>>> spring
     public Product() {}
     public Product(Integer productId, String name, Double price, Integer quantity, String description, Category category,String status){
         this.productId=productId;

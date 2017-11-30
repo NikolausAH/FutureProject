@@ -1,6 +1,6 @@
 package com.blibli.pos_minimarket.Services;
 
-import com.blibli.pos_minimarket.DataAccessObject.MinimarketDAO;
+/*
 import com.blibli.pos_minimarket.DataAccessObject.MyConnection;
 import com.blibli.pos_minimarket.Model.Minimarket;
 import org.springframework.stereotype.Service;
@@ -15,5 +15,5 @@ public class MinimarketService {
         minimarketDAO.updateMinimarket(minimarket);
         myConnection.closeConnection();//nutup
     }
-}
+}*/
 //

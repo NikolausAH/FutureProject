@@ -22,7 +22,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-   @RequestMapping("/Product")
+    @RequestMapping("/Product")
     public String showAllProduct(Model model, Model model1) {
         productService.initTable();
         model.addAttribute("product", productService.showAll());
@@ -30,14 +30,8 @@ public class ProductController {
         return "Product";
     }
 
-
     @PostMapping(value = "/Product/Add")
     public ModelAndView createProduct(@ModelAttribute("product") Product product,@ModelAttribute("categoryId")Integer categoryId){
-
-//
-    @PostMapping(value = "/createProduct")
-    public ModelAndView createProduct(@ModelAttribute("product") Product product){
-
         ModelAndView mav = new ModelAndView();
         product.setCategory(categoryService.getById(categoryId));
         System.out.println(product.getCategory().getName());

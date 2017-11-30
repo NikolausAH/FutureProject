@@ -28,7 +28,7 @@ public class TransactionDetailDAO extends ConnectionSettings {
         generalDAO.executeSet(sql,message);
     }
 /*
-    public List<TransactionDetail> getAllTransactionDetail() {//
+    public List<TransactionDetail> getAllTransactionDetail() {
         List<TransactionDetail> transactionDetailList = new ArrayList<>();
 
         String sql = "select * from TransactionDetail";

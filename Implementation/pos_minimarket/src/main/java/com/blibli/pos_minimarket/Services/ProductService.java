@@ -11,18 +11,7 @@ import java.util.List;
 public class ProductService {
     private ProductDAO productDAO = new ProductDAO();
 
-
     public ProductService() {
-    }
-}
-
-//
- /*   public List<Product> showAllProduct() {
-        connectionSettings.makeConnection();
-        List<Product> productList = productDAO.getAllProduct();
-        connectionSettings.closeConnection();
-        return productList;
->>>>>>> spring
     }
 
     public void initTable(){
@@ -88,14 +77,14 @@ public class ProductService {
     }
 
     public List<Product> showAll() {
-       List<Product> productList = new ArrayList<>();
-       try {
-           productList = productDAO.getAll();
-       }
-       catch (Exception EX){
-           System.out.println("Error ProductService showAll");
-           System.out.println(EX.toString());
-       }
+        List<Product> productList = new ArrayList<>();
+        try {
+            productList = productDAO.getAll();
+        }
+        catch (Exception EX){
+            System.out.println("Error ProductService showAll");
+            System.out.println(EX.toString());
+        }
         return productList;
     }
 
@@ -119,7 +108,7 @@ public class ProductService {
             }
         }
         return false;
-    }*/
+    }
 
 
-
+}

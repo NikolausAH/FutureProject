@@ -14,9 +14,7 @@ public class CategoryService {
     public CategoryService() {
     }
 
-    public void initTable(){}
-    public List<Category> showAll(){
-        List<Category> listCategory = new ArrayList<>();
+    public void initTable(){
         try {
             categoryDAO.initTable();
         }
@@ -24,9 +22,8 @@ public class CategoryService {
             System.out.println("Error CategoryService initTable");
             System.out.println(EX.toString());
         }
-        return listCategory;
     }
-//
+
     public void add(Category category) {
         try {
             categoryDAO.add(category);

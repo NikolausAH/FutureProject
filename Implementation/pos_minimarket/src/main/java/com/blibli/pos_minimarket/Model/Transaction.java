@@ -15,7 +15,7 @@ public class Transaction {
      * discount = discount (money) from product discount, buy x get y, and discount product total buy
      * discountPId = id discount product total buy
      * employeeId = employee ID
-     *///
+     */
     public Transaction() {}
     public Transaction(Integer transactionId, String dateTime, Double tax, Double discount, Double total, String status){
         this.transactionId=transactionId;

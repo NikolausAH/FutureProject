@@ -1,5 +1,5 @@
 package com.blibli.pos_minimarket.Controller;
-
+/*
 import com.blibli.pos_minimarket.Model.Minimarket;
 import com.blibli.pos_minimarket.Services.CategoryService;
 import com.blibli.pos_minimarket.Services.MinimarketService;
@@ -25,3 +25,4 @@ public class MinimarketController {
         return mav;
     }
 }
+*/

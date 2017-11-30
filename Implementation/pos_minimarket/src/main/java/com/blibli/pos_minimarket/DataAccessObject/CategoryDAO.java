@@ -114,73 +114,10 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     }
 
     @Override
-<<<<<<< HEAD
     public List<Category> search(String searchKey) {
         List<Category> categoryList = new ArrayList<>();
         String sql = "SELECT category_id,name,description,status FROM category WHERE name = '"+searchKey+"' ORDER BY category_id;";
         String message = "Error CategoryDAO search";
-=======
-    public void add(Category category) {
-
-        String sql = "INSERT INTO category (name,description,status) VALUES (?,?,?);";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1, category.getName());
-            preparedStatement.setString(2, category.getDescription());
-            preparedStatement.setString(3, "active");
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            this.closeConnection();
-        } catch (Exception EX) {
-            System.out.println("Error CategoryDAO Add");
-            System.out.println(EX.toString());
-        }
-    }
-
-    @Override
-    public void update(Category category) {
-        String sql = "UPDATE category SET name = ?, description = ? "
-                    +"WHERE categoryid = ?;";
-        try {
-            this.makeConnection();
-            System.out.println(category.getName());
-            System.out.println(category.getDescription());
-            System.out.println(category.getCategoryId());
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1,category.getName());
-            preparedStatement.setString(2,category.getDescription());
-            preparedStatement.setInt(3,category.getCategoryId());
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            this.closeConnection();
-        } catch (Exception EX) {
-            System.out.println("Error CategoryDAO Update");
-            System.out.println(EX.toString());
-        }
-    }
-//
-    @Override
-    public void delete(Integer categoryId) {
-        String sql="DELETE FROM category WHERE categoryId = ? ;";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setInt(1,categoryId);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            this.closeConnection();
-        } catch (Exception EX) {
-            System.out.println("Error CategoryDAO Delete");
-            System.out.println(EX.toString());
-        }
-    }
-
-    @Override
-    public void softDelete(Integer categoryId) {
-        String sql = "UPDATE category SET status = ?"
-                +"WHERE categoryid = ?;";
->>>>>>> spring
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

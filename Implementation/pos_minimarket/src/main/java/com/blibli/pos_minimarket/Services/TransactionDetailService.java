@@ -16,7 +16,7 @@ public class TransactionDetailService {
 /*
     public List<TransactionDetail> showAll() {
         connectionSettings.makeConnection();
-       // List<TransactionDetail> transactionDetailList = transactionDetailDAO.getAllTransactionDetail();
+        List<TransactionDetail> transactionDetailList = transactionDetailDAO.getAllTransactionDetail();
         connectionSettings.closeConnection();
         return transactionDetailList;
     }
