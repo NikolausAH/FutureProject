@@ -8,7 +8,7 @@ public class PromoTotal {
     private double buyMin;
     private Timestamp startDate;
     private Timestamp endDate;
-
+//
     public PromoTotal() {}
 
     public PromoTotal(int pTotalId, double discountPercent, double buyMin, Timestamp startDate, Timestamp endDate){

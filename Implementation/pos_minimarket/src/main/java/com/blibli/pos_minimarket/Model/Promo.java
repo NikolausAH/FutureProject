@@ -6,7 +6,7 @@ public class Promo {
     private int Id;
     private Timestamp startDate;
     private Timestamp endDate;
-
+//
     public int getId() {
         return Id;
     }

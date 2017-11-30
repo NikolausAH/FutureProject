@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+//
 @Repository
 public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegawai, Integer, String> {
     private static final String id = "id";

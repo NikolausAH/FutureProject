@@ -11,6 +11,6 @@ public class PromoXY  extends Promo{
     private int productYId;
 
     public PromoXY() {}
-
+//
 
 }

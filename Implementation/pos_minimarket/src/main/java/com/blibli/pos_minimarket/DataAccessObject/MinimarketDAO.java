@@ -4,7 +4,7 @@ import com.blibli.pos_minimarket.Model.Minimarket;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+//
 public class MinimarketDAO extends MyConnection{
     private void inisialisasiMinimarket(){
         String sql = "INSERT INTO minimarket (nama,address,nomortelp, email, tax, receiptdesc) values('blibli', 'jalan xxx', '087885172045', 'blibli@gmail.com', 30, 'keterangan receipt');";

@@ -4,7 +4,7 @@ import com.blibli.pos_minimarket.Model.PromoTotal;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+//
 @Repository
 public class PromoTotalDAO extends ConnectionSettings implements  InterfaceDAO<PromoTotal, Integer, String >{
 

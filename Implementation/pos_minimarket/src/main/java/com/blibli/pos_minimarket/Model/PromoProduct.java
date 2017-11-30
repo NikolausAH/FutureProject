@@ -8,7 +8,7 @@ public class PromoProduct {
     private Integer ProductId;
     private Timestamp startDate;
     private Timestamp endDate;
-
+//
     public PromoProduct(){}
 
     public PromoProduct(Integer pProductId, double discountPercent, Integer productId, Timestamp startDate, Timestamp endDate) {
