@@ -9,10 +9,21 @@ import java.util.List;
 public class PromoTotalDAO extends ConnectionSettings implements  InterfaceDAO<PromoTotal, Integer, String >{
 
     @Override
+    public void initTable() {
+
+    }
+
+    @Override
     public List<PromoTotal> getAll() {
         return null;
     }
-//
+
+    @Override
+    public PromoTotal getById(Integer key) {
+        return null;
+    }
+
+    //
     @Override
     public List<PromoTotal> search(String key) {
         return null;

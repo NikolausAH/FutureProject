@@ -1,8 +1,8 @@
 package com.blibli.pos_minimarket.Services;
 
-import com.blibli.pos_minimarket.DataAccessObject.MinimarketDAO;
 import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.DataAccessObject.TransactionDAO;
+import com.blibli.pos_minimarket.Model.Minimarket;
 import com.blibli.pos_minimarket.Model.Product;
 import com.blibli.pos_minimarket.Model.Transaction;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
 public class TransactionService {
     private TransactionDAO transactionDAO = new TransactionDAO();
     private ProductDAO productDAO = new ProductDAO();
-    private MinimarketDAO minimarketDAO = new MinimarketDAO();
+    private Minimarket minimarket = new Minimarket();
     private ProductService productService = new ProductService();
     public TransactionService() {
     }
@@ -30,7 +30,7 @@ public class TransactionService {
         }
     }
    public Double updateTax(Double total){
-        return total * minimarket.ge
+        return total * minimarket.getTax();
     }
 
     public Double updateTotal(){
