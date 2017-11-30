@@ -136,7 +136,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
         }
 
     }
-
+//
     @Override
     public void softDelete(Integer integer) {
 

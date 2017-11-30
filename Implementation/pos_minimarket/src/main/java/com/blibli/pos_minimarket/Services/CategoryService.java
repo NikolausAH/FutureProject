@@ -14,7 +14,12 @@ public class CategoryService {
     public CategoryService() {
     }
 
+<<<<<<< HEAD
     public void initTable(){
+=======
+    public List<Category> showAll( ){
+        List<Category> listCategory = new ArrayList<>();
+>>>>>>> spring
         try {
             categoryDAO.initTable();
         }
@@ -23,7 +28,7 @@ public class CategoryService {
             System.out.println(EX.toString());
         }
     }
-
+//
     public void add(Category category) {
         try {
             categoryDAO.add(category);

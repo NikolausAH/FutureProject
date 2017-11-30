@@ -10,8 +10,17 @@ import java.util.List;
 @Service
 public class ProductService {
     private ProductDAO productDAO = new ProductDAO();
+<<<<<<< HEAD
 
     public ProductService() {
+=======
+//
+ /*   public List<Product> showAllProduct() {
+        connectionSettings.makeConnection();
+        List<Product> productList = productDAO.getAllProduct();
+        connectionSettings.closeConnection();
+        return productList;
+>>>>>>> spring
     }
 
     public void initTable(){

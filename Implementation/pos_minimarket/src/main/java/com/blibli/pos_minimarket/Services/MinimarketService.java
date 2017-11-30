@@ -5,7 +5,7 @@ import com.blibli.pos_minimarket.DataAccessObject.MyConnection;
 import com.blibli.pos_minimarket.Model.Minimarket;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service//
 public class MinimarketService {
     private MyConnection myConnection = new MyConnection();
     private MinimarketDAO minimarketDAO = new MinimarketDAO();

@@ -20,6 +20,7 @@ public class TransactionController {
     public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
     }
+<<<<<<< HEAD
 
     @RequestMapping("/Transaction")
     public String initialTransaction(Model model) {
@@ -57,4 +58,12 @@ public class TransactionController {
         mav.setViewName("redirect:/Transaction");
         return mav;
     }
+=======
+//
+//    @RequestMapping("/Transaction")
+//    public String showAllTransaction(Model model) {
+//        model.addAttribute("transaction", transactionService.showAllTransaction());
+//        return "Transaction";
+//    }
+>>>>>>> spring
 }

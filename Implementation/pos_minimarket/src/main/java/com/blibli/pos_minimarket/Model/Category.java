@@ -4,7 +4,7 @@ public class Category {
     private Integer categoryId;
     private String name,description,status;
     public Category() {}
-
+//
     public Category(Integer categoryId, String name, String description, String status){
         this.categoryId=categoryId;
         this.name=name;

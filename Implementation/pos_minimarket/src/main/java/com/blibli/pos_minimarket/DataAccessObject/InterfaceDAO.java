@@ -12,6 +12,11 @@ public interface InterfaceDAO<objectType,idType,keyType> {
     void update(objectType t);
     void delete(idType id);
     void softDelete(idType idType);
+<<<<<<< HEAD
 
 
 }
+=======
+//
+}
+>>>>>>> spring

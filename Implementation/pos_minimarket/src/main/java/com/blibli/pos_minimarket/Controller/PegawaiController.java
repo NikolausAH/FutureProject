@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PegawaiController{
     private final PegawaiService pegawaiService;
-//
+////
     @Autowired //menandakan fungsi/konstruktor akan di init secara otomatis saat program di Run.
     public PegawaiController(PegawaiService pegawaiService) {
         this.pegawaiService = pegawaiService;

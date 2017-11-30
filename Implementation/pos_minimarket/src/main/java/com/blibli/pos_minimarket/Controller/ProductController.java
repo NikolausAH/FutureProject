@@ -29,9 +29,15 @@ public class ProductController {
         model1.addAttribute("categoryList", categoryService.showAll());
         return "Product";
     }
+<<<<<<< HEAD
 
     @PostMapping(value = "/Product/Add")
     public ModelAndView createProduct(@ModelAttribute("product") Product product,@ModelAttribute("categoryId")Integer categoryId){
+=======
+//
+    @PostMapping(value = "/createProduct")
+    public ModelAndView createProduct(@ModelAttribute("product") Product product){
+>>>>>>> spring
         ModelAndView mav = new ModelAndView();
         product.setCategory(categoryService.getById(categoryId));
         System.out.println(product.getCategory().getName());
