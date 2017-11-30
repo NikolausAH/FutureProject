@@ -12,7 +12,7 @@ import java.util.List;
 public class ProductDAO extends ConnectionSettings {
  /*   public List<Product> getAllProduct() {
         List<Product> productList = new ArrayList<>();
-
+//
         String sql = "select * from product";
         try {
             //c koneksi global dari extends myConn
@@ -93,7 +93,7 @@ public class ProductDAO extends ConnectionSettings {
             System.out.println(EX);
         }
     }
-
+//
     public void updateStock(Product product) {
         Integer tkode=product.getKode();
         String tNama=product.getNama();

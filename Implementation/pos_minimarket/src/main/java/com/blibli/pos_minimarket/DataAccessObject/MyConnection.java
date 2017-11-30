@@ -9,7 +9,7 @@ public class MyConnection {
     private static final String user="postgres";
     private static final String pass="admin";
     public static Connection c;
-
+//
     public void makeConnection(){
         System.out.println("Opening Database...");
         try

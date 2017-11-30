@@ -35,7 +35,7 @@ public class MinimarketDAO extends MyConnection{
             System.out.println("Error MinimarketDAO update");
             System.out.println(EX.toString());
         }
-    }
+    }//
     public void updateMinimarket(Minimarket minimarket) {
 
         String sql = "select * from minimarket";

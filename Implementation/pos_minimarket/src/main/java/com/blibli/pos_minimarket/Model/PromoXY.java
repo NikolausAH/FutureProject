@@ -12,5 +12,5 @@ public class PromoXY  extends Promo{
 
     public PromoXY() {}
 //
-
+//
 }

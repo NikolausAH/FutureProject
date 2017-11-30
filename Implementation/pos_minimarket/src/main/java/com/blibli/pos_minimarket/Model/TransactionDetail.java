@@ -6,7 +6,7 @@ public class TransactionDetail {
     Integer productId, transactionId, discountPId, discountPxy;
     /* Foreign Key productId,
      * transactionId,
-     * discountPId = discount product id
+     * discountPId = discount product id//
      * discountPxy = discount product Buy x Get y
      */
     public TransactionDetail() {}

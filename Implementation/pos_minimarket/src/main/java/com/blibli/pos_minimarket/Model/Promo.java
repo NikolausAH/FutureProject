@@ -1,7 +1,7 @@
 package com.blibli.pos_minimarket.Model;
 
 import java.sql.Timestamp;
-
+//
 public class Promo {
     private int Id;
     private Timestamp startDate;

@@ -1,6 +1,5 @@
 package com.blibli.pos_minimarket.Services;
 
-import com.blibli.pos_minimarket.DataAccessObject.MyConnection;
 import com.blibli.pos_minimarket.DataAccessObject.PegawaiDAO;
 import com.blibli.pos_minimarket.Model.Pegawai;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import java.util.List;
 @Service //menandakan class ini service
 public class PegawaiService {
     private PegawaiDAO pegawaiDAO = new PegawaiDAO();
-
+//
     public List<Pegawai> showAll() {
         List<Pegawai> listCategory = new ArrayList<>();
         try {

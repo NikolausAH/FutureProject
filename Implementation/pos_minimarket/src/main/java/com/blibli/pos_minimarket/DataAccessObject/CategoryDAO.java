@@ -109,7 +109,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
             System.out.println(EX.toString());
         }
     }
-
+//
     @Override
     public void delete(Integer categoryId) {
         String sql="DELETE FROM category WHERE categoryId = ? ;";

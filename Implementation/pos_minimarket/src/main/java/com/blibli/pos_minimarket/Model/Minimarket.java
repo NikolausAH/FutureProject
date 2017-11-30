@@ -7,7 +7,7 @@ public class Minimarket {
     private String email;
     private int tax;
     private String receiptDesc;
-//
+////
     public Minimarket() {
     }
 

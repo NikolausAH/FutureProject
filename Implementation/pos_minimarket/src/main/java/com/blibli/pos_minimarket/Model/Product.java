@@ -1,7 +1,7 @@
 package com.blibli.pos_minimarket.Model;
 
 public class Product {
-
+//
     private Integer kode,stok;
     private Integer kategoriId;
     private String nama,deskripsi;

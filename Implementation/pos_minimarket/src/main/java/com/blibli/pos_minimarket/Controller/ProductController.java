@@ -25,7 +25,7 @@ public class ProductController {
         model.addAttribute("product", productService.showAllProduct());
         return "Product";
     }
-
+//
     @PostMapping(value = "/createProduct")
     public ModelAndView createProduct(@ModelAttribute("product") Product product){
         ModelAndView mav = new ModelAndView();

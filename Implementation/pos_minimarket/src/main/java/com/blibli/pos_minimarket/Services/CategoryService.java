@@ -11,7 +11,7 @@ import java.util.List;
 public class CategoryService {
     private CategoryDAO categoryDAO = new CategoryDAO();
 
-    public List<Category> showAll() {
+    public List<Category> showAll( ){
         List<Category> listCategory = new ArrayList<>();
         try {
             listCategory = categoryDAO.getAll();
@@ -22,7 +22,7 @@ public class CategoryService {
         }
         return listCategory;
     }
-
+//
     public void add(Category category) {
         try {
             categoryDAO.add(category);

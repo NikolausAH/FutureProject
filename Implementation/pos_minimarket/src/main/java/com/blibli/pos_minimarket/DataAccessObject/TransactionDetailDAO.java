@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class TransactionDetailDAO extends ConnectionSettings {
 /*
-    public List<TransactionDetail> getAllTransactionDetail() {
+    public List<TransactionDetail> getAllTransactionDetail() {//
         List<TransactionDetail> transactionDetailList = new ArrayList<>();
 
         String sql = "select * from TransactionDetail";

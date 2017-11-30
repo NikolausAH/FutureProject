@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductService {
     private ConnectionSettings connectionSettings = new ConnectionSettings();
     private ProductDAO productDAO = new ProductDAO();
-
+//
  /*   public List<Product> showAllProduct() {
         connectionSettings.makeConnection();
         List<Product> productList = productDAO.getAllProduct();

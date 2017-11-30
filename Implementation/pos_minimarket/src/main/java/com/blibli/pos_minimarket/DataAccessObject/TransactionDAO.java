@@ -14,7 +14,7 @@ public class TransactionDAO extends ConnectionSettings {
     /*
     public List<Transaction> getAllTransaction() {
         List<Transaction> transactionList = new ArrayList<>();
-
+//
         String sql = "select * from Transaction";
         try {
             //c koneksi global dari extends myConn

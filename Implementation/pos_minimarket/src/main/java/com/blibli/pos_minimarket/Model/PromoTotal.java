@@ -1,7 +1,7 @@
 package com.blibli.pos_minimarket.Model;
 
 import java.sql.Timestamp;
-
+///
 public class PromoTotal {
     private int pTotalId;
     private double discountPercent;
