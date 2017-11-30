@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale-1.0">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style_Minimarket.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<!--==========head.end==========-->
+
+<body>
+	<!--==========header.start==========-->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="header">
+				<div class="col-xs-3 col-md-2 col-lg-2 logo">
+					<a href="home.html">
+						<img src="../image/blibli.png" class="logo" alt="Cinque Terre">
+					</a>
+				</div>
+				<div class="col-xs-7 col-md-6 col-lg-6 judul">
+					<h1>POS Blibli</h1>
+				</div>
+				<div class="col-xs-2 col-md-4 col-lg-4 user">
+					<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+					<div class="identitas">
+						<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+						<h5 id="role-text">Role :Admin</h5>
+					</div>
+					<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+						<div class="segitiga">
+							<p>sgt</p>
+						</div>
+						<div class="dropdown-avatar">
+							<ul>
+								<li>
+									<a id="drop_u1" href="#">
+										<i class="fa">&#xf007;</i> Akun</a>
+								</li>
+								<li>
+									<a id="drop_u2" href="#">
+										<i class="glyphicon">&#xe163</i> Keluar</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--==========header.end==========-->
+	<div class="container">
+		<!--==========navigation.start==========-->
+		<div class="row">
+			<div class="col-xs-12 navigation">
+				<a href="home.html">
+					<i class="fa" id="home-icon">&#xf015;</i>
+				</a>
+			</div>
+		</div>
+		<!--==========navigation.end==========-->
+		<div class="row">
+			<!--==========sidebar.start==========-->
+			<div class="col-md-2 col-lg-2 sidebar">
+				<!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+				<div class="toggle">
+					<h3>Menu</h3>
+					<i class="fa menu" aria-hidden="true">&#9776;</i>
+				</div>
+				<ul>
+					<li>
+						<a id="sid_1" href="#">
+							<i class="fa">&#xf19c;</i> Minimarket</a>
+					</li>
+					<li>
+						<a id="sid_2" href="#">
+							<i class="fa">&#xf0c0;</i> Pegawai</a>
+					</li>
+					<li>
+						<div class="dropdown">
+							<a id="sid_3">
+								<i class="fa">&#xf288;</i> Produk</a>
+							<div class="dropdown-content">
+								<a id="drop_p1" href="#">Kategori</a>
+								<a id="drop_p2" href="#">Kelola Produk</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a id="sid_4" href="#">
+							<i class="fa">&#xf1b3;</i> Stok</a>
+					</li>
+					<li>
+						<a id="sid_5" href="#">
+							<i class="fa">&#xf217;</i> Transaksi</a>
+					</li>
+					<li>
+						<a id="sid_6" href="#">
+							<i class="fa">&#xf02c;</i> Promo</a>
+					</li>
+					<li>
+						<a id="sid_7" href="#">
+							<i class="fa">&#xf080;</i> Laporan</a>
+					</li>
+				</ul>
+			</div>
+			<!--==========sidebar.end==========-->
+			<!--==========content.start==========-->
+			<div class="col-md-10 content">
+				<div class="wrap">
+					<a>
+						<input type="image" src="../image/BliBli.png" class="logo_toko" />
+					</a>
+					<p class="img__description">Ubah Logo Minimarket</p>
+				</div>
+				<div class="form_minimarket col-sm-10">
+					<form action="#">
+						<div class="col-sm-3">
+							<b>Nama: </b>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" name="#" class="form-control input" placeholder="nama toko">
+						</div>
+						<div class="col-sm-3">
+							<b>Alamat: </b>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" class="form-control input" name="#" placeholder="Alamat toko">
+						</div>
+						<div class="col-sm-3">
+							<b>No Telepon: </b>
+						</div>
+						<div class="col-sm-9">
+							<input class="form-control input" type="tel" name="#" placeholder="08XXXXXXXXXX">
+						</div>
+						<div class="col-sm-3">
+							<b>E-mail: </b>
+						</div>
+						<div class="col-sm-9">
+							<input type="email" class="form-control input" name="#" placeholder="E-mail">
+						</div>
+						<div class="col-sm-3">
+							<b>Pajak(%): </b>
+						</div>
+						<div class="col-sm-9">
+							<input type="number" class="form-control input" name="#" min="1" max="50">
+						</div>
+						<div class="col-sm-10">
+							<b>Keterangan Receipt:
+								<br>
+								<textarea name="Text1" cols="30" rows="4" class="form-control receipt" placeholder="masukkan keterangan pada receipt"></textarea>
+							</b>
+						</div>
+						<div class="buttons col-sm-10">
+							<input class="btn btn-primary" type="submit" value="Batal">
+							<input class="btn btn-success button-2" type="submit" value="Simpan">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+
+</html>
