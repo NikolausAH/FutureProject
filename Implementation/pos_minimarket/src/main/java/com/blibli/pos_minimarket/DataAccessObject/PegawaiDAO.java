@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegawai,Integer,String>{
+public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegawai, Integer, String> {
     private static final String id = "id";
     private static final String password = "password";
     private static final String nama = "nama";
     private static final String idRole = "idrole";
     private static final String email = "email";
     private static final String role = "namarole";
-
+    public boolean searchCond = false;
 
     @Override
     public List<Pegawai> getAll() {
@@ -49,8 +49,33 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     }
 
     @Override
-    public List<Pegawai> search(String key) {
-        return null;
+    public List<Pegawai> search(String nama) {
+        List<Pegawai> pegawaiList = new ArrayList<>();
+        String sql = "SELECT id,nama,email,namarole,pegawai.idrole,namarole FROM pegawai join role on (pegawai.idrole = role.idrole) where nama LIKE"
+                + nama + ";";
+        try {
+            this.makeConnection();
+            Statement preparedStatement = this.connection.createStatement();
+            ResultSet resultSet = preparedStatement.executeQuery(sql);
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    Pegawai pegawai = new Pegawai();
+                    pegawai.setId(resultSet.getInt(id));
+                    pegawai.setRole(resultSet.getString(role));
+                    pegawai.setNama(resultSet.getString(nama));
+                    pegawai.setIdRole(resultSet.getInt(idRole));
+                    pegawai.setEmail(resultSet.getString(email));
+                    pegawaiList.add(pegawai);
+                }
+                resultSet.close();
+            }
+            this.closeConnection();
+
+        } catch (Exception EX) {
+            System.out.println("Error PegawaiDAO getAll");
+            System.out.println(EX.toString());
+        }
+        return pegawaiList;
     }
 
     @Override
@@ -75,7 +100,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     @Override
     public void update(Pegawai pegawai) {
         String sql = "UPDATE pegawai SET nama = ?, idrole = (SELECT idrole from role WHERE namarole LIKE ?) "
-                    +"WHERE id = ?;";
+                + "WHERE id = ?;";
         try {
             this.makeConnection();
             System.out.println("Run Update Pegawai");
@@ -83,9 +108,9 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
             System.out.println(pegawai.getRole());
             System.out.println(pegawai.getId());
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1,pegawai.getNama());
-            preparedStatement.setString(2,pegawai.getRole());
-            preparedStatement.setInt(3,pegawai.getId());
+            preparedStatement.setString(1, pegawai.getNama());
+            preparedStatement.setString(2, pegawai.getRole());
+            preparedStatement.setInt(3, pegawai.getId());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             this.closeConnection();
@@ -102,7 +127,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
             this.makeConnection();
             System.out.println("Run Delete Pegawai");
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             this.closeConnection();
