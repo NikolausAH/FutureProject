@@ -51,6 +51,8 @@ public class TransactionController {
     @PostMapping(value = "Transaction/Payment")
     public ModelAndView payment(@ModelAttribute("dateTime") String dateTime){
         ModelAndView mav = new ModelAndView();
+        System.out.println("Error TransactionController initialTransaction");
+        System.out.println(dateTime);
         transactionService.addTransaction(dateTime);
         mav.setViewName("redirect:/Transaction");
         return mav;

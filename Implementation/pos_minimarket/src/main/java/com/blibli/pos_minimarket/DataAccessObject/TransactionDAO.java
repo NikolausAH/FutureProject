@@ -46,7 +46,6 @@ public class TransactionDAO extends ConnectionSettings {
             preparedStatement.setInt(5,1);
             preparedStatement.setInt(6,1);
             preparedStatement.executeUpdate();
-            System.out.println("Success TransactionDAO Add");
             preparedStatement.close();
             this.closeConnection();
         } catch (Exception EX) {

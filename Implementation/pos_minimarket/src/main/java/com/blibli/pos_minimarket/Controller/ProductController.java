@@ -34,6 +34,7 @@ public class ProductController {
     public ModelAndView createProduct(@ModelAttribute("product") Product product,@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
         product.setCategory(categoryService.getById(categoryId));
+        System.out.println(product.getCategory().getName());
         productService.add(product);
         mav.setViewName("redirect:/Product");
         return mav;

@@ -129,6 +129,8 @@ public class TransactionService {
             transaction.setTax(tax);
             transaction.setTotal(finalTotal);
             transaction.setDiscount(discount);
+            System.out.println("Error TransactionController initialTransaction");
+            System.out.println(dateTime);
             transaction.setDateTime(dateTime);
             transactionDAO.add(transaction);
         }

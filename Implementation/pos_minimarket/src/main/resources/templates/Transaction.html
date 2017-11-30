@@ -16,9 +16,14 @@
                     if("date" in localStorage) {
                         document.getElementById("dateTime").value = localStorage.getItem("date");
                     }else {
-                        var date = document.getElementById("date").value;
+                        var date = document.getElementById("dateTime").value;
                         localStorage.setItem("date", date);
                         console.log(localStorage.getItem("date"));
+                    }
+                }
+                function clearLocalStorage(){
+                    if("date" in localStorage){
+                        localStorage.removeItem("date");
                     }
                 }
             </script>
@@ -240,7 +245,7 @@
                                 <button type="button" class="btn btn-primary" id="btn-bayar" data-toggle="modal" data-target="#paymentModal">Bayar</button>
                             </div>
                             <div class="col-xs-3 col-md-3 col-lg-3">
-                                <button type="button" class="btn btn-warning" id="btn-bayar">Batal</button>
+                                <button type="button" class="btn btn-warning" id="btn-batal">Batal</button>
                             </div>
                         </div>
                     </div>
@@ -281,7 +286,7 @@
                                             </div>
                                             <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                             <div class="col-xs-3 col-md-3 col-lg-3">
-                                                <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah">Tambah</button>
+                                                <button type="submit" value="submit" class="btn btn-success" id="btn-ubah" onclick="clearLocalStorage()">Tambah</button>
                                             </div>
                                         </div>
                                     </div>
@@ -301,7 +306,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="col-xs-3 col-md-3 col-lg-3">
-                                    <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Add}"  method="post">
+                                    <form class="form-horizontal" th:form="${form}" method="post">
                                         <div class="form-group top-form">
                                             <div class="col-sm-3">
                                                 <label class="control-label" for="payNominal">Nominal Bayar :</label>

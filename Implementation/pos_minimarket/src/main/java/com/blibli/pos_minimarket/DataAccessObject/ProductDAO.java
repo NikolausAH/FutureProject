@@ -35,6 +35,7 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
 
     @Override
     public void add(Product product) {
+        product.setQuantity(0);
         String sql = "INSERT INTO product (name,price,quantity,description,category_id,status)" +
                 "VALUES ('"+product.getName()+"','"+product.getPrice()+"','"+product.getQuantity()+"'"+
                 ",'"+product.getDescription()+"','"+product.getCategory().getCategoryId()+"','active');";
