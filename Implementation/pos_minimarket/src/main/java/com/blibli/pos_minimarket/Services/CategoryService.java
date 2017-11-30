@@ -14,12 +14,9 @@ public class CategoryService {
     public CategoryService() {
     }
 
-<<<<<<< HEAD
-    public void initTable(){
-=======
-    public List<Category> showAll( ){
+    public void initTable(){}
+    public List<Category> showAll(){
         List<Category> listCategory = new ArrayList<>();
->>>>>>> spring
         try {
             categoryDAO.initTable();
         }
@@ -27,6 +24,7 @@ public class CategoryService {
             System.out.println("Error CategoryService initTable");
             System.out.println(EX.toString());
         }
+        return listCategory;
     }
 //
     public void add(Category category) {

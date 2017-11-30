@@ -10,10 +10,12 @@ import java.util.List;
 @Service
 public class ProductService {
     private ProductDAO productDAO = new ProductDAO();
-<<<<<<< HEAD
+
 
     public ProductService() {
-=======
+    }
+}
+
 //
  /*   public List<Product> showAllProduct() {
         connectionSettings.makeConnection();
@@ -117,7 +119,7 @@ public class ProductService {
             }
         }
         return false;
-    }
+    }*/
 
 
-}
+
