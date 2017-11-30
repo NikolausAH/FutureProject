@@ -11,16 +11,12 @@ import java.util.List;
 public class TransactionDetailService {
     private ConnectionSettings connectionSettings = new ConnectionSettings();
     private TransactionDetailDAO transactionDetailDAO = new TransactionDetailDAO();
-<<<<<<< HEAD
     public TransactionDetailService() {
     }
 /*
-=======
-/*//
->>>>>>> spring
     public List<TransactionDetail> showAll() {
         connectionSettings.makeConnection();
-        List<TransactionDetail> transactionDetailList = transactionDetailDAO.getAllTransactionDetail();
+       // List<TransactionDetail> transactionDetailList = transactionDetailDAO.getAllTransactionDetail();
         connectionSettings.closeConnection();
         return transactionDetailList;
     }
