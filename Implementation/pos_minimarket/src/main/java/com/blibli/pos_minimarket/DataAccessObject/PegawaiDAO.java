@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-//
+
 @Repository
 public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegawai, Integer, String> {
     private static final String id = "id";
@@ -17,6 +17,11 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     private static final String idRole = "idrole";
     private static final String email = "email";
     private static final String role = "namarole";
+
+    @Override
+    public void initTable() {
+
+    }
 
     @Override
     public List<Pegawai> getAll() {
@@ -45,6 +50,11 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
             System.out.println(EX.toString());
         }
         return pegawaiList;
+    }
+
+    @Override
+    public Pegawai getById(Integer key) {
+        return null;
     }
 
     @Override
@@ -136,7 +146,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
         }
 
     }
-//
+
     @Override
     public void softDelete(Integer integer) {
 

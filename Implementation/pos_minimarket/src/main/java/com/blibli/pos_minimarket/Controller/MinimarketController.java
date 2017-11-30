@@ -1,5 +1,5 @@
 package com.blibli.pos_minimarket.Controller;
-/*
+
 import com.blibli.pos_minimarket.Model.Minimarket;
 import com.blibli.pos_minimarket.Services.CategoryService;
 import com.blibli.pos_minimarket.Services.MinimarketService;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MinimarketController {
     private final MinimarketService minimarketService;
-///////
+
     @Autowired //menandakan fungsi/konstruktor akan di init secara otomatis saat program di Run.
     public MinimarketController(MinimarketService minimarketService) {
         this.minimarketService = minimarketService;
@@ -25,4 +25,3 @@ public class MinimarketController {
         return mav;
     }
 }
-*/

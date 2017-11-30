@@ -1,5 +1,6 @@
 package com.blibli.pos_minimarket.Services;
 
+import com.blibli.pos_minimarket.DataAccessObject.MinimarketDAO;
 import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.DataAccessObject.TransactionDAO;
 import com.blibli.pos_minimarket.Model.Product;
@@ -14,7 +15,7 @@ import java.util.List;
 public class TransactionService {
     private TransactionDAO transactionDAO = new TransactionDAO();
     private ProductDAO productDAO = new ProductDAO();
-    //private MiniMarketDAO miniMarketDAO = new MiniMarketDAO();
+    private MinimarketDAO minimarketDAO = new MinimarketDAO();
     private ProductService productService = new ProductService();
     public TransactionService() {
     }
@@ -28,9 +29,9 @@ public class TransactionService {
             System.out.println(EX.toString());
         }
     }
-   /* public Double updateTax(Double total){
-        return total * miniMarketDAO.getTax();
-    }*/
+   public Double updateTax(Double total){
+        return total * minimarket.ge
+    }
 
     public Double updateTotal(){
         Double total = 0.0;
@@ -114,10 +115,10 @@ public class TransactionService {
     }
 
 
-   /* public void addTransaction(String dateTime) {
+  public void addTransaction(String dateTime) {
         Transaction transaction = new Transaction();
-       // Double tax = this.updateTax(this.updateTotal());
-      //  Double finalTotal = this.updateTotal() + tax;
+        Double tax = this.updateTax(this.updateTotal());
+        Double finalTotal = this.updateTotal() + tax;
         Double discount = 0.0; //belum
         Integer p_total_id = 0; //belum
         Integer employee_id = 0; //belum
