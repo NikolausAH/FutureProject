@@ -1,5 +1,7 @@
 package com.blibli.pos_minimarket.Model;
 
+import java.sql.Timestamp;
+
 public class Transaction {
     private Integer transactionId;
     private String dateTime;

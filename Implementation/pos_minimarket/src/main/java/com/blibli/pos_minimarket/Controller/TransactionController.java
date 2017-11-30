@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Controller
@@ -25,12 +26,14 @@ public class TransactionController {
         transactionService.initTable();
         List<Product> productList;
         try {
+            Double tax = transactionService.updateTax(transactionService.updateTotal());
+            Double finalTotal = transactionService.updateTotal() + tax;
             productList = transactionService.getFromCart();
             model.addAttribute("productList", productList);
             model.addAttribute("dateTime", transactionService.initDate());
             model.addAttribute("transactionId", transactionService.initTransactionId());
-            model.addAttribute("tax", transactionService.updateTax(transactionService.updateTotal()));
-            model.addAttribute("total", transactionService.updateTotal());
+            model.addAttribute("tax", tax);
+            model.addAttribute("total",finalTotal);
         } catch (Exception EX) {
             System.out.println("Error TransactionController initialTransaction");
         }
@@ -45,4 +48,11 @@ public class TransactionController {
         return mav;
     }
 
+    @PostMapping(value = "Transaction/Payment")
+    public ModelAndView payment(@ModelAttribute("dateTime") String dateTime){
+        ModelAndView mav = new ModelAndView();
+        transactionService.addTransaction(dateTime);
+        mav.setViewName("redirect:/Transaction");
+        return mav;
+    }
 }

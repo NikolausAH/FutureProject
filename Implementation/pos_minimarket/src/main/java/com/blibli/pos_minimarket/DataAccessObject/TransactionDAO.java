@@ -1,6 +1,7 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Product;
+import com.blibli.pos_minimarket.Model.Transaction;
 import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ public class TransactionDAO extends ConnectionSettings {
         String sql = "CREATE TABLE IF NOT EXISTS public.transaction" +
                 "(" +
                 "    transaction_id SERIAL PRIMARY KEY NOT NULL," +
-                "    date_time TIMESTAMP NOT NULL," +
+                "    date_time VARCHAR(50) NOT NULL," +
                 "    tax DOUBLE PRECISION NOT NULL," +
                 "    discount DOUBLE PRECISION," +
                 "    total DOUBLE PRECISION NOT NULL," +
@@ -31,6 +32,27 @@ public class TransactionDAO extends ConnectionSettings {
         String message = "Error TransactionDAO initTable";
 
         generalDAO.executeSet(sql,message);
+    }
+
+        public void add(Transaction transaction) {
+        String sql = "INSERT INTO transaction (date_time,tax,discount,total,p_total_id,employee_id) VALUES (?,?,?,?,?,?);";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1, transaction.getDateTime());
+            preparedStatement.setDouble(2,transaction.getTax());
+            preparedStatement.setDouble(3, transaction.getDiscount());
+            preparedStatement.setDouble(4, transaction.getTotal());
+            preparedStatement.setInt(5,1);
+            preparedStatement.setInt(6,1);
+            preparedStatement.executeUpdate();
+            System.out.println("Success TransactionDAO Add");
+            preparedStatement.close();
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println("Error TransactionDAO Add");
+            System.out.println(EX.toString());
+        }
     }
 
     public Integer getNextId(){
@@ -114,24 +136,6 @@ public class TransactionDAO extends ConnectionSettings {
 //            System.out.println(EX.toString());
 //        }
 //        return transactionList;
-//    }
-
-//    public void add(Transaction transaction) {
-//        String sql = "INSERT INTO transaction (date_time,tax,discount,total) VALUES (?,?,?,?);";
-//        try {
-//            this.makeConnection();
-//            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-//            preparedStatement.setString(1, transaction.getDateTime());
-//            preparedStatement.setDouble(2,transaction.getTax());
-//            preparedStatement.setDouble(3, transaction.getDiscount());
-//            preparedStatement.setDouble(4, transaction.getTotal());
-//            preparedStatement.executeUpdate();
-//            preparedStatement.close();
-//            this.closeConnection();
-//        } catch (Exception EX) {
-//            System.out.println("Error TransactionDAO Add");
-//            System.out.println(EX.toString());
-//        }
 //    }
 
 

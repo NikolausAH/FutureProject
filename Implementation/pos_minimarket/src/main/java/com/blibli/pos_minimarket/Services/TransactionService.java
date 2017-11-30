@@ -4,9 +4,14 @@ import com.blibli.pos_minimarket.DataAccessObject.MiniMarketDAO;
 import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.DataAccessObject.TransactionDAO;
 import com.blibli.pos_minimarket.Model.Product;
+import com.blibli.pos_minimarket.Model.Transaction;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -112,10 +117,19 @@ public class TransactionService {
         return productList1;
     }
 
-    /*
 
-    public void add(Transaction transaction) {
+    public void addTransaction(String dateTime) {
+        Transaction transaction = new Transaction();
+        Double tax = this.updateTax(this.updateTotal());
+        Double finalTotal = this.updateTotal() + tax;
+        Double discount = 0.0; //belum
+        Integer p_total_id = 0; //belum
+        Integer employee_id = 0; //belum
         try {
+            transaction.setTax(tax);
+            transaction.setTotal(finalTotal);
+            transaction.setDiscount(discount);
+            transaction.setDateTime(dateTime);
             transactionDAO.add(transaction);
         }
         catch (Exception EX){
@@ -123,6 +137,7 @@ public class TransactionService {
             System.out.println(EX.toString());
         }
     }
+    /*
     public List<Transaction> showAllTransaction() {
         connectionSettings.makeConnection();
         List<Transaction> transactionList = transactionDAO.getAllTransaction();
