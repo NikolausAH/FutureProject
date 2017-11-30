@@ -17,7 +17,6 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     private static final String idRole = "idrole";
     private static final String email = "email";
     private static final String role = "namarole";
-    public boolean searchCond = false;
 
     @Override
     public List<Pegawai> getAll() {
@@ -72,7 +71,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
             this.closeConnection();
 
         } catch (Exception EX) {
-            System.out.println("Error PegawaiDAO getAll");
+            System.out.println("Error PegawaiDAO search");
             System.out.println(EX.toString());
         }
         return pegawaiList;

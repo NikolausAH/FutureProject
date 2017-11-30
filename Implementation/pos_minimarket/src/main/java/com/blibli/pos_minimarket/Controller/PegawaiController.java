@@ -35,6 +35,7 @@ public class PegawaiController{
         mav.setViewName("redirect:/Pegawai");
         return mav;
     }
+
     @PostMapping(value = "updatePegawai")
     public ModelAndView updatePegawai(@ModelAttribute("pegawaiUpdated") Pegawai pegawaiUpdated){
         ModelAndView mav = new ModelAndView();
@@ -42,6 +43,7 @@ public class PegawaiController{
         mav.setViewName("redirect:/Pegawai");
         return mav;
     }
+
     @PostMapping(value = "deletePegawai")
     public ModelAndView deletePegawai(@ModelAttribute("id") Integer id){
         ModelAndView mav = new ModelAndView();

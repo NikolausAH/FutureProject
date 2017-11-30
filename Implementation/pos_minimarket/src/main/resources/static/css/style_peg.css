@@ -12,6 +12,9 @@
   margin-left: 10%;
   margin-right: 5%;
 }
+#role{
+  margin-left: 15px;
+}
 .pencarian{
   display: inline-block;
   width: 100%;
@@ -120,5 +123,4 @@
   margin-bottom: 15px;
   margin-left: 20px;
   margin-right: 30px;
-
 }
