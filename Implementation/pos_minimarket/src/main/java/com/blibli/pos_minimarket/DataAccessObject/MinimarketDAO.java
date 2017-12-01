@@ -8,12 +8,6 @@ import java.sql.ResultSet;
 public class MinimarketDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
 
-    private void inisialisasiMinimarket() {
-        String sql = "INSERT INTO mini_market (name, address, email, telp_no, tax, receipt_desc) values('blibli', 'jalan xxx', 'blibli@gmail.com', '087885172045', 10.0, 'keterangan receipt');";
-        String message = "Error inisialisasi Minimarket";
-        generalDAO.executeSet(sql, message);
-    }
-
     private void insert(Minimarket minimarket){
         String nama = minimarket.getName();
         String address = minimarket.getAddress();
@@ -65,32 +59,21 @@ public class MinimarketDAO extends ConnectionSettings {
         return minimarket;
     }
     public void updateMinimarket(Minimarket minimarket) {
-
         String sql = "select * from mini_market";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet != null) {
-                System.out.println(minimarket.getTax());
-                System.out.println(minimarket.getAddress());
-                System.out.println(minimarket.getEmail());
-                System.out.println(minimarket.getName());
-                System.out.println(minimarket.getReceipt_desc());
-                System.out.println(minimarket.getTelp_no());
+            if (!resultSet.next()) {
                 this.insert(minimarket);
-                this.update(minimarket);
             } else {
-
-                //inisialisasiMinimarket();
+                this.update(minimarket);
             }
            this.closeConnection();
-
         } catch (Exception EX) {
             System.out.println("Error CategoryDAO getAllCategory");
             System.out.println(EX.toString());
         }
-
     }
 
     public Double getTax() {
@@ -114,5 +97,4 @@ public class MinimarketDAO extends ConnectionSettings {
         }
         return tax;
     }
-
 }

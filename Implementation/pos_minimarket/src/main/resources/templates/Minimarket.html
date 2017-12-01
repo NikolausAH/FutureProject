@@ -108,70 +108,70 @@
                     <a th:href="@{#}">
                         <img src="../images/BliBli.png" th:src="@{../images/BliBli.png}" class="logo_toko" />
                     </a>
-                    <p class="img__description">Ubah Logo Minimarket</p>
                 </div>
-                <div class="form_minimarket col-sm-10">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
                     <form class="form-horizontal" th:form="${form}" th:object="${minimarket}" th:action="@{/Minimarket/Update}" method="post">
-                        <div class="top-form">
+                        <div class="form-group">
                             <div class="col-sm-3">
-                                <label class="control-label" for="name">Nama :</label>
+                                <label class="control-label" style="text-align: left" for="name">Nama:</label>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" required="required" class="form-control input" id="name" name="name" th:value="${name}"
-                                />
+                                <input type="text" class="form-control" required="required" id="name" name="name" th:value="${minimarket.name}"/>
                             </div>
                         </div>
-
-                        <div class="top-form">
+                        <div class="form-group">
                             <div class="col-sm-3">
-                                <label class="control-label" for="address">Alamat :</label>
+                                <label class="control-label" style="text-align: left" for="address">Alamat :</label>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control input" required="required" id="address" name="address" th:value="${address} " />
+                                <input type="text" class="form-control" required="required" id="address" name="address" th:value="${minimarket.address}"/>
                             </div>
                         </div>
-
-                        <div class="top-form ">
-                            <div class="col-sm-3 ">
-                                <label class="control-label " for="telp_no">No Telepon :</label>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left" for="email">E-mail :</label>
                             </div>
-                            <div class="col-sm-9 ">
-                                <input type="text" class="form-control input " required="required" id="telp_no" name="telp_no" th:value="${telp_no} "
-                                />
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" required="required" id="email" name="email" th:value="${minimarket.email}"/>
                             </div>
                         </div>
-
-                        <div class="top-form ">
-                            <div class="col-sm-3 ">
-                                <label class="control-label" for="email">E-mail :</label>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left" for="telp_no">No Telepon :</label>
                             </div>
-                            <div class="col-sm-9 ">
-                                <input type="email" class="form-control input" Id="email" required="required" name="email" th:value="${email} " />
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" required="required" id="telp_no" name="telp_no" th:value="${minimarket.telp_no}"/>
                             </div>
-                        </div>
-
-                        <div class="top-form ">
-                            <div class="col-sm-3 ">
-                                <label class="control-label" for="tax">Pajak(%): </label>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left" for="tax">Pajak(%) :</label>
                             </div>
-                            <div class="col-sm-9 ">
-                                <input type="number" class="form-control input" required="required" min="1 " max="50" id="tax" name="tax" th:value="${tax}" />
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" required="required" id="tax" name="tax" th:value="${minimarket.tax}"/>
                             </div>
                         </div>
-                        <div class="col-sm-10">
-                            <label class="control-label" style="text-align: left" for="receipt_desc">Keterangan Receipt :</label>
-                            <textarea name="receipt_desc" cols="30 " rows="4 " id="receipt_desc" class="form-control receipt" th:value="${receiptDesc}"></textarea>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left" for="receipt_desc">Receipt :</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" required="required" id="receipt_desc" name="receipt_desc" th:field="${minimarket.receipt_desc}"></textarea>
+                            </div>
                         </div>
-                        <div class="buttons col-sm-10 ">
-                            <button class="btn btn-primary " id="btn-batal ">Batal</button>
-                            <button type="submit" class="btn btn-success button-2" id="btn-ubah2">Simpan</button>
+                        <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                            <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                <button type="button" class="btn btn-primary" id="btn-batal" >Batal</button><!--belum ada aksi-->
+                            </div>
+                            <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                <button type="submit" value="Submit" class="btn btn-success" id="btn-tambah">Ubah</button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
-
 </html>
