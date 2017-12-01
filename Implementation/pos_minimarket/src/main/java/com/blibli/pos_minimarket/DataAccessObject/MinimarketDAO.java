@@ -4,42 +4,85 @@ import com.blibli.pos_minimarket.Model.Minimarket;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class MinimarketDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
 
     private void inisialisasiMinimarket() {
-        String sql = "INSERT INTO minimarket (nama,address,nomortelp, email, tax, receiptdesc) values('blibli', 'jalan xxx', '087885172045', 'blibli@gmail.com', 30, 'keterangan receipt');";
+        String sql = "INSERT INTO mini_market (name, address, email, telp_no, tax, receipt_desc) values('blibli', 'jalan xxx', 'blibli@gmail.com', '087885172045', 10.0, 'keterangan receipt');";
         String message = "Error inisialisasi Minimarket";
+        generalDAO.executeSet(sql, message);
+    }
+
+    private void insert(Minimarket minimarket){
+        String nama = minimarket.getName();
+        String address = minimarket.getAddress();
+        String telephoneNumber = minimarket.getTelp_no();
+        String email = minimarket.getEmail();
+        Double tax = minimarket.getTax();
+        String receiptText = minimarket.getReceipt_desc();
+        System.out.println(tax);
+        String sql = "INSERT INTO mini_market (name,address,email,telp_no,tax,receipt_desc)"+
+                "VALUES('" + nama + "','"+ address + "', '"+ email + "','" + telephoneNumber + "','" + tax + "','" + receiptText + "');";
+        String message = "Error Insert Minimarket";
         generalDAO.executeSet(sql, message);
     }
 
     public void update(Minimarket minimarket) {
         String nama = minimarket.getName();
         String address = minimarket.getAddress();
-        String telephoneNumber = minimarket.getTelephoneNumber();
+        String telephoneNumber = minimarket.getTelp_no();
         String email = minimarket.getEmail();
-        int tax = minimarket.getTax();
-        String receiptText = minimarket.getReceiptDesc();
-
-        String sql = "UPDATE minimarket SET nama ='" + nama + "',address='" + address + "',nomortelp='" + telephoneNumber + "',email='" + email + "',tax='" + tax + "',receiptdesc='" + receiptText + "';";
+        Double tax = minimarket.getTax();
+        String receiptText = minimarket.getReceipt_desc();
+        String sql = "UPDATE mini_market SET name ='" + nama + "',address='" + address + "',telp_no='" + telephoneNumber + "',email='" + email + "',tax='" + tax + "',receipt_desc='" + receiptText + "';";
         String message = "Error Update Minimarket";
         generalDAO.executeSet(sql, message);
     }
 
-    public void updateMinimarket(Minimarket minimarket) {
-
-        String sql = "select * from minimarket";
+    public Minimarket show(){
+        String sql = "SELECT * FROM mini_market";
+        Minimarket minimarket = new Minimarket();
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet == null) {
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    minimarket.setName(resultSet.getString("name"));
+                    minimarket.setAddress(resultSet.getString("address"));
+                    minimarket.setEmail(resultSet.getString("email"));
+                    minimarket.setTelp_no(resultSet.getString("telp_no"));
+                    minimarket.setTax(resultSet.getDouble("tax"));
+                    minimarket.setReceipt_desc(resultSet.getString("receipt_desc"));
+                }
+                this.closeConnection();
+            }
+        } catch (Exception EX) {
+            System.out.println("Error MinimarketDAO show");
+            System.out.println(EX.toString());
+        }
+        return minimarket;
+    }
+    public void updateMinimarket(Minimarket minimarket) {
 
-                inisialisasiMinimarket();
+        String sql = "select * from mini_market";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                System.out.println(minimarket.getTax());
+                System.out.println(minimarket.getAddress());
+                System.out.println(minimarket.getEmail());
+                System.out.println(minimarket.getName());
+                System.out.println(minimarket.getReceipt_desc());
+                System.out.println(minimarket.getTelp_no());
+                this.insert(minimarket);
+                this.update(minimarket);
             } else {
-                update(minimarket);
+
+                //inisialisasiMinimarket();
             }
            this.closeConnection();
 

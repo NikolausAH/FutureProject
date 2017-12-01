@@ -3,21 +3,21 @@ package com.blibli.pos_minimarket.Model;
 public class Minimarket {
     private String name;
     private String address;
-    private String telephoneNumber;
+    private String telp_no;
     private String email;
-    private int tax;
-    private String receiptDesc;
+    private Double tax;
+    private String receipt_desc;
 
     public Minimarket() {
     }
 
-    public Minimarket(String name, String address, String telephoneNumber, String email, int tax, String receiptDesc) {
+    public Minimarket(String name, String address, String telp_no, String email, Double tax, String receipt_desc) {
         this.name = name;
         this.address = address;
-        this.telephoneNumber = telephoneNumber;
+        this.telp_no = telp_no;
         this.email = email;
         this.tax = tax;
-        this.receiptDesc = receiptDesc;
+        this.receipt_desc = receipt_desc;
     }
 
     public String getName() {
@@ -36,34 +36,35 @@ public class Minimarket {
         this.address = address;
     }
 
-    public String getTelephoneNumber() {
-        return telephoneNumber;
+    public String getTelp_no() {
+        return telp_no;
     }
 
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
+    public void setTelp_no(String telp_no) {
+        this.telp_no = telp_no;
     }
 
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public int getTax() {
+    public Double getTax() {
         return tax;
     }
 
-    public void setTax(int tax) {
+    public void setTax(Double tax) {
         this.tax = tax;
     }
 
-    public String getReceiptDesc() {
-        return receiptDesc;
+    public String getReceipt_desc() {
+        return receipt_desc;
     }
 
-    public void setReceiptDesc(String receiptDesc) {
-        this.receiptDesc = receiptDesc;
+    public void setReceipt_desc(String receipt_desc) {
+        this.receipt_desc = receipt_desc;
     }
 }

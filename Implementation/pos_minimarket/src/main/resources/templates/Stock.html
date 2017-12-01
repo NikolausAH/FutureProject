@@ -28,17 +28,17 @@
 			<div class="col-xs-2 col-md-4 col-lg-4 user">
 				<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
 				<div class="identitas">
-					<h5 employee_Id="name">Nama / ID :SUTARTO/1011</h5>
-					<h5 employee_Id="role-text">Role :Admin</h5>
+					<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+					<h5 id="role-text">Role :Admin</h5>
 				</div>
-				<div employee_Id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+				<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
 					<div class="segitiga">
 						<p>sgt</p>
 					</div>
 					<div class="dropdown-avatar">
 						<ul>
-							<li><a employee_Id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
-							<li><a employee_Id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
+							<li><a id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
+							<li><a id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -51,9 +51,9 @@
 	<!--==========navigation.start==========-->
 	<div class="row">
 		<div class ="col-xs-12 navigation">
-			<a href="#"><i class="fa" employee_Id="home-icon"> &#xf015;</i></a>
+			<a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
 			<i class="fa">&#xf105;</i>
-			<a th:href="@{../Stock.html}" employee_Id="pos">Stock</a>
+			<a th:href="@{../Stock.html}" id="pos">Stock</a>
 		</div>
 	</div>
 	<!--==========navigation.end==========-->
@@ -66,34 +66,34 @@
 			</div>
 			<ul>
 				<li>
-					<a employee_Id="sid_1" href="#"><i class="fa">&#xf19c;</i> Minimarket</a>
+					<a id="sid_1" th:href="@{../Minimarket.html}"><i class="fa">&#xf19c;</i> Minimarket</a>
 				</li>
 				<li>
-					<a employee_Id="sid_2" href="#"><i class="fa">&#xf0c0;</i> Pegawai</a>
+					<a id="sid_2" th:href="@{../Employee.html}"><i class="fa">&#xf0c0;</i> Pegawai</a>
 				</li>
 				<li>
-					<div class="dropdown"><a employee_Id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
-						<div class="dropdown-content" employee_Id="dr-produk">
-							<a employee_Id="drop_p1" th:href="@{../Category.html}">Kategori</a>
-							<a employee_Id="drop_p2" th:href="@{../Product.html}">Kelola Produk</a>
+					<div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+						<div class="dropdown-content" id="dr-produk">
+							<a id="drop_p1" th:href="@{../Category.html}">Kategori</a>
+							<a id="drop_p2" th:href="@{../Product.html}">Kelola Produk</a>
 						</div>
 					</div>
 				</li>
 				<li>
-					<a employee_Id="sid_4" th:href="@{../Stock.html}"><i class="fa">&#xf1b3;</i> Stok</a>
+					<a id="sid_4" th:href="@{../Stock.html}"><i class="fa">&#xf1b3;</i> Stok</a>
 				</li>
 				<li>
-					<a employee_Id="sid_5" th:href="@{../Transaction.html}"><i class="fa">&#xf217;</i> Transaksi</a>
+					<a id="sid_5" th:href="@{../Transaction.html}"><i class="fa">&#xf217;</i> Transaksi</a>
 				</li>
 				<li>
-					<a employee_Id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+					<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
 				</li>
 				<li>
 				<li>
-					<div class="dropdown"><a employee_Id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
-						<div class="dropdown-content" employee_Id="dr-laporan">
-							<a employee_Id="drop_p1" href="#">Transaksi</a>
-							<a employee_Id="drop_p2" href="#">Statistik</a>
+					<div class="dropdown"><a id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
+						<div class="dropdown-content" id="dr-laporan">
+							<a id="drop_p1" href="#">Transaksi</a>
+							<a id="drop_p2" href="#">Statistik</a>
 						</div>
 					</div>
 				</li>
@@ -110,7 +110,7 @@
 				<div class="col-md-8 form-search">
 					<input class="form-control src" name="search" placeholder="ID atau Nama Produk..."
 						   type="text" />
-					<button type="button" class="btn btn-success" employee_Id="btn-export">Export</button>
+					<button type="button" class="btn btn-success" id="btn-export">Export</button>
 				</div>
 			</form>
 			<br />
@@ -118,7 +118,7 @@
 			<!--Start Bagian Form-->
 
 			<div class="col-md-5">
-				<div employee_Id="aksi-stok">
+				<div id="aksi-stok">
 					<br />
 					<form class="form-horizontal" th:form="${form}" th:object="${product}" th:action="@{/Stock/Update}"  method="post">
 						<div class="form-group top-form">
@@ -126,7 +126,7 @@
 								<label class="control-label" for="productId">Kode produk :</label>
 							</div>
 							<div class="col-md-6">
-								<input type="number" class="form-control" employee_Id="productId" name="productId" th:value="${productId}"/>
+								<input type="number" class="form-control" id="productId" name="productId" th:value="${productId}"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -134,7 +134,7 @@
 								<label class="control-label" for="name">Nama E :</label>
 							</div>
 							<div class="col-md-6">
-								<input type="text" class="form-control" employee_Id="name" name="name" /><!--Edit Sebelah sini-->
+								<input type="text" class="form-control" id="name" name="name" /><!--Edit Sebelah sini-->
 							</div>
 						</div>
 						<div class="form-group">
@@ -142,15 +142,15 @@
 								<label class="control-label" for="quantity">Jumlah :</label>
 							</div>
 							<div class="col-md-6">
-								<input type="number" class="form-control" employee_Id="quantity" name="quantity" th:value="${quantity}"/>
+								<input type="number" class="form-control" id="quantity" name="quantity" th:value="${quantity}"/>
 							</div>
 						</div>
-						<div class="col-xs-12 col-md-12 col-lg-12" employee_Id="two-button">
+						<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
 							<div class="col-xs-6 col-md-6 col-lg-6">
-								<button type="button" class="btn btn-primary" employee_Id="btn-batal">Batal</button>
+								<button type="button" class="btn btn-primary" id="btn-batal">Batal</button>
 							</div>
 							<div class="col-xs-6 col-md-6 col-lg-6">
-								<button type="submit" class="btn btn-success" employee_Id="btn-tambah2">Tambah</button>
+								<button type="submit" class="btn btn-success" id="btn-tambah2">Tambah</button>
 							</div>
 						</div>
 					</form>

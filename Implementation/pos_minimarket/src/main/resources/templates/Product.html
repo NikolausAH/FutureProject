@@ -29,17 +29,17 @@
             <div class="col-xs-2 col-md-4 col-lg-4 user">
                 <i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
                 <div class="identitas">
-                    <h5 employee_Id="name">Nama / ID :SUTARTO/1011</h5>
-                    <h5 employee_Id="role-text">Role :Admin</h5>
+                    <h5 id="name">Nama / ID :SUTARTO/1011</h5>
+                    <h5 id="role-text">Role :Admin</h5>
                 </div>
-                <div employee_Id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+                <div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
                     <div class="segitiga">
                         <p>sgt</p>
                     </div>
                     <div class="dropdown-avatar">
                         <ul>
-                            <li><a employee_Id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
-                            <li><a employee_Id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
+                            <li><a id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
+                            <li><a id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
                         </ul>
                     </div>
                 </div>
@@ -52,11 +52,11 @@
     <!--==========navigation.start==========-->
     <div class="row">
         <div class ="col-xs-12 navigation">
-            <a href="#"><i class="fa" employee_Id="home-icon"> &#xf015;</i></a>
+            <a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
             <i class="fa">&#xf105;</i>
-            <a employee_Id="pos">Product</a>
+            <a id="pos">Product</a>
             <i class="fa">&#xf105;</i>
-            <a th:href="@{../Product.html}" employee_Id="pos">Kelola Product</a>
+            <a th:href="@{../Product.html}" id="pos">Kelola Product</a>
         </div>
     </div>
     <!--==========navigation.end==========-->
@@ -69,34 +69,34 @@
             </div>
             <ul>
                 <li>
-                    <a employee_Id="sid_1" href="#"><i class="fa">&#xf19c;</i> Minimarket</a>
+                    <a id="sid_1" th:href="@{../Minimarket.html}"><i class="fa">&#xf19c;</i> Minimarket</a>
                 </li>
                 <li>
-                    <a employee_Id="sid_2" href="#"><i class="fa">&#xf0c0;</i> Pegawai</a>
+                    <a id="sid_2" th:href="@{../Employee.html}"><i class="fa">&#xf0c0;</i> Pegawai</a>
                 </li>
                 <li>
-                    <div class="dropdown"><a employee_Id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
-                        <div class="dropdown-content" employee_Id="dr-produk">
-                            <a employee_Id="drop_p1" th:href="@{../Category.html}">Kategori</a>
-                            <a employee_Id="drop_p2" th:href="@{../Product.html}">Kelola Produk</a>
+                    <div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+                        <div class="dropdown-content" id="dr-produk">
+                            <a id="drop_p1" th:href="@{../Category.html}">Kategori</a>
+                            <a id="drop_p2" th:href="@{../Product.html}">Kelola Produk</a>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a employee_Id="sid_4" th:href="@{../Stock.html}"><i class="fa">&#xf1b3;</i> Stok</a>
+                    <a id="sid_4" th:href="@{../Stock.html}"><i class="fa">&#xf1b3;</i> Stok</a>
                 </li>
                 <li>
-                    <a employee_Id="sid_5" th:href="@{../Transaction.html}"><i class="fa">&#xf217;</i> Transaksi</a>
+                    <a id="sid_5" th:href="@{../Transaction.html}"><i class="fa">&#xf217;</i> Transaksi</a>
                 </li>
                 <li>
-                    <a employee_Id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+                    <a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
                 </li>
                 <li>
                 <li>
-                    <div class="dropdown"><a employee_Id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
-                        <div class="dropdown-content" employee_Id="dr-laporan">
-                            <a employee_Id="drop_p1" href="#">Transaksi</a>
-                            <a employee_Id="drop_p2" href="#">Statistik</a>
+                    <div class="dropdown"><a id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
+                        <div class="dropdown-content" id="dr-laporan">
+                            <a id="drop_p1" href="#">Transaksi</a>
+                            <a id="drop_p2" href="#">Statistik</a>
                         </div>
                     </div>
                 </li>
@@ -109,8 +109,8 @@
             <br />
             <form class="form-inline" th:object="${form}" th:action="@{/Product/Search}" method="post">
                 <input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"  th:value="${searchKey}"/>
-                <button type="submit" class="btn btn-warning" employee_Id="btn-search">Cari</button>
-                <button type="button" class="btn btn-success" employee_Id="btn-export">Export</button>
+                <button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
+                <button type="button" class="btn btn-success" id="btn-export">Export</button>
             </form>
             <br />
             <!--Table-->
@@ -145,20 +145,20 @@
             <!--end of table-->
             <!--Button tambah ubah hapus-->
             <br />
-            <div class="col-xs-12 col-md-12 col-lg-12" employee_Id="three-button">
+            <div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
                 <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-success" employee_Id="btn-tambah" data-toggle="modal" data-target="#createModal">Tambah</button>
+                    <button type="button" class="btn btn-success" id="btn-tambah" data-toggle="modal" data-target="#createModal">Tambah</button>
                 </div>
                 <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-warning" employee_Id="btn-ubah" data-toggle="modal" data-target="#updateModal">Ubah</button>
+                    <button type="button" class="btn btn-warning" id="btn-ubah" data-toggle="modal" data-target="#updateModal">Ubah</button>
                 </div>
                 <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-danger" employee_Id="btn-hapus" data-toggle="modal" data-target="#deleteModal">Hapus</button>
+                    <button type="button" class="btn btn-danger" id="btn-hapus" data-toggle="modal" data-target="#deleteModal">Hapus</button>
                 </div>
             </div>
             <!--Akhir Button tambah ubah hapus-->
             <!-- createModal -->
-            <div class="modal fade" employee_Id="createModal" role="dialog">
+            <div class="modal fade" id="createModal" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -173,7 +173,7 @@
                                         <label class="control-label" for="name">Nama:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" employee_Id="name" placeholder="Nama Produk" name="name" th:value="${name}"/>
+                                        <input type="text" class="form-control" id="name" placeholder="Nama Produk" name="name" th:value="${name}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -196,7 +196,7 @@
                                         <label class="control-label" for="price">Harga :</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" employee_Id="price" placeholder="Harga produk" name="price" th:value="${price}"/>
+                                        <input type="number" class="form-control" id="price" placeholder="Harga produk" name="price" th:value="${price}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -204,16 +204,16 @@
                                         <label class="control-label" for="description">Deskripsi :</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <textarea class="form-control" rows="5" employee_Id="description" name="description" th:value="${description}"></textarea>
+                                        <textarea class="form-control" rows="5" id="description" name="description" th:value="${description}"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <div class="col-xs-12 col-md-12 col-lg-12" employee_Id="two-button">
+                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
                                         <div class="col-xs-6 col-md-6 col-lg-6">
-                                            <button type="button" class="btn btn-primary" employee_Id="btn-batal" data-dismiss="modal">Batal</button>
+                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
                                         </div>
                                         <div class="col-xs-6 col-md-6 col-lg-6">
-                                            <button type="submit" class="btn btn-success" employee_Id="btn-tambah2">Tambah</button>
+                                            <button type="submit" class="btn btn-success" id="btn-tambah2">Tambah</button>
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@
             </div>
 
             <!-- updateModal -->
-            <div class="modal fade" employee_Id="updateModal" role="dialog">
+            <div class="modal fade" id="updateModal" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -239,7 +239,7 @@
                                         <label class="control-label" for="productId">Id Edit nanti:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" employee_Id="productId" placeholder="ID akan diubah" name="productId" th:value="${productId}"/>
+                                        <input type="text" class="form-control" id="productId" placeholder="ID akan diubah" name="productId" th:value="${productId}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -247,7 +247,7 @@
                                         <label class="control-label" for="name">Nama:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" employee_Id="name" placeholder="Nama Produk" name="name" th:value="${name}"/>
+                                        <input type="text" class="form-control" id="name" placeholder="Nama Produk" name="name" th:value="${name}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -270,7 +270,7 @@
                                         <label class="control-label" for="price">Harga :</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" employee_Id="price" placeholder="Harga produk" name="price" th:value="${price}"/>
+                                        <input type="number" class="form-control" id="price" placeholder="Harga produk" name="price" th:value="${price}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -278,16 +278,16 @@
                                         <label class="control-label" for="description">Deskripsi :</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <textarea class="form-control" rows="5" employee_Id="description" name="description" th:value="${description}"></textarea>
+                                        <textarea class="form-control" rows="5" id="description" name="description" th:value="${description}"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <div class="col-xs-12 col-md-12 col-lg-12" employee_Id="two-button">
+                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
                                         <div class="col-xs-6 col-md-6 col-lg-6">
-                                            <button type="button" class="btn btn-primary" employee_Id="btn-batal" data-dismiss="modal">Batal</button>
+                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
                                         </div>
                                         <div class="col-xs-6 col-md-6 col-lg-6">
-                                            <button type="submit" class="btn btn-warning" employee_Id="btn-tambah2">Ubah</button>
+                                            <button type="submit" class="btn btn-warning" id="btn-tambah2">Ubah</button>
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +297,7 @@
                 </div>
             </div>
             <!-- DeleteModal -->
-            <div class="modal fade" employee_Id="deleteModal" role="dialog">
+            <div class="modal fade" id="deleteModal" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -312,18 +312,18 @@
                                         <label class="control-label" for="productId">Kode Produk :</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" employee_Id="productId" placeholder="ID akan dihapus" name="productId" th:value="${productId}"/>
+                                        <input type="text" class="form-control" id="productId" placeholder="ID akan dihapus" name="productId" th:value="${productId}"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <div class="col-xs-12 col-md-12 col-lg-12" employee_Id="two-button">
+                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
                                         <div class="col-xs-4 col-md-4 col-lg-4"></div>
                                         <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="button" class="btn btn-primary" employee_Id="btn-batal" data-dismiss="modal">Batal</button>
+                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
                                         </div>
                                         <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                         <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-danger" employee_Id="btn-tambah">Hapus</button>
+                                            <button type="submit" value="Submit" class="btn btn-danger" id="btn-tambah">Hapus</button>
                                         </div>
                                     </div>
                                 </div>
