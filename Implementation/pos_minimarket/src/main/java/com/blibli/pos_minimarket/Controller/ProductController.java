@@ -27,6 +27,7 @@ public class ProductController {
         productService.initTable();
         model.addAttribute("product", productService.showAll());
         model.addAttribute("categoryList", categoryService.showAll());
+        model.addAttribute("product_nextId", categoryService.getNextId());
         return "Product";
     }
 
@@ -34,7 +35,7 @@ public class ProductController {
     public ModelAndView createProduct(@ModelAttribute("product") Product product,@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
         product.setCategory(categoryService.getById(categoryId));
-        System.out.println(product.getCategory().getName());
+        product.setProductId(categoryService.getNextId());
         productService.add(product);
         mav.setViewName("redirect:/Product");
         return mav;

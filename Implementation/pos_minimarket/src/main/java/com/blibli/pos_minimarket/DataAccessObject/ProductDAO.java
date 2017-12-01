@@ -33,6 +33,14 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
         generalDAO.executeSet(sql,message);
     }
 
+    public Integer getNextId(){
+        Integer nextId = 1;
+        String sql = "SELECT product_product_id_seq.last_value FROM product_product_id_seq;";
+        String message = "Error ProductDAO getNextId";
+        nextId = generalDAO.getNextId(sql,message);
+        return nextId;
+    }
+
     @Override
     public void add(Product product) {
         product.setQuantity(0);
@@ -67,7 +75,8 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     }
 
     public void updateQuantity(Product product, Integer oldQuantity) {
-        String sql = "UPDATE product SET quantity = '"+product.getQuantity() + oldQuantity+"' WHERE product_id = '"+product.getProductId()+"';";
+        Integer quantity = product.getQuantity()+oldQuantity;
+        String sql = "UPDATE product SET quantity = '"+quantity+"' WHERE product_id = '"+product.getProductId()+"';";
         String message = "Error ProductDAO UpdateQuantity";
         generalDAO.executeSet(sql,message);
     }

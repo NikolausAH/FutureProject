@@ -62,7 +62,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     public Integer getNextId(){
         Integer nextId = 1;
         String sql = "SELECT category_category_id_seq.last_value FROM category_category_id_seq;";
-        String message = "Error EmployeeDAO getNextId";
+        String message = "Error CategoryDAO getNextId";
         nextId = generalDAO.getNextId(sql,message);
         return nextId;
     }

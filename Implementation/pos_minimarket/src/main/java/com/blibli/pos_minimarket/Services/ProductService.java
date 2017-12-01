@@ -4,6 +4,7 @@ import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.Model.Product;
 import org.springframework.stereotype.Service;
 
+import javax.rmi.PortableRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +87,18 @@ public class ProductService {
             System.out.println(EX.toString());
         }
         return productList;
+    }
+
+    public Integer getNextId() {
+        Integer nextId = 1;
+        try {
+            nextId = productDAO.getNextId();
+        }
+        catch (Exception EX){
+            System.out.println("Error ProductService getNextId");
+            System.out.println(EX.toString());
+        }
+        return nextId;
     }
 
     public List<Product> search(String searchKey) {

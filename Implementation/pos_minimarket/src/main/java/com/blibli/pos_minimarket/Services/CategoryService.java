@@ -30,7 +30,7 @@ public class CategoryService {
             nextId = categoryDAO.getNextId();
         }
         catch (Exception EX){
-            System.out.println("Error EmployeeService getRoleById");
+            System.out.println("Error CategoryService getNextId");
             System.out.println(EX.toString());
         }
         return nextId;

@@ -50,7 +50,7 @@ public class EmployeeService {
             nextId = employeeDAO.getNextId();
         }
         catch (Exception EX){
-            System.out.println("Error EmployeeService getRoleById");
+            System.out.println("Error EmployeeService getNextId");
             System.out.println(EX.toString());
         }
         return nextId;
