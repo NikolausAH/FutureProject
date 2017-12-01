@@ -1,21 +1,20 @@
 package com.blibli.pos_minimarket.Services;
 
-import com.blibli.pos_minimarket.DataAccessObject.MyConnection;
-import com.blibli.pos_minimarket.DataAccessObject.PegawaiDAO;
-import com.blibli.pos_minimarket.Model.Pegawai;
+import com.blibli.pos_minimarket.DataAccessObject.EmployeeDAO;
+import com.blibli.pos_minimarket.Model.Employee;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service //menandakan class ini service
-public class PegawaiService {
-    private PegawaiDAO pegawaiDAO = new PegawaiDAO();
+public class EmployeeService {
+    private EmployeeDAO EmployeeDAO = new EmployeeDAO();
 
-    public List<Pegawai> showAll() {
-        List<Pegawai> listCategory = new ArrayList<>();
+    public List<Employee> showAll() {
+        List<Employee> listCategory = new ArrayList<>();
         try {
-            listCategory = pegawaiDAO.getAll();
+            listCategory = EmployeeDAO.getAll();
         }
         catch (Exception EX){
             System.out.println("Error CategoryServices showAll");
@@ -23,30 +22,30 @@ public class PegawaiService {
         }
         return listCategory;
     }
-    public void add(Pegawai pegawai) {
+    public void add(Employee Employee) {
         try {
-            pegawaiDAO.add(pegawai);
+            EmployeeDAO.add(Employee);
         }
         catch (Exception EX){
-            System.out.println("Error PegawaiService Add");
+            System.out.println("Error EmployeeService Add");
             System.out.println(EX.toString());
         }
     }
-    public void update(Pegawai pegawai){
+    public void update(Employee Employee){
         try{
-            pegawaiDAO.update(pegawai);
+            EmployeeDAO.update(Employee);
         }
         catch (Exception EX){
-            System.out.println("Error PegawaiService Update");
+            System.out.println("Error EmployeeService Update");
             System.out.println(EX.toString());
         }
     }
     public void delete(Integer id){
         try {
-            pegawaiDAO.delete(id);
+            EmployeeDAO.delete(id);
         }
         catch (Exception EX){
-            System.out.println("Error PegawaiService Delete");
+            System.out.println("Error EmployeeService Delete");
             System.out.println(EX.toString());
         }
     }

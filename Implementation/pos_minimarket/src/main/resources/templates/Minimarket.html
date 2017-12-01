@@ -28,20 +28,20 @@
                 <div class="col-xs-2 col-md-4 col-lg-4 user">
                     <i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
                     <div class="identitas">
-                        <h5 id="name">Nama / ID :SUTARTO/1011</h5>
-                        <h5 id="role-text">Role :Admin</h5>
+                        <h5 employee_Id="name">Nama / ID :SUTARTO/1011</h5>
+                        <h5 employee_Id="role-text">Role :Admin</h5>
                     </div>
-                    <div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+                    <div employee_Id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
                         <div class="segitiga">
                             <p>sgt</p>
                         </div>
                         <div class="dropdown-avatar">
                             <ul>
                                 <li>
-                                    <a id="drop_u1" href="#">
+                                    <a employee_Id="drop_u1" href="#">
                                         <i class="fa">&#xf007;</i> Akun</a>
                                 </li>
-                                <!--		<li><a id="drop_u2" href="#"><i class="glyphicon">&#xe163</i> Keluar</a></li>-->
+                                <!--		<li><a employee_Id="drop_u2" href="#"><i class="glyphicon">&#xe163</i> Keluar</a></li>-->
                             </ul>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-xs-12 navigation">
                 <a href="home.html">
-                    <i class="fa" id="home-icon">&#xf015;</i>
+                    <i class="fa" employee_Id="home-icon">&#xf015;</i>
                 </a>
             </div>
         </div>
@@ -70,37 +70,37 @@
                 </div>
                 <ul>
                     <li>
-                        <a id="sid_1" href="#">
+                        <a employee_Id="sid_1" href="#">
                             <i class="fa">&#xf19c;</i> Minimarket</a>
                     </li>
                     <li>
-                        <a id="sid_2" href="#">
+                        <a employee_Id="sid_2" href="#">
                             <i class="fa">&#xf0c0;</i> Pegawai</a>
                     </li>
                     <li>
                         <div class="dropdown">
-                            <a id="sid_3">
+                            <a employee_Id="sid_3">
                                 <i class="fa">&#xf288;</i> Produk</a>
                             <div class="dropdown-content">
-                                <a id="drop_p1" href="#">Kategori</a>
-                                <a id="drop_p2" href="#">Kelola Produk</a>
+                                <a employee_Id="drop_p1" href="#">Kategori</a>
+                                <a employee_Id="drop_p2" href="#">Kelola Produk</a>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <a id="sid_4" href="#">
+                        <a employee_Id="sid_4" href="#">
                             <i class="fa">&#xf1b3;</i> Stok</a>
                     </li>
                     <li>
-                        <a id="sid_5" href="#">
+                        <a employee_Id="sid_5" href="#">
                             <i class="fa">&#xf217;</i> Transaksi</a>
                     </li>
                     <li>
-                        <a id="sid_6" href="#">
+                        <a employee_Id="sid_6" href="#">
                             <i class="fa">&#xf02c;</i> Promo</a>
                     </li>
                     <li>
-                        <a id="sid_7" href="#">
+                        <a employee_Id="sid_7" href="#">
                             <i class="fa">&#xf080;</i> Laporan</a>
                     </li>
                 </ul>
@@ -121,7 +121,7 @@
                                 <label class="control-label" for="name">Nama :</label>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" required="required" class="form-control input" id="name" placeholder="Nama" name="name" th:value="${name}"
+                                <input type="text" required="required" class="form-control input" employee_Id="name" placeholder="Nama" name="name" th:value="${name}"
                                 />
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                 <label class="control-label" for="address">Alamat :</label>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control input" required="required" id="address " placeholder="Alamat Toko " name="address "
+                                <input type="text" class="form-control input" required="required" employee_Id="address " placeholder="Alamat Toko " name="address "
                                     th:value="${address} " />
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                 <label class="control-label " for="telephoneNumber ">No Telepon :</label>
                             </div>
                             <div class="col-sm-9 ">
-                                <input type="tel " class="form-control input " required="required " id="telephoneNumber
+                                <input type="tel " class="form-control input " required="required " employee_Id="telephoneNumber
                                     " placeholder="08XXXXXXXXXX " name="telephoneNumber " th:value="${telephoneNumber} "
                                 />
                             </div>
@@ -152,7 +152,7 @@
                                 <label class="control-label " for="email ">E-mail :</label>
                             </div>
                             <div class="col-sm-9 ">
-                                <input class="form-control input " id="email " required="required " placeholder="xxxxx@xxx.xx
+                                <input class="form-control input " employee_Id="email " required="required " placeholder="xxxxx@xxx.xx
                                     " name="email " type="email " th:value="${email} " />
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                             </div>
                             <div class="col-sm-9 ">
                                 <input type="number " class="form-control input " required="required " min="1 " max="50
-                                    " id="tax " placeholder=" " name="tax " th:value="${tax} " />
+                                    " employee_Id="tax " placeholder=" " name="tax " th:value="${tax} " />
                             </div>
                         </div>
 
@@ -171,13 +171,13 @@
                             <div class="col-sm-10 ">
                                 <label class="control-label " for="receiptDesc ">Keterangan Receipt :</label>
                                 <br></br>
-                                <textarea type="text " name="receiptDesc " cols="30 " rows="4 " id="receiptDesc
+                                <textarea type="text " name="receiptDesc " cols="30 " rows="4 " employee_Id="receiptDesc
                                     " class="form-control receipt " placeholder="masukkan keterangan pada receipt " th:value="${receiptDesc} "></textarea>
                             </div>
                         </div>
                         <div class="buttons col-sm-10 ">
-                            <button class="btn btn-primary " type="# " id="btn-batal ">Batal</button>
-                            <button type="submit " class="btn btn-success button-2 " id="btn-ubah2 ">Simpan</button>
+                            <button class="btn btn-primary " type="# " employee_Id="btn-batal ">Batal</button>
+                            <button type="submit " class="btn btn-success button-2 " employee_Id="btn-ubah2 ">Simpan</button>
                         </div>
 
                     </form>
