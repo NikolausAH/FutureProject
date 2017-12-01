@@ -20,21 +20,19 @@ public class EmployeeController {
     }
     @RequestMapping(value = "Employee")
     public String showAllEmployee(Model model) {
-        System.out.println(employeeService.showAll().size());
-        model.addAttribute("Pegawai", employeeService.showAll());
-        model.addAttribute("pgw", new Employee());
-        model.addAttribute("PegawaiUpdated", new Employee());
+        model.addAttribute("employeeList", employeeService.showAll());
+        model.addAttribute("roleList", employeeService.showAllRole());
         return "Employee";
     }
-    @PostMapping(value = "createEmployee")
-    public ModelAndView addEmployee(@ModelAttribute("pgw") Employee pgw){
+    @PostMapping(value = "Employee/Add")
+    public ModelAndView addEmployee(@ModelAttribute("employee") Employee employee){
         ModelAndView mav = new ModelAndView();
-        employeeService.add(pgw);
+        employeeService.add(employee);
         mav.setViewName("redirect:/Employee");
         return mav;
     }
 
-    @PostMapping(value = "updateEmployee")
+    @PostMapping(value = "Employee/Update")
     public ModelAndView updateEmployee(@ModelAttribute("EmployeeUpdated") Employee PegawaiUpdated){
         ModelAndView mav = new ModelAndView();
         employeeService.update(PegawaiUpdated);
@@ -43,9 +41,9 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "deleteEmployee")
-    public ModelAndView deleteEmployee(@ModelAttribute("id") Integer id){
+    public ModelAndView deleteEmployee(@ModelAttribute("employee_id") Integer employee_id){
         ModelAndView mav = new ModelAndView();
-        employeeService.delete(id);
+        employeeService.softDelete(employee_id);
         mav.setViewName("redirect:/Employee");
         return mav;
     }

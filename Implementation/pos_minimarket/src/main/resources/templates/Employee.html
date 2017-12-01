@@ -105,16 +105,15 @@
 			<!--==========sidebar.end==========-->
 			<!--==========content.start==========-->
 			<div class="col-md-10 col-lg-10 content">
-				<br></br>
+				<br />
 				<form class="form-inline" th:object="${form}" method="post">
 					<input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"
 					 th:value="${searchKey}" />
 					<button type="submit" class="btn btn-warning" employee_Id="btn-search">Cari</button>
 					<button type="button" class="btn btn-success" employee_Id="btn-export">Export</button>
 				</form>
-				<br></br>
+				<br />
 				<!--Table-->
-
 				<div class="col-md-12 col-lg-12">
 					<div class="table-responsive">
 						<table class="table">
@@ -124,15 +123,17 @@
 									<th>Nama</th>
 									<th>Role</th>
 									<th>Email</th>
+									<th>Status</th>
 								</tr>
 							</thead>
 							<tbody>
-								<th:block th:each="pegawais	: ${pegawai}">
+								<th:block th:each="list	: ${employeeList}">
 									<tr>
-										<td th:text="${pegawais.employee_Id}" />
-										<td th:text="${pegawais.name}" />
-										<td th:text="${pegawais.role}" />
-										<td th:text="${pegawais.email}" />
+										<td th:text="${list.employee_Id}" />
+										<td th:text="${list.name}" />
+										<td th:text="${list.role.name}" />
+										<td th:text="${list.email}" />
+										<td th:text="${list.status}" />
 									</tr>
 								</th:block>
 							</tbody>
@@ -165,13 +166,13 @@
 								<h4 class="modal-title" style="text-align: center">Tambah Pegawai Baru</h4>
 							</div>
 							<div class="modal-body">
-								<form class="form-horizontal" th:form="${form}" th:object="${pgw}" th:action="@{/createPegawai}"  method="post">
+								<form class="form-horizontal" th:form="${form}" th:object="${employee}" th:action="@{/Employee/Add}"  method="post">
 									<div class="form-group">
 										<div class="col-sm-3">
 											<label class="control-label" for="name">Nama :</label>
 										</div>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="name" placeholder="Nama Pegawai" name="name" th:field="*{name}" />
+											<input type="text" class="form-control" id="name" placeholder="Nama Pegawai" name="name" th:value="${name}" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -179,9 +180,24 @@
 											<label class="control-label" for="email">E-mail :</label>
 										</div>
 										<div class="col-sm-9">
-											<input type="email" class="form-control" id="email" placeholder="E-mail Pegawai" name="email" th:field="*{email}" />
+											<input type="email" class="form-control" id="email" placeholder="E-mail Pegawai" name="email" th:value="${email}" />
 										</div>
 									</div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label"> Role :</label>
+                                        </div>
+                                        <div class="col-sm-8" th:form="${form}">
+                                            <select class="form-control" th:object="${role_id}" name="role_id">
+                                                <option
+                                                        th:each="role : ${roleList}"
+                                                        th:value="${role.role_id}"
+                                                        th:text="${role.name}"
+                                                >
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
 									<div class="modal-footer">
 										<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
 											<div class="col-xs-4 col-md-4 col-lg-4"></div>

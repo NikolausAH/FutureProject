@@ -2,29 +2,30 @@ package com.blibli.pos_minimarket.Model;
 
 public class Employee {
 
-    private int employee_Id;
+    private Integer employee_Id;
     private String password;
     private String name;
-    private int role_id;
-    private String role;
+    private Role role;
     private String email;
+    private String status;
 
     public Employee() {
     }
 
-    public Employee(int employee_Id, String password, String name, int role_id, String email) {
+    public Employee(Integer employee_Id, String password, String name, Role role, String email, String status) {
         this.employee_Id = employee_Id;
         this.password = password;
         this.name = name;
-        this.role_id = role_id;
+        this.role = role;
         this.email = email;
+        this.status = status;
     }
 
-    public int getEmployee_Id() {
+    public Integer getEmployee_Id() {
         return employee_Id;
     }
 
-    public void setEmployee_Id(int employee_Id) {
+    public void setEmployee_Id(Integer employee_Id) {
         this.employee_Id = employee_Id;
     }
 
@@ -44,12 +45,12 @@ public class Employee {
         this.name = name;
     }
 
-    public int getRole_id() {
-        return role_id;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getEmail() {
@@ -60,11 +61,11 @@ public class Employee {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
+    public String getStatus() {
+        return status;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
