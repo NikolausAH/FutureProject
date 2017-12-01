@@ -33,6 +33,28 @@ public class EmployeeService {
         }
         return roleList;
     }
+    public Role getRoleById(Integer role_id) {
+        Role role = new Role();
+        try {
+            role = EmployeeDAO.getRoleById(role_id);
+        }
+        catch (Exception EX){
+            System.out.println("Error EmployeeService getRoleById");
+            System.out.println(EX.toString());
+        }
+        return role;
+    }
+    public Integer getNextId() {
+        Integer nextId = 1;
+        try {
+            nextId = EmployeeDAO.getNextId();
+        }
+        catch (Exception EX){
+            System.out.println("Error EmployeeService getRoleById");
+            System.out.println(EX.toString());
+        }
+        return nextId;
+    }
     public void add(Employee Employee) {
         try {
             EmployeeDAO.add(Employee);
@@ -62,7 +84,7 @@ public class EmployeeService {
     }
     public void softDelete(Integer employee_id){
         try {
-            EmployeeDAO.delete(employee_id);
+            EmployeeDAO.softDelete(employee_id);
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService softDelete");

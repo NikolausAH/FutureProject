@@ -3,6 +3,8 @@ package com.blibli.pos_minimarket.DataAccessObject;
 import com.blibli.pos_minimarket.Model.Employee;
 import com.blibli.pos_minimarket.Model.Role;
 import org.springframework.stereotype.Repository;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -65,6 +67,14 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
         }
         return role;
     }
+    public Integer getNextId(){
+        Integer nextId = 1;
+        String sql = "SELECT employees_employee_id_seq.last_value FROM employees_employee_id_seq;";
+        String message = "Error EmployeeDAO getNextId";
+        nextId = generalDAO.getNextId(sql,message);
+        return nextId;
+    }
+
     @Override
     public List<Employee> getAll() {
         List<Employee> employeeList = new ArrayList<>();

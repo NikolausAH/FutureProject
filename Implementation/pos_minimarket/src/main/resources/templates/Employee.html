@@ -109,8 +109,8 @@
 				<form class="form-inline" th:object="${form}" method="post">
 					<input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"
 					 th:value="${searchKey}" />
-					<button type="submit" class="btn btn-warning" employee_Id="btn-search">Cari</button>
-					<button type="button" class="btn btn-success" employee_Id="btn-export">Export</button>
+					<button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
+					<button type="button" class="btn btn-success" id="btn-export">Export</button>
 				</form>
 				<br />
 				<!--Table-->
@@ -169,6 +169,14 @@
 								<form class="form-horizontal" th:form="${form}" th:object="${employee}" th:action="@{/Employee/Add}"  method="post">
 									<div class="form-group">
 										<div class="col-sm-3">
+											<label class="control-label" for="employee_nextId">ID Pegawai :</label>
+										</div>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="employee_nextId" name="employee_nextId" th:value="${employee_nextId}" disabled="true"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-3">
 											<label class="control-label" for="name">Nama :</label>
 										</div>
 										<div class="col-sm-9">
@@ -184,10 +192,10 @@
 										</div>
 									</div>
                                     <div class="form-group">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <label class="control-label"> Role :</label>
                                         </div>
-                                        <div class="col-sm-8" th:form="${form}">
+                                        <div class="col-sm-9" th:form="${form}">
                                             <select class="form-control" th:object="${role_id}" name="role_id">
                                                 <option
                                                         th:each="role : ${roleList}"
@@ -215,108 +223,116 @@
 						</div>
 					</div>
 				</div>
-
-				<!--Aksi Ubah-->
-				<div class="col-xs-6 col-md-6 col-lg-6 aksi" employee_Id="aksi-ubah">
-					<i class="fa" employee_Id="btn-close" onclick="closeUbah()">&#xf00d;</i>
-					<i class="fa" employee_Id="user-avatar">&#xf2be;</i>
-					<i class="fa" employee_Id="edit-avatar">&#xf030;</i>
-					<br></br>
-					<form class="form-horizontal" th:form="${form}" th:object="${pegawaiUpdated}" th:action="@{/updatePegawai}" method="post">
-						<br></br>
-						<div class="form-group">
-							<div class="col-sm-3">
-								<label class="control-label" for="employee_Id">ID :</label>
-							</div>
-							<div class="col-sm-9">
-								<input type="number" class="form-control" employee_Id="employee_Id" placeholder="ID Pegawai" name="employee_Id" th:value="${employee_Id}" />
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-3">
-								<label class="control-label" for="name">Nama :</label>
-							</div>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" employee_Id="name" placeholder="Nama Baru" name="name" th:value="${name}" />
-							</div>
-						</div>
-						<div class="dropdown-role row">
-							<div class="col-sm-3">
-								<label class="control-label" for="role">Role :</label>
-							</div>
-							<div class="col-sm-9" employee_Id="role-label">
-								<select class="btn btn-default dropdown-toggle" type="button" employee_Id="role" data-toggle="dropdown" name="role" th:value="${role}">
-									<option>Kasir</option>
-									<option>Admin</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-12 col-lg-12" employee_Id="two-button">
-							<div class="col-xs-6 col-md-6 col-lg-6">
-								<button type="button" class="btn btn-primary" employee_Id="btn-batal" onclick="closeUbah()">Batal</button>
-							</div>
-							<div class="col-xs-6 col-md-6 col-lg-6">
-								<button type="submit" class="btn btn-warning" value="Submit" employee_Id="btn-ubah2">Ubah</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				<!--Akhir Aksi Ubah-->
-				<!--Aksi Hapus-->
-				<div class="col-xs-6 col-md-6 col-lg-6 aksi" employee_Id="aksi-hapus">
-					<i class="fa" employee_Id="btn-close" onclick="closeHapus()">&#xf00d;</i>
-					<br></br>
-					<form class="form-horizontal" th:form="${form}" th:object="${pegawaiUpdated}" th:action="@{/updatePegawai}" method="post">
-						<br></br>
-						<div class="form-group">
-							<div class="col-sm-3">
-								<label class="control-label" for="employee_Id">ID :</label>
-							</div>
-							<div class="col-sm-9">
-								<input type="number" class="form-control" employee_Id="employee_Id" placeholder="ID Pegawai Dihapus" name="employee_Id" th:value="${employee_Id}" />
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-12 col-lg-12" employee_Id="two-button">
-							<div class="col-xs-6 col-md-6 col-lg-6">
-								<button type="button" class="btn btn-primary" employee_Id="btn-batal" onclick="closeHapus()">Batal</button>
-							</div>
-							<div class="col-xs-6 col-md-6 col-lg-6">
-								<button type="submit" class="btn btn-danger" value="Submit" employee_Id="btn-ubah2">Hapus</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				<!--Akhir Aksi Hapus-->
+                <!--End AddModal-->
+                <!-- EditModal -->
+                <div class="modal fade" id="updateModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="text-align: center">Ubah Data Pegawai</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" th:form="${form}" th:object="${employee}" th:action="@{/Employee/Update}"  method="post">
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label class="control-label" for="employee_Id">ID Pegawai :</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control" id="employee_Id" name="employee_Id" th:value="${employee_Id}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label class="control-label" for="name">Nama :</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="name" placeholder="Nama Pegawai" name="name" th:value="${name}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label class="control-label" for="email">E-mail :</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" id="email" placeholder="E-mail Pegawai" name="email" th:value="${email}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label class="control-label"> Role :</label>
+                                        </div>
+                                        <div class="col-sm-9" th:form="${form}">
+                                            <select class="form-control" th:object="${role_id}" name="role_id">
+                                                <option
+                                                        th:each="role : ${roleList}"
+                                                        th:value="${role.role_id}"
+                                                        th:text="${role.name}"
+                                                >
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                            <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                                            </div>
+                                            <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="submit" value="Submit" class="btn btn-warning" id="btn-ubah">Ubah</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End EditModal-->
+                <!-- DeleteModal -->
+                <div class="modal fade" id="deleteModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="text-align: center">Hapus Produk</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" th:action="@{/Employee/Delete}"  method="post">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="employee_Id">ID Pegawai :</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="number" class="form-control" id="employee_Id" placeholder="ID akan dihapus" name="employee_Id" th:value="${employee_Id}"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                            <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                                            </div>
+                                            <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="submit" value="Submit" class="btn btn-danger" id="btn-tambah">Hapus</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End DeleteModal-->
 			</div>
 			<!--==========content.end==========-->
 		</div>
 	</div>
-	<script>
-		function openTambah() {
-			document.getElementById("aksi-tambah").style.display = "block";
-			document.getElementById("aksi-ubah").style.display = "none";
-			document.getElementById("aksi-hapus").style.display = "none";
-		}
-		function closeTambah() {
-			document.getElementById("aksi-tambah").style.display = "none";
-		}
-		function openUbah() {
-			document.getElementById("aksi-ubah").style.display = "block";
-			document.getElementById("aksi-tambah").style.display = "none";
-			document.getElementById("aksi-hapus").style.display = "none";
-		}
-		function closeUbah() {
-			document.getElementById("aksi-ubah").style.display = "none";
-		}
-		function openHapus() {
-			document.getElementById("aksi-hapus").style.display = "block";
-			document.getElementById("aksi-tambah").style.display = "none";
-			document.getElementById("aksi-ubah").style.display = "none";
-		}
-		function closeHapus() {
-			document.getElementById("aksi-hapus").style.display = "none";
-		}
-	</script>
 </body>
 <!--==========head.end==========-->
 

@@ -23,10 +23,10 @@ public class ProductController {
     }
 
     @RequestMapping("/Product")
-    public String showAllProduct(Model model, Model model1) {
+    public String showAllProduct(Model model) {
         productService.initTable();
         model.addAttribute("product", productService.showAll());
-        model1.addAttribute("categoryList", categoryService.showAll());
+        model.addAttribute("categoryList", categoryService.showAll());
         return "Product";
     }
 
