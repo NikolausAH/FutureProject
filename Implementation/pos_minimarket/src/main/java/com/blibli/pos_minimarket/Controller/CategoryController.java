@@ -24,12 +24,12 @@ public class CategoryController {
     public String showAllCategory(Model model) {
         categoryService.initTable();
         model.addAttribute("category", categoryService.showAll());
+        model.addAttribute("category_nextId", categoryService.getNextId());
         return "Category";
     }
 
     @RequestMapping(value = "Category/Search")
     public String searchCategory(@ModelAttribute("searchKey")String searchKey,Model model){
-        System.out.println(searchKey);
         model.addAttribute("category", categoryService.search(searchKey));
         return "Category";
     }
@@ -37,6 +37,7 @@ public class CategoryController {
     @PostMapping(value = "/Category/Add")
     public ModelAndView addCategory(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
+        category.setCategoryId(categoryService.getNextId());
         categoryService.add(category);
         mav.setViewName("redirect:/Category");
         return mav;

@@ -165,6 +165,14 @@
                             <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Add}"  method="post">
                                 <div class="form-group">
                                     <div class="col-sm-4">
+                                        <label class="control-label" for="category_nextId">ID Kategori:</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="category_nextId" name="category_nextId" th:value="${category_nextId}" disabled="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
                                         <label class="control-label" for="name">Nama:</label>
                                     </div>
                                     <div class="col-sm-8">

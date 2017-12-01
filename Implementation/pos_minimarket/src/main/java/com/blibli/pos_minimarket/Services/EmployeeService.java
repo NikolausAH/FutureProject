@@ -9,12 +9,12 @@ import java.util.List;
 
 @Service //menandakan class ini service
 public class EmployeeService {
-    private EmployeeDAO EmployeeDAO = new EmployeeDAO();
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
 
     public List<Employee> showAll() {
         List<Employee> employeeList = new ArrayList<>();
         try {
-            employeeList = EmployeeDAO.getAll();
+            employeeList = employeeDAO.getAll();
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService showAll");
@@ -25,7 +25,7 @@ public class EmployeeService {
     public List<Role> showAllRole() {
         List<Role> roleList = new ArrayList<>();
         try {
-            roleList = EmployeeDAO.getAllRole();
+            roleList = employeeDAO.getAllRole();
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService showAllRole");
@@ -36,7 +36,7 @@ public class EmployeeService {
     public Role getRoleById(Integer role_id) {
         Role role = new Role();
         try {
-            role = EmployeeDAO.getRoleById(role_id);
+            role = employeeDAO.getRoleById(role_id);
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService getRoleById");
@@ -47,7 +47,7 @@ public class EmployeeService {
     public Integer getNextId() {
         Integer nextId = 1;
         try {
-            nextId = EmployeeDAO.getNextId();
+            nextId = employeeDAO.getNextId();
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService getRoleById");
@@ -57,7 +57,7 @@ public class EmployeeService {
     }
     public void add(Employee Employee) {
         try {
-            EmployeeDAO.add(Employee);
+            employeeDAO.add(Employee);
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService Add");
@@ -66,7 +66,7 @@ public class EmployeeService {
     }
     public void update(Employee Employee){
         try{
-            EmployeeDAO.update(Employee);
+            employeeDAO.update(Employee);
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService Update");
@@ -75,7 +75,7 @@ public class EmployeeService {
     }
     public void delete(Integer employee_id){
         try {
-            EmployeeDAO.delete(employee_id);
+            employeeDAO.delete(employee_id);
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService Delete");
@@ -84,7 +84,7 @@ public class EmployeeService {
     }
     public void softDelete(Integer employee_id){
         try {
-            EmployeeDAO.softDelete(employee_id);
+            employeeDAO.softDelete(employee_id);
         }
         catch (Exception EX){
             System.out.println("Error EmployeeService softDelete");
