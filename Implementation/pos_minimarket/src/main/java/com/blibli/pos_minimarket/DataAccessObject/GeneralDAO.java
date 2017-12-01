@@ -11,7 +11,7 @@ public class GeneralDAO extends ConnectionSettings{
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate(); //executeUpdate selain select
             preparedStatement.close();
             this.closeConnection();
         }catch (Exception EX)

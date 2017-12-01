@@ -25,7 +25,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
                 "    status VARCHAR(15) NOT NULL" +
                 ");";
         String message = "Error CategoryDAO initTable";
-        generalDAO.executeSet(sql,message);
+        generalDAO.executeSet(sql, message);
     }
 
     @Override
