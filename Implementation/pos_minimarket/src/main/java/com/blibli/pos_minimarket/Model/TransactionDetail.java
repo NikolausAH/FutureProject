@@ -1,24 +1,29 @@
 package com.blibli.pos_minimarket.Model;
 
 public class TransactionDetail {
-    Integer detail_Id, quantity;
-    Double price,discount;
-    Integer product_Id, transaction_Id, p_discount_id, p_bxgy_id;
+    private Integer detail_Id;
+    private Integer quantity;
+    private Double price;
+    private Double discount;
+    private PromoProduct promoProduct;
+    private PromoXY promoXY;
+    private Product product;
+    private Transaction transaction;
     /* Foreign Key productId,
      * transactionId,
      * discountPId = discount product id
      * discountPxy = discount product Buy x Get y
      */
     public TransactionDetail() {}
-    public TransactionDetail(Integer detail_Id, Integer quantity, Double price, Double discount, Integer product_Id, Integer transaction_Id, Integer p_discount_id, Integer p_bxgy_id) {
+    public TransactionDetail(Integer detail_Id, Integer quantity, Double price, Double discount, PromoProduct promoProduct, PromoXY promoXY, Product product, Transaction transaction) {
         this.detail_Id=detail_Id;
         this.quantity=quantity;
         this.price=price;
         this.discount=discount;
-        this.product_Id=product_Id;
-        this.transaction_Id=transaction_Id;
-        this.p_discount_id=p_discount_id;
-        this.p_bxgy_id=p_bxgy_id;
+        this.product=product;
+        this.transaction=transaction;
+        this.promoProduct=promoProduct;
+        this.promoXY=promoXY;
     }
 
     public Integer getDetail_Id() {
@@ -53,35 +58,35 @@ public class TransactionDetail {
         this.discount = discount;
     }
 
-    public Integer getProduct_Id() {
-        return product_Id;
+    public PromoProduct getPromoProduct() {
+        return promoProduct;
     }
 
-    public void setProduct_Id(Integer product_Id) {
-        this.product_Id = product_Id;
+    public void setPromoProduct(PromoProduct promoProduct) {
+        this.promoProduct = promoProduct;
     }
 
-    public Integer getTransaction_Id() {
-        return transaction_Id;
+    public PromoXY getPromoXY() {
+        return promoXY;
     }
 
-    public void setTransaction_Id(Integer transaction_Id) {
-        this.transaction_Id = transaction_Id;
+    public void setPromoXY(PromoXY promoXY) {
+        this.promoXY = promoXY;
     }
 
-    public Integer getP_discount_id() {
-        return p_discount_id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setP_discount_id(Integer p_discount_id) {
-        this.p_discount_id = p_discount_id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public Integer getP_bxgy_id() {
-        return p_bxgy_id;
+    public Transaction getTransaction() {
+        return transaction;
     }
 
-    public void setP_bxgy_id(Integer p_bxgy_id) {
-        this.p_bxgy_id = p_bxgy_id;
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
 }

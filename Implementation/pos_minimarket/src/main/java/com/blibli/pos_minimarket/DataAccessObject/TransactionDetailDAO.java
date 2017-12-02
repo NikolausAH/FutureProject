@@ -1,6 +1,8 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
+import com.blibli.pos_minimarket.Model.TransactionDetail;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class TransactionDetailDAO extends ConnectionSettings {
@@ -20,11 +22,29 @@ public class TransactionDetailDAO extends ConnectionSettings {
                 "    discountPid INT," +
                 "    discountPxy INT," +
                 "    column_8 INT," +
-                "    CONSTRAINT transactioDetail_product_productid_fk FOREIGN KEY (productId) REFERENCES product (product_id)," +
-                "    CONSTRAINT transactioDetail_discountProduct_discountPid_fk FOREIGN KEY (discountPid) REFERENCES discountProduct (discountPid),"+
-                "    CONSTRAINT transactioDetail_discountProductXY_productPxy_fk FOREIGN KEY (discountPxy) REFERENCES discountProductXY (discountpxyid)"+
+                "    CONSTRAINT transactionDetail_product_productid_fk FOREIGN KEY (productId) REFERENCES product (product_id)," +
+                "    CONSTRAINT transactionDetail_discountProduct_discountPid_fk FOREIGN KEY (discountPid) REFERENCES discountProduct (discountPid),"+
+                "    CONSTRAINT transactionDetail_discountProductXY_productPxy_fk FOREIGN KEY (discountPxy) REFERENCES discountProductXY (discountpxyid)"+
                 ");";
         String message = "Error TransactionDetailDAO initTable";
+        generalDAO.executeSet(sql,message);
+    }
+
+    public void add(TransactionDetail transactionDetail){
+        System.out.println(transactionDetail.getDiscount());
+        System.out.println(transactionDetail.getPrice());
+        System.out.println(transactionDetail.getQuantity());
+        System.out.println(transactionDetail.getProduct().getProductId());
+        System.out.println(transactionDetail.getTransaction().getTransactionId());
+        String sql = "INSERT INTO transaction_detail (quantity, price, discount, product_id, transaction_id) "+
+                "VALUES("+
+                "   '"+transactionDetail.getQuantity()+"',"+
+                "   '"+transactionDetail.getPrice()+"',"+
+                "   '"+transactionDetail.getDiscount()+"',"+
+                "   '"+transactionDetail.getProduct().getProductId()+"',"+
+                "   '"+transactionDetail.getTransaction().getTransactionId()+"'"+
+                ");";
+        String message = "Error TransactionDetailDAO add";
         generalDAO.executeSet(sql,message);
     }
 /*

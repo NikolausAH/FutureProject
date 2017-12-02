@@ -15,8 +15,9 @@ import java.util.List;
 public class TransactionService {
     private TransactionDAO transactionDAO = new TransactionDAO();
     private ProductDAO productDAO = new ProductDAO();
-    private Minimarket minimarket = new Minimarket();
+    private MinimarketService minimarketService = new MinimarketService();
     private ProductService productService = new ProductService();
+    private TransactionDetailService transactionDetailService = new TransactionDetailService();
     public TransactionService() {
     }
 
@@ -30,7 +31,7 @@ public class TransactionService {
         }
     }
    public Double updateTax(Double total){
-        return total * minimarket.getTax();
+        return total * (minimarketService.getTax()/100);
     }
 
     public Double updateTotal(){
@@ -42,11 +43,9 @@ public class TransactionService {
             if (productList != null) {
                 for (Product aProductList : productList) {
                     quantity = aProductList.getQuantity();
-                    System.out.println(quantity);
                     Product product;
                     product=productDAO.getById(aProductList.getProductId());
                     price = product.getPrice();
-                    System.out.println(price);
                     total += quantity * price;
                 }
             }
@@ -68,7 +67,7 @@ public class TransactionService {
         return localDateTime;
     }
 
-    public Integer initTransactionId(){
+    public Integer getNextId(){
         Integer nextId = 1;
         try{
             nextId = transactionDAO.getNextId();
@@ -126,10 +125,11 @@ public class TransactionService {
             transaction.setTax(tax);
             transaction.setTotal(finalTotal);
             transaction.setDiscount(discount);
-            System.out.println("Error TransactionController initialTransaction");
-            System.out.println(dateTime);
             transaction.setDateTime(dateTime);
+            transaction.setTransactionId(transactionDAO.getNextId());
             transactionDAO.add(transaction);
+            transactionDetailService.add(transaction);
+            //transactionDAO.removeFromCart();
         }
         catch (Exception EX){
             System.out.println("Error TransactionService Add");

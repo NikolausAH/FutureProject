@@ -25,4 +25,14 @@ public class MinimarketService {
         }
         return minimarket;
     }
+    public Double getTax() {
+        Double tax = 0.0;
+        try {
+            tax = minimarketDAO.getTax();
+        }catch (Exception EX){
+            System.out.println("Error MinimarketService getTax");
+            System.out.println(EX);
+        }
+        return tax;
+    }
 }

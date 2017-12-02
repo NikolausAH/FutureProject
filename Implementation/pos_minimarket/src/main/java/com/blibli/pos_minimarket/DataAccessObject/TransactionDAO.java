@@ -58,35 +58,25 @@ public class TransactionDAO extends ConnectionSettings {
         Integer nextId = 1;
         String sql = "SELECT transaction_transaction_id_seq.last_value FROM transaction_transaction_id_seq;";
         String message = "Error TransactionDAO getNextId";
-        try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet != null)  {
-                while (resultSet.next()){
-                    nextId+=resultSet.getInt("last_value");
-                }
-            }
-            this.closeConnection();
-        }
-        catch (Exception EX){
-            System.out.println(message);
-            System.out.println(EX.toString());
-        }
+        nextId = generalDAO.getNextId(sql,message);
         return nextId;
     }
 
     public void addToCart(Integer productId, Integer quantity) {
-        System.out.println(productId+quantity);
         String sql = "INSERT INTO temp_cart (product_id,quantity) VALUES ('"+productId+"','"+quantity+"');";
-        String message = "Error Transaction DAO addToCart";
+        String message = "Error TransactionDAO addToCart";
+        generalDAO.executeSet(sql, message);
+    }
+    public void removeFromCart() {
+        String sql = "DELETE FROM temp_cart;";
+        String message = "Error TransactionDAO removeFromCart";
         generalDAO.executeSet(sql, message);
     }
 
     public List<Product> getFromCart(){
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM temp_cart";
-        String message = "Error Transaction DAO getFromCart";
+        String message = "Error TransactionDAO getFromCart";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
