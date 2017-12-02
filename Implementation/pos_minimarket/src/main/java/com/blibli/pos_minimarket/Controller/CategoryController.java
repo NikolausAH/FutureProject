@@ -21,16 +21,10 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "Category")
-    public String showAllCategory(Model model) {
+    public String showAllCategory(@ModelAttribute("searchKey")String searchKey,Model model) {
         categoryService.initTable();
-        model.addAttribute("category", categoryService.showAll());
-        model.addAttribute("category_nextId", categoryService.getNextId());
-        return "Category";
-    }
-
-    @RequestMapping(value = "Category/Search")
-    public String searchCategory(@ModelAttribute("searchKey")String searchKey,Model model){
         model.addAttribute("category", categoryService.search(searchKey));
+        model.addAttribute("category_nextId", categoryService.getNextId());
         return "Category";
     }
 

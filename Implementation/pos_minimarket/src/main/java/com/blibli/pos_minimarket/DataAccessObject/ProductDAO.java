@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Repository
 public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Product,Integer, String> {
@@ -144,12 +145,21 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     @Override
     public List<Product> search(String searchKey) {
         List<Product> productList = new ArrayList<>();
-        String sql = "SELECT * FROM product WHERE name = '"+searchKey+"' ORDER BY product_id;";
+        Scanner scanner = new Scanner(searchKey);
+
+        String sqlString = "SELECT * FROM product WHERE name LIKE '%"+searchKey+"%' ORDER BY product_id;";
+        String sqlInteger = "SELECT * FROM product WHERE product_id = '"+searchKey+"' OR name LIKE '%"+searchKey+"%' ORDER BY product_id;";
         String message = "Error ProductDAO search";
         try {
             this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet;
+            if (scanner.hasNextInt()){
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlInteger);
+                resultSet = preparedStatement.executeQuery();
+            }else {
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlString);
+                resultSet = preparedStatement.executeQuery();
+            }
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Product product = new Product();

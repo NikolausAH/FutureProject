@@ -106,8 +106,8 @@
         <!--==========content.start==========-->
         <div class="col-md-10 col-lg-10 content">
             <br />
-            <form class="form-inline" th:object="${form}" th:action="@{/Category/Search}" method="post">
-                <input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"  th:value="${searchKey}"/>
+            <form class="form-inline" th:object="${form}" th:action="@{/Category}" method="post">
+                <input type="text" class="form-control src" name="searchKey" placeholder="Kode atau Nama Kategori"  th:value="${searchKey}"/>
                 <button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
                 <button type="button" class="btn btn-success" id="btn-export">Export</button>
             </form>

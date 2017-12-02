@@ -23,9 +23,9 @@ public class ProductController {
     }
 
     @RequestMapping("/Product")
-    public String showAllProduct(Model model) {
+    public String showAllProduct(@ModelAttribute("searchKey")String searchKey, Model model) {
         productService.initTable();
-        model.addAttribute("product", productService.showAll());
+        model.addAttribute("product", productService.search(searchKey));
         model.addAttribute("categoryList", categoryService.showAll());
         model.addAttribute("product_nextId", categoryService.getNextId());
         return "Product";
@@ -58,10 +58,4 @@ public class ProductController {
         return mav;
     }
 
-    @RequestMapping(value = "/Product/Search")
-    public String searchCategory(@ModelAttribute("searchKey")String searchKey,Model model){
-        System.out.println(searchKey);
-        model.addAttribute("product", productService.search(searchKey));
-        return "Product";
-    }
 }
