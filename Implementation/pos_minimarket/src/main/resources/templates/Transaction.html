@@ -118,100 +118,81 @@
         <!--==========sidebar.end==========-->
         <!--==========content.start==========-->
         <div class="col-md-10 col-lg-10 content">
-            <br />
             <div style="border: 1px solid black;">
                 <br />
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="col-sm-4" id="col-padding5">
-                            <label class="control-label" for="transaction_nextId" style="text-align: justify">Nomor Penjualan:</label>
+                    <div class="col-sm-3">
+                        <div class="col-sm-5" id="col-padding5">
+                            <label class="control-label" for="transaction_nextId" style="text-align: justify">Nomor :</label>
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-7">
                             <input type="number" class="form-control" id="transaction_nextId" th:object="${transaction_nextId}" name="transaction_nextId" th:value="${transaction_nextId}" disabled="true"/>
                         </div>
                     </div>
                     <div class="col-sm-5">
-                        <div class="col-sm-6" id="col-padding5">
-                            <label class="control-label" for="tax" style="text-align: justify">Pajak :</label>
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="number" class="form-control" id="tax" name="tax" th:object="${tax}" th:value="${tax}"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-sm-6">
                         <div class="col-sm-4" id="col-padding5">
-                            <label class="control-label" for="date_Time" style="text-align: justify">Tanggal / Waktu :</label>
+                            <label class="control-label" for="date_Time" style="text-align: justify">Waktu :</label>
                         </div>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="date_Time" th:object="${date_Time}" name="date_Time" th:value="${date_Time}"/>
                         </div>
                     </div>
-                    <div class="col-sm-5">
-                        <div class="col-sm-6" id="col-padding5">
-                            <label class="control-label" for="total" style="text-align: justify">Total Akhir:</label>
+                    <div class="col-sm-4">
+                        <div class="col-sm-5" id="col-padding5">
+                            <label class="control-label" for="tax" style="text-align: justify">Pajak :</label>
                         </div>
-                        <div class="col-sm-6" id="col-padding5">
-                            <input type="number" class="form-control" id="total"  th:object="${total}" th:value="${total}" name="total"/>
+                        <div class="col-sm-7">
+                            <input type="number" class="form-control" id="tax" name="tax" th:object="${tax}" th:value="${tax}"/>
                         </div>
                     </div>
-                    <div class="col-sm-1"></div>
                 </div>
                 <br />
             </div>
-            <!--Group2 -->
             <div style="border: 1px solid black;">
-                <br />
-                <form id="addToCart"  th:action="@{Transaction/addToCart}" method="post">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" id="col-padding5">
-                                <label class="control-label" for="productId" style="text-align: justify">Kode Product:</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" id="productId" th:object="${productId}" name="productId" th:value="${productId}" />
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-sm-5" id="col-padding5">
-                                <label class="control-label" for="quantity" style="text-align: justify">Jumlah :</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" id="quantity" name="quantity" th:object="${quantity}" th:value="${quantity}"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-1"></div>
-                    </div>
-                </form>
                 <br />
                 <div class="row">
                     <div class="col-sm-8">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-3" id="col-padding5">
-                            <label class="control-label" style="text-align: justify">Nama Product :</label>
+                        <form id="addToCart"  th:action="@{Transaction/addToCart}" method="post">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="col-sm-3" id="col-padding5">
+                                        <label class="control-label" for="productId" style="text-align: left" >Produk:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" placeholder="Kode/Nama Produk" id="productId" th:object="${productId}" name="productId" th:value="${productId}" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-5" id="col-padding5">
+                                        <label class="control-label" for="quantity" style="text-align: justify">Jumlah:</label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="number" class="form-control" id="quantity" name="quantity" th:object="${quantity}" th:value="${quantity}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-5" id="col-padding5">
+                            <label class="control-label" for="total" style="text-align: justify">Total Akhir:</label>
                         </div>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" disabled="true"/>
+                        <div class="col-sm-7" id="col-padding5">
+                            <input type="number" class="form-control" id="total"  th:object="${total}" th:value="${total}" name="total"/>
                         </div>
                     </div>
-                    <div class="col-sm-4"></div>
                 </div>
                 <br />
             </div>
-            <br />
             <!--Table-->
             <h3 style="text-align: center">Daftar Belanja</h3>
             <div class="col-md-12 col-lg-12">
-                <div class="table-responsive" style="min-height: 30vh">
+                <div class="table-responsive" style="min-height: 35vh; max-height: 35vh">
                     <table class="table">
                         <thead>
                         <tr>
                             <th>Kode</th>
-                            <th>NamaEdit</th>
+                            <th>Nama</th>
                             <th>Harga</th>
                             <th>Jumlah</th>
                             <th>Sub Total</th>
@@ -262,19 +243,12 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal" th:action="@{Transaction/Payment}" method="post">
-                            <div class="col-sm-6">
-                                <div class="col-sm-4" id="col-padding5">
-                                    <label class="control-label" for="date_Time" style="text-align: justify">Tanggal / Waktu :</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="date_Time" th:object="${date_Time}" name="date_Time" th:value="${date_Time}"/>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <div class="col-sm-4">
                                     <label class="control-label" for="total">Total Belanja:</label>
                                 </div>
                                 <div class="col-sm-8">
+                                    <input type="hidden" class="form-control" id="date_Time" th:object="${date_Time}" name="date_Time" th:value="${date_Time}"/>
                                     <input type="number" class="form-control" id="total" name="total" th:value="${total}" disabled="true"/>
                                 </div>
                             </div>

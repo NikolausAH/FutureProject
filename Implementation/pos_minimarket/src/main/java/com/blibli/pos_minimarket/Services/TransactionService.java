@@ -129,7 +129,7 @@ public class TransactionService {
             transaction.setTransactionId(transactionDAO.getNextId());
             transactionDAO.add(transaction);
             transactionDetailService.add(transaction);
-            //transactionDAO.removeFromCart();
+            transactionDAO.removeFromCart();
         }
         catch (Exception EX){
             System.out.println("Error TransactionService Add");
