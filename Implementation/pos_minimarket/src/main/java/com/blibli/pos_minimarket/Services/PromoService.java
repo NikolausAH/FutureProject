@@ -95,4 +95,32 @@ public class PromoService {
         }
         return promoList;
     }
+    public void add(Promo promo, PromoXY promoXY, PromoProduct promoProduct, PromoTotal promoTotal, String type){
+        try{
+            if(type.equals("Promo XY")){
+                promoXY.setId(promo.getId());
+                promoXY.setStartDate(promo.getStartDate());
+                promoXY.setEndDate(promo.getEndDate());
+                promoXY.setStatus(promo.getStatus());
+                promoXYDAO.add(promoXY);
+            }
+            else if(type.equals("Promo Produk")){
+                promoProduct.setId(promo.getId());
+                promoProduct.setStartDate(promo.getStartDate());
+                promoProduct.setEndDate(promo.getEndDate());
+                promoProduct.setStatus(promo.getStatus());
+                promoProductDAO.add(promoProduct);
+            }
+            else if (type.equals("Promo Total")){
+                promoTotal.setId(promo.getId());
+                promoTotal.setStartDate(promo.getStartDate());
+                promoTotal.setEndDate(promo.getEndDate());
+                promoTotal.setStatus(promo.getStatus());
+                promoTotalDAO.add(promoTotal);
+            }
+        }
+        catch (Exception EX){
+            System.out.println();
+        }
+    }
 }
