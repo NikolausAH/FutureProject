@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>POS | Laporan</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link th:href="@{../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../css/style_peg.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../css/style_lap.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../css/cdnjs_Icons.css}" rel="stylesheet"/>
+	<link th:href="@{../css/googleapis_Icons.css}" rel="stylesheet"/>
+	<script th:src="@{../js/jquery.js}" type="text/javascript"></script>
+	<script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
+	<script>
+        function openFilter() {
+            document.getElementById("filter-transaksi").style.display="block";
+        }
+        function closeFilter() {
+            document.getElementById("filter-transaksi").style.display="none";
+        }
+	</script>
+</head>
+
+<!--==========head.end==========-->
+<body>
+<!--==========header.start==========-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="header">
+			<div class="col-xs-3 col-md-2 col-lg-2 logo">
+				<a th:href="@{#}"> <img src="../images/BliBli.png" th:src="@{../images/BliBli.png}" class="logo"/></a>
+			</div>
+			<div class="col-xs-7 col-md-6 col-lg-6 judul" >
+				<h1>POS Blibli</h1>
+			</div>
+			<div class="col-xs-2 col-md-4 col-lg-4 user">
+				<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+				<div class="identitas">
+					<h5 id="name">Nama / ID :SUTARTO/1011</h5>
+					<h5 id="role-text">Role :Admin</h5>
+				</div>
+				<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+					<div class="segitiga">
+						<p>sgt</p>
+					</div>
+					<div class="dropdown-avatar">
+						<ul>
+							<li><a id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
+							<li><a id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--==========header.end==========-->
+<div class="container">
+	<!--==========navigation.start==========-->
+	<div class="row">
+		<div class ="col-xs-12 navigation">
+			<a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
+			<i class="fa">&#xf105;</i>
+			<a id="pos">Laporan</a>
+			<i class="fa">&#xf105;</i>
+			<a th:href="@{../Report-Transaction.html}" id="pos">Transaksi</a>
+		</div>
+	</div>
+	<!--==========navigation.end==========-->
+	<div class="row">
+		<!--==========sidebar.start==========-->
+		<div class ="col-md-2 col-lg-2 sidebar">
+			<!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+			<div class="toggle">
+				<h3>Menu</h3> <i class="fa menu" aria-hidden="true">&#9776;</i>
+			</div>
+			<ul>
+				<li>
+					<a id="sid_1" th:href="@{../Minimarket.html}"><i class="fa">&#xf19c;</i> Minimarket</a>
+				</li>
+				<li>
+					<a id="sid_2" th:href="@{../Employee.html}"><i class="fa">&#xf0c0;</i> Pegawai</a>
+				</li>
+				<li>
+					<div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+						<div class="dropdown-content" id="dr-produk">
+							<a id="drop_p1" th:href="@{../Category.html}">Kategori</a>
+							<a id="drop_p2" th:href="@{../Product.html}">Kelola Produk</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a id="sid_4" th:href="@{../Stock.html}"><i class="fa">&#xf1b3;</i> Stok</a>
+				</li>
+				<li>
+					<a id="sid_5" th:href="@{../Transaction.html}"><i class="fa">&#xf217;</i> Transaksi</a>
+				</li>
+				<li>
+					<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+				</li>
+				<li>
+				<li>
+					<div class="dropdown"><a id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
+						<div class="dropdown-content" id="dr-laporan">
+							<a id="drop_p1" th:href="@{../Report-Transaction.html}">Transaksi</a>
+							<a id="drop_p2" href="#">Statistik</a>
+						</div>
+					</div>
+				</li>
+				</li>
+			</ul>
+		</div>
+		<!--==========sidebar.end==========-->
+		<!--==========content.start==========-->
+		<div class="col-md-10 col-lg-10 content">
+			<!--Start bagan filter-->
+			<section class="search-transaksi">
+				<br />
+				<div class="row">
+					<div class="col-sm-8" id="search-form">
+						<input class="form-control src del-radius-right" name="search" placeholder="Nomor Transaksi..." />
+					</div>
+					<div class="col-sm-1" id="btn-src">
+						<button type="button" class="btn btn-warning del-radius-left" id="btn-src2"><i class="fa ">&#xf002;</i></button>
+					</div>
+					<div class="col-sm-1">
+						<button type="button" class="btn btn-primary" id="btn-filter" onclick="openFilter()" >Filter</button>
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-success" id="btn-export">Export</button>
+					</div>
+				</div>
+			</section>
+			<section id="filter-transaksi">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="col-sm-4" id="col-padding5">
+							<label class="control-label" for="periose">Periode :</label>
+						</div>
+						<div class="col-sm-8">
+							<select>
+								<option>Tanggal</option>
+								<option>Bulan</option>
+								<option>Tahun</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="col-sm-4" id="col-padding5">
+							<label class="control-label" for="bulan">Bulan :</label>
+						</div>
+						<div class="col-sm-8">
+							<select>
+								<option>Januari</option>
+								<option>Februari</option>
+								<option>Maret</option>
+								<option>April</option>
+								<option>Mei</option>
+								<option>Juni</option>
+								<option>Juli</option>
+								<option>Agustus</option>
+								<option>September</option>
+								<option>Oktober</option>
+								<option>November</option>
+								<option>Desember</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="col-sm-4" id="col-padding5">
+							<label class="control-label" for="mulai">Mulai :</label>
+						</div>
+						<div class="col-sm-8">
+							<input type="date" name="tgl-mulai" />
+						</div>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-4">
+					</div>
+					<div class="col-sm-4">
+						<div class="col-sm-4" id="col-padding5">
+							<label class="control-label" for="tahun">Tahun :</label>
+						</div>
+						<div class="col-sm-8">
+							<input type="number" class="form-control" name="tahun" value="2017" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="col-sm-4" id="col-padding5">
+							<label class="control-label" for="sampai">Sampai :</label>
+						</div>
+						<div class="col-sm-8">
+							<input type="date" name="tgl-akhir" />
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--End bagan filter-->
+			<section class="tabel-detail">
+				<!--Start Judul Tabel-->
+				<div class="row">
+					<div class="col-sm-7 judul-tabel">
+						<h3>Data Transaksi</h3>
+					</div>
+					<div class="col-sm-5 judul-tabel">
+						<h3>Data Transaksi</h3>
+					</div>
+				</div>
+				<!--End Judul Tabel-->
+				<!--Start Tabel-->
+				<br />
+				<div class="row">
+					<div class="col-sm-7">
+						<div class="table-responsive" id="t-laporan">
+							<table class="table">
+								<thead>
+								<tr>
+									<th>No</th>
+									<th>Tanggal</th>
+									<th>Diskon (%)</th>
+									<th>Pajak(%)</th>
+									<th>Total</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>1</td>
+									<td>04/10/2017</td>
+									<td>5</td>
+									<td>10</td>
+									<td>2875</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="col-sm-5">
+						<div class="table-responsive" id="t-laporan">
+							<table class="table">
+								<thead>
+								<tr>
+									<th>No</th>
+									<th>Kode Produk</th>
+									<th>Nama</th>
+									<th>Jumlah</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>1</td>
+									<td>1001</td>
+									<td>Indomie Goreng</td>
+									<td>1</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+		<!--End Tabel-->
+		</section>
+
+		</div>
+		<!--==========content.end==========-->
+
+	</div>
+</div>
+</body>
+</html>
