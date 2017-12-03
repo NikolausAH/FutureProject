@@ -10,8 +10,8 @@ public class PromoProduct extends Promo {
     public PromoProduct() {
     }
 
-    public PromoProduct(Integer id, Timestamp startDate, Timestamp endDate, String status, double discountPercent, Integer productId) {
-        super(id, startDate, endDate, status);
+    public PromoProduct(Integer id, Timestamp startDate, Timestamp endDate, String status, String type, double discountPercent, Integer productId) {
+        super(id, startDate, endDate, status,type);
         this.setDiscountPercent(discountPercent);
         this.setProductId(productId);
     }

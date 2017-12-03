@@ -11,8 +11,8 @@ public class PromoXY extends Promo {
     public PromoXY() {
     }
 
-    public PromoXY(Integer id, Timestamp startDate, Timestamp endDate,String status, Integer quantityX, Integer quantityY, Integer productXId, Integer productYId) {
-        super(id, startDate, endDate, status);
+    public PromoXY(Integer id, Timestamp startDate, Timestamp endDate,String status,String type, Integer quantityX, Integer quantityY, Integer productXId, Integer productYId) {
+        super(id, startDate, endDate, status,type);
         this.setQuantityX(quantityX);
         this.setQuantityY(quantityY);
         this.setProductXId(productXId);

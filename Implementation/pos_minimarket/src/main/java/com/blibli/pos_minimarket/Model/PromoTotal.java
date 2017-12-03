@@ -10,8 +10,8 @@ public class PromoTotal extends Promo {
     public PromoTotal() {
     }
 
-    public PromoTotal(Timestamp startDate, Timestamp endDate, Integer id,String status, Integer idTotal, double discountPercent, double buyMin) {
-        super(id, startDate, endDate, status);
+    public PromoTotal(Timestamp startDate, Timestamp endDate, Integer id,String status, String type, Integer idTotal, double discountPercent, double buyMin) {
+        super(id, startDate, endDate, status,type);
         this.setDiscountPercent(discountPercent);
         this.setBuyMin(buyMin);
         this.setIdTotal(idTotal);

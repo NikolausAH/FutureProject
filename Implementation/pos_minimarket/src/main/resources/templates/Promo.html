@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>POS | Minimarket</title>
+    <title>POS | Promo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css"
     />
@@ -175,130 +175,167 @@
                     </div>
                 </div>
                 <!--Akhir Button tambah ubah hapus-->
-                <!--Aksi tambah-->
+
+                <!-- addModal -->
                 <div class="modal fade" id="createModal" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="col-md-12">
-                            <form>
-                                <div class="col-md-6">
-                                    <p>Data promo</p>
+                    <div class="modal-dialog" style="width : 1100px">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="text-align: center">Tambah Promo Baru</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="form1" class="form-horizontal" th:form="${form}" th:object="${promo}" th:action="@{/Promo/Add}" method="post">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <div class="col-sm-4">
+                                                <label class="cotrol-label" for="Id">ID:</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="number" class="form-control" id="Id" placeholder="1" name="Id" th:value="${Id}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="type">Jenis:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="type" placeholder="Nama Kategori" name="type" th:value="${type}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="startDate">Tgl Mulai</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="startDate" placeholder="" name="startDate" th:value="${startDate}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="endDate">Tgl Akhir</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="endDate" placeholder="Nama Kategori" name="endDate" th:value="${endDate}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah">Tambah</button>
+                                </form>
+                                <div class="col-sm-4">
+                                    <form id="form2" th:action="@{/Promo/Add}" method="post" th:object="${promoTotal}">
+                                        <h5>Promo Total</h5>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="discountPercent">Diskon(%)</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="discountPercent" placeholder="0" name="discountPercent" th:value="${discountPercent}"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="buyMin">Jumlah Min</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="buyMin" placeholder="0" name="buyMin" th:value="${buyMin}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="idTotal">ID Produk</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="idTotal" placeholder="0" name="idTotal" th:value="${idTotal}" />
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="col-md-5">
-                                    <p>Data barang x</p>
+                                <div class="col-sm-4">
+                                    <form id="form3" th:action="@{/Promo/Add}" method="post" th:object="${promoProduct}">
+                                        <h5>Promo Produk</h5>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="discountPercent">Diskon (%)</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="discountPercent" placeholder="0" name="discountPercent" th:value="${discountPercent}"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="productId">ID Produk</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="productId" placeholder="0" name="productId" th:value="${productId}" />
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="col-md-1">
-                                    <button type="button" class="close" aria-label="Close" onclick="closeTambah()">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                <div class="col-sm-4">
+                                    <form id="form4" th:action="@{/Promo/Add}" method="post" th:object="${promoXY}">
+                                        <h5>Promo Beli X dapat Y</h5>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="productXId">ID Barang X</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="productXId" placeholder="0" name="productXId" th:value="${productXId}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="quantityX">Jumlah Barang X</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="quantityX" placeholder="0" name="quantityX" th:value="${quantityX}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="productYId">ID Barang Y</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="productYId" placeholder="0" name="productYId" th:value="${productYId}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="quantityY">Jumlah Barang Y</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="quantityY" placeholder="0" name="quantityY" onclick="submitForms()" th:value="${quantityY}"
+                                                />
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                Kode Promo:
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="Kode-promo" placeholder="kode..."></input>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Kode barang:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="Kode-promo" placeholder="kode..."></input>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <p>Tanggal Mulai:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="date" name="Tanggal Mulai" placeholder="automatic"></input>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Nama barang:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="Nama-barang" placeholder="automatic"></input>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <p>Tanggal Berakhir:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="date" name="tanggal-berakhir" placeholder="automatic"></input>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Jumlah barang minimal:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="number" name="Jumlah-min" min="1" max="10"></input>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <p>Jenis Promo:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Dropdown button
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="modal-footer">
+                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                        <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                        <div class="col-xs-3 col-md-3 col-lg-3">
+                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                        <div class="col-xs-3 col-md-3 col-lg-3">
+                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah" form="form1">Tambah</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Data Barang y</p>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <p>Belanja Minimal(Rp):</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="number" name="tanggal-berakhir"></input>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Kode Barang:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="Jumlah-min"></input>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <p>Diskon(%):</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="number" name="pajak" max="20" min="1"></input>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Nama Barang:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="nama-barang-y"></input>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-6 two-buttons">
-                                <button type="button" class="btn btn-primary batal">Batal</button>
-                                <button type="button" class="btn btn-success tambah">Tambah</button>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Jumlah Barang:</p>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="number" name="jumlah-barang-y" max="10" min="1"></input>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--Akhir Aksi tambah-->
+
                 <!--Aksi Ubah-->
                 <div class="col-xs-10 col-md-10 col-lg-10" id="aksi-ubah">
                     <div class="col-md-12">
@@ -440,6 +477,9 @@
 
         function closeUbah() {
             document.getElementById("aksi-ubah").style.display = "none";
+        }
+        function submitFormAdd() {
+            document.getElementById("form1").submit();
         }
     </script>
 </body>

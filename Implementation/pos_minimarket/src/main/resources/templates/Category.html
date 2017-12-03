@@ -1,295 +1,322 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>POS | Kategori</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{../css/bootstrap.min.css}" href="../static/css/bootstrap.min.css"  rel="stylesheet" type="text/css"/>
-    <link th:href="@{../css/style.css}" href="../static/css/style.css"  rel="stylesheet" type="text/css"/>
-    <link th:href="@{../css/style_peg.css}" href="../static/css/style_peg.css"  rel="stylesheet" type="text/css"/>
-    <link th:href="@{../css/style_kat.css}" href="../static/css/style_kat.css"  rel="stylesheet" type="text/css"/>
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css"
+    />
+    <link th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{../css/style.css}" href="../static/css/style.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{../css/style_peg.css}" href="../static/css/style_peg.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{../css/style_kat.css}" href="../static/css/style_kat.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" th:src="@{../js/script.js}"></script>
     <script th:src="@{../js/jquery.js}" type="text/javascript"></script>
     <script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
 </head>
 <!--==========head.end==========-->
+
 <body>
-<!--==========header.start==========-->
-<div class="container-fluid">
-    <div class="row">
-        <div class="header">
-            <div class="col-xs-3 col-md-2 col-lg-2 logo">
-                <a th:href="@{#}"> <img src="../images/BliBli.png" th:src="@{../images/BliBli.png}" class="logo"/></a>
-            </div>
-            <div class="col-xs-7 col-md-6 col-lg-6 judul" >
-                <h1>POS Blibli</h1>
-            </div>
-            <div class="col-xs-2 col-md-4 col-lg-4 user">
-                <i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
-                <div class="identitas">
-                    <h5 id="name">Nama / ID :SUTARTO/1011</h5>
-                    <h5 id="role-text">Role :Admin</h5>
+    <!--==========header.start==========-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="header">
+                <div class="col-xs-3 col-md-2 col-lg-2 logo">
+                    <a th:href="@{#}">
+                        <img src="../images/BliBli.png" th:src="@{../images/BliBli.png}" class="logo" />
+                    </a>
                 </div>
-                <div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
-                    <div class="segitiga">
-                        <p>sgt</p>
+                <div class="col-xs-7 col-md-6 col-lg-6 judul">
+                    <h1>POS Blibli</h1>
+                </div>
+                <div class="col-xs-2 col-md-4 col-lg-4 user">
+                    <i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+                    <div class="identitas">
+                        <h5 id="name">Nama / ID :SUTARTO/1011</h5>
+                        <h5 id="role-text">Role :Admin</h5>
                     </div>
-                    <div class="dropdown-avatar">
-                        <ul>
-                            <li><a id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
-                            <li><a id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
-                        </ul>
+                    <div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+                        <div class="segitiga">
+                            <p>sgt</p>
+                        </div>
+                        <div class="dropdown-avatar">
+                            <ul>
+                                <li>
+                                    <a id="drop_u1" th:href="@{#}">
+                                        <i class="fa">&#xf007;</i> Akun</a>
+                                </li>
+                                <li>
+                                    <a id="drop_u2" th:href="@{#}">
+                                        <i class="material-icons">&#xe879;</i> Keluar</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!--==========header.end==========-->
-<div class="container">
-    <!--==========navigation.start==========-->
-    <div class="row">
-        <div class ="col-xs-12 navigation">
-            <a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
-            <i class="fa">&#xf105;</i>
-            <a id="pos">Product</a>
-            <i class="fa">&#xf105;</i>
-            <a th:href="@{../Category.html}" id="pos">Kategori</a>
+    <!--==========header.end==========-->
+    <div class="container">
+        <!--==========navigation.start==========-->
+        <div class="row">
+            <div class="col-xs-12 navigation">
+                <a href="#">
+                    <i class="fa" id="home-icon"> &#xf015;</i>
+                </a>
+                <i class="fa">&#xf105;</i>
+                <a id="pos">Product</a>
+                <i class="fa">&#xf105;</i>
+                <a th:href="@{../Category.html}" id="pos">Kategori</a>
+            </div>
         </div>
-    </div>
-    <!--==========navigation.end==========-->
-    <div class="row">
-        <!--==========sidebar.start==========-->
-        <div class ="col-md-2 col-lg-2 sidebar">
-            <!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
-            <div class="toggle">
-                <h3>Menu</h3> <i class="fa menu" aria-hidden="true">&#9776;</i>
-            </div>
-            <ul>
-                <li>
-                    <a id="sid_1" href="#"><i class="fa">&#xf19c;</i> Minimarket</a>
-                </li>
-                <li>
-                    <a id="sid_2" href="#"><i class="fa">&#xf0c0;</i> Pegawai</a>
-                </li>
-                <li>
-                    <div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
-                        <div class="dropdown-content" id="dr-produk">
-                            <a id="drop_p1" th:href="@{../Category.html}">Kategori</a>
-                            <a id="drop_p2" th:href="@{../Product.html}">Kelola Produk</a>
+        <!--==========navigation.end==========-->
+        <div class="row">
+            <!--==========sidebar.start==========-->
+            <div class="col-md-2 col-lg-2 sidebar">
+                <!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+                <div class="toggle">
+                    <h3>Menu</h3>
+                    <i class="fa menu" aria-hidden="true">&#9776;</i>
+                </div>
+                <ul>
+                    <li>
+                        <a id="sid_1" href="#">
+                            <i class="fa">&#xf19c;</i> Minimarket</a>
+                    </li>
+                    <li>
+                        <a id="sid_2" href="#">
+                            <i class="fa">&#xf0c0;</i> Pegawai</a>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                            <a id="sid_3">
+                                <i class="fa">&#xf288;</i> Produk</a>
+                            <div class="dropdown-content" id="dr-produk">
+                                <a id="drop_p1" th:href="@{../Category.html}">Kategori</a>
+                                <a id="drop_p2" th:href="@{../Product.html}">Kelola Produk</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <a id="sid_4" th:href="@{../Stock.html}"><i class="fa">&#xf1b3;</i> Stok</a>
-                </li>
-                <li>
-                    <a id="sid_5" th:href="@{../Transaction.html}"><i class="fa">&#xf217;</i> Transaksi</a>
-                </li>
-                <li>
-                    <a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
-                </li>
-                <li>
-                <li>
-                    <div class="dropdown"><a id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
-                        <div class="dropdown-content" id="dr-laporan">
-                            <a id="drop_p1" href="#">Transaksi</a>
-                            <a id="drop_p2" href="#">Statistik</a>
-                        </div>
-                    </div>
-                </li>
-                </li>
-            </ul>
-        </div>
-        <!--==========sidebar.end==========-->
-        <!--==========content.start==========-->
-        <div class="col-md-10 col-lg-10 content">
-            <br />
-            <form class="form-inline" th:object="${form}" th:action="@{/Category/Search}" method="post">
-                <input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"  th:value="${searchKey}"/>
-                <button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
-                <button type="button" class="btn btn-success" id="btn-export">Export</button>
-            </form>
-            <br />
-            <!--Table-->
-            <div class="col-md-12 col-lg-12">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Kode</th>
-                            <th>Nama</th>
-                            <th>Deskripsi</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <th:block th:each="cat : ${category}">
-                            <tr>
-                                <td th:text="${cat.categoryId}" />
-                                <td th:text="${cat.name}"/>
-                                <td th:text="${cat.description}"/>
-                                <td th:text="${cat.status}"/>
-                            </tr>
-                        </th:block>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!--end of table-->
-            <!--Button tambah ubah hapus-->
-            <br />
-            <div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
-                <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-success" id="btn-tambah" data-toggle="modal" data-target="#createModal">Tambah</button>
-                </div>
-                <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-warning" id="btn-ubah" data-toggle="modal" data-target="#updateModal">Ubah</button>
-                </div>
-                <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-danger" id="btn-hapus" data-toggle="modal" data-target="#deleteModal">Hapus</button>
-                </div>
-            </div>
-            <!--Akhir Button tambah ubah hapus-->
-            <!-- addModal -->
-            <div class="modal fade" id="createModal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="text-align: center">Tambah Kategori Baru</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Add}"  method="post">
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="name">Nama:</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="name" placeholder="Nama Kategori" name="name" th:value="${name}"/>
-                                    </div>
+                    </li>
+                    <li>
+                        <a id="sid_4" th:href="@{../Stock.html}">
+                            <i class="fa">&#xf1b3;</i> Stok</a>
+                    </li>
+                    <li>
+                        <a id="sid_5" th:href="@{../Transaction.html}">
+                            <i class="fa">&#xf217;</i> Transaksi</a>
+                    </li>
+                    <li>
+                        <a id="sid_6" href="#">
+                            <i class="fa">&#xf02c;</i> Promo</a>
+                    </li>
+                    <li>
+                        <li>
+                            <div class="dropdown">
+                                <a id="sid_7">
+                                    <i class="fa">&#xf080;</i> Laporan</a>
+                                <div class="dropdown-content" id="dr-laporan">
+                                    <a id="drop_p1" href="#">Transaksi</a>
+                                    <a id="drop_p2" href="#">Statistik</a>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="description">Deskripsi :</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <textarea class="form-control" rows="5" id="description" name="description" th:value="${description}"></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
-                                        <div class="col-xs-4 col-md-4 col-lg-4"></div>
-                                        <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                            </div>
+                        </li>
+                    </li>
+                </ul>
+            </div>
+            <!--==========sidebar.end==========-->
+            <!--==========content.start==========-->
+            <div class="col-md-10 col-lg-10 content">
+                <br />
+                <form class="form-inline" th:object="${form}" th:action="@{/Category/Search}" method="post">
+                    <input type="text" class="form-control src" name="searchKey" placeholder="Nama Kategori... (Cari kode masih belum bisa)"
+                        th:value="${searchKey}" />
+                    <button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
+                    <button type="button" class="btn btn-success" id="btn-export">Export</button>
+                </form>
+                <br />
+                <!--Table-->
+                <div class="col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Nama</th>
+                                    <th>Deskripsi</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <th:block th:each="cat : ${category}">
+                                    <tr>
+                                        <td th:text="${cat.categoryId}" />
+                                        <td th:text="${cat.name}" />
+                                        <td th:text="${cat.description}" />
+                                        <td th:text="${cat.status}" />
+                                    </tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--end of table-->
+                <!--Button tambah ubah hapus-->
+                <br />
+                <div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
+                    <div class="col-xs-4 col-md-4 col-lg-4">
+                        <button type="button" class="btn btn-success" id="btn-tambah" data-toggle="modal" data-target="#createModal">Tambah</button>
+                    </div>
+                    <div class="col-xs-4 col-md-4 col-lg-4">
+                        <button type="button" class="btn btn-warning" id="btn-ubah" data-toggle="modal" data-target="#updateModal">Ubah</button>
+                    </div>
+                    <div class="col-xs-4 col-md-4 col-lg-4">
+                        <button type="button" class="btn btn-danger" id="btn-hapus" data-toggle="modal" data-target="#deleteModal">Hapus</button>
+                    </div>
+                </div>
+                <!--Akhir Button tambah ubah hapus-->
+                <!-- addModal -->
+                <div class="modal fade" id="createModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="text-align: center">Tambah Kategori Baru</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Add}" method="post">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="name">Nama:</label>
                                         </div>
-                                        <div class="col-xs-2 col-md-2 col-lg-2"></div>
-                                        <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah">Tambah</button>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="name" placeholder="Nama Kategori" name="name" th:value="${name}" />
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="description">Deskripsi :</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" rows="5" id="description" name="description" th:value="${description}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                            <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                                            </div>
+                                            <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah">Tambah</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- updateModal -->
-            <div class="modal fade" id="updateModal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="text-align: center">Ubah Kategori</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Update}"  method="post">
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="categoryId">Id Edit nanti:</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="categoryId" placeholder="ID akan diubah" name="categoryId" th:value="${categoryId}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="name">Nama:</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="name" placeholder="Nama Baru" name="name" th:value="${name}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="description">Deskripsi :</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <textarea class="form-control" rows="5" id="description" name="description" th:value="${description}"></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
-                                        <div class="col-xs-4 col-md-4 col-lg-4"></div>
-                                        <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                <!-- updateModal -->
+                <div class="modal fade" id="updateModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="text-align: center">Ubah Kategori</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Update}" method="post">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="categoryId">Id Edit nanti:</label>
                                         </div>
-                                        <div class="col-xs-2 col-md-2 col-lg-2"></div>
-                                        <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-warning" id="btn-tambah">Ubah</button>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="categoryId" placeholder="ID akan diubah" name="categoryId" th:value="${categoryId}"
+                                            />
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="name">Nama:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="name" placeholder="Nama Baru" name="name" th:value="${name}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="description">Deskripsi :</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" rows="5" id="description" name="description" th:value="${description}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                            <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                                            </div>
+                                            <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="submit" value="Submit" class="btn btn-warning" id="btn-tambah">Ubah</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- DeleteModal -->
-            <div class="modal fade" id="deleteModal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="text-align: center">Hapus Kategori</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" th:action="@{/Category/Delete}"  method="post">
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="categoryId">Kode Kategori :</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="categoryId" placeholder="ID akan dihapus" name="categoryId" th:value="${categoryId}"/>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
-                                        <div class="col-xs-4 col-md-4 col-lg-4"></div>
-                                        <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                <!-- DeleteModal -->
+                <div class="modal fade" id="deleteModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="text-align: center">Hapus Kategori</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" th:action="@{/Category/Delete}" method="post">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="categoryId">Kode Kategori :</label>
                                         </div>
-                                        <div class="col-xs-2 col-md-2 col-lg-2"></div>
-                                        <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-danger" id="btn-tambah">Hapus</button>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="categoryId" placeholder="ID akan dihapus" name="categoryId" th:value="${categoryId}"
+                                            />
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="modal-footer">
+                                        <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                            <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                                            </div>
+                                            <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                            <div class="col-xs-3 col-md-3 col-lg-3">
+                                                <button type="submit" value="Submit" class="btn btn-danger" id="btn-tambah">Hapus</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--==========content.end==========-->
         </div>
-        <!--==========content.end==========-->
     </div>
-</div>
 </body>
 <!--==========head.end==========-->
+
 </html>

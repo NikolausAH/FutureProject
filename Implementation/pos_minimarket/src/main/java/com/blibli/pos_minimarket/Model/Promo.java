@@ -7,15 +7,17 @@ public class Promo {
     private Timestamp startDate;
     private Timestamp endDate;
     private String status;
+    private String type;
 
     public Promo() {
     }
 
-    public Promo(int id, Timestamp startDate, Timestamp endDate, String status) {
+    public Promo(int id, Timestamp startDate, Timestamp endDate, String status, String type) {
         setId(id);
         setEndDate(startDate);
         setEndDate(endDate);
         setStatus(status);
+        setType(type);
     }
 
     public int getId() {
@@ -48,5 +50,13 @@ public class Promo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -30,9 +30,10 @@ public class PromoController {
         return "Promo";
     }
     @RequestMapping(value = "/Promo/Add")
-    public ModelAndView addPromo(@ModelAttribute("promo") Promo promo, PromoXY promoXY, PromoTotal promoTotal, PromoProduct promoProduct, String type){
+    public ModelAndView addPromo(@ModelAttribute("promo") Promo promo/*, @ModelAttribute("promoXY")PromoXY promoXY, @ModelAttribute("promoTotal")PromoTotal promoTotal, @ModelAttribute("promoProduct")PromoProduct promoProduct*/){
         ModelAndView mav = new ModelAndView();
-        promoService.add(promo,promoXY,promoProduct,promoTotal,type);
+        System.out.println(promo.getId());
+      //  promoService.add(promo);
         mav.setViewName("redirect:/Promo");
         return mav;
     }
