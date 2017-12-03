@@ -212,53 +212,57 @@
 				<!--Start Tabel-->
 				<br />
 				<div class="row">
-					<div class="col-sm-7">
+					<div class="col-sm-12">
 						<div class="table-responsive" id="t-laporan">
 							<table class="table">
 								<thead>
 								<tr>
 									<th>No</th>
 									<th>Tanggal</th>
-									<th>Diskon (%)</th>
-									<th>Pajak(%)</th>
+									<th>Pajak (Rp)</th>
+									<th>Diskon (Rp)</th>
 									<th>Total</th>
+									<th>Kasir</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<td>1</td>
-									<td>04/10/2017</td>
-									<td>5</td>
-									<td>10</td>
-									<td>2875</td>
-								</tr>
+								<th:block th:each="transaction : ${transactionList}">
+									<tr>
+										<td th:text="${transaction.transactionId}" />
+										<td th:text="${transaction.dateTime}"/>
+										<td th:text="${transaction.tax}"/>
+										<td th:text="${transaction.discount}"/>
+										<td th:text="${transaction.total}"/>
+										<td th:text="${transaction.employee.name}"/>
+									</tr>
+								</th:block>
 								</tbody>
 							</table>
 						</div>
 					</div>
 
-					<div class="col-sm-5">
-						<div class="table-responsive" id="t-laporan">
-							<table class="table">
-								<thead>
-								<tr>
-									<th>No</th>
-									<th>Kode Produk</th>
-									<th>Nama</th>
-									<th>Jumlah</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td>1</td>
-									<td>1001</td>
-									<td>Indomie Goreng</td>
-									<td>1</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
+					<!--<div class="col-sm-5">-->
+						<!--<div class="table-responsive" id="t-laporan">-->
+							<!--<table class="table">-->
+								<!--<thead>-->
+								<!--<tr>-->
+									<!--<th>No</th>-->
+									<!--<th>Kode Produk</th>-->
+									<!--<th>Nama</th>-->
+									<!--<th>Jumlah</th>-->
+								<!--</tr>-->
+								<!--</thead>-->
+								<!--<tbody>-->
+								<!--<tr>-->
+									<!--<td>1</td>-->
+									<!--<td>1001</td>-->
+									<!--<td>Indomie Goreng</td>-->
+									<!--<td>1</td>-->
+								<!--</tr>-->
+								<!--</tbody>-->
+							<!--</table>-->
+						<!--</div>-->
+					<!--</div>-->
 				</div>
 		<!--End Tabel-->
 		</section>

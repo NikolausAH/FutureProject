@@ -136,12 +136,15 @@ public class TransactionService {
             System.out.println(EX.toString());
         }
     }
-    /*
     public List<Transaction> showAllTransaction() {
-        connectionSettings.makeConnection();
-        List<Transaction> transactionList = transactionDAO.getAllTransaction();
-        connectionSettings.closeConnection();
+        List<Transaction> transactionList = new ArrayList<>();
+        try{
+            transactionList = transactionDAO.getAllTransaction();
+        }catch (Exception EX)
+        {
+            System.out.println("Error TransactionService showAllTransaction");
+            System.out.println(EX.toString());
+        }
         return transactionList;
     }
-    */
 }

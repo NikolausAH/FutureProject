@@ -12,6 +12,7 @@ import java.util.List;
 public class TransactionDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
     private ProductDAO productDAO = new ProductDAO();
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
 
     public TransactionDAO() {
     }
@@ -98,34 +99,33 @@ public class TransactionDAO extends ConnectionSettings {
         return productList;
     }
 
-//    public List<Transaction> getAll() {
-//        List<Transaction> transactionList = new ArrayList<>();
-//
-//        String sql = "SELECT * FROM transaction";
-//        try {
-//            this.makeConnection();
-//            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            this.closeConnection();
-//            if (resultSet != null) {
-//                while (resultSet.next()) {
-//                    Transaction transaction = new Transaction();
-//                    transaction.setTransactionId(resultSet.getInt("transactionId"));
-//                    transaction.setDateTime(resultSet.getString("dateTime"));
-//                    transaction.setTax(resultSet.getDouble("tax"));
-//                    transaction.setDiscount(resultSet.getDouble("discount"));
-//                    transaction.setTotal(resultSet.getDouble("total"));
-//                    transactionList.add(transaction);
-//                }
-//                resultSet.close();
-//            }
-//            preparedStatement.close();
-//        } catch (Exception EX) {
-//            System.out.println("Error TransactionDAO getAll");
-//            System.out.println(EX.toString());
-//        }
-//        return transactionList;
-//    }
+    public List<Transaction> getAllTransaction() {
+        List<Transaction> transactionList = new ArrayList<>();
 
+        String sql = "SELECT * FROM transaction ORDER BY transaction_id DESC ";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    Transaction transaction = new Transaction();
+                    transaction.setTransactionId(resultSet.getInt("transaction_Id"));
+                    transaction.setDateTime(resultSet.getString("date_Time"));
+                    transaction.setTax(resultSet.getDouble("tax"));
+                    transaction.setDiscount(resultSet.getDouble("discount"));
+                    transaction.setTotal(resultSet.getDouble("total"));
+                    transaction.setEmployee(employeeDAO.getById(resultSet.getInt("employee_id")));
+                    transactionList.add(transaction);
+                }
+                resultSet.close();
+            }
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println("Error TransactionDAO getAll");
+            System.out.println(EX.toString());
+        }
+        return transactionList;
+    }
 
 }
