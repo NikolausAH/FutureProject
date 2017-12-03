@@ -32,7 +32,7 @@ public class PromoTotalDAO extends ConnectionSettings implements InterfaceDAO<Pr
 
     @Override
     public List<PromoTotal> getAll() {
-        List<PromoTotal> promoList = new ArrayList<>();
+        List<PromoTotal> promoTotalList = new ArrayList<>();
         String sql = "SELECT * FROM promo_total_buy ORDER BY p_total_id;";
         String message = "Error PromoTotalDAOgetAll";
         try {
@@ -48,7 +48,7 @@ public class PromoTotalDAO extends ConnectionSettings implements InterfaceDAO<Pr
                     promoTotal.setStartDate(resultSet.getTimestamp("start_date"));
                     promoTotal.setEndDate(resultSet.getTimestamp("end_date"));
                     promoTotal.setStatus(resultSet.getString("status"));
-                    promoList.add(promoTotal);
+                    promoTotalList.add(promoTotal);
                 }
                 resultSet.close();
             }
@@ -57,7 +57,7 @@ public class PromoTotalDAO extends ConnectionSettings implements InterfaceDAO<Pr
             System.out.println(message);
             System.out.println(EX.toString());
         }
-        return promoList;
+        return promoTotalList;
     }
 
     @Override
