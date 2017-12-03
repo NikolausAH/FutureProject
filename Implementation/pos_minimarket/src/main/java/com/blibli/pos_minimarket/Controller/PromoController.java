@@ -13,6 +13,7 @@ import java.util.List;
 @Controller
 public class PromoController {
     private final PromoService promoService;
+
     @Autowired
     public PromoController(PromoService promoService) {
         this.promoService = promoService;
@@ -22,21 +23,7 @@ public class PromoController {
     public String getAll(Model model) {
         promoService.initTable();
         model.addAttribute("promo", promoService.showAll());
-
-        try {
-            List<Promo> promoList = promoService.showAll();
-            if(promoList!=null){
-                System.out.println("sjhkahdkjsahdskhdjas");
-                System.out.println(promoList.size());
-            }
-            for (Promo PromoTotalList : promoList) {
-                System.out.println("uuuuuuuuuuuuuuuuuuuuuuuu");
-                System.out.println(PromoTotalList.getStatus());
-            }
-        }catch (Exception EX){
-            System.out.println("HHHHHHHHHHHHHHHHHHHHHH");
-        }
-
         return "Promo";
-    }}
+    }
+}
 

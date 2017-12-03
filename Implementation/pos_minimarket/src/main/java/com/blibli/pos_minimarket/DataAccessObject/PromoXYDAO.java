@@ -33,7 +33,7 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
     @Override
     public List<PromoXY> getAll() {
         List<PromoXY> promoList = new ArrayList<>();
-        String sql = "SELECT * FROM promo_buyx_gety ORDER BY p_discount_id;";
+        String sql = "SELECT * FROM promo_buyx_gety ORDER BY p_bxgy_id;";
         String message = "Error PromoXYDAO getAll";
         try {
             this.makeConnection();
@@ -42,7 +42,7 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
             if (resultSet != null) {
                 while (resultSet.next()) {
                     PromoXY promoXY = new PromoXY();
-                    promoXY.setId(resultSet.getInt("p_discount_id"));
+                    promoXY.setId(resultSet.getInt("p_bxgy_id"));
                     promoXY.setStartDate(resultSet.getTimestamp("start_date"));
                     promoXY.setEndDate(resultSet.getTimestamp("end_date"));
                     promoXY.setStatus(resultSet.getString("status"));
@@ -83,8 +83,26 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
     }
 
     @Override
-    public void update(PromoXY t) {
-
+    public void update(PromoXY promoXY) {
+//        String sql = "UPDATE promo_buyx_gety SET quantity_x = 3, quantity_y = 4,start_date='1000-01-01 00:00:00.1' " +
+//                "WHERE p_bxgy_id = 5";
+//        try {
+//            this.makeConnection();
+//            System.out.println("Run Update Pegawai");
+//            System.out.println(pegawai.getNama());
+//            System.out.println(pegawai.getRole());
+//            System.out.println(pegawai.getId());
+//            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+//            preparedStatement.setString(1, pegawai.getNama());
+//            preparedStatement.setString(2, pegawai.getRole());
+//            preparedStatement.setInt(3, pegawai.getId());
+//            preparedStatement.executeUpdate();
+//            preparedStatement.close();
+//            this.closeConnection();
+//        } catch (Exception EX) {
+//            System.out.println("Error PegawaiDAO Update");
+//            System.out.println(EX.toString());
+//        }
     }
 
     @Override

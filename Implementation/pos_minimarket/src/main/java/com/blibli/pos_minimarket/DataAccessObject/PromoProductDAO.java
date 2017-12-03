@@ -18,7 +18,7 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO 
         String sql = "CREATE TABLE IF NOT EXISTS public.promo_product_discount" +
                 "(" +
                 "    p_discount_id SERIAL PRIMARY KEY NOT NULL," +
-                "    discount_persen DOUBLE PRECISION NOT NULL," +
+                "    discount_percent DOUBLE PRECISION NOT NULL," +
                 "    start_date TIMESTAMP NOT NULL," +
                 "    start_date TIMESTAMP NOT NULL," +
                 "    product_id INTEGER NOT NULL," +
@@ -41,7 +41,7 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO 
                 while (resultSet.next()) {
                     PromoProduct promoProduct = new PromoProduct();
                     promoProduct.setId(resultSet.getInt("p_discount_id"));
-                    promoProduct.setDiscountPercent(resultSet.getDouble("discount_persen"));
+                    promoProduct.setDiscountPercent(resultSet.getDouble("discount_percent"));
                     promoProduct.setStartDate(resultSet.getTimestamp("start_date"));
                     promoProduct.setEndDate(resultSet.getTimestamp("end_date"));
                     promoProduct.setProductId(resultSet.getInt("product_id"));
@@ -70,7 +70,7 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO 
 
     @Override
     public void add(PromoProduct promoProduct) {
-        String sql = "INSERT INTO promo_product_discount(p_discount_id, discount_persen, start_date, end_date, product_id, status)VALUES " +
+        String sql = "INSERT INTO promo_product_discount(p_discount_id, discount_percent, start_date, end_date, product_id, status)VALUES " +
                 "("+promoProduct.getId()+","+
                 "("+promoProduct.getDiscountPercent()+","+
                 "("+promoProduct.getStartDate()+","+
