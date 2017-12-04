@@ -43,12 +43,15 @@ public class TransactionDetailService {
             System.out.println(EX.toString());
         }
     }
-/*
-    public List<TransactionDetail> showAll() {
-        connectionSettings.makeConnection();
-        List<TransactionDetail> transactionDetailList = transactionDetailDAO.getAllTransactionDetail();
-        connectionSettings.closeConnection();
+
+    public List<TransactionDetail> showOne(Integer searchKey) {
+        List<TransactionDetail> transactionDetailList = new ArrayList<>();
+        try {
+            transactionDetailList = transactionDetailDAO.getByIdTransaction(searchKey);
+        }catch (Exception EX){
+            System.out.println("Error TransactionDetailService showOne");
+            System.out.println(EX.toString());
+        }
         return transactionDetailList;
     }
-    */
 }

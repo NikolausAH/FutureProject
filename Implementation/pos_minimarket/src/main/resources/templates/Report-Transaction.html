@@ -117,12 +117,14 @@
 			<section class="search-transaksi">
 				<br />
 				<div class="row">
-					<div class="col-sm-8" id="search-form">
-						<input class="form-control src del-radius-right" name="search" placeholder="Nomor Transaksi..." />
-					</div>
-					<div class="col-sm-1" id="btn-src">
-						<button type="button" class="btn btn-warning del-radius-left" id="btn-src2"><i class="fa ">&#xf002;</i></button>
-					</div>
+					<form th:form="${form}" th:action="@{Report-Transaction/Detail}" method="post">
+						<div class="col-sm-8" id="search-form">
+							<input type="number" class="form-control src del-radius-right" name="searchKey" id="searchkey" th:object="${searchKey}" th:value="${searchKey}" placeholder="Nomor Transaksi..." />
+						</div>
+						<div class="col-sm-1" id="btn-src">
+							<button type="submit" class="btn btn-warning del-radius-left" id="btn-src2"><i class="fa ">&#xf002;</i></button>
+						</div>
+					</form>
 					<div class="col-sm-1">
 						<button type="button" class="btn btn-primary" id="btn-filter" onclick="openFilter()" >Filter</button>
 					</div>
@@ -241,28 +243,30 @@
 						</div>
 					</div>
 
-					<!--<div class="col-sm-5">-->
-						<!--<div class="table-responsive" id="t-laporan">-->
-							<!--<table class="table">-->
-								<!--<thead>-->
-								<!--<tr>-->
-									<!--<th>No</th>-->
-									<!--<th>Kode Produk</th>-->
-									<!--<th>Nama</th>-->
-									<!--<th>Jumlah</th>-->
-								<!--</tr>-->
-								<!--</thead>-->
-								<!--<tbody>-->
-								<!--<tr>-->
-									<!--<td>1</td>-->
-									<!--<td>1001</td>-->
-									<!--<td>Indomie Goreng</td>-->
-									<!--<td>1</td>-->
-								<!--</tr>-->
-								<!--</tbody>-->
-							<!--</table>-->
-						<!--</div>-->
-					<!--</div>-->
+					<div class="col-sm-5">
+						<div class="table-responsive" id="t-laporan">
+							<table class="table">
+								<thead>
+								<tr>
+									<th>No</th>
+									<th>Kode Produk</th>
+									<th>Nama</th>
+									<th>Jumlah</th>
+								</tr>
+								</thead>
+								<tbody>
+								<th:block th:each="detail : ${transactionDetailList}">
+									<tr>
+										<td th:text="${detail.detail_id}" />
+										<td th:text="${detail.quantity}"/>
+										<td th:text="${detail.price}"/>
+										<td th:text="${detail.discount}"/>
+									</tr>
+								</th:block>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 		<!--End Tabel-->
 		</section>
