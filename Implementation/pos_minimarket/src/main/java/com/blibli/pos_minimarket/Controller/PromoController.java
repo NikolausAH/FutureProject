@@ -1,5 +1,6 @@
 package com.blibli.pos_minimarket.Controller;
 
+import com.blibli.pos_minimarket.DataAccessObject.PromoTotalDAO;
 import com.blibli.pos_minimarket.Model.Promo;
 import com.blibli.pos_minimarket.Model.PromoProduct;
 import com.blibli.pos_minimarket.Model.PromoTotal;

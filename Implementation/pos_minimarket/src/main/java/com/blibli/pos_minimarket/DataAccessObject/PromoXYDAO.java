@@ -59,8 +59,28 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
     }
 
     @Override
-    public PromoXY getById(Integer key) {
-        return null;
+    public PromoXY getById(Integer id) {
+        String sql = "SELECT * FROM promo_buyx_gety WHERE p_bxgy_id=" + id+";";
+        String message = "Error PromoXYDAO getById";
+        PromoXY promoXY = new PromoXY();
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    promoXY.setId(resultSet.getInt("p_bxgy_id"));
+                    promoXY.setStartDate(resultSet.getTimestamp("start_date"));
+                    promoXY.setEndDate(resultSet.getTimestamp("end_date"));
+                    promoXY.setStatus(resultSet.getString("status"));
+                }
+                }
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println(message);
+            System.out.println(EX.toString());
+        }
+        return promoXY;
     }
 
     @Override

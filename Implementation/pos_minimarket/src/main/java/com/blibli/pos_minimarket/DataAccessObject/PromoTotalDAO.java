@@ -1,7 +1,7 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Promo;
-import com.blibli.pos_minimarket.Model.PromoProduct;
+import com.blibli.pos_minimarket.Model.PromoTotal;
 import com.blibli.pos_minimarket.Model.PromoTotal;
 import org.springframework.stereotype.Repository;
 
@@ -61,9 +61,30 @@ public class PromoTotalDAO extends ConnectionSettings implements InterfaceDAO<Pr
     }
 
     @Override
-    public PromoTotal getById(Integer key) {
-
-        return null;
+    public PromoTotal getById(Integer id) {
+        String sql = "SELECT * FROM promo_total_buy WHERE p_total_id =" + id+";";
+        String message = "Error PromoTotalDAO getById";
+        PromoTotal promoTotal = new PromoTotal();
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    promoTotal.setId(resultSet.getInt("p_total_id"));
+                    promoTotal.setDiscountPercent(resultSet.getDouble("discount_percent"));
+                    promoTotal.setBuyMin(resultSet.getDouble("buy_min"));
+                    promoTotal.setStartDate(resultSet.getTimestamp("start_date"));
+                    promoTotal.setEndDate(resultSet.getTimestamp("end_date"));
+                    promoTotal.setStatus(resultSet.getString("status"));
+                }
+            }
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println(message);
+            System.out.println(EX.toString());
+        }
+        return promoTotal;
     }
 
     @Override

@@ -41,6 +41,8 @@ public class PromoService {
         promoProductList = promoProductDAO.getAll();
         promoTotalList = promoTotalDAO.getAll();
         promoXYList = promoXYDAO.getAll();
+        PromoTotalDAO promoTotalDAO = new PromoTotalDAO();
+        System.out.println(promoTotalDAO.getById(5).getStatus());
         if (promoTotalList != null) {
             try {
                 for (PromoTotal PromoTotalList : promoTotalList) {
