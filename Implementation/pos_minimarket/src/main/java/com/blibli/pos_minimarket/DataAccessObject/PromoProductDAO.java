@@ -71,12 +71,12 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO 
     @Override
     public void add(PromoProduct promoProduct) {
         String sql = "INSERT INTO promo_product_discount(p_discount_id, discount_percent, start_date, end_date, product_id, status)VALUES " +
-                "("+promoProduct.getId()+","+
-                "("+promoProduct.getDiscountPercent()+","+
-                "("+promoProduct.getStartDate()+","+
-                "("+promoProduct.getEndDate()+","+
-                "("+promoProduct.getProductId()+","+
-                "("+promoProduct.getStatus()+","+
+                "(" + promoProduct.getId() + "," +
+                100 + "," + "'" +
+                promoProduct.getStartDate() + "'," + "'" +
+                promoProduct.getEndDate() + "'," +
+                1 + "," +
+                "'Active'" +
                 ");";
         String message = "Error PromoProduct Add";
         generalDAO.executeSet(sql,message);

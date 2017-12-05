@@ -186,7 +186,7 @@
                                 <h4 class="modal-title" style="text-align: center">Tambah Promo Baru</h4>
                             </div>
                             <div class="modal-body">
-                                <form id="form1" class="form-horizontal" th:form="${form}" th:object="${promo}" th:action="@{/Promo/Add}" method="post">
+                                <form id="form1" class="form-horizontal" th:form="${form}" th:object="${promoadd}" th:action="@{/Promo/Add}" method="post">
                                     <div class="col-sm-2">
                                         <div class="form-group">
                                             <div class="col-sm-4">
@@ -227,7 +227,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah">Tambah</button>
                                 </form>
                                 <div class="col-sm-4">
                                     <form id="form2" th:action="@{/Promo/Add}" method="post" th:object="${promoTotal}">
@@ -480,6 +479,7 @@
         }
         function submitFormAdd() {
             document.getElementById("form1").submit();
+            document.getElementById("form2").submit();
         }
     </script>
 </body>

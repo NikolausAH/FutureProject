@@ -64,7 +64,6 @@ public class PromoService {
                     promo.setStartDate(PromoProdukList.getStartDate());
                     promo.setEndDate(PromoProdukList.getEndDate());
                     promoList.add(promo);
-                    System.out.println("ListProduct"+PromoProdukList.getId());
                 }
             } catch (Exception EX) {
                 System.out.println(EX.toString());
@@ -89,6 +88,7 @@ public class PromoService {
     public void add(Promo promo, PromoXY promoXY, PromoProduct promoProduct, PromoTotal promoTotal){
         try{
             if(promo.getType().equals("Promo XY")){
+                System.out.println("masuk coy");
                 promoXY.setId(promo.getId());
                 promoXY.setStartDate(promo.getStartDate());
                 promoXY.setEndDate(promo.getEndDate());

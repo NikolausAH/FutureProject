@@ -29,11 +29,12 @@ public class PromoController {
         model.addAttribute("promo", promoService.showAll());
         return "Promo";
     }
+
     @RequestMapping(value = "/Promo/Add")
-    public ModelAndView addPromo(@ModelAttribute("promo") Promo promo/*, @ModelAttribute("promoXY")PromoXY promoXY, @ModelAttribute("promoTotal")PromoTotal promoTotal, @ModelAttribute("promoProduct")PromoProduct promoProduct*/){
+    public ModelAndView addPromo(@ModelAttribute("promoadd") Promo promo, @ModelAttribute("promoXY")PromoXY promoXY, @ModelAttribute("promoTotal")PromoTotal promoTotal, @ModelAttribute("promoProduct")PromoProduct promoProduct) {
         ModelAndView mav = new ModelAndView();
         System.out.println(promo.getId());
-      //  promoService.add(promo);
+        promoService.add(promo,promoXY,promoProduct,promoTotal);
         mav.setViewName("redirect:/Promo");
         return mav;
     }

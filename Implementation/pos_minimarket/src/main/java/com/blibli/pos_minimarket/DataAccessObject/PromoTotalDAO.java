@@ -74,15 +74,15 @@ public class PromoTotalDAO extends ConnectionSettings implements InterfaceDAO<Pr
     @Override
     public void add(PromoTotal promoTotal) {
         String sql = "INSERT INTO promo_total_buy (p_total_id, discount_percent, buy_min, start_date, end_date, status) VALUES" +
-                "("+promoTotal.getId()+","+
-                "("+promoTotal.getDiscountPercent()+","+
-                "("+promoTotal.getBuyMin()+","+
-                "("+promoTotal.getStartDate()+","+
-                "("+promoTotal.getEndDate()+","+
-                "("+promoTotal.getStatus()+","
-                +")";
+                "(" + promoTotal.getId() + "," +
+                100 + "," +
+                1 + "," + "'" +
+                promoTotal.getStartDate() + "'," + "'" +
+                promoTotal.getEndDate() + "'," +
+                "'Active'" +
+                ");";
         String message = "Error PromoTotal Add";
-        generalDAO.executeSet(sql,message);
+        generalDAO.executeSet(sql, message);
     }
 
     @Override

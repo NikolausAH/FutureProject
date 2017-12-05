@@ -27,7 +27,7 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
                 "    CONSTRAINT producty_id__fk FOREIGN KEY (product_id) REFERENCES product (product_id)" +
                 ");";
         String message = "Error PromoXYDAO initTable";
-        generalDAO.executeSet(sql,message);
+        generalDAO.executeSet(sql, message);
     }
 
     @Override
@@ -70,16 +70,18 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
 
     @Override
     public void add(PromoXY promoXY) {
-        String sql = "promo_buyx_gety (p_bxgy_id, quantity_x, quantity_y, start_date, end_date, productx_id, producty_id, status) VALUES" +
-                "("+promoXY.getId()+","+
-                "("+promoXY.getQuantityX()+","+
-                "("+promoXY.getQuantityY()+","+
-                "("+promoXY.getStartDate()+","+
-                "("+promoXY.getEndDate()+","+
-                "("+promoXY.getStatus()+","
-                +")";
+        String sql = "INSERT INTO promo_buyx_gety (p_bxgy_id, quantity_x, quantity_y, start_date, end_date, productx_id, producty_id, status) VALUES" +
+                "(" + promoXY.getId() + "," +
+                1 + "," +
+                1 + "," + "'" +
+                promoXY.getStartDate() + "'," + "'" +
+                promoXY.getEndDate() + "'," +
+                1 + "," +
+                1 + "," +
+                "'Active'" +
+                ");";
         String message = "Error PromoXY Add";
-        generalDAO.executeSet(sql,message);
+        generalDAO.executeSet(sql, message);
     }
 
     @Override
