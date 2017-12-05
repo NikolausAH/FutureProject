@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO <PromoProduct, Integer, String > {
+public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO<PromoProduct, Integer, String> {
     private GeneralDAO generalDAO = new GeneralDAO();
 
     @Override
@@ -79,17 +79,31 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO 
                 "'Active'" +
                 ");";
         String message = "Error PromoProduct Add";
-        generalDAO.executeSet(sql,message);
+        generalDAO.executeSet(sql, message);
     }
 
     @Override
-    public void update(PromoProduct t) {
-
+    public void update(PromoProduct promoProduct) {
+        String sql = "UPDATE promo_product_discount SET discount_percent =" +
+                promoProduct.getDiscountPercent() + "," +
+                "start_date ='" +
+                promoProduct.getStartDate() + "'," +
+                "end_date ='" +
+                promoProduct.getEndDate() + "'," +
+                "product_id =" +
+                promoProduct.getProductId() +
+                "WHERE p_total_id =" +
+                promoProduct.getId() +
+                ";";
+        String message = "Error PromoProductDAO update";
+        generalDAO.executeSet(sql, message);
     }
 
     @Override
     public void delete(Integer id) {
-
+        String sql = "delete from promo_product_discount where p_discount_id=" + id;
+        String message = "Error PromoTotalDAO Delete";
+        generalDAO.executeSet(sql, message);
     }
 
     @Override

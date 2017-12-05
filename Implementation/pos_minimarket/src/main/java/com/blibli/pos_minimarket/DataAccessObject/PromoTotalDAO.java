@@ -86,13 +86,27 @@ public class PromoTotalDAO extends ConnectionSettings implements InterfaceDAO<Pr
     }
 
     @Override
-    public void update(PromoTotal t) {
-
+    public void update(PromoTotal promoTotal) {
+        String sql = "UPDATE promo_total_buy SET discount_percent =" +
+                promoTotal.getDiscountPercent() + "," +
+                "buy_min = " +
+                promoTotal.getBuyMin() + "," +
+                "start_date ='" +
+                promoTotal.getStartDate() + "'," +
+                "end_date ='" +
+                promoTotal.getEndDate() + "'" +
+                "WHERE p_total_id =" +
+                promoTotal.getId() +
+                ";";
+        String message = "Error PromoTotalDAO update";
+        generalDAO.executeSet(sql, message);
     }
 
     @Override
     public void delete(Integer id) {
-
+        String sql = "delete from promo_total_buy where p_total_id=" + id;
+        String message = "Error PromoTotalDAO Delete";
+        generalDAO.executeSet(sql, message);
     }
 
     @Override

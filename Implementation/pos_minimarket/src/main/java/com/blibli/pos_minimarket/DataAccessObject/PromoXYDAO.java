@@ -86,30 +86,30 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
 
     @Override
     public void update(PromoXY promoXY) {
-//        String sql = "UPDATE promo_buyx_gety SET quantity_x = 3, quantity_y = 4,start_date='1000-01-01 00:00:00.1' " +
-//                "WHERE p_bxgy_id = 5";
-//        try {
-//            this.makeConnection();
-//            System.out.println("Run Update Pegawai");
-//            System.out.println(pegawai.getNama());
-//            System.out.println(pegawai.getRole());
-//            System.out.println(pegawai.getId());
-//            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-//            preparedStatement.setString(1, pegawai.getNama());
-//            preparedStatement.setString(2, pegawai.getRole());
-//            preparedStatement.setInt(3, pegawai.getId());
-//            preparedStatement.executeUpdate();
-//            preparedStatement.close();
-//            this.closeConnection();
-//        } catch (Exception EX) {
-//            System.out.println("Error PegawaiDAO Update");
-//            System.out.println(EX.toString());
-//        }
+        String sql = "UPDATE promo_buyx_gety SET quantity_x =" +
+                promoXY.getQuantityX() + "," +
+                "quantity_y =" +
+                promoXY.getQuantityY() + "," +
+                "start_date ='" +
+                promoXY.getStartDate() + "'," +
+                "end_date ='" +
+                promoXY.getEndDate() + "'," +
+                "productx_id =" +
+                promoXY.getProductXId() +
+                "producty_id =" +
+                promoXY.getProductYId() +
+                "WHERE p_bxgy_id =" +
+                promoXY.getId() +
+                ";";
+        String message = "Error PromoXYDAO update";
+        generalDAO.executeSet(sql, message);
     }
 
     @Override
     public void delete(Integer id) {
-
+        String sql = "delete from promo_buyx_gety where p_bxgy_id=" + id;
+        String message = "Error PromoTotalDAO Delete";
+        generalDAO.executeSet(sql, message);
     }
 
     @Override

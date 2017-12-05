@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 public class PromoController {
     private final PromoService promoService;
@@ -31,10 +29,25 @@ public class PromoController {
     }
 
     @RequestMapping(value = "/Promo/Add")
-    public ModelAndView addPromo(@ModelAttribute("promoadd") Promo promo, @ModelAttribute("promoXY")PromoXY promoXY, @ModelAttribute("promoTotal")PromoTotal promoTotal, @ModelAttribute("promoProduct")PromoProduct promoProduct) {
+    public ModelAndView addPromo(@ModelAttribute("promoAdd") Promo promo, @ModelAttribute("promoXY") PromoXY promoXY, @ModelAttribute("promoTotal") PromoTotal promoTotal, @ModelAttribute("promoProduct") PromoProduct promoProduct) {
         ModelAndView mav = new ModelAndView();
-        System.out.println(promo.getId());
-        promoService.add(promo,promoXY,promoProduct,promoTotal);
+        promoService.add(promo, promoXY, promoProduct, promoTotal);
+        mav.setViewName("redirect:/Promo");
+        return mav;
+    }
+
+    @RequestMapping(value = "/Promo/Update")
+    public ModelAndView updatePromo(@ModelAttribute("promoUpdated") Promo promo, @ModelAttribute("promoXY") PromoXY promoXY, @ModelAttribute("promoTotal") PromoTotal promoTotal, @ModelAttribute("promoProduct") PromoProduct promoProduct) {
+        ModelAndView mav = new ModelAndView();
+        promoService.update(promo, promoProduct, promoTotal, promoXY);
+        mav.setViewName("redirect:/Promo");
+        return mav;
+    }
+
+    @RequestMapping(value = "/Promo/Delete")
+    public ModelAndView deletePromo(@ModelAttribute("promoDelete") Promo promo, @ModelAttribute("promoXY") PromoXY promoXY, @ModelAttribute("promoTotal") PromoTotal promoTotal, @ModelAttribute("promoProduct") PromoProduct promoProduct) {
+        ModelAndView mav = new ModelAndView();
+        promoService.delete(promo, promoXY, promoTotal, promoProduct);
         mav.setViewName("redirect:/Promo");
         return mav;
     }
