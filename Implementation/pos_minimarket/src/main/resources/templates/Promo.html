@@ -11,6 +11,25 @@
     <link href="/css/style_promo.css" rel="stylesheet" type="text/css" />
     <script th:src="@{../js/jquery.js}" type="text/javascript"></script>
     <script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
+    <script>
+        function selectForm() {
+            if (document.getElementById("selectPromo").value == "Total") {
+                document.getElementById("formTotal").style.display = "block";
+                document.getElementById("formProduk").style.display = "none";
+                document.getElementById("formXY").style.display = "none";
+            }
+            else if (document.getElementById("selectPromo").value == "Produk") {
+                document.getElementById("formTotal").style.display = "none";
+                document.getElementById("formProduk").style.display = "block";
+                document.getElementById("formXY").style.display = "none";
+            }
+            else if (document.getElementById("selectPromo").value == "XY") {
+                document.getElementById("formTotal").style.display = "none";
+                document.getElementById("formProduk").style.display = "none";
+                document.getElementById("formXY").style.display = "block";
+            }
+        }
+    </script>
     <!--for fa icon-->
 </head>
 <!--==========head.end==========-->
@@ -203,7 +222,13 @@
                                                 <label class="control-label" for="type">Jenis:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="type" placeholder="Nama Kategori" name="type" th:value="${type}" />
+                                                <select class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" name="role" th:value="${role}" id="selectPromo"
+                                                    onChange="selectForm()">
+                                                    <option selected="selected">Pilih Jenis Promo</option>
+                                                    <option value="Total">Promo Total</option>
+                                                    <option value="Produk">Promo Produk</option>
+                                                    <option value="XY">Promo Beli X dapat Y</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -227,97 +252,96 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                                <div class="col-sm-4">
-                                    <form id="form2" th:action="@{/Promo/Add}" method="post" th:object="${promoTotal}">
+                                    <div class="col-sm-4" id="formTotal" style="display: none">
                                         <h5>Promo Total</h5>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="discountPercent">Diskon(%)</label>
+                                        <div th:form="${form}" th:object="${promoTotal}" class="form-control" name="promoTotal">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="discountPercent">Diskon(%)</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="discountPercent" placeholder="0" name="discountPercent" th:value="${discountPercent}"
+                                                    />
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="discountPercent" placeholder="0" name="discountPercent" th:value="${discountPercent}"
-                                                />
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="buyMin">Jumlah Min</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="buyMin" placeholder="0" name="buyMin" th:value="${buyMin}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="idTotal">ID Produk</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="idTotal" placeholder="0" name="idTotal" th:value="${idTotal}" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="buyMin">Jumlah Min</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="buyMin" placeholder="0" name="buyMin" th:value="${buyMin}" />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="idTotal">ID Produk</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="idTotal" placeholder="0" name="idTotal" th:value="${idTotal}" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-sm-4">
-                                    <form id="form3" th:action="@{/Promo/Add}" method="post" th:object="${promoProduct}">
+                                    </div>
+                                    <div class="col-sm-4" id="formProduk" style="display: none">
                                         <h5>Promo Produk</h5>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="discountPercent">Diskon (%)</label>
+                                        <div th:form="${form}" th:object="${promoProduk}" name="promoProduk">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="discountPercent">Diskon (%)</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="discountPercent" placeholder="0" name="discountPercent" th:value="${discountPercent}"
+                                                    />
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="discountPercent" placeholder="0" name="discountPercent" th:value="${discountPercent}"
-                                                />
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="productId">ID Produk</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="productId" placeholder="0" name="productId" th:value="${productId}" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="productId">ID Produk</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="productId" placeholder="0" name="productId" th:value="${productId}" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-sm-4">
-                                    <form id="form4" th:action="@{/Promo/Add}" method="post" th:object="${promoXY}">
+                                    </div>
+                                    <div class="col-sm-4" id="formXY" style="display: none">
                                         <h5>Promo Beli X dapat Y</h5>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="productXId">ID Barang X</label>
+                                        <div th:form="${form}" th:object="${promoProduk}" name="promoProduk">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="productXId">ID Barang X</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="productXId" placeholder="0" name="productXId" th:value="${productXId}" />
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="productXId" placeholder="0" name="productXId" th:value="${productXId}" />
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="quantityX">Jumlah Barang X</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="quantityX" placeholder="0" name="quantityX" th:value="${quantityX}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="productYId">ID Barang Y</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="productYId" placeholder="0" name="productYId" th:value="${productYId}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" for="quantityY">Jumlah Barang Y</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="quantityY" placeholder="0" name="quantityY" th:value="${quantityY}" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="quantityX">Jumlah Barang X</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="quantityX" placeholder="0" name="quantityX" th:value="${quantityX}" />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="productYId">ID Barang Y</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="productYId" placeholder="0" name="productYId" th:value="${productYId}" />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-3">
-                                                <label class="control-label" for="quantityY">Jumlah Barang Y</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="quantityY" placeholder="0" name="quantityY" onclick="submitForms()" th:value="${quantityY}"
-                                                />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                                 <div class="modal-footer">
                                     <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
                                         <div class="col-xs-4 col-md-4 col-lg-4"></div>
@@ -719,10 +743,6 @@
 
         function closeUbah() {
             document.getElementById("aksi-ubah").style.display = "none";
-        }
-        function submitFormAdd() {
-            document.getElementById("form1").submit();
-            document.getElementById("form2").submit();
         }
     </script>
 </body>

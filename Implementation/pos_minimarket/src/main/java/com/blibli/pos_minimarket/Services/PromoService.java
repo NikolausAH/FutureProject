@@ -6,7 +6,6 @@ import com.blibli.pos_minimarket.DataAccessObject.PromoXYDAO;
 import com.blibli.pos_minimarket.Model.*;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +41,6 @@ public class PromoService {
         promoTotalList = promoTotalDAO.getAll();
         promoXYList = promoXYDAO.getAll();
         PromoTotalDAO promoTotalDAO = new PromoTotalDAO();
-        System.out.println(promoTotalDAO.getById(5).getStatus());
         if (promoTotalList != null) {
             try {
                 for (PromoTotal PromoTotalList : promoTotalList) {

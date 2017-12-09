@@ -61,7 +61,7 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO<
 
     @Override
     public PromoProduct getById(Integer id) {
-        String sql = "SELECT * FROM promo_product_discount WHERE p_discount_id ="+ id +";";
+        String sql = "SELECT * FROM promo_product_discount WHERE p_discount_id =" + id + ";";
         String message = "Error PromoProductDAO getById";
         PromoProduct promoProduct = new PromoProduct();
         try {
