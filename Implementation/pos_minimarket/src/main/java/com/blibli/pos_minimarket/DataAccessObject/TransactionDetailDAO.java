@@ -56,8 +56,9 @@ public class TransactionDetailDAO extends ConnectionSettings {
     }
 
     public List<TransactionDetail> getByIdTransaction(Integer searchKey) {
+        System.out.println(searchKey);
         List<TransactionDetail> transactionDetailList = new ArrayList<>();
-        String sql = "SELECT * FROM TransactionDetail WHERE transaction_id = '"+searchKey+"';";
+        String sql = "SELECT * FROM transaction_detail WHERE transaction_id = '"+searchKey+"';";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -66,6 +67,7 @@ public class TransactionDetailDAO extends ConnectionSettings {
                 while (resultSet.next()) {
                     TransactionDetail transactionDetail = new TransactionDetail();
                     transactionDetail.setDetail_Id(resultSet.getInt("detail_Id"));
+                    System.out.println(transactionDetail.getDetail_Id());
                     transactionDetail.setQuantity(resultSet.getInt("quantity"));
                     transactionDetail.setPrice(resultSet.getDouble("price"));
                     transactionDetail.setDiscount(resultSet.getDouble("discount"));
@@ -82,5 +84,33 @@ public class TransactionDetailDAO extends ConnectionSettings {
             System.out.println(EX.toString());
         }
         return transactionDetailList;
+    }
+
+    public TransactionDetail getOne(Integer searchKey) {
+        TransactionDetail transactionDetail = new TransactionDetail();
+        String sql = "SELECT * FROM TransactionDetail WHERE  detail_id= '"+searchKey+"';";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+//                    TransactionDetail transactionDetail = new TransactionDetail();
+                    transactionDetail.setDetail_Id(resultSet.getInt("detail_Id"));
+                    transactionDetail.setQuantity(resultSet.getInt("quantity"));
+                    transactionDetail.setPrice(resultSet.getDouble("price"));
+                    transactionDetail.setDiscount(resultSet.getDouble("discount"));
+                    transactionDetail.setProduct(productDAO.getById(resultSet.getInt("product_Id")));
+//                    transactionDetail.setTransaction(transactionDAOrs.getInt("transactionId"));
+//                    transactionDetail.setDiscountPId(rs.getInt("discountPId"));
+//                    transactionDetail.setDiscountPxy(rs.getInt("discountPxy"));
+                }
+            }resultSet.close();
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println("Error TransactionDetailDAO getByIdTransaction");
+            System.out.println(EX.toString());
+        }
+        return transactionDetail;
     }
 }

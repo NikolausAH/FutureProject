@@ -18,11 +18,17 @@
         function closeFilter() {
             document.getElementById("filter-transaksi").style.display="none";
         }
+        function loadDetail() {
+            var transactionList=document.getElementById("transactionList").value;
+            console.log(transactionList);
+            localStorage.setItem("transactionList", transactionList);
+//            console.log(localStorage.getItem("transactionList"));
+        }
 	</script>
 </head>
 
 <!--==========head.end==========-->
-<body>
+<body onload="loadDetail()">
 <!--==========header.start==========-->
 <div class="container-fluid">
 	<div class="row">
@@ -117,10 +123,10 @@
 			<section class="search-transaksi">
 				<br />
 				<div class="row">
-					<form th:form="${form}" th:action="@{Report-Transaction/Detail}" method="post">
-						<div class="col-sm-8" id="search-form">
-							<input type="number" class="form-control src del-radius-right" name="searchKey" id="searchkey" th:object="${searchKey}" th:value="${searchKey}" placeholder="Nomor Transaksi..." />
-						</div>
+					<form th:form="${form}" th:action="@{Report-Transaction}" method="post">
+                        <div class="col-sm-8" id="search-form">
+                            <input type="text" class="form-control src del-radius-right" name="searchKey" id="searchkey" th:object="${searchKey}" th:value="${searchKey}" placeholder="Nomor Transaksi..." />
+                        </div>
 						<div class="col-sm-1" id="btn-src">
 							<button type="submit" class="btn btn-warning del-radius-left" id="btn-src2"><i class="fa ">&#xf002;</i></button>
 						</div>
@@ -257,10 +263,10 @@
 								<tbody>
 								<th:block th:each="detail : ${transactionDetailList}">
 									<tr>
-										<td th:text="${detail.detail_id}" />
-										<td th:text="${detail.quantity}"/>
-										<td th:text="${detail.price}"/>
-										<td th:text="${detail.discount}"/>
+										<td th:text="${detail.detail_Id}" />
+										<td th:text="${detail.product.productId}" />
+										<td th:text="${detail.product.name}" />
+										<td th:text="${detail.quantity}" />
 									</tr>
 								</th:block>
 								</tbody>

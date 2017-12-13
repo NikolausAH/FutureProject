@@ -54,4 +54,11 @@ public class TransactionDetailService {
         }
         return transactionDetailList;
     }
+
+    public List<Integer> getOne() {
+        List<Integer> integerList = new ArrayList<>();
+        integerList.add(1);
+        integerList.add(2);
+        return integerList;
+    }
 }
