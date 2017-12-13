@@ -32,6 +32,15 @@ public class ReportController {
         }return "Report-Transaction";
 
     }
+    @RequestMapping(value = "Report-Statistics")
+    public String showReportStatistics(Model model,@ModelAttribute("searchKey") String searchKey) {
+        model.addAttribute("transactionList",transactionService.showAllTransaction());
+        if(!searchKey.equals("")) {
+            model.addAttribute("transactionDetailList", transactionDetailService.showOne(Integer.parseInt(searchKey)));
+
+        }return "Report-Transaction";
+
+    }
 
 //    @RequestMapping(value = "Report-Transaction")
 //    public String showReportTransaction(Model model) {
