@@ -213,7 +213,7 @@
 						<h3>Data Transaksi</h3>
 					</div>
 					<div class="col-sm-5 judul-tabel">
-						<h3>Data Transaksi</h3>
+						<h3>Statistik Penjualan</h3>
 					</div>
 				</div>
 				<!--End Judul Tabel-->
@@ -226,11 +226,10 @@
 								<thead>
 								<tr>
 									<th>No</th>
-									<th>Tanggal</th>
-									<th>Pajak (Rp)</th>
-									<th>Diskon (Rp)</th>
-									<th>Total</th>
-									<th>Kasir</th>
+									<th>Kode Produk</th>
+									<th>Nama</th>
+									<th>Jumlah Transaksi</th>
+									<th>Jumlah Terjual</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -241,7 +240,6 @@
 										<td th:text="${transaction.tax}"/>
 										<td th:text="${transaction.discount}"/>
 										<td th:text="${transaction.total}"/>
-										<td th:text="${transaction.employee.name}"/>
 									</tr>
 								</th:block>
 								</tbody>
@@ -249,30 +247,6 @@
 						</div>
 					</div>
 
-					<div class="col-sm-5">
-						<div class="table-responsive" id="t-laporan">
-							<table class="table">
-								<thead>
-								<tr>
-									<th>No</th>
-									<th>Kode Produk</th>
-									<th>Nama</th>
-									<th>Jumlah</th>
-								</tr>
-								</thead>
-								<tbody>
-								<th:block th:each="detail : ${transactionDetailList}">
-									<tr>
-										<td th:text="${detail.detail_Id}" />
-										<td th:text="${detail.product.productId}" />
-										<td th:text="${detail.product.name}" />
-										<td th:text="${detail.quantity}" />
-									</tr>
-								</th:block>
-								</tbody>
-							</table>
-						</div>
-					</div>
 				</div>
 		<!--End Tabel-->
 		</section>
