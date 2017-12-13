@@ -1,6 +1,7 @@
 package com.blibli.pos_minimarket.Controller;
 
 import com.blibli.pos_minimarket.Model.TransactionDetail;
+import com.blibli.pos_minimarket.Services.ReportService;
 import com.blibli.pos_minimarket.Services.TransactionDetailService;
 import com.blibli.pos_minimarket.Services.TransactionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ReportController {
     private TransactionService transactionService = new TransactionService();
     private TransactionDetailService transactionDetailService = new TransactionDetailService();
+    private ReportService reportService = new ReportService();
     @Autowired
     public ReportController() {
     }
@@ -33,12 +35,9 @@ public class ReportController {
 
     }
     @RequestMapping(value = "Report-Statistics")
-    public String showReportStatistics(Model model,@ModelAttribute("searchKey") String searchKey) {
-        model.addAttribute("transactionList",transactionService.showAllTransaction());
-        if(!searchKey.equals("")) {
-            model.addAttribute("transactionDetailList", transactionDetailService.showOne(Integer.parseInt(searchKey)));
-
-        }return "Report-Transaction";
+    public String showReportStatistics(Model model) {
+        model.addAttribute("reports",reportService.getAll());
+        return "Report-Statistics";
 
     }
 
