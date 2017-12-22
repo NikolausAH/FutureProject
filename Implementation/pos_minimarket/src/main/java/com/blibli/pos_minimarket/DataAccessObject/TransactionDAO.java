@@ -1,10 +1,13 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Product;
+import com.blibli.pos_minimarket.Model.PromoTotal;
 import com.blibli.pos_minimarket.Model.Transaction;
+import com.sun.corba.se.impl.oa.toa.TOA;
 import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,6 +129,33 @@ public class TransactionDAO extends ConnectionSettings {
             System.out.println(EX.toString());
         }
         return transactionList;
+    }
+
+    public PromoTotal getDiscountTotal(Double total, LocalDateTime dateTime){
+        PromoTotal promoTotal = new PromoTotal();
+        String sql = "SELECT * FROM promo_total_buy WHERE '"+dateTime+"'>= start_date AND '"+dateTime+"'<=end_date AND '"+total+"' >= buy_min AND status = 'active'";
+        String message = "Error TransactionDAO getDiscountTotal";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    promoTotal.setpTotalId(resultSet.getInt("p_total_id"));
+                    promoTotal.setDiscountPercent(resultSet.getDouble("discount_percent"));
+                    promoTotal.setBuyMin(resultSet.getDouble("buy_min"));
+                    promoTotal.setStartDate(resultSet.getTimestamp("start_date"));
+                    promoTotal.setEndDate(resultSet.getTimestamp("end_date"));
+                    promoTotal.setStatus(resultSet.getString("status"));
+                }
+                resultSet.close();
+            }
+            this.closeConnection();
+        }catch (Exception EX){
+            System.out.print(message);
+            System.out.print(EX.toString());
+        }
+        return promoTotal;
     }
 
 }

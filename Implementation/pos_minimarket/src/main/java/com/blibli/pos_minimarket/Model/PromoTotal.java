@@ -8,15 +8,17 @@ public class PromoTotal {
     private double buyMin;
     private Timestamp startDate;
     private Timestamp endDate;
+    private String status;
 //
     public PromoTotal() {}
 
-    public PromoTotal(int pTotalId, double discountPercent, double buyMin, Timestamp startDate, Timestamp endDate){
+    public PromoTotal(int pTotalId, double discountPercent, double buyMin, Timestamp startDate, Timestamp endDate, String status){
     this.pTotalId = pTotalId;
     this.discountPercent = discountPercent;
     this.buyMin = buyMin;
     this.startDate = startDate;
     this.endDate = endDate;
+    this.status = status;
     }
 
     public int getpTotalId() {
@@ -58,4 +60,13 @@ public class PromoTotal {
     public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }
