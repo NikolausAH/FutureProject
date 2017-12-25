@@ -1,18 +1,16 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
 
-import com.blibli.pos_minimarket.Model.Category;
-import com.blibli.pos_minimarket.Model.Pegawai;
+import com.blibli.pos_minimarket.Model.Employee;
 
-import javax.validation.constraints.Null;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class LoginDAO extends GeneralDAO {
 
-    public Pegawai getByIdAndPassword(Integer employeeId, String password) {
-        Pegawai pegawai = new Pegawai();
+    public Employee getByIdAndPassword(Integer employeeId, String password) {
+        Employee employee = new Employee();
+        RoleDAO roleDAO = new RoleDAO();
         String sql = "SELECT * FROM employees WHERE employee_id = '" + employeeId +
                 "' AND password = '" + password + "';";
         String message = "Error LoginDAO getByIdAndPassword";
@@ -20,17 +18,16 @@ public class LoginDAO extends GeneralDAO {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet != null) {
-                while (resultSet.next()) {
-                    pegawai.setId(resultSet.getInt("employee_id"));
-                    pegawai.setPassword(resultSet.getString("password"));
-                    pegawai.setNama(resultSet.getString("name"));
-                    pegawai.setIdRole(resultSet.getInt("role_id"));
-                    pegawai.setEmail(resultSet.getString("email"));
-                }
+            if (resultSet.next()) {
+                do {
+                    employee.setEmployee_Id(resultSet.getInt("employee_id"));
+                    employee.setPassword(resultSet.getString("password"));
+                    employee.setName(resultSet.getString("name"));
+                    employee.setEmail(resultSet.getString("email"));
+                    employee.setRole(roleDAO.getRoleById(resultSet.getInt("role_id")));
+                } while (resultSet.next());
                 resultSet.close();
-            }
-            else {
+            } else {
                 return null;
             }
             this.closeConnection();
@@ -38,6 +35,6 @@ public class LoginDAO extends GeneralDAO {
             System.out.println(message);
             System.out.println(EX.toString());
         }
-        return pegawai;
+        return employee;
     }
 }

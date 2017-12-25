@@ -1,7 +1,7 @@
 package com.blibli.pos_minimarket.Services;
 
 import com.blibli.pos_minimarket.DataAccessObject.LoginDAO;
-import com.blibli.pos_minimarket.Model.Pegawai;
+import com.blibli.pos_minimarket.Model.Employee;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -13,15 +13,15 @@ public class LoginService {
 
     public Map<String, Object> doLogin(Integer id, String password){
         Map <String,Object> parameter = new HashMap<>();
-        Pegawai pegawai = loginDAO.getByIdAndPassword(id,password);
-        if(pegawai == null){
+        Employee employee = loginDAO.getByIdAndPassword(id,password);
+        if(employee == null){
             parameter.put("loginError",true);
             parameter.put("pegawai",null);
             return parameter;
         }
         else {
             parameter.put("loginError",false);
-            parameter.put("pegawai",pegawai);
+            parameter.put("pegawai",employee);
             return parameter;
         }
     }
