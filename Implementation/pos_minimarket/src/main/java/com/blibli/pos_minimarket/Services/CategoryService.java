@@ -24,6 +24,18 @@ public class CategoryService {
         }
     }
 
+    public Integer getNextId() {
+        Integer nextId = 1;
+        try {
+            nextId = categoryDAO.getNextId();
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryService getNextId");
+            System.out.println(EX.toString());
+        }
+        return nextId;
+    }
+
     public void add(Category category) {
         try {
             categoryDAO.add(category);

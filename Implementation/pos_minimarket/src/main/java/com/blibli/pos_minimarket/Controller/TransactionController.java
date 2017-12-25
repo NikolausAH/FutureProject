@@ -30,8 +30,8 @@ public class TransactionController {
             Double finalTotal = transactionService.updateTotal() + tax;
             productList = transactionService.getFromCart();
             model.addAttribute("productList", productList);
-            model.addAttribute("dateTime", transactionService.initDate());
-            model.addAttribute("transactionId", transactionService.initTransactionId());
+            model.addAttribute("date_Time", transactionService.initDate());
+            model.addAttribute("transaction_nextId", transactionService.getNextId());
             model.addAttribute("tax", tax);
             model.addAttribute("total",finalTotal);
         } catch (Exception EX) {
@@ -41,7 +41,7 @@ public class TransactionController {
     }
 
     @PostMapping(value = "Transaction/addToCart")
-    public ModelAndView addCategory(@ModelAttribute("productId") Integer productId, @ModelAttribute("quantity") Integer quantity){
+    public ModelAndView addToCart(@ModelAttribute("productId") Integer productId, @ModelAttribute("quantity") Integer quantity){
         ModelAndView mav = new ModelAndView();
         transactionService.addToCart(productId,quantity);
         mav.setViewName("redirect:/Transaction");
@@ -49,11 +49,9 @@ public class TransactionController {
     }
 
     @PostMapping(value = "Transaction/Payment")
-    public ModelAndView payment(@ModelAttribute("dateTime") String dateTime){
+    public ModelAndView payment(@ModelAttribute("date_Time") String date_Time){
         ModelAndView mav = new ModelAndView();
-        System.out.println("Error TransactionController initialTransaction");
-        System.out.println(dateTime);
-        transactionService.addTransaction(dateTime);
+        transactionService.addTransaction(date_Time);
         mav.setViewName("redirect:/Transaction");
         return mav;
     }

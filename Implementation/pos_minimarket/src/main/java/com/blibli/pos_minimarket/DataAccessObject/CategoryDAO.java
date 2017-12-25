@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Repository
 public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Category,Integer,String>{
@@ -25,7 +26,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
                 "    status VARCHAR(15) NOT NULL" +
                 ");";
         String message = "Error CategoryDAO initTable";
-        generalDAO.executeSet(sql,message);
+        generalDAO.executeSet(sql, message);
     }
 
     @Override
@@ -57,6 +58,14 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
         String sql = "UPDATE category SET status = 'not active' WHERE category_id = '"+categoryId+"';";
         String message = "Error CategoryDAO softDelete";
         generalDAO.executeSet(sql,message);
+    }
+
+    public Integer getNextId(){
+        Integer nextId;
+        String sql = "SELECT category_category_id_seq.last_value FROM category_category_id_seq;";
+        String message = "Error CategoryDAO getNextId";
+        nextId = generalDAO.getNextId(sql,message);
+        return nextId;
     }
 
     @Override
@@ -116,12 +125,22 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     @Override
     public List<Category> search(String searchKey) {
         List<Category> categoryList = new ArrayList<>();
-        String sql = "SELECT category_id,name,description,status FROM category WHERE name = '"+searchKey+"' ORDER BY category_id;";
+        Scanner scanner = new Scanner(searchKey);
+
+        String sqlString = "SELECT category_id,name,description,status FROM category WHERE name LIKE '%"+searchKey+"%' ORDER BY category_id;";
+        String sqlInteger = "SELECT category_id,name,description,status FROM category WHERE category_id = '"+searchKey+"' OR name LIKE '%"+searchKey+"%' ORDER BY category_id;";
         String message = "Error CategoryDAO search";
         try {
             this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet;
+            if (scanner.hasNextInt()){
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlInteger);
+                resultSet = preparedStatement.executeQuery();
+            }else {
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlString);
+                resultSet = preparedStatement.executeQuery();
+            }
+
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Category category = new Category();

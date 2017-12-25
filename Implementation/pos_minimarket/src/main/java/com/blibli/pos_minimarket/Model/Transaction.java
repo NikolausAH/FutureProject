@@ -8,7 +8,8 @@ public class Transaction {
     private Double tax;
     private Double discount;
     private Double total;
-    private String status;
+    private PromoTotal promoTotal;
+    private Employee employee;
     //tambah entity promo total sama pegawai
     /* tax = total tax (money)
      * Foreign Key
@@ -17,13 +18,13 @@ public class Transaction {
      * employeeId = employee ID
      */
     public Transaction() {}
-    public Transaction(Integer transactionId, String dateTime, Double tax, Double discount, Double total, String status){
+    public Transaction(Integer transactionId, String dateTime, Double tax, Double discount, Double total, PromoTotal promoTotal, Employee employee){
         this.transactionId=transactionId;
         this.dateTime=dateTime;
         this.tax=tax;
         this.discount=discount;
         this.total=total;
-        this.status=status;
+        this.promoTotal=promoTotal;
     }
 
     public Integer getTransactionId() {
@@ -66,11 +67,19 @@ public class Transaction {
         this.total = total;
     }
 
-    public String getStatus() {
-        return status;
+    public PromoTotal getPromoTotal() {
+        return promoTotal;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setPromoTotal(PromoTotal promoTotal) {
+        this.promoTotal = promoTotal;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

@@ -11,7 +11,7 @@ public class GeneralDAO extends ConnectionSettings{
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate(); //executeUpdate selain select
             preparedStatement.close();
             this.closeConnection();
         }catch (Exception EX)
@@ -19,5 +19,24 @@ public class GeneralDAO extends ConnectionSettings{
             System.out.println(message);
             System.out.println(EX.toString());
         }
+    }
+    public Integer getNextId(String sql,String message){
+        Integer nextId = 1;
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null)  {
+                while (resultSet.next()){
+                    nextId+=resultSet.getInt("last_value");
+                }
+            }
+            this.closeConnection();
+        }
+        catch (Exception EX){
+            System.out.println(message);
+            System.out.println(EX.toString());
+        }
+        return nextId;
     }
 }

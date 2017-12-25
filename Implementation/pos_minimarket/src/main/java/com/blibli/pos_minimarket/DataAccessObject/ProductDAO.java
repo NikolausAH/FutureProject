@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Repository
 public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Product,Integer, String> {
@@ -31,6 +32,14 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
                 ");";
         String message = "Error ProductDAO initTable";
         generalDAO.executeSet(sql,message);
+    }
+
+    public Integer getNextId(){
+        Integer nextId = 1;
+        String sql = "SELECT product_product_id_seq.last_value FROM product_product_id_seq;";
+        String message = "Error ProductDAO getNextId";
+        nextId = generalDAO.getNextId(sql,message);
+        return nextId;
     }
 
     @Override
@@ -67,7 +76,8 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     }
 
     public void updateQuantity(Product product, Integer oldQuantity) {
-        String sql = "UPDATE product SET quantity = '"+product.getQuantity() + oldQuantity+"' WHERE product_id = '"+product.getProductId()+"';";
+        Integer quantity = product.getQuantity()+oldQuantity;
+        String sql = "UPDATE product SET quantity = '"+quantity+"' WHERE product_id = '"+product.getProductId()+"';";
         String message = "Error ProductDAO UpdateQuantity";
         generalDAO.executeSet(sql,message);
     }
@@ -135,12 +145,21 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
     @Override
     public List<Product> search(String searchKey) {
         List<Product> productList = new ArrayList<>();
-        String sql = "SELECT * FROM product WHERE name = '"+searchKey+"' ORDER BY product_id;";
+        Scanner scanner = new Scanner(searchKey);
+
+        String sqlString = "SELECT * FROM product WHERE name LIKE '%"+searchKey+"%' ORDER BY product_id;";
+        String sqlInteger = "SELECT * FROM product WHERE product_id = '"+searchKey+"' OR name LIKE '%"+searchKey+"%' ORDER BY product_id;";
         String message = "Error ProductDAO search";
         try {
             this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet;
+            if (scanner.hasNextInt()){
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlInteger);
+                resultSet = preparedStatement.executeQuery();
+            }else {
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlString);
+                resultSet = preparedStatement.executeQuery();
+            }
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Product product = new Product();
