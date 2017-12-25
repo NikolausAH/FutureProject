@@ -1,30 +1,20 @@
 package com.blibli.pos_minimarket.Model;
 
 import java.sql.Timestamp;
-///
-public class PromoTotal {
-    private int pTotalId;
+
+public class PromoTotal extends Promo {
     private double discountPercent;
     private double buyMin;
-    private Timestamp startDate;
-    private Timestamp endDate;
-//
-    public PromoTotal() {}
+    private Integer idTotal;
 
-    public PromoTotal(int pTotalId, double discountPercent, double buyMin, Timestamp startDate, Timestamp endDate){
-    this.pTotalId = pTotalId;
-    this.discountPercent = discountPercent;
-    this.buyMin = buyMin;
-    this.startDate = startDate;
-    this.endDate = endDate;
+    public PromoTotal() {
     }
 
-    public int getpTotalId() {
-        return pTotalId;
-    }
-
-    public void setpTotalId(int pTotalId) {
-        this.pTotalId = pTotalId;
+    public PromoTotal(Timestamp startDate, Timestamp endDate, Integer id,String status, String type, Integer idTotal, double discountPercent, double buyMin) {
+        super(id, startDate, endDate, status,type);
+        this.setDiscountPercent(discountPercent);
+        this.setBuyMin(buyMin);
+        this.setIdTotal(idTotal);
     }
 
     public double getDiscountPercent() {
@@ -43,19 +33,12 @@ public class PromoTotal {
         this.buyMin = buyMin;
     }
 
-    public Timestamp getStartDate() {
-        return startDate;
+    public Integer getIdTotal() {
+        return idTotal;
     }
 
-    public void setStartDate(Timestamp startDate) {
-        this.startDate = startDate;
-    }
-
-    public Timestamp getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Timestamp endDate) {
-        this.endDate = endDate;
+    public void setIdTotal(Integer idTotal) {
+        this.idTotal = idTotal;
     }
 }
+
