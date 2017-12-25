@@ -1,34 +1,43 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
 
+import com.blibli.pos_minimarket.Model.Category;
+import com.blibli.pos_minimarket.Model.Pegawai;
+
+import javax.validation.constraints.Null;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginDAO extends GeneralDAO {
 
-    public String getRole(String name, String password) throws SQLException {
-        String role = null;
-        String sql = "SELECT EXISTS(SELECT * from employees " +
-                "WHERE name = '" + name + "' " +
-                "AND password = '" + password + "');";
-        String sql2 = "SELECT role.name from employees NATURAL JOIN role " +
-                "WHERE employees.name='" + name + "';";
-        String message = "Error LoginDAO";
+    public Pegawai getByIdAndPassword(Integer employeeId, String password) {
+        Pegawai pegawai = new Pegawai();
+        String sql = "SELECT * FROM employees WHERE employee_id = '" + employeeId +
+                "' AND password = '" + password + "';";
+        String message = "Error LoginDAO getByIdAndPassword";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
-            PreparedStatement preparedStatement2 = this.connection.prepareStatement(sql2);
-            ResultSet resultSet2 = preparedStatement2.executeQuery();
-            if (resultSet.getBoolean(0) == true) {
-                role = resultSet2.getString("role");
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    pegawai.setId(resultSet.getInt("employee_id"));
+                    pegawai.setPassword(resultSet.getString("password"));
+                    pegawai.setNama(resultSet.getString("name"));
+                    pegawai.setIdRole(resultSet.getInt("role_id"));
+                    pegawai.setEmail(resultSet.getString("email"));
+                }
+                resultSet.close();
+            }
+            else {
+                return null;
             }
             this.closeConnection();
         } catch (Exception EX) {
-            System.out.println(EX.toString());
             System.out.println(message);
+            System.out.println(EX.toString());
         }
-        return role;
+        return pegawai;
     }
 }

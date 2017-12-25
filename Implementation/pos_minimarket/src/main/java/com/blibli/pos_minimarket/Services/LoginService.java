@@ -1,24 +1,28 @@
 package com.blibli.pos_minimarket.Services;
 
 import com.blibli.pos_minimarket.DataAccessObject.LoginDAO;
+import com.blibli.pos_minimarket.Model.Pegawai;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class LoginService {
-    LoginDAO loginDAO = new LoginDAO();
+    private LoginDAO loginDAO = new LoginDAO();
 
-    public void Login(String name, String password){
-        try{
-            if(loginDAO.getRole(name,password) !=null){
-                System.out.println("Login berhasil");
-            }
-            else {
-                System.out.println("Login gagal");
-            }
-    }
-        catch (Exception EX){
-            System.out.println("Error LoginService");
-            System.out.println(EX.toString());
+    public Map<String, Object> doLogin(Integer id, String password){
+        Map <String,Object> parameter = new HashMap<>();
+        Pegawai pegawai = loginDAO.getByIdAndPassword(id,password);
+        if(pegawai == null){
+            parameter.put("loginError",true);
+            parameter.put("pegawai",null);
+            return parameter;
+        }
+        else {
+            parameter.put("loginError",false);
+            parameter.put("pegawai",pegawai);
+            return parameter;
         }
     }
 }

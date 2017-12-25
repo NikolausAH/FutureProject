@@ -11,7 +11,7 @@
 <body>
   <div class="login-block">
     <div class="logo">
-      <img src="../image/blibli.png" class="logo" alt="Cinque Terre"></img>
+      <img src="../image/blibli.png" class="logo" alt="Cinque terre"></img>
     </div>
     <h1>Login</h1>
     <form class="form-horizontal" th:form="${form}" th:action="@{/Login/Enter}" method="post">
@@ -26,6 +26,9 @@
         </div>
       </div>
       <button type="submit" class="btn btn-success">Tambah</button>
+        <div th:if="${loginError}">
+            <p>LOGIN ERROR</p>
+        </div>
     </form>
   </div>
 </body>

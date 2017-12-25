@@ -14,7 +14,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     private static final String id = "id";
     private static final String password = "password";
     private static final String nama = "nama";
-    private static final String idRole = "idrole";
+    private static final String idRole = "role_id";
     private static final String email = "email";
     private static final String role = "namarole";
 
@@ -26,7 +26,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     @Override
     public List<Pegawai> getAll() {
         List<Pegawai> pegawaiList = new ArrayList<>();
-        String sql = "SELECT id,nama,email,namarole,pegawai.idrole,namarole FROM pegawai join role on (pegawai.idrole = role.idrole) ORDER BY id ;";
+        String sql = "SELECT employee_id,name,email,namarole,pegawai.role_id,namarole FROM employees join role on (employees.role_id = role.role_id) ORDER BY id ;";
         try {
             this.makeConnection();
             Statement preparedStatement = this.connection.createStatement();
@@ -60,7 +60,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     @Override
     public List<Pegawai> search(String nama) {
         List<Pegawai> pegawaiList = new ArrayList<>();
-        String sql = "SELECT id,nama,email,namarole,pegawai.idrole,namarole FROM pegawai join role on (pegawai.idrole = role.idrole) where nama LIKE"
+        String sql = "SELECT id,nama,email,namarole,pegawai.idrole,namarole FROM employees join role on (employees.role_id = role.role_id) where nama LIKE"
                 + nama + ";";
         try {
             this.makeConnection();
@@ -90,7 +90,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
     @Override
     public void add(Pegawai pegawai) {
 
-        String sql = "INSERT INTO pegawai (nama,idrole,email) VALUES (?,(SELECT idrole FROM role WHERE namarole LIKE ?),?);";
+        String sql = "INSERT INTO employees (nama,idrole,email) VALUES (?,(SELECT idrole FROM role WHERE namarole LIKE ?),?);";
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
 
     @Override
     public void update(Pegawai pegawai) {
-        String sql = "UPDATE pegawai SET nama = ?, idrole = (SELECT idrole from role WHERE namarole LIKE ?) "
+        String sql = "UPDATE employees SET nama = ?, idrole = (SELECT idrole from role WHERE namarole LIKE ?) "
                 + "WHERE id = ?;";
         try {
             this.makeConnection();
@@ -131,7 +131,7 @@ public class PegawaiDAO extends ConnectionSettings implements InterfaceDAO<Pegaw
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM pegawai where id=?;";
+        String sql = "DELETE FROM employees where id=?;";
         try {
             this.makeConnection();
             System.out.println("Run Delete Pegawai");

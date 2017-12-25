@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Map;
+
 @Controller
 public class LoginController {
     private final LoginService loginService;
@@ -20,11 +22,15 @@ public class LoginController {
     public String Main() {
         return "Login";
     }
-    @RequestMapping(value = "/Login/Enter")
-    public ModelAndView addPromo(@ModelAttribute("Username") String username, @ModelAttribute("Password") String password){
+
+    @RequestMapping(value = "Login/Enter")
+    public ModelAndView doLogin(@ModelAttribute("Username") Integer id, @ModelAttribute("Password") String password){
         ModelAndView mav = new ModelAndView();
-        loginService.Login(username, password);
-        mav.setViewName("redirect:/Login");
+        Map map = loginService.doLogin(id, password);
+        if((boolean) map.get("loginError")){
+            mav.addObject("loginError", (boolean) map.get("loginError"));
+            mav.setViewName("redirect:/Login");
+        }
         return mav;
     }
 
