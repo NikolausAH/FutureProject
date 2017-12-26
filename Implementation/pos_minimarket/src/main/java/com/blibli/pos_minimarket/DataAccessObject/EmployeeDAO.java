@@ -90,7 +90,6 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
                     employee.setName(resultSet.getString("name"));
                     employee.setRole( this.getRoleById(resultSet.getInt("role_id")));
                     employee.setEmail(resultSet.getString("email"));
-                    employee.setStatus(resultSet.getString("status"));
                     employeeList.add(employee);
                 }resultSet.close();
             }

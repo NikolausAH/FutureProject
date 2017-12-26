@@ -35,6 +35,7 @@ public class ProductController {
         model.addAttribute("product", productService.search(searchKey));
         model.addAttribute("categoryList", categoryService.showAll());
         model.addAttribute("product_nextId", categoryService.getNextId());
+        model.addAttribute("pegawai", employee);
         return "Product";
     }
 

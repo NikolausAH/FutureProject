@@ -28,6 +28,7 @@ public class EmployeeController {
         model.addAttribute("employeeList", employeeService.showAll());
         model.addAttribute("roleList", employeeService.showAllRole());
         model.addAttribute("employee_nextId", employeeService.getNextId());
+        model.addAttribute("pegawai", employee);
         return "Employee";
     }
     @PostMapping(value = "Employee/Add")
@@ -58,7 +59,7 @@ public class EmployeeController {
     @PostMapping(value = "Employee/Delete")
     public ModelAndView deleteEmployee(@ModelAttribute("employee_Id") Integer employee_id){
         ModelAndView mav = new ModelAndView();
-        employeeService.softDelete(employee_id);
+        employeeService.delete(employee_id);
         mav.setViewName("redirect:/Employee");
         return mav;
     }

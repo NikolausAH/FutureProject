@@ -30,6 +30,7 @@ public class PromoController {
         }
         promoService.initTable();
         model.addAttribute("promo", promoService.showAll());
+        model.addAttribute("pegawai", employee);
         return "Promo";
     }
 

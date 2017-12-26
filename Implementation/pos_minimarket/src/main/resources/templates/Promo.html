@@ -51,8 +51,8 @@
                 <div class="col-xs-2 col-md-4 col-lg-4 user">
                     <i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
                     <div class="identitas">
-                        <h5 id="name">Nama / ID :SUTARTO/1011</h5>
-                        <h5 id="role-text">Role :Admin</h5>
+                        <h5 id="name" th:text="'Nama / ID :' + ${pegawai.name} + ' / ' + ${pegawai.employee_Id}"></h5>
+                        <h5 id="role-text" th:text="'Role :' + ${pegawai.role.name}"> </h5>
                     </div>
                     <div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
                         <div class="segitiga">
@@ -96,11 +96,11 @@
                 </div>
                 <ul>
                     <li>
-                        <a id="sid_1" href="#">
+                        <a id="sid_1" th:href="@{../Minimarket.html}">
                             <i class="fa">&#xf19c;</i> Minimarket</a>
                     </li>
                     <li>
-                        <a id="sid_2" href="#">
+                        <a id="sid_2" th:href="@{../Employee.html}">
                             <i class="fa">&#xf0c0;</i> Pegawai</a>
                     </li>
                     <li>
@@ -108,21 +108,21 @@
                             <a id="sid_3">
                                 <i class="fa">&#xf288;</i> Produk</a>
                             <div class="dropdown-content">
-                                <a id="drop_p1" href="#">Kategori</a>
-                                <a id="drop_p2" href="#">Kelola Produk</a>
+                                <a id="drop_p1" th:href="@{../Category.html}">Kategori</a>
+                                <a id="drop_p2" th:href="@{../Product.html}">Kelola Produk</a>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <a id="sid_4" href="#">
+                        <a id="sid_4" th:href="@{../Stock.html}">
                             <i class="fa">&#xf1b3;</i> Stok</a>
                     </li>
                     <li>
-                        <a id="sid_5" href="#">
+                        <a id="sid_5" th:href="@{../Transaction.html}">
                             <i class="fa">&#xf217;</i> Transaksi</a>
                     </li>
                     <li>
-                        <a id="sid_6" href="#">
+                        <a id="sid_6" th:href="@{../Promo.html}">
                             <i class="fa">&#xf02c;</i> Promo</a>
                     </li>
                     <li>

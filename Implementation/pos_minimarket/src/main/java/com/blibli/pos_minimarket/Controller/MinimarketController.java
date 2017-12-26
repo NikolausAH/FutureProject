@@ -23,6 +23,7 @@ public class MinimarketController {
     @RequestMapping("/Minimarket")
     public String showAllProduct(HttpServletRequest request, Model model) {
         Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
         if (employee == null || employee.getRole().getName().equals("Kasir")) {
             return "Login";
         }

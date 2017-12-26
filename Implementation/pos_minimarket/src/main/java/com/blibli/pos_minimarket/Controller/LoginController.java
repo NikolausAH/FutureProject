@@ -39,6 +39,11 @@ public class LoginController {
                 mav.addObject("pegawai", employee);
                 request.getSession().setAttribute("pegawai", employee);
             }
+            else if (employee.getRole().getName().equals("Kasir")) {
+                mav = new ModelAndView("redirect:/Minimarket");
+                mav.addObject("pegawai", employee);
+                request.getSession().setAttribute("pegawai", employee);
+            }
         }
         return mav;
     }
