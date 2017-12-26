@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class EmployeeController {
     private final EmployeeService employeeService = new EmployeeService();
@@ -18,7 +20,11 @@ public class EmployeeController {
     public EmployeeController() {
     }
     @RequestMapping(value = "Employee")
-    public String showAllEmployee(Model model) {
+    public String showAllEmployee(HttpServletRequest request,Model model) {
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        if (employee == null ||employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         model.addAttribute("employeeList", employeeService.showAll());
         model.addAttribute("roleList", employeeService.showAllRole());
         model.addAttribute("employee_nextId", employeeService.getNextId());

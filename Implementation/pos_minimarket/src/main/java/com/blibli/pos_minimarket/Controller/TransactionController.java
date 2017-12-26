@@ -1,5 +1,6 @@
 package com.blibli.pos_minimarket.Controller;
 
+import com.blibli.pos_minimarket.Model.Employee;
 import com.blibli.pos_minimarket.Model.Product;
 import com.blibli.pos_minimarket.Services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -22,7 +24,11 @@ public class TransactionController {
     }
 
     @RequestMapping("/Transaction")
-    public String initialTransaction(Model model) {
+    public String initialTransaction(HttpServletRequest request, Model model) {
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        if (employee == null ||employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         transactionService.initTable();
         List<Product> productList;
         try {

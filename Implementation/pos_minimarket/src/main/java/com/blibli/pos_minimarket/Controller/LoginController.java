@@ -26,19 +26,22 @@ public class LoginController {
     }
 
     @RequestMapping(value = "Login/Enter")
-    public ModelAndView doLogin(HttpServletRequest request, @ModelAttribute("Username") Integer id, @ModelAttribute("Password") String password){
+    public ModelAndView doLogin(HttpServletRequest request, @ModelAttribute("Username") Integer id, @ModelAttribute("Password") String password) {
         Map map = loginService.doLogin(id, password);
-        ModelAndView mav;
-        if((boolean) map.get("loginError")){
+        ModelAndView mav = new ModelAndView();
+        if ((boolean) map.get("loginError")) { //if true
             mav = new ModelAndView("Login");
             mav.addObject("loginError", map.get("loginError"));
         } else {
-            mav = new ModelAndView("Category");
             Employee employee = (Employee) map.get("pegawai");
-            mav.addObject("pegawai", employee);
-            request.getSession().setAttribute("pegawai", employee);
+            if (employee.getRole().getName().equals("Admin")) {
+                mav = new ModelAndView("redirect:/Minimarket");
+                mav.addObject("pegawai", employee);
+                request.getSession().setAttribute("pegawai", employee);
+            }
         }
         return mav;
     }
+
 
 }

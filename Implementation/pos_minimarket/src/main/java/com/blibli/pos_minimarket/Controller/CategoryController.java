@@ -25,13 +25,14 @@ public class CategoryController {
 
     @RequestMapping(value = "Category")
     public String showAllCategory(HttpServletRequest request, @ModelAttribute("searchKey")String searchKey, Model model) {
-        Employee pegawai = (Employee) request.getSession().getAttribute("pegawai");
-        if (pegawai == null) {
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        if (employee == null ||employee.getRole().getName().equals("Kasir")) {
             return "Login";
         }
         categoryService.initTable();
         model.addAttribute("category", categoryService.search(searchKey));
         model.addAttribute("category_nextId", categoryService.getNextId());
+        model.addAttribute("pegawai", employee);
         return "Category";
     }
 
