@@ -40,7 +40,7 @@ public class LoginController {
                 request.getSession().setAttribute("pegawai", employee);
             }
             else if (employee.getRole().getName().equals("Kasir")) {
-                mav = new ModelAndView("redirect:/Minimarket");
+                mav = new ModelAndView("redirect:/Transaction");
                 mav.addObject("pegawai", employee);
                 request.getSession().setAttribute("pegawai", employee);
             }

@@ -1,309 +1,286 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>POS | Minimarket</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link th:href="@{../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-	<link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
-	<link th:href="@{../css/style_cashier.css}" rel="stylesheet" type="text/css"/>
-	<link th:href="@{../css/cdnjs_Icons.css}" rel="stylesheet"/>
-	<link th:href="@{../css/googleapis_Icons.css}" rel="stylesheet"/>
-	<link th:href="@{../css/style_peg.css}" rel="stylesheet" type="text/css"/>
-	<script th:src="@{../js/jquery.js}" type="text/javascript"></script>
-	<script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
+    <title>POS | Transaksi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../css/style_peg.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../css/cdnjs_Icons.css}" rel="stylesheet"/>
+    <link th:href="@{../css/googleapis_Icons.css}" rel="stylesheet"/>
+    <script th:src="@{../js/jquery.js}" type="text/javascript"></script>
+    <script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
+    <!--for fa icon-->
+    <script>
+        function loadDateTime() {
+            if ("date_Time" in localStorage) {
+                document.getElementById("date_Time").value = localStorage.getItem("date_Time");
+            } else {
+                var date_Time = document.getElementById("date_Time").value;
+                localStorage.setItem("date_Time", date_Time);
+                console.log(localStorage.getItem("date_Time"));
+            }
+        }
+
+        function clearLocalStorage() {
+            if ("date_Time" in localStorage) {
+                localStorage.removeItem("date_Time");
+            }
+        }
+    </script>
 </head>
 <!--==========head.end==========-->
-
-<body>
-	<!--==========header.start==========-->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="header">
-				<div class="col-xs-3 col-md-2 col-lg-2 logo">
-					<a href="home.html">
-						<img src="../image/blibli.png" class="logo" alt="Cinque Terre">
-					</a>
-				</div>
-				<div class="col-xs-7 col-md-6 col-lg-6 judul">
-					<h1>POS Blibli</h1>
-				</div>
-				<div class="col-xs-2 col-md-4 col-lg-4 user">
-					<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
-					<div class="identitas">
-						<h5 id="name">Nama / ID :SUTARTO/1011</h5>
-						<h5 id="role-text">Role :Kasir</h5>
-					</div>
-					<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
-						<div class="segitiga">
-							<p>sgt</p>
-						</div>
-						<div class="dropdown-avatar">
-							<ul>
-								<li>
-									<a id="drop_u1" href="#">
-										<i class="fa">&#xf007;</i> Akun</a>
-								</li>
-								<li>
-									<a id="drop_u2" href="#">
-										<i class="glyphicon">&#xe163</i> Keluar</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--==========header.end==========-->
-	<div class="container">
-		<!--==========navigation.start==========-->
-		<div class="row">
-			<div class="col-xs-12 navigation">
-				<a href="home.html">
-					<i class="fa" id="home-icon">&#xf015;</i>
-				</a>
-			</div>
-		</div>
-		<!--==========navigation.end==========-->
-		<div class="row">
-			<!--==========sidebar.start==========-->
-
-			<!--==========sidebar.end==========-->
-			<!--==========content.start==========-->
-			<div class="col-md-10 col-lg-12 content">
-				<div class="top-layer border border-primary">
-					<!--First Layer-->
-					<div class="col-sm-12">
-						<div class="col-sm-3">
-							<p>
-								Nomor Penjualan:
-							</p>
-						</div>
-						<div class="col-sm-3">
-							<p>
-								120
-							</p>
-						</div>
-						<div class="col-sm-3">
-							<p>
-								Pajak:
-							</p>
-						</div>
-						<div class="col-sm-3">
-							<p>
-								Rp.0,-
-							</p>
-						</div>
-					</div>
-					<div class="col-sm-12">
-						<div class="col-sm-3">
-							<p>
-								Waktu/Tanggal:
-							</p>
-						</div>
-						<div class="col-sm-3">
-							<input type="time">
-							<input type="date">
-						</div>
-						<div class="total-akhir">
-							<div class="col-sm-3">
-								<p>
-									Total Akhir:
-								</p>
-							</div>
-							<div class="col-sm-3">
-								<p>
-									Rp.0,-
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-12">
-						<div class="col-sm-3">
-							<p>
-								Nama Kasir:
-							</p>
-						</div>
-						<div class="col-sm-3">
-							<p>
-								Sutarto
-							</p>
-						</div>
-						<div class="col-sm-12">
-							<hr>
-						</div>
-						<!--second layer-->
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>Kode Produk</p>
-							</div>
-							<div class="col-sm-3">
-								<input type="text">
-							</div>
-							<div class="col-sm-3">
-								<p>Jumlah</p>
-							</div>
-							<div class="col-sm-3">
-								<input type="number" name="quantity" min="1" max="100" id="jumlah">
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>Nama Produk</p>
-							</div>
-							<div class="col-sm-3">
-								<input type="text">
-							</div>
-						</div>
-						<!--Table-->
-
-						<div class="col-md-12 col-lg-12">
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Kode Produk</th>
-											<th>Nama Produk</th>
-											<th>Harga</th>
-											<th>Jumlah</th>
-											<th>Diskon</th>
-											<th>Subtotal</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>M00001</td>
-											<td>Giacomo Guiilzzani</td>
-											<td>Admin</td>
-											<td>gianicomo@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>M00002</td>
-											<td>Mariah</td>
-											<td>Kasir</td>
-											<td>mariah@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>M00003</td>
-											<td>Maclochlan Guilizzani</td>
-											<td>Admin</td>
-											<td>Maclochlan@yahoo.com</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<!--end of table-->
-						<!--Tambah Button-->
-						<div class="col-xs-12 col-md-12 col-lg-12" id="four-buttons">
-							<div class="col-xs-3 col-md-3 col-lg-3">
-								<button type="button" class="btn btn-success" id="btn-tambah" onclick="openTambah()">Tambah</button>
-							</div>
-							<div class="col-xs-3 col-md-3 col-lg-3">
-								<button type="button" class="btn btn-warning" id="btn-ubah">Ubah</button>
-							</div>
-							<div class="col-xs-3 col-md-3 col-lg-3">
-								<button type="button" class="btn btn-primary" id="btn-bayar">bayar</button>
-							</div>
-							<div class="col-xs-3 col-md-3 col-lg-3">
-								<button type="button" class="btn btn-danger" id="btn-bayar">batal (esc)</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--==========content.end==========-->
-			</div>
-		</div>
+<body onload="loadDateTime()">
+<!--==========header.start==========-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="header">
+            <div class="col-xs-3 col-md-2 col-lg-2 logo">
+                <a th:href="@{#}"> <img src="../images/BliBli.png" th:src="@{../images/BliBli.png}" class="logo"/></a>
+            </div>
+            <div class="col-xs-7 col-md-6 col-lg-6 judul">
+                <h1>POS Blibli</h1>
+            </div>
+            <div class="col-xs-2 col-md-4 col-lg-4 user">
+                <i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+                <div class="identitas">
+                    <h5 id="name" th:text="'Nama / ID :' + ${pegawai.name} + ' / ' + ${pegawai.employee_Id}"></h5>
+                    <h5 id="role-text" th:text="'Role :' + ${pegawai.role.name}"></h5>
+                </div>
+                <div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+                    <div class="segitiga">
+                        <p>sgt</p>
+                    </div>
+                    <div class="dropdown-avatar">
+                        <ul>
+                            <li><a id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
+                            <li><a id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==========header.end==========-->
+<div class="container">
+    <!--==========navigation.start==========-->
+    <div class="row">
+        <div class="col-xs-12 navigation">
+            <a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
+            <i class="fa">&#xf105;</i>
+            <a th:href="@{../Transaction.html}" id="pos">Transaksi</a>
+        </div>
+    </div>
+    <!--==========navigation.end==========-->
+    <div class="row">
+        <!--==========content.start==========-->
+        <div class="col-md-12 col-lg-12 content">
+            <div style="border: 1px solid black;">
+                <br/>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="col-sm-5" id="col-padding5">
+                            <label class="control-label" for="transaction_nextId" style="text-align: justify">Nomor
+                                :</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="number" class="form-control" id="transaction_nextId"
+                                   th:object="${transaction_nextId}" name="transaction_nextId"
+                                   th:value="${transaction_nextId}" disabled="true"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="col-sm-4" id="col-padding5">
+                            <label class="control-label" for="date_Time" style="text-align: justify">Waktu :</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="date_Time" th:object="${date_Time}"
+                                   name="date_Time" th:value="${date_Time}"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-5" id="col-padding5">
+                            <label class="control-label" for="tax" style="text-align: justify">Pajak :</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="number" class="form-control" id="tax" name="tax" th:object="${tax}"
+                                   th:value="${tax}"/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </div>
+            <div style="border: 1px solid black;">
+                <br/>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <form id="addToCart" th:action="@{Transaction/addToCart}" method="post">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="col-sm-3" id="col-padding5">
+                                        <label class="control-label" for="productId"
+                                               style="text-align: left">Produk:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" placeholder="Kode/Nama Produk"
+                                               id="productId" th:object="${productId}" name="productId"
+                                               th:value="${productId}"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-5" id="col-padding5">
+                                        <label class="control-label" for="quantity"
+                                               style="text-align: justify">Jumlah:</label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="number" class="form-control" id="quantity" name="quantity"
+                                               th:object="${quantity}" th:value="${quantity}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-5" id="col-padding5">
+                            <label class="control-label" for="total" style="text-align: justify">Total Akhir:</label>
+                        </div>
+                        <div class="col-sm-7" id="col-padding5">
+                            <input type="number" class="form-control" id="total" th:object="${total}"
+                                   th:value="${total}" name="total"/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </div>
+            <!--Table-->
+            <h3 style="text-align: center">Daftar Belanja</h3>
+            <div class="col-md-12 col-lg-12">
+                <div class="table-responsive" style="min-height: 35vh; max-height: 35vh">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Nama</th>
+                            <th>Harga</th>
+                            <th>Jumlah</th>
+                            <th>Sub Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="pList : ${productList}">
+                            <tr>
+                                <td th:text="${pList.productId}"/>
+                                <td th:text="${pList.name}"/>
+                                <td th:text="${pList.price}"/>
+                                <td th:text="${pList.quantity}"/>
+                                <td th:text="${pList.price}*${pList.quantity}"/>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end of table-->
+            <br/>
+            <div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
+                <div class="col-xs-3 col-md-3 col-lg-3">
+                    <button type="submit" class="btn btn-success" id="btn-tambah" form="addToCart">Tambah</button>
+                </div>
+                <div class="col-xs-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-danger" id="btn-hapus">Hapus</button>
+                </div>
+                <div class="col-xs-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-primary" id="btn-bayar" data-toggle="modal"
+                            data-target="#paymentModal">Bayar
+                    </button>
+                </div>
+                <div class="col-xs-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-warning" id="btn-batal">Batal</button>
+                </div>
+            </div>
+        </div>
+        <!--==========content.end==========-->
+        <!-- paymentModal -->
+        <div class="modal fade" id="paymentModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="text-align: center">Transaksi Bayar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" th:action="@{Transaction/Payment}" method="post">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label class="control-label" for="total">Total Belanja:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="hidden" class="form-control" id="date_Time" th:object="${date_Time}"
+                                           name="date_Time" th:value="${date_Time}"/>
+                                    <input type="number" class="form-control" id="total" name="total"
+                                           th:value="${total}" disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label class="control-label" for="payNominal">Nominal Bayar :</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="payNominal" name="payNominal"
+                                           th:value="${payNominal}"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                    <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                    <div class="col-xs-3 col-md-3 col-lg-3">
+                                        <button type="button" class="btn btn-primary" id="btn-batal"
+                                                data-dismiss="modal">Batal
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                    <div class="col-xs-3 col-md-3 col-lg-3">
+                                        <button type="submit" value="submit" class="btn btn-success" id="btn-ubah"
+                                                onclick="clearLocalStorage()">Tambah
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PayBackModal -->
+        <div class="modal fade" id="payBackModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="text-align: center">Uang Kembalian</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-xs-3 col-md-3 col-lg-3">
+                            <form class="form-horizontal" th:form="${form}" method="post">
+                                <div class="form-group top-form">
+                                    <div class="col-sm-3">
+                                        <label class="control-label" for="payNominal">Nominal Bayar :</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" id="payNominal" name="payNominal"
+                                               th:object="${payNominal}" th:value="${payNominal}"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
-<!--==========head.end==========-->
-
 </html>
