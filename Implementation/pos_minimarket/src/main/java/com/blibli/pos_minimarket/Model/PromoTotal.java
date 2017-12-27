@@ -5,16 +5,14 @@ import java.sql.Timestamp;
 public class PromoTotal extends Promo {
     private double discountPercent;
     private double buyMin;
-    private Integer idTotal;
 
     public PromoTotal() {
     }
 
-    public PromoTotal(Timestamp startDate, Timestamp endDate, Integer id,String status, String type, Integer idTotal, double discountPercent, double buyMin) {
+    public PromoTotal(Timestamp startDate, Timestamp endDate, Integer id,String status, String type, double discountPercent, double buyMin) {
         super(id, startDate, endDate, status,type);
         this.setDiscountPercent(discountPercent);
         this.setBuyMin(buyMin);
-        this.setIdTotal(idTotal);
     }
 
     public double getDiscountPercent() {
@@ -33,12 +31,5 @@ public class PromoTotal extends Promo {
         this.buyMin = buyMin;
     }
 
-    public Integer getIdTotal() {
-        return idTotal;
-    }
-
-    public void setIdTotal(Integer idTotal) {
-        this.idTotal = idTotal;
-    }
 }
 
