@@ -21,7 +21,9 @@ public class LoginController {
     }
 
     @RequestMapping(value = "Login")
-    public String Main() {
+    public String Main(HttpServletRequest request)
+    {Employee employee = null;
+        request.getSession().setAttribute("pegawai", employee);
         return "Login";
     }
 

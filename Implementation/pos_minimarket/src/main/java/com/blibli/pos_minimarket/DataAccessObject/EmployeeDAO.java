@@ -155,9 +155,9 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
 
     @Override
     public void add(Employee employee) {
-        String sql = "INSERT INTO employees (password, name, email, role_id, status)"+
-                "VALUES ('"+employee.getPassword()+"','"+employee.getName()+"','"+employee.getEmail()+"',"+
-                "'"+employee.getRole().getRole_id()+"','active');";
+        String sql = "INSERT INTO employees (password, name, email, role_id)"+
+                "VALUES ('Password','"+employee.getName()+"','"+employee.getEmail()+"',"+
+                "'"+employee.getRole().getRole_id()+"');";
         String message = "Error EmployeeDAO add";
         generalDAO.executeSet(sql,message);
     }
