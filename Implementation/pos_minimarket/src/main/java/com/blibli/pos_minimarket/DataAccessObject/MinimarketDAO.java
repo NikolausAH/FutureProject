@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class MinimarketDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
 
-    private void insert(Minimarket minimarket){
+    private void insert(Minimarket minimarket) {
         String nama = minimarket.getName();
         String address = minimarket.getAddress();
         String telephoneNumber = minimarket.getTelp_no();
@@ -16,8 +16,8 @@ public class MinimarketDAO extends ConnectionSettings {
         Double tax = minimarket.getTax();
         String receiptText = minimarket.getReceipt_desc();
         System.out.println(tax);
-        String sql = "INSERT INTO mini_market (name,address,email,telp_no,tax,receipt_desc)"+
-                "VALUES('" + nama + "','"+ address + "', '"+ email + "','" + telephoneNumber + "','" + tax + "','" + receiptText + "');";
+        String sql = "INSERT INTO mini_market (name,address,email,telp_no,tax,receipt_desc)" +
+                "VALUES('" + nama + "','" + address + "', '" + email + "','" + telephoneNumber + "','" + tax + "','" + receiptText + "');";
         String message = "Error Insert Minimarket";
         generalDAO.executeSet(sql, message);
     }
@@ -34,30 +34,31 @@ public class MinimarketDAO extends ConnectionSettings {
         generalDAO.executeSet(sql, message);
     }
 
-    public Minimarket show(){
+    public Minimarket show() {
         String sql = "SELECT * FROM mini_market";
         Minimarket minimarket = new Minimarket();
         try {
-            this.makeConnection();
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet != null) {
-                while (resultSet.next()) {
-                    minimarket.setName(resultSet.getString("name"));
-                    minimarket.setAddress(resultSet.getString("address"));
-                    minimarket.setEmail(resultSet.getString("email"));
-                    minimarket.setTelp_no(resultSet.getString("telp_no"));
-                    minimarket.setTax(resultSet.getDouble("tax"));
-                    minimarket.setReceipt_desc(resultSet.getString("receipt_desc"));
-                }
-                this.closeConnection();
+        this.makeConnection();
+        PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                minimarket.setName(resultSet.getString("name"));
+                minimarket.setAddress(resultSet.getString("address"));
+                minimarket.setEmail(resultSet.getString("email"));
+                minimarket.setTelp_no(resultSet.getString("telp_no"));
+                minimarket.setTax(resultSet.getDouble("tax"));
+                minimarket.setReceipt_desc(resultSet.getString("receipt_desc"));
             }
-        } catch (Exception EX) {
-            System.out.println("Error MinimarketDAO show");
-            System.out.println(EX.toString());
+            this.closeConnection();
         }
-        return minimarket;
+    } catch (Exception EX) {
+        System.out.println("Error MinimarketDAO show");
+        System.out.println(EX.toString());
     }
+        return minimarket;
+}
+
     public void updateMinimarket(Minimarket minimarket) {
         String sql = "select * from mini_market";
         try {
@@ -69,7 +70,7 @@ public class MinimarketDAO extends ConnectionSettings {
             } else {
                 this.update(minimarket);
             }
-           this.closeConnection();
+            this.closeConnection();
         } catch (Exception EX) {
             System.out.println("Error CategoryDAO getAllCategory");
             System.out.println(EX.toString());
