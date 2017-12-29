@@ -11,10 +11,11 @@ public class ProfileDAO extends GeneralDAO {
         String nama = employee.getName();
         Integer id = employee.getEmployee_Id();
         String email = employee.getEmail();
-        String sql = "UPDATE employees SET name ='" + nama + "',email='" + email +"'WHERE employee_id ="+id+"';";
+        String sql = "UPDATE employees SET name ='" + nama + "',email='" + email +"'WHERE employee_id ="+id+";";
         String message = "ProfileDAO update";
-        generalDAO.executeSet(sql, message);
+         generalDAO.executeSet(sql, message);
     }
+
     public Employee show(Employee employee) {
         Employee employeeShow = new Employee();
         Integer id = employee.getEmployee_Id();

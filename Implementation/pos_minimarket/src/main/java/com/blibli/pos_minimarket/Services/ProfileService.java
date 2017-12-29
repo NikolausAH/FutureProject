@@ -8,12 +8,20 @@ import org.springframework.stereotype.Service;
 public class ProfileService {
     private ProfileDAO profileDAO = new ProfileDAO();
 
-    public void updateProfile(Employee employee){
-        try{
+    public void updateProfile(Employee employee) {
+        try {
             profileDAO.update(employee);
-        }
-        catch (Exception EX){
+        } catch (Exception EX) {
             System.out.println("Error ProfileService updateProfile");
+            System.out.println(EX);
+        }
+    }
+
+    public void show(Employee employee) {
+        try {
+            profileDAO.show(employee);
+        } catch (Exception EX) {
+            System.out.println("Error ProfileService show");
             System.out.println(EX);
         }
     }

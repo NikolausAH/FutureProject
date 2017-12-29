@@ -111,13 +111,13 @@
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-8">
-                    <form class="form-horizontal" th:form="${form}" th:object="${minimarket}" th:action="@{/Minimarket/Update}" method="post">
+                    <form class="form-horizontal" th:form="${form}" th:object="${pegawai}" th:action="@{#}" method="post">
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left" for="name">Nama:</label>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" required="required" id="name" name="name" th:value="${minimarket.name}"/>
+                                <input type="text" class="form-control" required="required" id="name" name="name" th:value="${pegawai.name}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -125,7 +125,7 @@
                                 <label class="control-label" style="text-align: left" for="address">Alamat :</label>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" required="required" id="address" name="address" th:value="${minimarket.address}"/>
+                                <input type="text" class="form-control" required="required" id="address" name="address" th:value="${pegawai.employee_Id}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -133,7 +133,7 @@
                                 <label class="control-label" style="text-align: left" for="email">E-mail :</label>
                             </div>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" required="required" id="email" name="email" th:value="${minimarket.email}"/>
+                                <input type="email" class="form-control" required="required" id="email" name="email" th:value="${pegawai.email}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -141,13 +141,13 @@
                                 <label class="control-label" style="text-align: left" for="telp_no">No Telepon :</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" required="required" id="telp_no" name="telp_no" th:value="${minimarket.telp_no}"/>
+                                <input type="text" class="form-control" required="required" id="telp_no" name="telp_no" th:value="${pegawai.role.name}"/>
                             </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left" for="tax">Pajak(%) :</label>
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" required="required" id="tax" name="tax" th:value="${minimarket.tax}"/>
+                                <input type="text" class="form-control" required="required" id="tax" name="tax" th:value="${pegawai.role.name}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -155,7 +155,7 @@
                                 <label class="control-label" style="text-align: left" for="receipt_desc">Receipt :</label>
                             </div>
                             <div class="col-sm-9">
-                                <textarea class="form-control" required="required" id="receipt_desc" name="receipt_desc" th:field="${minimarket.receipt_desc}"></textarea>
+                                <textarea class="form-control" required="required" id="receipt_desc" name="receipt_desc" th:field="${pegawai.role.name}"></textarea>
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
