@@ -162,7 +162,7 @@
                         <div class="col-xs-4 col-md-4 col-lg-4">
                             <button type="button" class="btn btn-danger" id="btn-password" style="margin-left: 60%;"
                                     data-toggle="modal" data-target="#createModal">
-                                Ganti Password
+                                Ubah Password
                             </button>
                         </div>
                     </div>
@@ -177,40 +177,48 @@
                                 <h4 class="modal-title" style="text-align: center">Ubah Password</h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" th:form="${form}" th:object="${PasswordBaru}" th:action="@{/Profile/ChangePassword}"  method="post">
+                                <form class="form-horizontal" th:form="${form}" th:object="${PasswordBaru}"
+                                      th:action="@{/Profile/ChangePassword}" method="post">
                                     <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="employee_nextId">Password Lama:</label>
+                                            <label class="control-label" for="passwordLama">Password Lama:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="employee_nextId" name="employee_nextId"/>
+                                            <input type="password" class="form-control" id="passwordLama"
+                                                   name="passwordLama"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="employee_nextId">Password Baru:</label>
+                                            <label class="control-label" for="passwordBaru1">Password Baru:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="employee_nextId" name="employee_nextId"/>
+                                            <input type="password" class="form-control" id="passwordBaru1"
+                                                   name="passwordBaru1"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="name">Ulangi Password:</label>
+                                            <label class="control-label" for="passwordBaru2">Ulangi Password:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="name" placeholder="" name="name"/>
+                                            <input type="password" class="form-control" id="passwordBaru2" placeholder=""
+                                                   name="passwordBaru2"/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
                                             <div class="col-xs-4 col-md-4 col-lg-4"></div>
                                             <div class="col-xs-3 col-md-3 col-lg-3">
-                                                <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-primary" id="btn-batal"
+                                                        data-dismiss="modal">Batal
+                                                </button>
                                             </div>
                                             <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                             <div class="col-xs-3 col-md-3 col-lg-3">
-                                                <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah">Ubah</button>
+                                                <button type="submit" value="Submit" class="btn btn-success"
+                                                        id="btn-ubah">Ubah
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
