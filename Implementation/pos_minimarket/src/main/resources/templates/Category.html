@@ -122,6 +122,7 @@
                             <th>Nama</th>
                             <th>Deskripsi</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -131,6 +132,9 @@
                                 <td th:text="${cat.name}"/>
                                 <td th:text="${cat.description}"/>
                                 <td th:text="${cat.status}"/>
+                                <td>
+                                    <a th:href="${'category/detail/'+cat.categoryId}">detail</a>
+                                </td>
                             </tr>
                         </th:block>
                         </tbody>
@@ -259,7 +263,8 @@
             </div>
 
             <!-- DeleteModal -->
-            <div class="modal fade" id="deleteModal" role="dialog">
+            <!--<div class="modal fade" id="deleteModal" role="dialog">-->
+                <div class="modal fade" id="modal-delete-{${cat.description}}" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -274,7 +279,7 @@
                                         <label class="control-label" for="categoryId">Kode Kategori :</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="categoryId" placeholder="ID akan dihapus" name="categoryId" th:value="${categoryId}"/>
+                                            <input type="text" class="form-control" id="categoryId" placeholder="ID akan dihapus" name="categoryId" th:value="${categoryId}"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

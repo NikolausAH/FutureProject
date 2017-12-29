@@ -3,12 +3,14 @@ package com.blibli.pos_minimarket.Controller;
 import com.blibli.pos_minimarket.Model.Category;
 import com.blibli.pos_minimarket.Services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.jws.WebParam;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CategoryController {
@@ -28,6 +30,12 @@ public class CategoryController {
         return "Category";
     }
 
+    @RequestMapping(value = "/category/detail/{categoryId}", method = RequestMethod.GET)
+    public String detailCategory(@PathVariable Integer categoryId, Model model){
+        model.addAttribute("category", categoryService.getById(categoryId));
+        return "CategoryDetail";
+    }
+
     @PostMapping(value = "/Category/Add")
     public ModelAndView addCategory(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
@@ -38,18 +46,23 @@ public class CategoryController {
     }
 
     @PostMapping(value = "/Category/Update")
-    public ModelAndView updateCategory(@ModelAttribute("category") Category category){
+    public ModelAndView updateProduct(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
         categoryService.update(category);
         mav.setViewName("redirect:/Category");
         return mav;
     }
 
-    @RequestMapping(value = "/Category/Delete")
-    public ModelAndView deleteCategory(@ModelAttribute("categoryId")Integer categoryId){
+    @RequestMapping(params = "delete", method = RequestMethod.POST)
+    public ModelAndView deleteCategory(@ModelAttribute("category")Category category){
+        System.out.println(category.getCategoryId());
         ModelAndView mav = new ModelAndView();
-        categoryService.softDelete(categoryId);
+        categoryService.softDelete(category.getCategoryId());
         mav.setViewName("redirect:/Category");
         return mav;
+    }
+    @RequestMapping(params = "cancel", method = RequestMethod.POST)
+    public String cancelUpdateCategory(){
+        return "redirect:/Category";
     }
 }
