@@ -45,7 +45,7 @@ public class CategoryController {
         return mav;
     }
 
-    @PostMapping(value = "/Category/Update")
+    @RequestMapping(value = "/Category/Detail", params = "update", method = RequestMethod.POST)
     public ModelAndView updateProduct(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
         categoryService.update(category);
@@ -53,7 +53,7 @@ public class CategoryController {
         return mav;
     }
 
-    @RequestMapping(params = "delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/Category/Detail", params = "delete", method = RequestMethod.POST)
     public ModelAndView deleteCategory(@ModelAttribute("category")Category category){
         System.out.println(category.getCategoryId());
         ModelAndView mav = new ModelAndView();
@@ -61,8 +61,8 @@ public class CategoryController {
         mav.setViewName("redirect:/Category");
         return mav;
     }
-    @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    public String cancelUpdateCategory(){
+    @RequestMapping(value = "/Category/Detail",params = "cancel", method = RequestMethod.POST)
+    public String cancelCategory(){
         return "redirect:/Category";
     }
 }
