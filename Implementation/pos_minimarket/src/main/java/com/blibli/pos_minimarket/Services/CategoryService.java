@@ -78,7 +78,6 @@ public class CategoryService {
 
     public Category getById(Integer categoryId){
         try {
-
             category=categoryDAO.getById(categoryId);
         }
         catch (Exception EX){
@@ -101,14 +100,14 @@ public class CategoryService {
     }
 
     public List<Category> search(String searchKey) {
-        List<Category> listCategory = new ArrayList<>();
+        List<Category> categoryList = new ArrayList<>();
 
         try {
-            listCategory = categoryDAO.search(searchKey);
+            categoryList = categoryDAO.search(searchKey);
         } catch (Exception EX) {
             System.out.println("Error CategoryServices search");
             System.out.println(EX.toString());
         }
-        return listCategory;
+        return categoryList;
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>POS | Kategori</title>
+    <title>POS | Pegawai</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{../../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../../css/style.css}" rel="stylesheet" type="text/css"/>
@@ -52,9 +52,7 @@
         <div class ="col-xs-12 navigation">
             <a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
             <i class="fa">&#xf105;</i>
-            <a id="pos">Product</a>
-            <i class="fa">&#xf105;</i>
-            <a th:href="@{../../Category.html}" id="pos">Kategori</a>
+            <a th:href="@{../../Employee.html}" id="pos">Pegawai</a>
         </div>
     </div>
     <!--==========navigation.end==========-->
@@ -108,34 +106,49 @@
             <div class="col-md-8 col-lg-8 content" style="border-top: none">
                 <br />
                 <br />
-            <div class="modal-header">
-                <h4 class="modal-title" style="text-align: center">Detail Kategori</h4>
-            </div>
+                <div class="modal-header">
+                    <h4 class="modal-title" style="text-align: center">Detail Pegawai</h4>
+                </div>
                 <br />
-                <form class="form-horizontal" th:form="${form}" th:object="${category}" th:action="@{/Category/Detail}"  method="post">
-                    <input type="hidden" th:field="*{categoryId}"/>
+                <form class="form-horizontal" th:form="${form}" th:object="${employee}" th:action="@{/Employee/Detail}"  method="post">
+                    <input type="hidden" th:field="*{employee_Id}"/>
                     <div class="form-group">
                         <div class="col-sm-3">
-                            <label class="control-label" style="width: 100%;" for="categoryId">ID Kategori   : </label>
+                            <label class="control-label" style="width: 100%;" for="employee_Id">ID Pegawai   : </label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="categoryId" name="categoryId" th:field="*{categoryId}" disabled="true"/>
+                            <input type="number" class="form-control" id="employee_Id" name="employee_Id" th:field="*{employee_Id}" disabled="true"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-3">
-                            <label class="control-label" for="name">Nama          : </label>
+                            <label class="control-label" for="name">Nama : </label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="name" placeholder="Nama Kategori" name="name" th:field="*{name}"/>
+                            <input type="text" class="form-control" id="name" placeholder="Nama Pegawai" name="name" th:field="*{name}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-3">
-                            <label class="control-label" for="description">Deskripsi      : </label>
+                            <label class="control-label" for="email">E-mail : </label>
                         </div>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="5" id="description" name="description" th:field="*{description}"></textarea>
+                            <input type="text" class="form-control" id="email" placeholder="E-mail Pegawai" name="email" th:field="*{email}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <label class="control-label">Role : </label>
+                        </div>
+                        <div class="col-sm-9" th:form="${form}">
+                            <select class="form-control" th:object="${role_id}" name="role_id">
+                                <option
+                                        th:each="role : ${roleList}"
+                                        th:value="${role.role_id}"
+                                        th:text="${role.name}"
+                                >
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -152,7 +165,7 @@
                     </div>
                 </form>
             </div>
-            </div>
+        </div>
         <!--==========content.end==========-->
     </div>
 </div>

@@ -25,7 +25,7 @@ public class CategoryController {
     @RequestMapping(value = "Category")
     public String showAllCategory(@ModelAttribute("searchKey")String searchKey,Model model) {
         categoryService.initTable();
-        model.addAttribute("category", categoryService.search(searchKey));
+        model.addAttribute("categoryList", categoryService.search(searchKey));
         model.addAttribute("category_nextId", categoryService.getNextId());
         return "Category";
     }

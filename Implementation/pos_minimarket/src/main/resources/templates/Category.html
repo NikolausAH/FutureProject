@@ -3,8 +3,8 @@
 <head>
     <title>POS | Kategori</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../css/cdnjs_Icons.css}" rel="stylesheet"/>
     <link th:href="@{../css/googleapis_Icons.css}" rel="stylesheet"/>
 
@@ -136,17 +136,15 @@
                         <tr>
                             <th>Kode</th>
                             <th>Nama</th>
-                            <th>Deskripsi</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <th:block th:each="cat : ${category}">
+                        <th:block th:each="cat : ${categoryList}">
                             <tr>
                                 <td th:text="${cat.categoryId}" />
                                 <td th:text="${cat.name}"/>
-                                <td th:text="${cat.description}"/>
                                 <td th:text="${cat.status}"/>
                                 <td>
                                     <a th:href="${'category/detail/'+cat.categoryId}">detail</a>

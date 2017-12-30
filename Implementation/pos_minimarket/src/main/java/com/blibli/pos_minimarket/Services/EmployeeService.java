@@ -10,6 +10,17 @@ import java.util.List;
 @Service //menandakan class ini service
 public class EmployeeService {
     private EmployeeDAO employeeDAO = new EmployeeDAO();
+    Employee employee = new Employee();
+
+    public void initTable(){
+        try {
+            employeeDAO.initTable();
+        }
+        catch (Exception EX){
+            System.out.println("Error EmployeeService initTable");
+            System.out.println(EX.toString());
+        }
+    }
 
     public List<Employee> showAll() {
         List<Employee> employeeList = new ArrayList<>();
@@ -22,6 +33,18 @@ public class EmployeeService {
         }
         return employeeList;
     }
+
+    public List<Employee> search(String searchKey) {
+        List<Employee> employeeList = new ArrayList<>();
+        try {
+            employeeList = employeeDAO.search(searchKey);
+        } catch (Exception EX) {
+            System.out.println("Error CategoryServices search");
+            System.out.println(EX.toString());
+        }
+        return employeeList;
+    }
+
     public List<Role> showAllRole() {
         List<Role> roleList = new ArrayList<>();
         try {
@@ -73,6 +96,18 @@ public class EmployeeService {
             System.out.println(EX.toString());
         }
     }
+
+    public Employee getById(Integer employeeId){
+        try {
+            employee = employeeDAO.getById(employeeId);
+        }
+        catch (Exception EX){
+            System.out.println("Error CategoryService Add");
+            System.out.println(EX.toString());
+        }
+        return employee;
+    }
+
     public void delete(Integer employee_id){
         try {
             employeeDAO.delete(employee_id);
