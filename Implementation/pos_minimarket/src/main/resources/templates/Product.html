@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>POS | Product</title>
+    <title>POS | Produk</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
@@ -105,11 +105,28 @@
         <!--==========content.start==========-->
         <div class="col-md-10 col-lg-10 content">
             <br />
-            <form class="form-inline" th:object="${form}" th:action="@{/Product}" method="post">
-                <input type="text" class="form-control src" name="searchKey" placeholder="Kode atau Nama Produk"  th:value="${searchKey}"/>
-                <button type="submit" class="btn btn-warning" id="btn-search">Cari</button>
-                <button type="button" class="btn btn-success" id="btn-export">Export</button>
-            </form>
+            <section class="search-transaksi">
+                <br />
+                <div class="row">
+                    <div class="col-sm-2" style="margin-right: 0; padding-right: 0">
+                        <button type="button" class="btn btn-success" style="margin-left: 25px;" data-toggle="modal" data-target="#createModal">Tambah Data</button>
+                    </div>
+                    <div class="col-sm-8" style="margin-left: 0; padding-left: 0">
+                        <div class="col-sm-1"></div>
+                        <form th:form="${form}" th:action="@{/Product}" method="post">
+                            <div class="col-sm-10" style="margin: 0; padding: 0" id="search-form">
+                                <input type="text" class="form-control del-radius-right" name="searchKey" id="searchkey" th:object="${searchKey}" th:value="${searchKey}" placeholder="ID atau Nama Product..." />
+                            </div>
+                            <div class="col-sm-1" style="margin: 0; padding: 0">
+                                <button type="submit" class="btn btn-warning del-radius-left" id="btn-src2"><i class="fa ">&#xf002;</i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-success" >Export</button>
+                    </div>
+                </div>
+            </section>
             <br />
             <!--Table-->
             <div class="col-md-12 col-lg-12">
@@ -117,25 +134,27 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Kode</th>
+                            <th>ID</th>
                             <th>Nama</th>
                             <th>Kategori</th>
-                            <th>Deskripsi</th>
-                            <th>Stok</th>
                             <th>Harga</th>
+                            <th>Stok</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <th:block th:each="prod : ${product}">
+                        <th:block th:each="product : ${productList}">
                             <tr>
-                                <td th:text="${prod.productId}" />
-                                <td th:text="${prod.name}"/>
-                                <td th:text="${prod.category.name}"/>
-                                <td th:text="${prod.description}"/>
-                                <td th:text="${prod.quantity}"/>
-                                <td th:text="${prod.price}"/>
-                                <td th:text="${prod.status}"/>
+                                <td th:text="${product.productId}" />
+                                <td th:text="${product.name}"/>
+                                <td th:text="${product.category.name}"/>
+                                <td th:text="${product.price}"/>
+                                <td th:text="${product.quantity}"/>
+                                <td th:text="${product.status}"/>
+                                <td>
+                                    <a th:href="${'product/detail/'+product.productId}">detail</a>
+                                </td>
                             </tr>
                         </th:block>
                         </tbody>
@@ -143,21 +162,7 @@
                 </div>
             </div>
             <!--end of table-->
-            <!--Button tambah ubah hapus-->
-            <br />
-            <div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
-                <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-success" id="btn-tambah" data-toggle="modal" data-target="#createModal">Tambah</button>
-                </div>
-                <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-warning" id="btn-ubah" data-toggle="modal" data-target="#updateModal">Ubah</button>
-                </div>
-                <div class="col-xs-4 col-md-4 col-lg-4">
-                    <button type="button" class="btn btn-danger" id="btn-hapus" data-toggle="modal" data-target="#deleteModal">Hapus</button>
-                </div>
-            </div>
-            <!--Akhir Button tambah ubah hapus-->
-            <!-- createModal -->
+            <!-- AddModal -->
             <div class="modal fade" id="createModal" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -170,7 +175,7 @@
                             <form class="form-horizontal" th:form="${form}" th:object="${product}" th:action="@{/Product/Add}"  method="post">
                                 <div class="form-group">
                                     <div class="col-sm-4">
-                                        <label class="control-label" for="product_nextId">Nama:</label>
+                                        <label class="control-label" for="product_nextId">ID Product :</label>
                                     </div>
                                     <div class="col-sm-8">
                                         <input type="number" class="form-control" id="product_nextId" name="product_nextId" th:value="${product_nextId}" disabled="true"/>
@@ -222,116 +227,6 @@
                                         </div>
                                         <div class="col-xs-6 col-md-6 col-lg-6">
                                             <button type="submit" class="btn btn-success" id="btn-tambah2">Tambah</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- updateModal -->
-            <div class="modal fade" id="updateModal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="text-align: center">Ubah Produk</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" th:form="${form}" th:object="${product}" th:action="@{/Product/Update}"  method="post">
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="productId">Id Edit nanti:</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="productId" placeholder="ID akan diubah" name="productId" th:value="${productId}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="name">Nama:</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="name" placeholder="Nama Produk" name="name" th:value="${name}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label"> Kategori :</label>
-                                    </div>
-                                    <div class="col-sm-8" th:form="${form}">
-                                        <select class="form-control" th:object="${categoryId}" name="categoryId">
-                                            <option
-                                                    th:each="cat : ${categoryList}"
-                                                    th:value="${cat.categoryId}"
-                                                    th:text="${cat.name}"
-                                            >
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="price">Harga :</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="price" placeholder="Harga produk" name="price" th:value="${price}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="description">Deskripsi :</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <textarea class="form-control" rows="5" id="description" name="description" th:value="${description}"></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
-                                        <div class="col-xs-6 col-md-6 col-lg-6">
-                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
-                                        </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6">
-                                            <button type="submit" class="btn btn-warning" id="btn-tambah2">Ubah</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- DeleteModal -->
-            <div class="modal fade" id="deleteModal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="text-align: center">Hapus Produk</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" th:action="@{/Product/Delete}"  method="post">
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="productId">Kode Produk :</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="productId" placeholder="ID akan dihapus" name="productId" th:value="${productId}"/>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
-                                        <div class="col-xs-4 col-md-4 col-lg-4"></div>
-                                        <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="button" class="btn btn-primary" id="btn-batal" data-dismiss="modal">Batal</button>
-                                        </div>
-                                        <div class="col-xs-2 col-md-2 col-lg-2"></div>
-                                        <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-danger" id="btn-tambah">Hapus</button>
                                         </div>
                                     </div>
                                 </div>
