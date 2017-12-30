@@ -6,9 +6,7 @@ import com.blibli.pos_minimarket.Services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -23,17 +21,29 @@ public class StockController {
     }
 
     @RequestMapping("/Stock")
-    public String showAllStock(Model model) {
-        model.addAttribute("product", productService.showAll());
+    public String showAllProduct(@ModelAttribute("searchKey")String searchKey, Model model) {
+        productService.initTable();
+        model.addAttribute("productList", productService.search(searchKey));
         return "Stock";
     }
 
+    @RequestMapping(value = "/stock/detail/{productId}", method = RequestMethod.GET)
+    public String detailEmployee(@PathVariable Integer productId, Model model){
+        model.addAttribute("product", productService.getById(productId));
+        return "StockDetail";
+    }
+
     @PostMapping(value = "/Stock/Update")
-    public ModelAndView updateStock(@ModelAttribute("product") Product product){
+    public ModelAndView updateStock(@ModelAttribute("product") Product product, @ModelAttribute("addQuantity") Integer quantity){
         ModelAndView mav = new ModelAndView();
-        System.out.println(product.getQuantity());
-        stockService.updateQuantity(product);
+        stockService.updateQuantity(product,quantity);
         mav.setViewName("redirect:/Stock");
         return mav;
     }
+
+    @RequestMapping(value = "/Stock/Detail",params = "cancel", method = RequestMethod.POST)
+    public String cancelCategory(){
+        return "redirect:/Stock";
+    }
+
 }

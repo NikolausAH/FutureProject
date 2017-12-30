@@ -103,63 +103,31 @@
 		<!--==========content.start==========-->
 		<div class="col-md-10 col-lg-10 content">
 			<br />
-			<form class="form-inline" th:object="${form}">
-				<div class="col-md-4">
+			<section class="search-transaksi">
+				<br />
+				<div class="row">
+					<div class="col-sm-2" style="margin-right: 0; padding-right: 0">
+					</div>
+					<div class="col-sm-8" style="margin-left: 0; padding-left: 0">
+						<div class="col-sm-1"></div>
+						<form th:form="${form}" th:action="@{/Stock}" method="post">
+							<div class="col-sm-10" style="margin: 0; padding: 0" id="search-form">
+								<input type="text" class="form-control del-radius-right" name="searchKey" id="searchkey" th:object="${searchKey}" th:value="${searchKey}" placeholder="ID atau Nama Produk..." />
+							</div>
+							<div class="col-sm-1" style="margin: 0; padding: 0">
+								<button type="submit" class="btn btn-warning del-radius-left" id="btn-src2"><i class="fa ">&#xf002;</i></button>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-success" >Export</button>
+					</div>
 				</div>
-				<div class="col-md-8 form-search">
-					<input class="form-control src" name="search" placeholder="ID atau Nama Produk..."
-						   type="text" />
-					<button type="button" class="btn btn-success" id="btn-export">Export</button>
-				</div>
-			</form>
-			<br />
-			<!--Start Aksi Tambah-->
-			<!--Start Bagian Form-->
-
-			<div class="col-md-5">
-				<div id="aksi-stok">
-					<br />
-					<form class="form-horizontal" th:form="${form}" th:object="${product}" th:action="@{/Stock/Update}"  method="post">
-						<div class="form-group top-form">
-							<div class="col-md-6">
-								<label class="control-label" for="productId">Kode produk :</label>
-							</div>
-							<div class="col-md-6">
-								<input type="number" class="form-control" id="productId" name="productId" th:value="${productId}"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-md-6">
-								<label class="control-label" for="name">Nama E :</label>
-							</div>
-							<div class="col-md-6">
-								<input type="text" class="form-control" id="name" name="name" /><!--Edit Sebelah sini-->
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-md-6">
-								<label class="control-label" for="quantity">Jumlah :</label>
-							</div>
-							<div class="col-md-6">
-								<input type="number" class="form-control" id="quantity" name="quantity" th:value="${quantity}"/>
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
-							<div class="col-xs-6 col-md-6 col-lg-6">
-								<button type="button" class="btn btn-primary" id="btn-batal">Batal</button>
-							</div>
-							<div class="col-xs-6 col-md-6 col-lg-6">
-								<button type="submit" class="btn btn-success" id="btn-tambah2">Tambah</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<!--End Bagian Form-->
+			</section>
 			<!--Start Bagian Tabel-->
 			<br />
-
-			<div class="col-md-7">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
@@ -168,15 +136,19 @@
 							<th>Nama</th>
 							<th>Stok</th>
 							<th>Status</th>
+							<th>Aksi</th>
 						</tr>
 						</thead>
 						<tbody>
-						<th:block th:each="prod : ${product}">
+						<th:block th:each="product : ${productList}">
 							<tr>
-								<td th:text="${prod.productId}" />
-								<td th:text="${prod.name}"/>
-								<td th:text="${prod.quantity}"/>
-								<td th:text="${prod.status}"/>
+								<td th:text="${product.productId}" />
+								<td th:text="${product.name}"/>
+								<td th:text="${product.quantity}"/>
+								<td th:text="${product.status}"/>
+								<td>
+									<a th:href="${'stock/detail/'+product.productId}">detail</a>
+								</td>
 							</tr>
 						</th:block>
 						</tbody>
