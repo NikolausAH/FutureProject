@@ -95,10 +95,10 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO<
     public void add(PromoProduct promoProduct) {
         String sql = "INSERT INTO promo_product_discount(p_discount_id, discount_percent, start_date, end_date, product_id, status)VALUES " +
                 "(" + promoProduct.getId() + "," +
-                100 + "," + "'" +
+                promoProduct.getDiscountPercent() + "," + "'" +
                 promoProduct.getStartDate() + "'," + "'" +
                 promoProduct.getEndDate() + "'," +
-                1 + "," +
+                promoProduct.getProductId() + "," +
                 "'Active'" +
                 ");";
         String message = "Error PromoProduct Add";

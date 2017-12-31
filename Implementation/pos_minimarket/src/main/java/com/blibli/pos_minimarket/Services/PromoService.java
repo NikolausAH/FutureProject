@@ -52,6 +52,7 @@ public class PromoService {
                     promoList.add(promo);
                 }
             } catch (Exception EX) {
+                System.out.println("Error PromoService add");
                 System.out.println(EX.toString());
             }
         }
@@ -86,26 +87,14 @@ public class PromoService {
         return promoList;
     }
 
-    public void add(Promo promo, PromoXY promoXY, PromoProduct promoProduct, PromoTotal promoTotal) {
+    public void add(String jenis, PromoXY promoXY, PromoProduct promoProduct, PromoTotal promoTotal) {
         try {
-            if (promo.getType().equals("Promo XY")) {
-                promoXY.setId(promo.getId());
-                promoXY.setStartDate(promo.getStartDate());
-                promoXY.setEndDate(promo.getEndDate());
-                promoXY.setStatus(promo.getStatus());
+            if (jenis.equals("Promo Beli X dapat Y")) {
                 promoXYDAO.add(promoXY);
-            } else if (promo.getType().equals("Promo Produk")) {
-                promoProduct.setId(promo.getId());
-                promoProduct.setStartDate(promo.getStartDate());
-                promoProduct.setEndDate(promo.getEndDate());
-                promoProduct.setStatus(promo.getStatus());
-                promoProductDAO.add(promoProduct);
-            } else if (promo.getType().equals("Promo Total")) {
-                promoTotal.setId(promo.getId());
-                promoTotal.setStartDate(promo.getStartDate());
-                promoTotal.setEndDate(promo.getEndDate());
-                promoTotal.setStatus(promo.getStatus());
+            } else if (jenis.equals("Promo Total")) {
                 promoTotalDAO.add(promoTotal);
+            } else if (jenis.equals("Promo Product")) {
+                promoProductDAO.add(promoProduct);
             }
         } catch (Exception EX) {
             System.out.println();

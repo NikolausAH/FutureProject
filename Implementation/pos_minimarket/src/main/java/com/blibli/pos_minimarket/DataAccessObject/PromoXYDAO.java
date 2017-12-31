@@ -92,12 +92,12 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
     public void add(PromoXY promoXY) {
         String sql = "INSERT INTO promo_buyx_gety (p_bxgy_id, quantity_x, quantity_y, start_date, end_date, productx_id, producty_id, status) VALUES" +
                 "(" + promoXY.getId() + "," +
-                1 + "," +
-                1 + "," + "'" +
+                promoXY.getQuantityX() + "," +
+                promoXY.getQuantityY() + "," + "'" +
                 promoXY.getStartDate() + "'," + "'" +
                 promoXY.getEndDate() + "'," +
-                1 + "," +
-                1 + "," +
+                promoXY.getProductXId() + "," +
+                promoXY.getProductYId() + "," +
                 "'Active'" +
                 ");";
         String message = "Error PromoXY Add";

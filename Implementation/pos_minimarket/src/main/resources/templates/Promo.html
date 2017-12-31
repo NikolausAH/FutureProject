@@ -214,56 +214,57 @@
                         </div>
                         <div class="modal-body">
                             <div class="col-sm-3">
-                                <div class="form-group">
-                                    <div class="col-sm-3">
-                                        <label class="control-label" for="type">Jenis:</label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <select class="btn btn-default dropdown-toggle" type="button"
-                                                data-toggle="dropdown" name="role" th:value="${type}"
-                                                id="selectPromo"
-                                                onChange="selectForm()">
-                                            <option selected="selected">Pilih Jenis Promo</option>
-                                            <option value="Total">Promo Total</option>
-                                            <option value="Produk">Promo Produk</option>
-                                            <option value="XY">Promo Beli X dapat Y</option>
-                                        </select>
-                                    </div>
+                                <div class="col-sm-3">
+                                    <label class="control-label" for="jenis">Jenis:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <select class="btn btn-default dropdown-toggle" type="button"
+                                            data-toggle="dropdown" name="jenis" th:value="${jenis}"
+                                            id="selectPromo"
+                                            onChange="selectForm()">
+                                        <option selected="selected">Pilih Jenis Promo</option>
+                                        <option value="Total">Promo Total</option>
+                                        <option value="Produk">Promo Produk</option>
+                                        <option value="XY">Promo Beli X dapat Y</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-4" id="formTotal" style="display: none">
                                 <h5>Promo Total</h5>
-                                <div th:form="${form}" th:object="${promoTotal}" name="promoTotal">
+                                <form th:form="${form}" th:object="${promoTotal}" th:action="@{/Promo/Add}"
+                                      name="promoTotal" method="post">
+                                    <input type="hidden" name="jenis" id="jenis" value="Promo Total"></input>
                                     <div class="col-sm-12">
                                         <div class="col-shm-3">
-                                            <label class="control-label" for="discountPercent">ID:</label>
+                                            <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="number" class="form-control" id="id"
+                                                   name="id"
+                                                   placeholder="0"
+                                                   th:value="${id}"
                                             />
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="discountPercent">Tanggal Mulai</label>
+                                            <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="#" class="form-control" id="startDate"
+                                                   placeholder="0" name="startDate"
+                                                   th:value="${startDate}"
                                             />
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="discountPercent">Tanggal Akhir</label>
+                                            <label class="control-label" for="endDate">Tanggal Akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="#" class="form-control" id="endDate"
+                                                   placeholder="0" name="endDate"
+                                                   th:value="${endDate}"
                                             />
                                         </div>
                                     </div>
@@ -288,19 +289,46 @@
                                                    name="buyMin" th:value="${buyMin}"/>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                        <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                        <div class="col-xs-3 col-md-3 col-lg-3">
+                                            <button type="button" class="btn btn-primary" id="btn-batal"
+                                                    data-dismiss="modal">Batal
+                                            </button>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                        <div class="col-xs-3 col-md-3 col-lg-3">
+                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah"
+                                            >Tambah
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-sm-4" id="formProduk" style="display: none">
                                 <h5>Promo Produk</h5>
-                                <div th:form="${form}" th:object="${promoProduk}" name="promoProduk">
+                                <form th:form="${form}" th:object="${promoProduct}" th:action="@{/Promo/Add}"
+                                      name="promoProduct" method="post">
+                                    <input type="hidden" name="jenis" id="jenis" value="Promo Produk"></input>
                                     <div class="col-sm-12">
                                         <div class="col-shm-3">
-                                            <label class="control-label" for="discountPercent">ID:</label>
+                                            <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="number" class="form-control" id="id"
+                                                   placeholder="0" name="id"
+                                                   th:value="${id}"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-3">
+                                            <label class="control-label" for="buyMin">Minimal Buy</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control" id="buyMin"
+                                                   placeholder="0" name="buyMin"
+                                                   th:value="${buyMin}"
                                             />
                                         </div>
                                     </div>
@@ -326,39 +354,55 @@
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="discountPercent">Tanggal Mulai</label>
+                                            <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="datetime-local" class="form-control" id="startDate"
+                                                   placeholder="0" name="startDate"
+                                                   th:value="${startDate}"
                                             />
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="discountPercent">Tanggal akhir</label>
+                                            <label class="control-label" for="endDate">Tanggal akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="datetime-local" class="form-control" id="endDate"
+                                                   placeholder="0" name="endDate"
+                                                   th:value="${endDate}"
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                        <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                        <div class="col-xs-3 col-md-3 col-lg-3">
+                                            <button type="button" class="btn btn-primary" id="btn-batal"
+                                                    data-dismiss="modal">Batal
+                                            </button>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                        <div class="col-xs-3 col-md-3 col-lg-3">
+                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah"
+                                            >Tambah
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-sm-4" id="formXY" style="display: none">
                                 <h5>Promo Beli X dapat Y</h5>
-                                <div th:form="${form}" th:object="${promoXY}" name="promoXY">
+                                <form th:form="${form}" th:object="${promoXY}" name="promoXY" th:action="@{/Promo/Add}"
+                                      method="post">
+                                    <input type="hidden" name="jenis" id="jenis" value="Promo Beli X dapat Y"></input>
                                     <div class="col-sm-12">
                                         <div class="col-shm-3">
-                                            <label class="control-label" for="discountPercent">ID:</label>
+                                            <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="number" class="form-control" id="id"
+                                                   placeholder="0" name="id"
+                                                   th:value="${id}"
                                             />
                                         </div>
                                     </div>
@@ -400,43 +444,43 @@
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="discountPercent">Tanggal Mulai</label>
+                                            <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="#" class="form-control" id="startDate"
+                                                   placeholder="0" name="startDate"
+                                                   th:value="${startDate}"
                                             />
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-3">
-                                            <label class="control-label" for="discountPercent">Tanggal akhir</label>
+                                            <label class="control-label" for="endDate">Tanggal akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
-                                                   placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                            <input type="#" class="form-control" id="endDate"
+                                                   placeholder="0" name="endDate"
+                                                   th:value="${endDate}"
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                        <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                        <div class="col-xs-3 col-md-3 col-lg-3">
+                                            <button type="button" class="btn btn-primary" id="btn-batal"
+                                                    data-dismiss="modal">Batal
+                                            </button>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                        <div class="col-xs-3 col-md-3 col-lg-3">
+                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah"
+                                            >Tambah
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
-                                <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
-                                    <div class="col-xs-4 col-md-4 col-lg-4"></div>
-                                    <div class="col-xs-3 col-md-3 col-lg-3">
-                                        <button type="button" class="btn btn-primary" id="btn-batal"
-                                                data-dismiss="modal">Batal
-                                        </button>
-                                    </div>
-                                    <div class="col-xs-2 col-md-2 col-lg-2"></div>
-                                    <div class="col-xs-3 col-md-3 col-lg-3">
-                                        <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah"
-                                                form="form1">Tambah
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
