@@ -4,16 +4,14 @@ import com.blibli.pos_minimarket.Model.TransactionDetail;
 import com.blibli.pos_minimarket.Services.ReportService;
 import com.blibli.pos_minimarket.Services.TransactionDetailService;
 import com.blibli.pos_minimarket.Services.TransactionService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,15 +28,24 @@ public class ReportController {
         model.addAttribute("transactionList",transactionService.showAllTransaction());
         if(!searchKey.equals("")) {
            model.addAttribute("transactionDetailList", transactionDetailService.showOne(Integer.parseInt(searchKey)));
-
         }return "Report-Transaction";
-
     }
+
+    @RequestMapping(value = "/report-transaction/detail/{transactionId}", method = RequestMethod.GET)
+    public String detailCategory(@PathVariable Integer transactionId, Model model){
+        model.addAttribute("transactionDetailList", transactionDetailService.showOne(transactionId));
+        return "Report-TransactionDetail";
+    }
+
     @RequestMapping(value = "Report-Statistics")
     public String showReportStatistics(Model model) {
         model.addAttribute("reports",reportService.getAll());
         return "Report-Statistics";
+    }
 
+    @RequestMapping(value = "/report-transaction/detail",params = "cancel", method = RequestMethod.POST)
+    public String cancelReport(){
+        return "redirect:/Report-Transaction";
     }
 
 //    @RequestMapping(value = "Report-Transaction")

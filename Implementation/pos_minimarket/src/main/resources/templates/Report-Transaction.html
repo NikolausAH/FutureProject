@@ -5,6 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link th:href="@{../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 	<link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../css/style_peg.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../css/style_lap.css}" rel="stylesheet" type="text/css"/>
 	<link th:href="@{../css/cdnjs_Icons.css}" rel="stylesheet"/>
 	<link th:href="@{../css/googleapis_Icons.css}" rel="stylesheet"/>
 
@@ -206,31 +208,28 @@
 				</div>
 			</section>
 			<!--End bagan filter-->
-			<section class="tabel-detail">
+			<section class="tabel-detail" style="margin-bottom: 0; padding-bottom: 0">
 				<!--Start Judul Tabel-->
-				<div class="row">
-					<div class="col-sm-7 judul-tabel">
-						<h3>Data Transaksi</h3>
-					</div>
-					<div class="col-sm-5 judul-tabel">
-						<h3>Data Transaksi</h3>
-					</div>
+				<div class="row modal-header judul-tabel" style="margin: 0; padding: 0;">
+                    <h2 class="modal-title" style="text-align: center">Daftar Transaksi</h2>
 				</div>
+            </section>
 				<!--End Judul Tabel-->
 				<!--Start Tabel-->
-				<br />
 				<div class="row">
-					<div class="col-sm-12">
-						<div class="table-responsive" id="t-laporan">
+                    <div class="col-md-12 col-lg-12">
+						<br />
+						<div class="table-responsive">
 							<table class="table">
 								<thead>
 								<tr>
-									<th>No</th>
+									<th>ID</th>
 									<th>Tanggal</th>
 									<th>Pajak (Rp)</th>
 									<th>Diskon (Rp)</th>
 									<th>Total</th>
 									<th>Kasir</th>
+									<th>Detail</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -242,31 +241,9 @@
 										<td th:text="${transaction.discount}"/>
 										<td th:text="${transaction.total}"/>
 										<td th:text="${transaction.employee.name}"/>
-									</tr>
-								</th:block>
-								</tbody>
-							</table>
-						</div>
-					</div>
-
-					<div class="col-sm-5">
-						<div class="table-responsive" id="t-laporan">
-							<table class="table">
-								<thead>
-								<tr>
-									<th>No</th>
-									<th>Kode Produk</th>
-									<th>Nama</th>
-									<th>Jumlah</th>
-								</tr>
-								</thead>
-								<tbody>
-								<th:block th:each="detail : ${transactionDetailList}">
-									<tr>
-										<td th:text="${detail.detail_Id}" />
-										<td th:text="${detail.product.productId}" />
-										<td th:text="${detail.product.name}" />
-										<td th:text="${detail.quantity}" />
+										<td>
+											<a th:href="${'report-transaction/detail/'+transaction.transactionId}">detail</a>
+										</td>
 									</tr>
 								</th:block>
 								</tbody>
@@ -275,7 +252,6 @@
 					</div>
 				</div>
 		<!--End Tabel-->
-		</section>
 
 		</div>
 		<!--==========content.end==========-->

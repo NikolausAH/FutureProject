@@ -1,5 +1,7 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
+import com.blibli.pos_minimarket.Model.PromoProduct;
+import com.blibli.pos_minimarket.Model.PromoXY;
 import com.blibli.pos_minimarket.Model.TransactionDetail;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class TransactionDetailDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
     private ProductDAO productDAO = new ProductDAO();
+    private promoDAO promoDAO = new promoDAO();
     private TransactionDAO transactionDAO = new TransactionDAO();
 
     public TransactionDetailDAO() {
@@ -38,11 +41,6 @@ public class TransactionDetailDAO extends ConnectionSettings {
     }
 
     public void add(TransactionDetail transactionDetail){
-        System.out.println(transactionDetail.getDiscount());
-        System.out.println(transactionDetail.getPrice());
-        System.out.println(transactionDetail.getQuantity());
-        System.out.println(transactionDetail.getProduct().getProductId());
-        System.out.println(transactionDetail.getTransaction().getTransactionId());
         String sql = "INSERT INTO transaction_detail (quantity, price, discount, product_id, transaction_id) "+
                 "VALUES("+
                 "   '"+transactionDetail.getQuantity()+"',"+
@@ -56,7 +54,6 @@ public class TransactionDetailDAO extends ConnectionSettings {
     }
 
     public List<TransactionDetail> getByIdTransaction(Integer searchKey) {
-        System.out.println(searchKey);
         List<TransactionDetail> transactionDetailList = new ArrayList<>();
         String sql = "SELECT * FROM transaction_detail WHERE transaction_id = '"+searchKey+"';";
         try {
@@ -67,14 +64,21 @@ public class TransactionDetailDAO extends ConnectionSettings {
                 while (resultSet.next()) {
                     TransactionDetail transactionDetail = new TransactionDetail();
                     transactionDetail.setDetail_Id(resultSet.getInt("detail_Id"));
-                    System.out.println(transactionDetail.getDetail_Id());
                     transactionDetail.setQuantity(resultSet.getInt("quantity"));
                     transactionDetail.setPrice(resultSet.getDouble("price"));
                     transactionDetail.setDiscount(resultSet.getDouble("discount"));
                     transactionDetail.setProduct(productDAO.getById(resultSet.getInt("product_Id")));
-//                    transactionDetail.setTransaction(transactionDAOrs.getInt("transactionId"));
-//                    transactionDetail.setDiscountPId(rs.getInt("discountPId"));
-//                    transactionDetail.setDiscountPxy(rs.getInt("discountPxy"));
+
+                    PromoProduct promoProduct = new PromoProduct();
+                    promoProduct.setProductId(0);
+                    PromoXY promoXY = new PromoXY();
+                    promoXY.setProductYId(0);
+                    if(resultSet.getInt("p_discount_id") != 0) {
+                        transactionDetail.setPromoProduct(promoDAO.getPromoProduct(resultSet.getInt("p_discount_id")));
+                    }else transactionDetail.setPromoProduct(promoProduct);
+                    if(resultSet.getInt("p_bxgy_id") != 0) {
+                        transactionDetail.setPromoXY(promoDAO.getPromoXY(resultSet.getInt("p_bxgy_id")));
+                    }else transactionDetail.setPromoXY(promoXY);
                     transactionDetailList.add(transactionDetail);
                 }
             }resultSet.close();

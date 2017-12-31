@@ -2,6 +2,7 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.PromoProduct;
 import com.blibli.pos_minimarket.Model.PromoXY;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ public class promoDAO extends ConnectionSettings {
 
     public PromoProduct getPromoProduct(Integer productId){
         PromoProduct promoProduct = new PromoProduct();
-        String sql = "SELECT * FROM promo_product_discount WHERE product_id = '"+productId+"';";
+        String sql = "SELECT * FROM promo_product_discount WHERE p_discount_id = '"+productId+"';";
         String message = "Error promoDAO getByProductId";
         try {
             this.makeConnection();
@@ -28,7 +29,7 @@ public class promoDAO extends ConnectionSettings {
                     promoProduct.setStartDate(resultSet.getTimestamp("start_date"));
                     promoProduct.setEndDate(resultSet.getTimestamp("end_date"));
                     promoProduct.setProductId(resultSet.getInt("product_id"));
-                }
+                    }
                 resultSet.close();
             }
             this.closeConnection();
@@ -41,7 +42,7 @@ public class promoDAO extends ConnectionSettings {
 
     public PromoXY getPromoXY(Integer productId){
         PromoXY promoXY = null;
-        String sql = "SELECT * FROM promo_buyx_gety WHERE productx_id = '"+productId+"';";
+        String sql = "SELECT * FROM promo_buyx_gety WHERE p_bxgy_id = '"+productId+"';";
         String message = "Error promoDAO getPromoXY";
         try {
             this.makeConnection();
@@ -62,12 +63,7 @@ public class promoDAO extends ConnectionSettings {
                 if(tempPromoXY.getStatus().equals("active") && tempPromoXY.getStartDate().toLocalDateTime().isBefore(LocalDateTime.now()) && LocalDateTime.now().isBefore(tempPromoXY.getEndDate().toLocalDateTime())){
                     promoXY = tempPromoXY;
                 }
-                System.out.println(tempPromoXY.getStartDate().toLocalDateTime()+"sajhdahdjadsjadsasdasdasdasd");
-                System.out.println(LocalDateTime.now());
-                System.out.println(tempPromoXY.getStatus().equals("active"));
-                System.out.println(tempPromoXY.getStartDate().toLocalDateTime().isBefore(LocalDateTime.now()));
-                System.out.println(tempPromoXY.getEndDate().toLocalDateTime().isAfter(LocalDateTime.now()));
-            }
+          }
             this.closeConnection();
         } catch (Exception EX) {
             System.out.println(message);

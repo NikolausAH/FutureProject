@@ -41,7 +41,7 @@ public class StockController {
         return mav;
     }
 
-    @RequestMapping(value = "/Stock/Detail",params = "cancel", method = RequestMethod.POST)
+    @RequestMapping(value = "/Stock/Update",params = "cancel", method = RequestMethod.POST)
     public String cancelCategory(){
         return "redirect:/Stock";
     }

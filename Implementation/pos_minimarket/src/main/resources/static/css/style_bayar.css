@@ -1,0 +1,18 @@
+#form-bayar{
+  display: block;
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  background: #fff;
+  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
+  z-index: 1;
+}
+#total{
+  margin: 0;
+  padding: 0;
+  text-align: justify;
+}
+#comboMetode{
+  width: 100%;
+  float: left;
+}

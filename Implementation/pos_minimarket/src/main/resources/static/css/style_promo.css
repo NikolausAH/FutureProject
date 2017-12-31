@@ -61,9 +61,6 @@ body{
   color: #037e83;
   cursor: pointer;
 }
-#dr-down{
-  display: none;
-}
 .segitiga{
     display: block;
     font-size: 0;
@@ -110,8 +107,8 @@ body{
   display: block;
   border-top: 1px solid #EAEAEB;
 }
-.material-icons{
-  font-size: inherit;
+#dr-down{
+  display: none;
 }
 /*--------avatar.end--------*/
 /*--------identitas.start--------*/
@@ -137,25 +134,16 @@ body{
   background: #46c6cb;
   border-top: 10px solid #edeeee;
   width: 100%;
+  font-size: 26px;
   color: #fff;
-  height: 40px;
+  padding: 0;
 }
 #home-icon{
   color: #fff;
   padding-left: 30px;
-  font-size: 26px;
 }
 #home-icon:hover{
   color: #2ef2ff;
-}
-#pos{
-    color: #fff;
-    padding-bottom: 20px;
-    font-size: 16px;
-    text-decoration: none;
-}
-#pos:hover{
-    color: #2ef2ff;
 }
 /*============================================================================*/
 /*-----------------------------------SIDEBAR----------------------------------*/
@@ -228,17 +216,11 @@ body{
   top:0%;
   border-radius: 2%;
   border-top-left-radius: 0%;
+  border-top: 4px solid #cc0000;
   background-color: #fff;
-  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
+  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);;
   z-index: 1;
 }
-#dr-laporan{
-  border-top: 4px solid #004545;
-}
-#dr-produk{
-  border-top: 4px solid #cc0000;
-}
-
 .dropdown:hover #sid_3 {
   background-color: #cc0000;
   color: #fff;
@@ -267,7 +249,128 @@ body{
   background: #fff;
   border-top: 10px solid #edeeee;
 }
+#pos{
+  color: #fff;
+  padding-bottom: 20px;
+  font-size: 16px;
+  text-decoration: none;
+}
+#pos:hover{
+  color: #2ef2ff;
+}
+.form-inline .form-control{
+  width: 65%;
+  margin-left: 10%;
+  margin-right: 5%;
+}
+.pencarian{
+  display: inline-block;
+  width: 100%;
+}
+#formTotal,#formProduk,#formXY{
+  margin-left: 35%;
+}
 
+#btn-tambah,
+#btn-ubah{
+  margin-left: 35%;
+}
+#btn-hapus{
+  float: right;
+  margin-right: 35%;
+}
+#three-button{
+  padding-top: 3%;
+  padding-bottom: 10px;
+  background: #fff;
+}
+.table-responsive tr:hover{
+  background-color:#f5f5f5;
+  cursor: default;
+}
+.table-responsive{
+  min-height: 300px;
+  max-height: 300px;
+  overflow:auto;
+}
+.drop{
+  left: 70%;
+}
+@media only screen and (max-width: 1024px) {
+  .table-responsive{
+    min-height: 300px;
+    max-height: 300px;
+  }
+}
+@media only screen and (min-width: 1368px) {
+  .table-responsive{
+    min-height: 600px;
+    max-height: 600px;
+  }
+}
+#aksi-tambah{
+  display: none;
+  position: absolute;
+  background: #fff;
+  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
+  z-index: 1;
+  margin-left:10%;
+}
+#aksi-ubah{
+  display: none;
+  position: absolute;
+  background: #fff;
+  box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
+  z-index: 1;
+  margin-left:10%;
+}
+.batal{
+margin-left:30%;
+}
+.tambah{
+  margin-left:10%;
+}
+#aksi-tambah div{
+padding-top:5px;
+padding-bottom:3px;
+}
+#aksi-ubah div{
+  padding-top:5px;
+  padding-bottom:3px;
+  }
+#btn-close{
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+#user-avatar{
+  font-size: 60px;
+  padding-top: 20px;
+  padding-left: 45%;
+  color: #037e83;
+  cursor: pointer;
+}
+#edit-avatar{
+  font-size: 18px;
+  position: absolute;
+  left: 49.5%;
+  bottom: 3%;
+  color: #fff;
+  cursor: pointer;
+}
+.control-label{
+  float: left;
+}
+.form-horizontal .form-group{
+    margin-right: 15px;
+    margin-left:  15px;
+}
+#two-button{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #fff;
+  padding-left: 25%;
+}
 
 /*==============================under construction============================*/
 /*-----------------------------------HAMBURGER--------------------------------*/
@@ -295,19 +398,14 @@ body{
   padding: 0;
 }
 @media only screen and (max-width: 991px) {
-   .dropdown-content{
-    position: static;
-    width: 100%;
-    text-indent: 30%;
-    box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);;
-    z-index: 1;
-  }
-  .sidebar{
-    border: 0;
-  }
   .toggle .fa{
     display: block;
     cursor: pointer;
+  }
+  .sidebar{
+    padding: 0;
+    margin: 0;
+    border-right:0;
   }
   .sidebar ul{
     width: 100%;
@@ -318,10 +416,10 @@ body{
     text-indent: 16%;
     overflow-x:inline;
   }
-  .sidebar li a{
+  .sid a{
     display: block;
     border-bottom: 1px solid #EAEAEB;
-    padding-left: 10%;
+    margin: 0;
   }
   .header .user h5{
     display: none;
@@ -339,260 +437,20 @@ body{
   .sidebar .active{
     display: block;
   }
-  .dropdown-avatar{
-    left: -50px;
-    width: 100px;
+  .dropdow{
+    display: block;
+    width: 100%;
+    z-index: 1;
   }
-
+  #dr-down{
+    display: none;
+    z-index: 1;
+  }
+  .dropdown-avatar{
+    position: absolute;
+    width: 130px;
+    top:60px;
+    left: -90%;
+  }
 }
 /*hamburger end*/
-.control-label{
-  float: left;
-}
-.top-form{
-    padding-top:5%;
-}
-/*//bayar*/
-  #form-bayar{
-    display: block;
-    position: absolute;
-    top: 10%;
-    left: 15%;
-    background: #fff;
-    box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
-    z-index: 1;
-  }
-#total{
-  margin: 0;
-  padding: 0;
-  text-align: justify;
-}
-#comboMetode{
-  width: 100%;
-  float: left;
-}
-/*laporan*/
-select {
-    float: right;
-    border: 1px solid #111;
-    background: transparent;
-    width: 150px;
-    padding: 5px 35px 5px 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-}
-#col-padding5{
-    font-size: 16px;
-    padding-right: 0px;
-    padding-top: 2px;
-    height: 100%;
-}
-#search-form{
-    margin-right: 0;
-    padding-right: 0;
-}
-#btn-src{
-    margin-left: 0;
-    padding-left: 0;
-}
-#btn-src2{
-    width: 100%;
-}
-.del-radius-left{
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-.del-radius-right{
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-/*#btn-export{*/
-/*float: right;*/
-/*margin-right: 30%;*/
-/*}*/
-.judul-tabel{
-    text-align: center;
-}
-#filter-transaksi{
-    margin-top: 10px;
-    padding-top: 10px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
-    display: none;
-    z-index: 1;
-}
-
-.tabel-detail{
-    margin-top: 10px;
-    padding-top: 10px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-}
-#t-laporan{
-    min-height: 250px;
-    max-height: 250px;
-}
-.content{
-    min-height: 300px;;
-}
-/*minimarket*/
-.logo_toko{
-    max-width: 30%;
-    max-height: 30%;
-    display: block;
-    margin: auto;
-}
-
-/*pegawai*/
-#pos{
-    color: #fff;
-    padding-bottom: 20px;
-    font-size: 16px;
-    text-decoration: none;
-}
-#pos:hover{
-    color: #2ef2ff;
-}
-.form-inline .form-control{
-    width: 65%;
-    margin-left: 10%;
-    margin-right: 5%;
-}
-.pencarian{
-    display: inline-block;
-    width: 100%;
-}
-#btn-tambah,
-#btn-ubah{
-    margin-left: 35%
-}
-#btn-hapus{
-    float: right;
-    margin-right: 35%;
-}
-#three-button{
-    padding: 10px;
-    margin: 10px;
-    background: #fff;
-}
-.table-responsive tr:hover{
-    background-color:#f5f5f5;
-    cursor: default;
-}
-.table-responsive{
-    min-height: 380px;
-    max-height: 380px;
-    overflow:auto;
-}
-@media only screen and (max-width: 1024px) {
-    .table-responsive{
-        min-height: 300px;
-        max-height: 300px;
-    }
-}
-@media only screen and (min-width: 1368px) {
-    .table-responsive{
-        min-height: 600px;
-        max-height: 600px;
-    }
-}
-.aksi{
-    display: none;
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    background: #fff;
-    box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
-    z-index: 1;
-}
-#btn-close{
-    float: right;
-    font-size: 20px;
-    cursor: pointer;
-}
-#user-avatar{
-    font-size: 60px;
-    padding-top: 20px;
-    padding-left: 45%;
-    color: #037e83;
-    cursor: pointer;
-}
-#edit-avatar{
-    font-size: 18px;
-    position: absolute;
-    left: 49.5%;
-    top: 20%;
-    color: #fff;
-    cursor: pointer;
-    z-index: 1;
-}
-.form-horizontal .form-group{
-    margin-right: 15px;
-    margin-left:  15px;
-}
-#two-button{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 25%;
-}
-.dropdown-form{
-    margin-right: 15px;
-    margin-left: 15px;
-    margin-bottom: 15px;
-    z-index: 1;
-}
-.caret{
-    float: right;
-}
-#menu1{
-    width: 100%;
-    text-align: justify;
-    margin-left: 15px;
-}
-#btn-batal{
-    margin-left: 10px;
-}
-#btn-tambah2{
-    float: right;
-}
-#btn-ubah2{
-    float: right;
-}
-#role-label{
-    padding-right: 45px;
-    padding-left: 0px;
-}
-.dropdown-role{
-    margin-bottom: 15px;
-    margin-left: 20px;
-    margin-right: 30px;
-
-}
-/**/
-/*produk*/
-#aksi-tambah{
-    top: 10%;
-}
-#aksi-ubah{
-    top: 10%;
-}
-/*atas hapus*/
-.top-form{
-    padding-top:5%;
-}
-
-/*stock*/
-#aksi-stok{
-    display: block;
-    position: absolute;
-    margin-top: 60px;
-    left: 5%;
-}
-/*atas hapus*/
-.top-form{
-    padding-top:5%;
-}
-.form-search{
-    margin-bottom: 2%;
-}
