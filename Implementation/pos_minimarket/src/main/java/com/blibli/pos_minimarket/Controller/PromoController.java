@@ -34,11 +34,26 @@ public class PromoController {
         return "Promo";
     }
 
-    @RequestMapping(value = "/Promo/Add")
-    public ModelAndView addPromo(HttpServletRequest request, @ModelAttribute("promoXY") PromoXY promoXY, @ModelAttribute("promoTotal") PromoTotal promoTotal, @ModelAttribute("promoProduct") PromoProduct promoProduct) {
+    @RequestMapping(value = "/Promo/AddXY")
+    public ModelAndView addPromo(@ModelAttribute("promoXY") PromoXY promoXY) {
         ModelAndView mav = new ModelAndView();
-        String jenis = request.getParameter("jenis");
-        promoService.add(jenis,promoXY, promoProduct, promoTotal);
+        promoService.addPromoXY(promoXY);
+        mav.setViewName("redirect:/Promo");
+        return mav;
+    }
+
+    @RequestMapping(value = "/Promo/AddTotal")
+    public ModelAndView addPromo(@ModelAttribute("promoTotal") PromoTotal promoTotal) {
+        ModelAndView mav = new ModelAndView();
+        promoService.addPromoTotal(promoTotal);
+        mav.setViewName("redirect:/Promo");
+        return mav;
+    }
+
+    @RequestMapping(value = "/Promo/AddProduct")
+    public ModelAndView addPromo(@ModelAttribute("promoProduct") PromoProduct promoProduct) {
+        ModelAndView mav = new ModelAndView();
+        promoService.addPromoProduct(promoProduct);
         mav.setViewName("redirect:/Promo");
         return mav;
     }

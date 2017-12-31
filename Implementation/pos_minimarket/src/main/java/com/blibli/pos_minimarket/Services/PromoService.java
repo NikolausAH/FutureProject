@@ -87,17 +87,30 @@ public class PromoService {
         return promoList;
     }
 
-    public void add(String jenis, PromoXY promoXY, PromoProduct promoProduct, PromoTotal promoTotal) {
+    public void addPromoXY(PromoXY promoXY) {
         try {
-            if (jenis.equals("Promo Beli X dapat Y")) {
                 promoXYDAO.add(promoXY);
-            } else if (jenis.equals("Promo Total")) {
-                promoTotalDAO.add(promoTotal);
-            } else if (jenis.equals("Promo Product")) {
-                promoProductDAO.add(promoProduct);
-            }
         } catch (Exception EX) {
             System.out.println();
+            System.out.println("Error PromoService addPromoXY");
+        }
+    }
+
+    public void addPromoProduct(PromoProduct promoProduct) {
+        try {
+            promoProductDAO.add(promoProduct);
+        } catch (Exception EX) {
+            System.out.println();
+            System.out.println("Error PromoService addPromoProduct");
+        }
+    }
+
+    public void addPromoTotal(PromoTotal promoTotal) {
+        try {
+            promoTotalDAO.add(promoTotal);
+        } catch (Exception EX) {
+            System.out.println();
+            System.out.println("Error PromoService addPromoTotal");
         }
     }
 

@@ -231,7 +231,7 @@
                             </div>
                             <div class="col-sm-4" id="formTotal" style="display: none">
                                 <h5>Promo Total</h5>
-                                <form th:form="${form}" th:object="${promoTotal}" th:action="@{/Promo/Add}"
+                                <form th:form="${form}" th:object="${promoTotal}" th:action="@{/Promo/AddTotal}"
                                       name="promoTotal" method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Total"></input>
                                     <div class="col-sm-12">
@@ -307,7 +307,7 @@
                             </div>
                             <div class="col-sm-4" id="formProduk" style="display: none">
                                 <h5>Promo Produk</h5>
-                                <form th:form="${form}" th:object="${promoProduct}" th:action="@{/Promo/Add}"
+                                <form th:form="${form}" th:object="${promoProduct}" th:action="@{/Promo/AddProduct}"
                                       name="promoProduct" method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Produk"></input>
                                     <div class="col-sm-12">
@@ -318,17 +318,6 @@
                                             <input type="number" class="form-control" id="id"
                                                    placeholder="0" name="id"
                                                    th:value="${id}"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="col-sm-3">
-                                            <label class="control-label" for="buyMin">Minimal Buy</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="buyMin"
-                                                   placeholder="0" name="buyMin"
-                                                   th:value="${buyMin}"
                                             />
                                         </div>
                                     </div>
@@ -357,7 +346,7 @@
                                             <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="datetime-local" class="form-control" id="startDate"
+                                            <input type="#" class="form-control" id="startDate"
                                                    placeholder="0" name="startDate"
                                                    th:value="${startDate}"
                                             />
@@ -368,7 +357,7 @@
                                             <label class="control-label" for="endDate">Tanggal akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="datetime-local" class="form-control" id="endDate"
+                                            <input type="#" class="form-control" id="endDate"
                                                    placeholder="0" name="endDate"
                                                    th:value="${endDate}"
                                             />
@@ -392,7 +381,7 @@
                             </div>
                             <div class="col-sm-4" id="formXY" style="display: none">
                                 <h5>Promo Beli X dapat Y</h5>
-                                <form th:form="${form}" th:object="${promoXY}" name="promoXY" th:action="@{/Promo/Add}"
+                                <form th:form="${form}" th:object="${promoXY}" name="promoXY" th:action="@{/Promo/AddXY}"
                                       method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Beli X dapat Y"></input>
                                     <div class="col-sm-12">
