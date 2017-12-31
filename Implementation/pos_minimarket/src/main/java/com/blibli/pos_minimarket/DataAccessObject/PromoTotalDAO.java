@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,4 +135,14 @@ public class PromoTotalDAO extends ConnectionSettings implements InterfaceDAO<Pr
     public void softDelete(Integer integer) {
 
     }
+    public void updateStatus(Long currentTime){ //kalo l kecil jadi primitive
+        String sql1 = "UPDATE promo_total_buy SET status = 'Expired' WHERE EXTRACT(EPOCH FROM start_date) > " +currentTime +
+                " OR EXTRACT(EPOCH FROM end_date) <"+currentTime+ ";";
+        String sql2 = "UPDATE promo_total_buy SET status = 'Active' WHERE EXTRACT(EPOCH FROM start_date) <= " +currentTime +
+                " AND EXTRACT(EPOCH FROM end_date) >="+currentTime+ ";";
+        String message = "Error PromoTotalDAO updateStatus";
+        generalDAO.executeSet(sql1,message);
+        generalDAO.executeSet(sql2,message);
+    }
+
 }

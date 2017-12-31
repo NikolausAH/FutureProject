@@ -89,5 +89,6 @@ public class PromoController {
         mav.setViewName("redirect:/Promo");
         return mav;
     }
+
 }
 

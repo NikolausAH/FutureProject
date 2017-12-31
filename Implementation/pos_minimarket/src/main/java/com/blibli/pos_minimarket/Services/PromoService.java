@@ -6,6 +6,7 @@ import com.blibli.pos_minimarket.DataAccessObject.PromoXYDAO;
 import com.blibli.pos_minimarket.Model.*;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -154,4 +155,16 @@ public class PromoService {
             System.out.println("Error PromoService Delete");
         }
 }
+
+    public void updateStatus (Long currentTime){
+        try{
+            promoProductDAO.updateStatus(currentTime);
+            promoTotalDAO.updateStatus(currentTime);
+            promoXYDAO.updateStatus(currentTime);
+        }
+        catch (Exception EX){
+            System.out.println(EX.toString());
+            System.out.println("Error PromoService updateStatus");
+        }
+    }
 }
