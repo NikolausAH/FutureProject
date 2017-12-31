@@ -114,41 +114,41 @@ public class PromoService {
         }
     }
 
-    public void update(Promo promo, PromoProduct promoProduct, PromoTotal promoTotal, PromoXY promoXY) {
+    public void updatePromoProduct (PromoProduct promoProduct) {
         try {
-            if (promo.getType().equals("Promo Produk")) {
-                promoProduct.setId(promo.getId());
-                promoProduct.setStartDate(promo.getStartDate());
-                promoProduct.setEndDate(promo.getEndDate());
-                promoProduct.setStatus(promo.getStatus());
-                promoProductDAO.update(promoProduct);
-            } else if (promo.getType().equals("Promo Total")) {
-                promoTotal.setId(promo.getId());
-                promoTotal.setStartDate(promo.getStartDate());
-                promoTotal.setEndDate(promo.getEndDate());
-                promoTotal.setStatus(promo.getStatus());
-                promoTotalDAO.update(promoTotal);
-            } else if (promo.getType().equals("Promo XY")) {
-                promoXY.setId(promo.getId());
-                promoXY.setStartDate(promo.getStartDate());
-                promoXY.setEndDate(promo.getEndDate());
-                promoXY.setStatus(promo.getStatus());
-                promoXYDAO.update(promoXY);
+            promoProductDAO.update(promoProduct);
             }
-        } catch (Exception EX) {
+            catch (Exception EX) {
             System.out.println(EX.toString());
-            System.out.println("Error PromoService Update");
+            System.out.println("Error PromoService UpdatePromoProduct");
         }
     }
-    public void delete(Promo promo,PromoXY promoXY, PromoTotal promoTotal, PromoProduct promoProduct){
+
+    public void updatePromoXY (PromoXY promoXY) {
         try {
-            if (promo.getType().equals("Promo Produk")) {
-                promoProductDAO.delete(promoProduct.getId());
-            } else if (promo.getType().equals("Promo Total")) {
-                promoTotalDAO.delete(promoTotal.getId());
-            } else if (promo.getType().equals("Promo XY")) {
-                promoXYDAO.delete(promoXY.getId());
-            }
+            promoXYDAO.update(promoXY);
+        }
+        catch (Exception EX) {
+            System.out.println(EX.toString());
+            System.out.println("Error PromoService UpdatePromoXY");
+        }
+    }
+
+    public void updatePromoTotal (PromoTotal promoTotal) {
+        try {
+            promoTotalDAO.update(promoTotal);
+        }
+        catch (Exception EX) {
+            System.out.println(EX.toString());
+            System.out.println("Error PromoService UpdatePromoTotal");
+        }
+    }
+
+    public void delete(Integer id){
+        try {
+            promoTotalDAO.delete(id);
+            promoXYDAO.delete(id);
+            promoProductDAO.delete(id);
         } catch (Exception EX) {
             System.out.println(EX.toString());
             System.out.println("Error PromoService Delete");

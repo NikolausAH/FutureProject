@@ -58,18 +58,34 @@ public class PromoController {
         return mav;
     }
 
-    @RequestMapping(value = "/Promo/Update")
-    public ModelAndView updatePromo(@ModelAttribute("promoUpdated") Promo promo, @ModelAttribute("promoXY") PromoXY promoXY, @ModelAttribute("promoTotal") PromoTotal promoTotal, @ModelAttribute("promoProduct") PromoProduct promoProduct) {
+    @RequestMapping(value = "/Promo/UpdateProduct")
+    public ModelAndView updatePromo(@ModelAttribute("promoProduct") PromoProduct promoProduct) {
         ModelAndView mav = new ModelAndView();
-        promoService.update(promo, promoProduct, promoTotal, promoXY);
+        promoService.updatePromoProduct(promoProduct);
+        mav.setViewName("redirect:/Promo");
+        return mav;
+    }
+
+    @RequestMapping(value = "/Promo/UpdateTotal")
+    public ModelAndView updatePromo(@ModelAttribute("promoTotal") PromoTotal promoTotal) {
+        ModelAndView mav = new ModelAndView();
+        promoService.updatePromoTotal(promoTotal);
+        mav.setViewName("redirect:/Promo");
+        return mav;
+    }
+
+    @RequestMapping(value = "/Promo/UpdateXY")
+    public ModelAndView updatePromo(@ModelAttribute("promoXY") PromoXY promoXY) {
+        ModelAndView mav = new ModelAndView();
+        promoService.updatePromoXY(promoXY);
         mav.setViewName("redirect:/Promo");
         return mav;
     }
 
     @RequestMapping(value = "/Promo/Delete")
-    public ModelAndView deletePromo(@ModelAttribute("promoDelete") Promo promo, @ModelAttribute("promoXY") PromoXY promoXY, @ModelAttribute("promoTotal") PromoTotal promoTotal, @ModelAttribute("promoProduct") PromoProduct promoProduct) {
+    public ModelAndView deletePromo(@ModelAttribute("deleteId") Integer id) {
         ModelAndView mav = new ModelAndView();
-        promoService.delete(promo, promoXY, promoTotal, promoProduct);
+        promoService.delete(id);
         mav.setViewName("redirect:/Promo");
         return mav;
     }
