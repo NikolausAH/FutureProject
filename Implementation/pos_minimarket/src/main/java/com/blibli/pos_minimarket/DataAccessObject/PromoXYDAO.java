@@ -5,6 +5,7 @@ import com.blibli.pos_minimarket.Model.PromoXY;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,12 +93,12 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
     public void add(PromoXY promoXY) {
         String sql = "INSERT INTO promo_buyx_gety (p_bxgy_id, quantity_x, quantity_y, start_date, end_date, productx_id, producty_id, status) VALUES" +
                 "(" + promoXY.getId() + "," +
-                1 + "," +
-                1 + "," + "'" +
+                promoXY.getQuantityX() + "," +
+                promoXY.getQuantityY() + "," + "'" +
                 promoXY.getStartDate() + "'," + "'" +
                 promoXY.getEndDate() + "'," +
-                1 + "," +
-                1 + "," +
+                promoXY.getProductXId() + "," +
+                promoXY.getProductYId() + "," +
                 "'Active'" +
                 ");";
         String message = "Error PromoXY Add";
@@ -136,5 +137,15 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
     public void softDelete(Integer integer) {
 
     }
+    public void updateStatus(Long currentTime){
+        String sql1 = "UPDATE promo_buyx_gety SET status = 'Expired' WHERE EXTRACT(EPOCH FROM start_date) > " +currentTime +
+                " OR EXTRACT(EPOCH FROM end_date) <"+currentTime+ ";";
+        String sql2 = "UPDATE promo_buyx_gety SET status = 'Active' WHERE EXTRACT(EPOCH FROM start_date) <= " +currentTime +
+                " AND EXTRACT(EPOCH FROM end_date) >="+currentTime+ ";";
+        String message = "Error PromoXYDAO updateStatus";
+        generalDAO.executeSet(sql1,message);
+        generalDAO.executeSet(sql2,message);
+    }
+
 
 }

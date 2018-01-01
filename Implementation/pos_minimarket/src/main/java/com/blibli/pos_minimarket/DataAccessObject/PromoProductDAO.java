@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.validation.constraints.Null;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,10 +96,10 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO<
     public void add(PromoProduct promoProduct) {
         String sql = "INSERT INTO promo_product_discount(p_discount_id, discount_percent, start_date, end_date, product_id, status)VALUES " +
                 "(" + promoProduct.getId() + "," +
-                100 + "," + "'" +
+                promoProduct.getDiscountPercent() + "," + "'" +
                 promoProduct.getStartDate() + "'," + "'" +
                 promoProduct.getEndDate() + "'," +
-                1 + "," +
+                promoProduct.getProductId() + "," +
                 "'Active'" +
                 ");";
         String message = "Error PromoProduct Add";
@@ -125,13 +126,23 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO<
     @Override
     public void delete(Integer id) {
         String sql = "delete from promo_product_discount where p_discount_id=" + id;
-        String message = "Error PromoTotalDAO Delete";
+        String message = "Error PromoProductDAO Delete";
         generalDAO.executeSet(sql, message);
     }
 
     @Override
     public void softDelete(Integer integer) {
 
+    }
+
+    public void updateStatus(Long currentTime){
+        String sql1 = "UPDATE promo_product_discount SET status = 'Expired' WHERE EXTRACT(EPOCH FROM start_date) > " +currentTime +
+                " OR EXTRACT(EPOCH FROM end_date) <"+currentTime+ ";";
+        String sql2 = "UPDATE promo_product_discount SET status = 'Active' WHERE EXTRACT(EPOCH FROM start_date) <= " +currentTime +
+                " AND EXTRACT(EPOCH FROM end_date) >="+currentTime+ ";";
+        String message = "Error PromoProductDAO updateStatus";
+        generalDAO.executeSet(sql1,message);
+        generalDAO.executeSet(sql2,message);
     }
 
 
