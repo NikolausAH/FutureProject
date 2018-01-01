@@ -9,7 +9,7 @@
     />
     <link th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet" type="text/css"/>
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/style_promo.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../css/style_Promo.css}" rel="stylesheet" type="text/css"/>
     <script th:src="@{../js/jquery.js}" type="text/javascript"></script>
     <script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
     <script>
@@ -231,11 +231,9 @@
                             <h4 class="modal-title" style="text-align: center">Tambah Promo Baru</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="col-sm-3">
-                                <div class="col-sm-3">
-                                    <label class="control-label" for="jenis">Jenis:</label>
-                                </div>
-                                <div class="col-sm-9">
+                            <div class="col-sm-12">
+                                <label class="control-label" for="jenis">Jenis:</label>
+                                <div class="col-sm-12">
                                     <select class="btn btn-default dropdown-toggle" type="button"
                                             data-toggle="dropdown" name="jenis" th:value="${jenis}"
                                             id="selectPromo"
@@ -247,14 +245,14 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-4" id="formTotal" style="display: none">
+                            <div class="col-sm-12" id="formTotal" style="display: none">
                                 <h5>Promo Total</h5>
                                 <form th:form="${form}" th:object="${promoTotal}" th:action="@{/Promo/AddTotal}"
                                       name="promoTotal" method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Total"></input>
                                     <div class="col-sm-12">
-                                        <div class="col-shm-3">
-                                            <label class="control-label" for="id">ID:</label>
+                                        <div class="col-sm-3">
+                                            <label class="control-label" for="id">ID</label>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="number" class="form-control" id="id"
@@ -323,13 +321,13 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-sm-4" id="formProduk" style="display: none">
+                            <div class="col-sm-12" id="formProduk" style="display: none">
                                 <h5>Promo Produk</h5>
                                 <form th:form="${form}" th:object="${promoProduct}" th:action="@{/Promo/AddProduct}"
                                       name="promoProduct" method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Produk"></input>
                                     <div class="col-sm-12">
-                                        <div class="col-shm-3">
+                                        <div class="col-sm-3">
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
@@ -397,14 +395,14 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-sm-4" id="formXY" style="display: none">
+                            <div class="col-sm-12" id="formXY" style="display: none">
                                 <h5>Promo Beli X dapat Y</h5>
                                 <form th:form="${form}" th:object="${promoXY}" name="promoXY"
                                       th:action="@{/Promo/AddXY}"
                                       method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Beli X dapat Y"></input>
                                     <div class="col-sm-12">
-                                        <div class="col-shm-3">
+                                        <div class="col-sm-3">
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
@@ -521,13 +519,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-4" id="formTotalUpdate" style="display: none">
+                            <div class="col-sm-12" id="formTotalUpdate" style="display: none">
                                 <h5>Promo Total</h5>
                                 <form th:form="${form}" th:object="${promoTotal}" th:action="@{/Promo/UpdateTotal}"
                                       name="promoTotal" method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Total"></input>
                                     <div class="col-sm-12">
-                                        <div class="col-shm-3">
+                                        <div class="col-sm-3">
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
@@ -590,20 +588,20 @@
                                         </div>
                                         <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                         <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah"
-                                            >Tambah
+                                            <button type="submit" value="Submit" class="btn btn-warning" id="btn-ubah"
+                                            >Ubah
                                             </button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-sm-4" id="formProdukUpdate" style="display: none">
+                            <div class="col-sm-12" id="formProdukUpdate" style="display: none">
                                 <h5>Promo Produk</h5>
                                 <form th:form="${form}" th:object="${promoProduct}" th:action="@{/Promo/UpdateProduct}"
                                       name="promoProduct" method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Produk"></input>
                                     <div class="col-sm-12">
-                                        <div class="col-shm-3">
+                                        <div class="col-sm-3">
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
@@ -664,21 +662,21 @@
                                         </div>
                                         <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                         <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah"
-                                            >Tambah
+                                            <button type="submit" value="Submit" class="btn btn-warning" id="btn-ubah"
+                                            >Ubah
                                             </button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-sm-4" id="formXYUpdate" style="display: none">
+                            <div class="col-sm-12" id="formXYUpdate" style="display: none">
                                 <h5>Promo Beli X dapat Y</h5>
                                 <form th:form="${form}" th:object="${promoXY}" name="promoXY"
                                       th:action="@{/Promo/UpdateXY}"
                                       method="post">
                                     <input type="hidden" name="jenis" id="jenis" value="Promo Beli X dapat Y"></input>
                                     <div class="col-sm-12">
-                                        <div class="col-shm-3">
+                                        <div class="col-sm-3">
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
@@ -755,8 +753,8 @@
                                         </div>
                                         <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                         <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah"
-                                            >Tambah
+                                            <button type="submit" value="Submit" class="btn btn-warning" id="btn-ubah"
+                                            >Ubah
                                             </button>
                                         </div>
                                     </div>
@@ -780,10 +778,10 @@
                         <div class="modal-body">
                             <form id="form31" class="form-horizontal" th:form="${form}" th:object="${promoDelete}"
                                   th:action="@{/Promo/Delete}" method="post">
-                                <div class="col-sm-2">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="col-sm-4">
-                                            <label class="control-label" for="deleteId">ID Promo:</label>
+                                            <label class="control-label" for="deleteId">ID Promo :</label>
                                         </div>
                                         <div class="col-sm-8">
                                             <input type="number" class="form-control" id="deleteId"
@@ -803,8 +801,8 @@
                                         </div>
                                         <div class="col-xs-2 col-md-2 col-lg-2"></div>
                                         <div class="col-xs-3 col-md-3 col-lg-3">
-                                            <button type="submit" value="Submit" class="btn btn-success" id="btn-ubah"
-                                            >Tambah
+                                            <button type="submit" value="Submit" class="btn btn-danger" id="btn-ubah"
+                                            >Hapus
                                             </button>
                                         </div>
                                     </div>

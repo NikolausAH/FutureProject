@@ -267,9 +267,6 @@ body{
   display: inline-block;
   width: 100%;
 }
-#formTotal,#formProduk,#formXY{
-  margin-left: 35%;
-}
 
 #btn-tambah,
 #btn-ubah{
