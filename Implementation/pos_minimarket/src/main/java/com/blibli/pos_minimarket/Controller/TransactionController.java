@@ -62,6 +62,7 @@ public class TransactionController {
     @RequestMapping(value = "/Receipt/{transactionId}", method = RequestMethod.GET)
     public String showReceipt(@PathVariable Integer transactionId, Model model){
         model.addAttribute("transactionDetailList", transactionDetailService.showOne(transactionId));
+        model.addAttribute("transaction", transactionService.getById(transactionId));
         return "Receipt";
     }
 }

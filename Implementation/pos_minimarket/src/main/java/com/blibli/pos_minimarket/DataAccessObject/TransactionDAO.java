@@ -102,6 +102,32 @@ public class TransactionDAO extends ConnectionSettings {
         return productList;
     }
 
+    public Transaction getById(Integer searchKey) {
+        Transaction transaction = new Transaction();
+        String sql = "SELECT * FROM transaction WHERE transaction_id = '"+searchKey+"' ORDER BY transaction_id DESC ";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    transaction.setTransactionId(resultSet.getInt("transaction_Id"));
+                    transaction.setDateTime(resultSet.getString("date_Time"));
+                    transaction.setTax(resultSet.getDouble("tax"));
+                    transaction.setDiscount(resultSet.getDouble("discount"));
+                    transaction.setTotal(resultSet.getDouble("total"));
+                    transaction.setEmployee(employeeDAO.getById(resultSet.getInt("employee_id")));
+                }
+                resultSet.close();
+            }
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println("Error TransactionDAO getById");
+            System.out.println(EX.toString());
+        }
+        return transaction;
+    }
+
     public List<Transaction> getAllTransaction() {
         List<Transaction> transactionList = new ArrayList<>();
 

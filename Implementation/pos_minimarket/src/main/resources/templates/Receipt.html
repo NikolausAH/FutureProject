@@ -121,32 +121,28 @@
         <!--==========sidebar.end==========-->
         <!--==========content.start==========-->
         <div class="col-md-10 col-lg-10" style="background: #fff; border-top: 10px solid #edeeee;">
-            <div class="row modal-header">
+            <div class="row modal-header" style="margin-bottom: 0; padding-bottom: 0">
                 <div class="col-xs-3 col-md-3 col-lg-3">
+                    <br />
                     <a th:href="@{/Transaction}" class="btn btn-primary" style="width: 75%;" >Transaksi Baru</a>
                 </div>
                 <div class="col-xs-6 col-md-6 col-lg-6">
                     <h2 class="modal-title" style="text-align: center">POS Blibli</h2>
                     <h4 class="modal-title" style="text-align: center">Jalan Babarsari 43 Yogyakarta</h4>
                 </div>
-                <div class="col-xs-3 col-md-3 col-lg-3"></div>
+                <div class="col-xs-3 col-md-3 col-lg-3">
+                    <br />
+                    <p>dd.mmm.yy-hh:mm</p><p>no Penjualan/Kasir</p>
+                </div>
             </div>
             <br />
-            <div class="row" style="margin-left: 10px">
-                <div class="col-sm-3">
-                    <p>dd.mmm.yy-hh:mm</p>
-                </div>
-                <div class="col-sm-3">
-                    <p>no Penjualan/Kasir</p>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-lg-12">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="min-height: 50px; max-height: 200px">
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Produk</th>
                                 <th>Jumlah</th>
                                 <th>Harga</th>
                                 <th>Discount</th>
@@ -160,12 +156,7 @@
                                     <td th:text="${detail.product.name}" />
                                     <td th:text="${detail.quantity}" />
                                     <td th:text="${detail.product.price}" />
-                                    <!--<div th:if="${detail.product.discount != 0}">-->
                                         <td th:text="${detail.discount}" />
-                                    <!--</div>-->
-                                    <!--<div th:if="${detail.product.discount == 0}">-->
-                                        <!--<td>0</td>-->
-                                    <!--</div>-->
                                     <div th:if="${detail.promoXY.productYId != 0}">
                                         <td th:text="${detail.promoXY.productYId}" />
                                     </div>
@@ -181,10 +172,52 @@
                 </div>
             </div>
             <div class="row">
+                <div class="row" style="margin-top: 10px; padding-top: 10px">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-2 align-right">
+                        <p style="text-align: ">Harga Jual : </p>
+                    </div>
+                    <div class="col-sm-2" style="margin-left: 25px; padding-left: 25px">
+                        <p th:text="${transaction.total - transaction.discount - transaction.tax}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-2 align-right">
+                        <p>Diskon : </p>
+                    </div>
+                    <div class="col-sm-2" style="margin-left: 25px; padding-left: 25px">
+                        <p th:text="${transaction.discount}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-2 align-right">
+                        <p>Pajak : </p>
+                    </div>
+                    <div class="col-sm-2" style="margin-left: 25px; padding-left: 25px">
+                        <p th:text="${transaction.tax}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-2">
+                        <p>Total Akhir : </p>
+                    </div>
+                    <div class="col-sm-2" style="margin-left: 25px; padding-left: 25px">
+                        <p th:text="${transaction.total}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="modal-footer">
                     <div class="row col-sm-2"></div>
                     <div class="row col-sm-8" style="text-align: center">
-                        <p>Keterangan Receipt : Terimakasih telah berbelanja di POS Blibli, Dapatkan diskon belanja sampai 5% dengan menjadi member di POS Blibli</p>
+                        <p>Terimakasih telah berbelanja di POS Blibli, Dapatkan diskon belanja sampai 5% dengan menjadi member di POS Blibli</p>
                     </div>
                     <div class="row col-sm-2 align-center">
                         <button type="button" class="btn btn-success" data-dismiss="modal">Cetak</button>
@@ -192,8 +225,7 @@
                 </div>
             </div>
         </div>
-
-    </div>
+        </div>
 </div>
 </body>
 </html>

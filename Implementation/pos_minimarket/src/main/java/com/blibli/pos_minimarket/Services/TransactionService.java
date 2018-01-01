@@ -177,6 +177,18 @@ public class TransactionService {
         return transactionList;
     }
 
+    public Transaction getById(Integer transactionId) {
+        Transaction transaction = new Transaction();
+        try{
+            transaction = transactionDAO.getById(transactionId);
+        }catch (Exception EX)
+        {
+            System.out.println("Error TransactionService getById");
+            System.out.println(EX.toString());
+        }
+        return transaction;
+    }
+
     public Double getDiscountTotal(Double total, LocalDateTime dateTime){
         Double discountTotal = 0.0;
         PromoTotal promoTotal = null;
