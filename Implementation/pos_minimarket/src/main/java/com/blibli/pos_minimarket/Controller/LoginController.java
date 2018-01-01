@@ -4,6 +4,7 @@ import com.blibli.pos_minimarket.Model.Employee;
 import com.blibli.pos_minimarket.Services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +38,7 @@ public class LoginController {
         } else {
             Employee employee = (Employee) map.get("pegawai");
             if (employee.getRole().getName().equals("Admin")) {
-                mav = new ModelAndView("redirect:/Minimarket");
+                mav = new ModelAndView("redirect:/MainMenu");
                 mav.addObject("pegawai", employee);
                 request.getSession().setAttribute("pegawai", employee);
             }
@@ -50,5 +51,14 @@ public class LoginController {
         return mav;
     }
 
+    @RequestMapping("/MainMenu")
+    public String showHomeMenu(HttpServletRequest request, Model model) {
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login"; //????
+        }
+        return "MainMenu";
+    }
 
 }
