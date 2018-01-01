@@ -5,11 +5,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link th:href="@{../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 	<link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../css/style_peg.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../css/style_lap.css}" rel="stylesheet" type="text/css"/>
 	<link th:href="@{../css/cdnjs_Icons.css}" rel="stylesheet"/>
 	<link th:href="@{../css/googleapis_Icons.css}" rel="stylesheet"/>
 
 	<script th:src="@{../js/script.js}" type="text/javascript" ></script>
 	<script th:src="@{../js/jquery.js}" type="text/javascript"></script>
+	<script type="text/javascript" th:src="@{../js/Export/tableExport.js}"></script>
+	<script type="text/javascript" th:src="@{../js/Export/jquery.base64.js}"></script>
+	<script type="text/javascript" th:src="@{../js/Export/sprintf.js}"></script>
+	<script type="text/javascript" th:src="@{../js/Exportjspdf.js}"></script>
+	<script type="text/javascript" th:src="@{../js/Export/base64.js}"></script>
 	<script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
 	<script>
         function openFilter() {
@@ -123,7 +130,7 @@
 			<section class="search-transaksi">
 				<br />
 				<div class="row">
-					<form th:form="${form}" th:action="@{Report-Transaction}" method="post">
+					<form th:form="${form}" th:action="@{Report-Statistics}" method="post">
                         <div class="col-sm-8" id="search-form">
                             <input type="text" class="form-control src del-radius-right" name="searchKey" id="searchkey" th:object="${searchKey}" th:value="${searchKey}" placeholder="Nomor Transaksi..." />
                         </div>
@@ -132,10 +139,11 @@
 						</div>
 					</form>
 					<div class="col-sm-1">
-						<button type="button" class="btn btn-primary" id="btn-filter" onclick="openFilter()" >Filter</button>
+						<button type="button" class="btn btn-success" id="btn-filter" onclick="openFilter()" >Filter</button>
 					</div>
 					<div class="col-sm-2">
-						<button type="button" class="btn btn-success" id="btn-export">Export</button>
+						<a href="Report-Statistics" onClick ="$('tableReport').tableExport({type:'pdf',escape:'false'});">PDF</a>
+						<button type="button" class="btn btn-primary" id="btn-export">Export</button>
 					</div>
 				</div>
 			</section>
@@ -206,23 +214,20 @@
 				</div>
 			</section>
 			<!--End bagan filter-->
-			<section class="tabel-detail">
+			<!--End bagan filter-->
+			<section class="tabel-detail" style="margin-bottom: 0; padding-bottom: 0">
 				<!--Start Judul Tabel-->
-				<div class="row">
-					<div class="col-sm-7 judul-tabel">
-						<h3>Data Transaksi</h3>
-					</div>
-					<div class="col-sm-5 judul-tabel">
-						<h3>Statistik Penjualan</h3>
-					</div>
+				<div class="row modal-header judul-tabel" style="margin: 0; padding: 0;">
+					<h2 class="modal-title" style="text-align: center">Daftar Statistik Penjualan</h2>
 				</div>
-				<!--End Judul Tabel-->
+			</section>
+			<!--End Judul Tabel-->
 				<!--Start Tabel-->
 				<br />
 				<div class="row">
 					<div class="col-sm-12">
-						<div class="table-responsive" id="t-laporan">
-							<table class="table">
+						<div class="table-responsive">
+							<table class="table" id="tableReport">
 								<thead>
 								<tr>
 									<th>No</th>
@@ -249,7 +254,6 @@
 
 				</div>
 		<!--End Tabel-->
-		</section>
 
 		</div>
 		<!--==========content.end==========-->

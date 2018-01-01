@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>POS | Laporan</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{../../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../../css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../../css/style_peg.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../../css/style_lap.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../../css/cdnjs_Icons.css}" rel="stylesheet"/>
+    <link th:href="@{../../css/googleapis_Icons.css}" rel="stylesheet"/>
+
+    <script th:src="@{../../js/script.js}" type="text/javascript" ></script>
+    <script th:src="@{../../js/jquery.js}" type="text/javascript"></script>
+    <script th:src="@{../../js/bootstrap.min.js}" type="text/javascript"></script>
+    <script>
+        function openFilter() {
+            document.getElementById("filter-transaksi").style.display="block";
+        }
+        function closeFilter() {
+            document.getElementById("filter-transaksi").style.display="none";
+        }
+        function loadDetail() {
+            var transactionList=document.getElementById("transactionList").value;
+            console.log(transactionList);
+            localStorage.setItem("transactionList", transactionList);
+//            console.log(localStorage.getItem("transactionList"));
+        }
+    </script>
+</head>
+
+<!--==========head.end==========-->
+<body onload="loadDetail()">
+<!--==========header.start==========-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="header">
+            <div class="col-xs-3 col-md-2 col-lg-2 logo">
+                <a th:href="@{#}"> <img th:src="@{../../images/BliBli.png}" class="logo"/></a>
+            </div>
+            <div class="col-xs-7 col-md-6 col-lg-6 judul" >
+                <h1>POS Blibli</h1>
+            </div>
+            <div class="col-xs-2 col-md-4 col-lg-4 user">
+                <i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
+                <div class="identitas">
+                    <h5 id="name">Nama / ID :SUTARTO/1011</h5>
+                    <h5 id="role-text">Role :Admin</h5>
+                </div>
+                <div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
+                    <div class="segitiga">
+                        <p>sgt</p>
+                    </div>
+                    <div class="dropdown-avatar">
+                        <ul>
+                            <li><a id="drop_u1" th:href="@{#}"><i class="fa">&#xf007;</i> Akun</a></li>
+                            <li><a id="drop_u2" th:href="@{#}"><i class="material-icons">&#xe879;</i> Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==========header.end==========-->
+<div class="container">
+    <!--==========navigation.start==========-->
+    <div class="row">
+        <div class ="col-xs-12 navigation">
+            <a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
+            <i class="fa">&#xf105;</i>
+            <a id="pos">Laporan</a>
+            <i class="fa">&#xf105;</i>
+            <a th:href="@{../../Report-Transaction.html}" id="pos">Transaksi</a>
+        </div>
+    </div>
+    <!--==========navigation.end==========-->
+    <div class="row">
+        <!--==========sidebar.start==========-->
+        <div class ="col-md-2 col-lg-2 sidebar">
+            <!--icon reference https://www.w3schools.com/icons/icons_reference.asp-->
+            <div class="toggle">
+                <h3>Menu</h3> <i class="fa menu" aria-hidden="true">&#9776;</i>
+            </div>
+            <ul>
+                <li>
+                    <a id="sid_1" th:href="@{../../Minimarket.html}"><i class="fa">&#xf19c;</i> Minimarket</a>
+                </li>
+                <li>
+                    <a id="sid_2" th:href="@{../../Employee.html}"><i class="fa">&#xf0c0;</i> Pegawai</a>
+                </li>
+                <li>
+                    <div class="dropdown"><a id="sid_3"><i class="fa">&#xf288;</i> Produk</a>
+                        <div class="dropdown-content" id="dr-produk">
+                            <a id="drop_p1" th:href="@{../../Category.html}">Kategori</a>
+                            <a id="drop_p2" th:href="@{../../Product.html}">Kelola Produk</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a id="sid_4" th:href="@{../../Stock.html}"><i class="fa">&#xf1b3;</i> Stok</a>
+                </li>
+                <li>
+                    <a id="sid_5" th:href="@{../../Transaction.html}"><i class="fa">&#xf217;</i> Transaksi</a>
+                </li>
+                <li>
+                    <a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+                </li>
+                <li>
+                <li>
+                    <div class="dropdown"><a id="sid_7"><i class="fa">&#xf080;</i> Laporan</a>
+                        <div class="dropdown-content" id="dr-laporan">
+                            <a id="drop_p1" th:href="@{../../Report-Transaction.html}">Transaksi</a>
+                            <a id="drop_p2" th:href="@{../../Report-Statistics.html}">Statistik</a>
+                        </div>
+                    </div>
+                </li>
+                </li>
+            </ul>
+        </div>
+        <!--==========sidebar.end==========-->
+        <!--==========content.start==========-->
+        <div class="col-md-10 col-lg-10" style="background: #fff; border-top: 10px solid #edeeee;">
+            <div class="row modal-header">
+                <div class="col-xs-3 col-md-3 col-lg-3">
+                    <a th:href="@{/Transaction}" class="btn btn-primary" style="width: 75%;" >Transaksi Baru</a>
+                </div>
+                <div class="col-xs-6 col-md-6 col-lg-6">
+                    <h2 class="modal-title" style="text-align: center">POS Blibli</h2>
+                    <h4 class="modal-title" style="text-align: center">Jalan Babarsari 43 Yogyakarta</h4>
+                </div>
+                <div class="col-xs-3 col-md-3 col-lg-3"></div>
+            </div>
+            <br />
+            <div class="row" style="margin-left: 10px">
+                <div class="col-sm-3">
+                    <p>dd.mmm.yy-hh:mm</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>no Penjualan/Kasir</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
+                                <th>Discount</th>
+                                <th>Bonus Produk</th>
+                                <th>Sub Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="detail : ${transactionDetailList}">
+                                <tr>
+                                    <td th:text="${detail.product.name}" />
+                                    <td th:text="${detail.quantity}" />
+                                    <td th:text="${detail.product.price}" />
+                                    <!--<div th:if="${detail.product.discount != 0}">-->
+                                        <td th:text="${detail.discount}" />
+                                    <!--</div>-->
+                                    <!--<div th:if="${detail.product.discount == 0}">-->
+                                        <!--<td>0</td>-->
+                                    <!--</div>-->
+                                    <div th:if="${detail.promoXY.productYId != 0}">
+                                        <td th:text="${detail.promoXY.productYId}" />
+                                    </div>
+                                    <div th:if="${detail.promoXY.productYId == 0}">
+                                        <td>-</td>
+                                    </div>
+                                    <td th:text="${detail.product.price}*${detail.quantity}-${detail.discount}"/>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-footer">
+                    <div class="row col-sm-2"></div>
+                    <div class="row col-sm-8" style="text-align: center">
+                        <p>Keterangan Receipt : Terimakasih telah berbelanja di POS Blibli, Dapatkan diskon belanja sampai 5% dengan menjadi member di POS Blibli</p>
+                    </div>
+                    <div class="row col-sm-2 align-center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cetak</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
