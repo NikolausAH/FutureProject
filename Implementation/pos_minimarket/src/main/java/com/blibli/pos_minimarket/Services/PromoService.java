@@ -167,4 +167,16 @@ public class PromoService {
             System.out.println("Error PromoService updateStatus");
         }
     }
+
+    public PromoTotal getPromoTotal (Integer id){
+        PromoTotal promoTotal = new PromoTotal();
+        try{
+           promoTotal =  promoTotalDAO.getById(id);
+        }
+        catch (Exception EX){
+            System.out.println(EX.toString());
+            System.out.println("Error PromoService getPromoTotal");
+        }
+        return promoTotal;
+    }
 }

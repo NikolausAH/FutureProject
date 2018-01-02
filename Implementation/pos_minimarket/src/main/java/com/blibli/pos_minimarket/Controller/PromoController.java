@@ -90,5 +90,15 @@ public class PromoController {
         return mav;
     }
 
+    @RequestMapping(value = "/Promo/DetailTotal")
+    public ModelAndView showDetailPromo(@ModelAttribute("detailId") Integer idDetail , Model model) {
+        PromoTotal promoTotal = new PromoTotal();
+        ModelAndView mav = new ModelAndView();
+        promoTotal= promoService.getPromoTotal(idDetail);
+        model.addAttribute("detailPromo", promoTotal);
+        mav.setViewName("redirect:/Promo");
+        return mav;
+    }
+
 }
 

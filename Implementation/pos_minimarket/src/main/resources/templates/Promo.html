@@ -48,6 +48,24 @@
                 document.getElementById("formXYUpdate").style.display = "block";
             }
         }
+
+        function selectFormDetail() {
+            if (document.getElementById("selectPromoDetail").value == "Total") {
+                document.getElementById("formTotalDetail").style.display = "block";
+                document.getElementById("formProdukDetail").style.display = "none";
+                document.getElementById("formXYDetail").style.display = "none";
+            }
+            else if (document.getElementById("selectPromoDetail").value == "Produk") {
+                document.getElementById("formTotalDetail").style.display = "none";
+                document.getElementById("formProdukDetail").style.display = "block";
+                document.getElementById("formXYDetail").style.display = "none";
+            }
+            else if (document.getElementById("selectPromoDetail").value == "XY") {
+                document.getElementById("formTotalDetail").style.display = "none";
+                document.getElementById("formProdukDetail").style.display = "none";
+                document.getElementById("formXYDetail").style.display = "block";
+            }
+        }
     </script>
     <!--for fa icon-->
 </head>
@@ -98,7 +116,7 @@
 <div class="container">
     <!--==========navigation.start==========-->
     <div class="row">
-        <div class ="col-xs-12 navigation">
+        <div class="col-xs-12 navigation">
             <a th:href="@{../MainMenu.html}"><i class="fa" id="home-icon"> &#xf015;</i></a>
             <i class="fa">&#xf105;</i>
             <a th:href="@{../Promo.html}" id="pos">Promo</a>
@@ -203,19 +221,24 @@
             <!--Button tambah ubah hapus-->
             <br/>
             <div class="col-xs-12 col-md-12 col-lg-12" id="three-button">
-                <div class="col-xs-4 col-md-4 col-lg-4">
+                <div class="col-xs-3 col-md-3 col-lg-3">
                     <button type="button" class="btn btn-success" id="btn-tambah" data-toggle="modal"
                             data-target="#createModal">Tambah
                     </button>
                 </div>
-                <div class="col-xs-4 col-md-4 col-lg-4">
+                <div class="col-xs-3 col-md-3 col-lg-3">
                     <button type="button" class="btn btn-warning" id="btn-ubah" data-toggle="modal"
                             data-target="#updateModal">Ubah
                     </button>
                 </div>
-                <div class="col-xs-4 col-md-4 col-lg-4">
+                <div class="col-xs-3 col-md-3 col-lg-3">
                     <button type="button" class="btn btn-danger" id="btn-hapus" data-toggle="modal"
                             data-target="#deleteModal">Hapus
+                    </button>
+                </div>
+                <div class="col-xs-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-info" id="btn-detail" data-toggle="modal"
+                            data-target="#detailModal">Detail
                     </button>
                 </div>
             </div>
@@ -776,7 +799,7 @@
                             <h4 class="modal-title" style="text-align: center">Hapus Promo</h4>
                         </div>
                         <div class="modal-body">
-                            <form id="form31" class="form-horizontal" th:form="${form}" th:object="${promoDelete}"
+                            <form id="form31" class="form-horizontal" th:form="${form}"
                                   th:action="@{/Promo/Delete}" method="post">
                                 <div class="col-sm-12">
                                     <div class="form-group">
@@ -814,6 +837,134 @@
             </div>
         </div>
 
+        <!-- DetailModal -->
+        <div class="modal fade" id="detailModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="text-align: center">Detail Promo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12">
+                            <label class="control-label" for="jenis">Jenis:</label>
+                            <div class="col-sm-12">
+                                <select class="btn btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" name="jenis" th:value="${jenis}"
+                                        id="selectPromoDetail"
+                                        onChange="selectFormDetail()">
+                                    <option selected="selected">Pilih Jenis Promo</option>
+                                    <option value="Total">Promo Total</option>
+                                    <option value="Produk">Promo Produk</option>
+                                    <option value="XY">Promo Beli X dapat Y</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" id="formTotalDetail" style="display: none">
+                            <form th:form="${form}" th:object="${promoTotal}" th:action="@{/Promo/DetailTotal}"
+                                  name="promoTotal" method="post">
+                                <input type="hidden" name="jenis" id="jenis" value="Promo Total"></input>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-3">
+                                        <label class="control-label" for="detailId">ID :</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" id="detailId"
+                                               name="detailId"
+                                               placeholder="0"
+                                               th:value="${detailId}"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                    <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                    <div class="col-xs-3 col-md-3 col-lg-3">
+                                        <button type="button" class="btn btn-primary" id="btn-batal"
+                                                data-dismiss="modal">Batal
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                    <div class="col-xs-3 col-md-3 col-lg-3">
+                                        <button type="submit" value="Submit" class="btn btn-warning" id="btn-ubah"
+                                                data-target="#ModalDetailTotal">Detail
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-12" id="formProdukDetail" style="display: none">
+                            <form th:form="${form}" th:object="${promoProduct}" th:action="@{/Promo/DetailProduk}"
+                                  name="promoProduct" method="post">
+                                <input type="hidden" name="jenis" id="jenis" value="Promo Produk"></input>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-3">
+                                        <label class="control-label" for="detailId">ID :</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" id="detailId"
+                                               name="detailId"
+                                               placeholder="0"
+                                               th:value="${detailId}"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                    <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                    <div class="col-xs-3 col-md-3 col-lg-3">
+                                        <button type="button" class="btn btn-primary" id="btn-batal"
+                                                data-dismiss="modal">Batal
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                    <div class="col-xs-3 col-md-3 col-lg-3">
+                                        <button type="submit" value="Submit" class="btn btn-warning" id="btn-ubah"
+                                        >Detail
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-12" id="formXYDetail" style="display: none">
+                            <form th:form="${form}" th:object="${promoXY}" name="promoXY"
+                                  th:action="@{/Promo/DetailXY}"
+                                  method="post">
+                                <input th:value="${detailJenis}" type="hidden" name="detailJenis" id="detailJenis"
+                                       value="Promo Beli X dapat Y"></input>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-3">
+                                        <label class="control-label" for="detailId">ID :</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" id="detailId"
+                                               name="detailId"
+                                               placeholder="0"
+                                               th:value="${detailId}"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12 col-lg-12" id="two-button">
+                                    <div class="col-xs-4 col-md-4 col-lg-4"></div>
+                                    <div class="col-xs-3 col-md-3 col-lg-3">
+                                        <button type="button" class="btn btn-primary" id="btn-batal"
+                                                data-dismiss="modal">Batal
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2 col-lg-2"></div>
+                                    <div class="col-xs-3 col-md-3 col-lg-3">
+                                        <button type="submit" value="Submit" class="btn btn-warning" id="btn-ubah"
+                                        >Detail
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--==========content.end==========-->
     </div>
 </div>
