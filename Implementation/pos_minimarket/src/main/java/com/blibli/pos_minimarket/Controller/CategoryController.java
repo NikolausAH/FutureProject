@@ -1,16 +1,15 @@
 package com.blibli.pos_minimarket.Controller;
 
 import com.blibli.pos_minimarket.Model.Category;
-import com.blibli.pos_minimarket.Model.Employee;
 import com.blibli.pos_minimarket.Services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -24,16 +23,17 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "Category")
-    public String showAllCategory(HttpServletRequest request, @ModelAttribute("searchKey")String searchKey, Model model) {
-        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
-        if (employee == null ||employee.getRole().getName().equals("Kasir")) {
-            return "Login";
-        }
+    public String showAllCategory(@ModelAttribute("searchKey")String searchKey,Model model) {
         categoryService.initTable();
-        model.addAttribute("category", categoryService.search(searchKey));
+        model.addAttribute("categoryList", categoryService.search(searchKey));
         model.addAttribute("category_nextId", categoryService.getNextId());
-        model.addAttribute("pegawai", employee);
         return "Category";
+    }
+
+    @RequestMapping(value = "/category/detail/{categoryId}", method = RequestMethod.GET)
+    public String detailCategory(@PathVariable Integer categoryId, Model model){
+        model.addAttribute("category", categoryService.getById(categoryId));
+        return "CategoryDetail";
     }
 
     @PostMapping(value = "/Category/Add")
@@ -45,19 +45,24 @@ public class CategoryController {
         return mav;
     }
 
-    @PostMapping(value = "/Category/Update")
-    public ModelAndView updateCategory(@ModelAttribute("category") Category category){
+    @RequestMapping(value = "/Category/Detail", params = "update", method = RequestMethod.POST)
+    public ModelAndView updateProduct(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
         categoryService.update(category);
         mav.setViewName("redirect:/Category");
         return mav;
     }
 
-    @RequestMapping(value = "/Category/Delete")
-    public ModelAndView deleteCategory(@ModelAttribute("categoryId")Integer categoryId){
+    @RequestMapping(value = "/Category/Detail", params = "delete", method = RequestMethod.POST)
+    public ModelAndView deleteCategory(@ModelAttribute("category")Category category){
+        System.out.println(category.getCategoryId());
         ModelAndView mav = new ModelAndView();
-        categoryService.softDelete(categoryId);
+        categoryService.softDelete(category.getCategoryId());
         mav.setViewName("redirect:/Category");
         return mav;
+    }
+    @RequestMapping(value = "/Category/Detail",params = "cancel", method = RequestMethod.POST)
+    public String cancelCategory(){
+        return "redirect:/Category";
     }
 }

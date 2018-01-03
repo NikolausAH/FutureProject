@@ -126,7 +126,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     public List<Category> search(String searchKey) {
         List<Category> categoryList = new ArrayList<>();
         Scanner scanner = new Scanner(searchKey);
-
+//        select * from category where cast(category_id as CHARACTER VARYING) like '%2%' or name like '%o%'
         String sqlString = "SELECT category_id,name,description,status FROM category WHERE name LIKE '%"+searchKey+"%' ORDER BY category_id;";
         String sqlInteger = "SELECT category_id,name,description,status FROM category WHERE category_id = '"+searchKey+"' OR name LIKE '%"+searchKey+"%' ORDER BY category_id;";
         String message = "Error CategoryDAO search";
