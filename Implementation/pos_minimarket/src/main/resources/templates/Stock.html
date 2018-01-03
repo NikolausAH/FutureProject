@@ -46,8 +46,8 @@
 			<div class="col-xs-2 col-md-4 col-lg-4 user">
 				<i class="fa icon-user" onmouseover="openNav()" onmouseout="closeNav()">&#xf2be;</i>
 				<div class="identitas">
-					<h5 id="name">Nama / ID :SUTARTO/1011</h5>
-					<h5 id="role-text">Role :Admin</h5>
+					<h5 id="name" th:text="'Nama / ID :' + ${pegawai.name} + ' / ' + ${pegawai.employee_Id}"></h5>
+					<h5 id="role-text" th:text="'Role :' + ${pegawai.role.name}"> </h5>
 				</div>
 				<div id="dr-down" onmouseover="openNav()" onmouseout="closeNav()">
 					<div class="segitiga">
@@ -69,7 +69,7 @@
 	<!--==========navigation.start==========-->
 	<div class="row">
 		<div class ="col-xs-12 navigation">
-			<a href="#"><i class="fa" id="home-icon"> &#xf015;</i></a>
+			<a  th:href="@{../MainMenu.html><i class="fa" id="home-icon"> &#xf015;</i></a>
 			<i class="fa">&#xf105;</i>
 			<a th:href="@{../Stock.html}" id="pos">Stock</a>
 		</div>
@@ -104,7 +104,7 @@
 					<a id="sid_5" th:href="@{../Transaction.html}"><i class="fa">&#xf217;</i> Transaksi</a>
 				</li>
 				<li>
-					<a id="sid_6" href="#"><i class="fa">&#xf02c;</i> Promo</a>
+					<a id="sid_6" th:href="@{../Promo.html}"><i class="fa">&#xf02c;</i> Promo</a>
 				</li>
 				<li>
 				<li>

@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class EmployeeController {
     private final EmployeeService employeeService = new EmployeeService();
@@ -17,7 +19,12 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "Employee")
-    public String showAllEmployee(@ModelAttribute("searchKey")String searchKey,Model model) {
+    public String showAllEmployee(HttpServletRequest request,@ModelAttribute("searchKey")String searchKey, Model model) {
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         employeeService.initTable();
         model.addAttribute("employeeList", employeeService.search(searchKey));
         model.addAttribute("roleList", employeeService.showAllRole());

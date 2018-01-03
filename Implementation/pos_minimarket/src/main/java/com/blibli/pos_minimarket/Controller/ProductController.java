@@ -1,5 +1,6 @@
 package com.blibli.pos_minimarket.Controller;
 
+import com.blibli.pos_minimarket.Model.Employee;
 import com.blibli.pos_minimarket.Model.Product;
 import com.blibli.pos_minimarket.Services.CategoryService;
 import com.blibli.pos_minimarket.Services.ProductService;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProductController {
@@ -21,7 +24,12 @@ public class ProductController {
     }
 
     @RequestMapping("/Product")
-    public String showAllProduct(@ModelAttribute("searchKey")String searchKey, Model model) {
+    public String showAllProduct(HttpServletRequest request,@ModelAttribute("searchKey")String searchKey, Model model) {
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         productService.initTable();
         model.addAttribute("productList", productService.search(searchKey));
         model.addAttribute("categoryList", categoryService.showAll());
