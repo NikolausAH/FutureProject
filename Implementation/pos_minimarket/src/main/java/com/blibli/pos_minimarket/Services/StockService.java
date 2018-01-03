@@ -11,10 +11,9 @@ public class StockService {
     public StockService() {
     }
 
-    public void updateQuantity(Product product){
-        Product tempProduct = productDAO.getById(product.getProductId());
+    public void updateQuantity(Product product, Integer quantity){
         try {
-            productDAO.updateQuantity(product,tempProduct.getQuantity());//old Quantity
+            productDAO.updateQuantity(product,quantity);//+ Quantity
         }
         catch (Exception EX){
             System.out.println("Error StockService UpdateQuantity");
