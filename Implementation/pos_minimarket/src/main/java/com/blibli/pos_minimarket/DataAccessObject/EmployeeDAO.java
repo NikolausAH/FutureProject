@@ -116,7 +116,7 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
     @Override
     public Employee getById(Integer employee_id) {
         Employee employee = new Employee();
-        String sql = "SELECT employee_id, name, email, role_id, status FROM employees WHERE employee_id="+
+        String sql = "SELECT employee_id, name, email, role_id FROM employees WHERE employee_id="+
                 "'"+employee_id+"';";
         try {
             this.makeConnection();
@@ -128,7 +128,6 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
                     employee.setName(resultSet.getString("name"));
                     employee.setRole( this.getRoleById(resultSet.getInt("role_id")));
                     employee.setEmail(resultSet.getString("email"));
-                    employee.setStatus(resultSet.getString("status"));
                 }
                 resultSet.close();
             }this.closeConnection();
