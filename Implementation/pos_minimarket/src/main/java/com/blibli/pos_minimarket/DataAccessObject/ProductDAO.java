@@ -75,8 +75,8 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
         generalDAO.executeSet(sql,message);
     }
 
-    public void updateQuantity(Product product, Integer oldQuantity) {
-        Integer quantity = product.getQuantity()+oldQuantity;
+    public void updateQuantity(Product product, Integer addQuantity) {
+        Integer quantity = product.getQuantity()+addQuantity;
         String sql = "UPDATE product SET quantity = '"+quantity+"' WHERE product_id = '"+product.getProductId()+"';";
         String message = "Error ProductDAO UpdateQuantity";
         generalDAO.executeSet(sql,message);
@@ -169,7 +169,6 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
                     product.setQuantity(resultSet.getInt("quantity"));
                     product.setDescription(resultSet.getString("description"));
                     product.setCategory(categoryDAO.getById(resultSet.getInt("category_Id")));
-                    System.out.println(product.getCategory().getName());
                     product.setStatus(resultSet.getString("status"));
                     productList.add(product);
                 }
