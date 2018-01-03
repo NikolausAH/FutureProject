@@ -40,7 +40,7 @@ public class ProfileController {
         ModelAndView mav = new ModelAndView();
         profileService.updateProfile(pegawai);
         mav.setViewName("redirect:/Profile");
-        Employee employee = employeeService.findById(pegawai.getEmployee_Id());
+        Employee employee = employeeService.getById(pegawai.getEmployee_Id());
         request.getSession().setAttribute("pegawai", employee);
         return mav;
     }

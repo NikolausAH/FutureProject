@@ -9,20 +9,31 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Repository
 public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Employee, Integer, String> {
     private GeneralDAO generalDAO = new GeneralDAO();
     @Override
     public void initTable() {
-        String sqlRole = "CREATE TABLE IF NOT EXIST role(role_id SERIAL NOT NULL CONSTRAINT role_pkey PRIMARY KEY," +
-                "name VARCHAR(15) NOT NULL);";
+        String sqlRole = "CREATE TABLE IF NOT EXISTS public.role" +
+                "(" +
+                "    role_id SERIAL PRIMARY KEY NOT NULL," +
+                "    name VARCHAR(25) NOT NULL" +
+                ");";
 
-        String sqlEmployee = "CREATE TABLE IF NOT EXIST employees(employee_id SERIAL NOT NULL CONSTRAINT employees_pkey PRIMARY KEY," +
-                "password VARCHAR(25) NOT NULL, name VARCHAR(25) NOT NULL, email VARCHAR(50)," +
-                "role_id INTEGER NOT NULL CONSTRAINT role_id___fk REFERENCES role, status INTEGER NOT NULL);";
+        String sqlEmployee = "CREATE TABLE IF NOT EXISTS public.employees" +
+                "(" +
+                "    employee_id SERIAL PRIMARY KEY NOT NULL," +
+                "    password VARCHAR(25) NOT NULL," +
+                "    name VARCHAR(25) NOT NULL," +
+                "    email VARCHAR(50)," +
+                "    role_id INTEGER NOT NULL,"+
+                "    status VARCHAR(15) NOT NULL," +
+                "    CONSTRAINT role_id___fk FOREIGN KEY (role_id) REFERENCES role (role_id)" +
+                ");";
         String messageRole = "Error EmployeeDAO initTable ROLE";
-        String messageEmployee = "Error EmployeeDAO initTable EMPLOYEE";
+        String messageEmployee = "Error EmployeeDAO initTable employees";
         generalDAO.executeSet(sqlRole,messageRole);
         generalDAO.executeSet(sqlEmployee,messageEmployee);
     }
@@ -90,6 +101,7 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
                     employee.setName(resultSet.getString("name"));
                     employee.setRole( this.getRoleById(resultSet.getInt("role_id")));
                     employee.setEmail(resultSet.getString("email"));
+                    employee.setStatus(resultSet.getString("status"));
                     employeeList.add(employee);
                 }resultSet.close();
             }
@@ -102,9 +114,10 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
     }
 
     @Override
-    public Employee getById(Integer key) {
+    public Employee getById(Integer employee_id) {
         Employee employee = new Employee();
-        String sql = "SELECT * FROM employees;";
+        String sql = "SELECT employee_id, name, email, role_id, status FROM employees WHERE employee_id="+
+                "'"+employee_id+"';";
         try {
             this.makeConnection();
             Statement preparedStatement = this.connection.createStatement();
@@ -115,6 +128,7 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
                     employee.setName(resultSet.getString("name"));
                     employee.setRole( this.getRoleById(resultSet.getInt("role_id")));
                     employee.setEmail(resultSet.getString("email"));
+                    employee.setStatus(resultSet.getString("status"));
                 }
                 resultSet.close();
             }this.closeConnection();
@@ -126,37 +140,48 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
     }
 
     @Override
-    public List<Employee> search(String name) {
-        List<Employee> EmployeeList = new ArrayList<>();
-        String sql = "SELECT employee_id, name, email, role_id, status FROM employees WHERE name = '"+name+"';";
+    public List<Employee> search(String searchKey) {
+        List<Employee> employeeList = new ArrayList<>();
+        Scanner scanner = new Scanner(searchKey);
+//        select * from category where cast(category_id as CHARACTER VARYING) like '%2%' or name like '%o%'
+        String sqlString = "SELECT employee_id, name, email, role_id, status FROM employees WHERE name LIKE '%"+searchKey+"%' ORDER BY employee_id;";
+        String sqlInteger = "SELECT employee_id, name, email, role_id, status FROM employees WHERE employee_id = '"+searchKey+"' OR name LIKE '%"+searchKey+"%' ORDER BY employee_id;";
+        String message = "Error EmployeeDAO search";
         try {
             this.makeConnection();
-            Statement preparedStatement = this.connection.createStatement();
-            ResultSet resultSet = preparedStatement.executeQuery(sql);
+            ResultSet resultSet;
+            if (scanner.hasNextInt()){
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlInteger);
+                resultSet = preparedStatement.executeQuery();
+            }else {
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlString);
+                resultSet = preparedStatement.executeQuery();
+            }
+
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Employee employee = new Employee();
-                    employee.setEmployee_Id(resultSet.getInt(employee.getEmployee_Id()));
-                    employee.setName(resultSet.getString(employee.getName()));
-                    employee.setEmail(resultSet.getString(employee.getEmail()));
+                    employee.setEmployee_Id(resultSet.getInt("employee_Id"));
+                    employee.setName(resultSet.getString("name"));
+                    employee.setEmail(resultSet.getString("email"));
                     employee.setRole( this.getRoleById(resultSet.getInt("role_id")));
-                    employee.setStatus(resultSet.getString(employee.getStatus()));
-                    EmployeeList.add(employee);
+                    employee.setStatus(resultSet.getString("status"));
+                    employeeList.add(employee);
                 }
                 resultSet.close();
-            }this.closeConnection();
+            }
         } catch (Exception EX) {
-            System.out.println("Error EmployeeDAO search");
+            System.out.println(message);
             System.out.println(EX.toString());
         }
-        return EmployeeList;
+        return employeeList;
     }
 
     @Override
     public void add(Employee employee) {
-        String sql = "INSERT INTO employees (password, name, email, role_id)"+
-                "VALUES ('Password','"+employee.getName()+"','"+employee.getEmail()+"',"+
-                "'"+employee.getRole().getRole_id()+"');";
+        String sql = "INSERT INTO employees (password, name, email, role_id, status)"+
+                "VALUES ('"+employee.getPassword()+"','"+employee.getName()+"','"+employee.getEmail()+"',"+
+                "'"+employee.getRole().getRole_id()+"','active');";
         String message = "Error EmployeeDAO add";
         generalDAO.executeSet(sql,message);
     }
@@ -182,7 +207,6 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
         String message = "Error EmployeeDAO softDelete";
         generalDAO.executeSet(sql,message);
     }
-
     public String getPasswordById(Integer employee_id){
         String sql = "SELECT password from employees where employee_id = "+ employee_id +";";
         String password = null;
@@ -192,7 +216,7 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
             ResultSet resultSet = preparedStatement.executeQuery(sql);
             if (resultSet != null) {
                 while (resultSet.next()) {
-                  password = (resultSet.getString("password"));
+                    password = (resultSet.getString("password"));
                 }
                 resultSet.close();
             }this.closeConnection();
