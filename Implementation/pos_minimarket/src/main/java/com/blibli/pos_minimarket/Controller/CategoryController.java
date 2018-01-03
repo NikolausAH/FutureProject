@@ -37,7 +37,12 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/category/detail/{categoryId}", method = RequestMethod.GET)
-    public String detailCategory(@PathVariable Integer categoryId, Model model){
+    public String detailCategory(HttpServletRequest request ,@PathVariable Integer categoryId, Model model){
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         model.addAttribute("category", categoryService.getById(categoryId));
         return "CategoryDetail";
     }
