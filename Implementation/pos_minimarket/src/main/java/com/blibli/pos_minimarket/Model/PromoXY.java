@@ -2,16 +2,27 @@ package com.blibli.pos_minimarket.Model;
 
 import java.sql.Timestamp;
 
-public class PromoXY  extends Promo{
+public class PromoXY extends Promo {
     private int quantityX;
     private int quantityY;
-    private Timestamp startDate;
-    private Timestamp endDate;
     private int productXId;
     private int productYId;
     private String status;
 
+<<<<<<< HEAD
     public PromoXY() {}
+=======
+    public PromoXY() {
+    }
+
+    public PromoXY(Integer id, Timestamp startDate, Timestamp endDate,String status,String type, Integer quantityX, Integer quantityY, Integer productXId, Integer productYId) {
+        super(id, startDate, endDate, status,type);
+        this.setQuantityX(quantityX);
+        this.setQuantityY(quantityY);
+        this.setProductXId(productXId);
+        this.setProductYId(productYId);
+    }
+>>>>>>> master
 
     public int getQuantityX() {
         return quantityX;
@@ -29,6 +40,7 @@ public class PromoXY  extends Promo{
         this.quantityY = quantityY;
     }
 
+<<<<<<< HEAD
     @Override
     public Timestamp getStartDate() {
         return startDate;
@@ -49,6 +61,8 @@ public class PromoXY  extends Promo{
         this.endDate = endDate;
     }
 
+=======
+>>>>>>> master
     public int getProductXId() {
         return productXId;
     }
@@ -64,6 +78,7 @@ public class PromoXY  extends Promo{
     public void setProductYId(int productYId) {
         this.productYId = productYId;
     }
+<<<<<<< HEAD
 
     public String getStatus() {
         return status;
@@ -74,4 +89,6 @@ public class PromoXY  extends Promo{
     }
 //
 //
+=======
+>>>>>>> master
 }

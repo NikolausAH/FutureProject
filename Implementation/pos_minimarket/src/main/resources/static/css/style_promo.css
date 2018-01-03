@@ -267,9 +267,12 @@ body{
   display: inline-block;
   width: 100%;
 }
+<<<<<<< HEAD
 #formTotal,#formProduk,#formXY{
   margin-left: 35%;
 }
+=======
+>>>>>>> master
 
 #btn-tambah,
 #btn-ubah{

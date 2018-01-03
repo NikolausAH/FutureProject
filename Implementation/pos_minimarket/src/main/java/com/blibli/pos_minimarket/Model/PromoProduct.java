@@ -1,30 +1,19 @@
 package com.blibli.pos_minimarket.Model;
 
 import java.sql.Timestamp;
+
 //
-public class PromoProduct {
-    private Integer pProductId;
+public class PromoProduct extends Promo {
     private double discountPercent;
-    private Integer ProductId;
-    private Timestamp startDate;
-    private Timestamp endDate;
-//
-    public PromoProduct(){}
+    private Integer productId;
 
-    public PromoProduct(Integer pProductId, double discountPercent, Integer productId, Timestamp startDate, Timestamp endDate) {
-        this.pProductId = pProductId;
-        this.discountPercent = discountPercent;
-        ProductId = productId;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public PromoProduct() {
     }
 
-    public Integer getpProductId() {
-        return pProductId;
-    }
-
-    public void setpProductId(Integer pProductId) {
-        this.pProductId = pProductId;
+    public PromoProduct(Integer id, Timestamp startDate, Timestamp endDate, String status, String type, double discountPercent, Integer productId) {
+        super(id, startDate, endDate, status,type);
+        this.setDiscountPercent(discountPercent);
+        this.setProductId(productId);
     }
 
     public double getDiscountPercent() {
@@ -36,27 +25,10 @@ public class PromoProduct {
     }
 
     public Integer getProductId() {
-        return ProductId;
+        return productId;
     }
 
     public void setProductId(Integer productId) {
-        ProductId = productId;
-    }
-
-    public Timestamp getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Timestamp startDate) {
-        this.startDate = startDate;
-    }
-
-    public Timestamp getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Timestamp endDate) {
-        this.endDate = endDate;
+        this.productId = productId;
     }
 }
-

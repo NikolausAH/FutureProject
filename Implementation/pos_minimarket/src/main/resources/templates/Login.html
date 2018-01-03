@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-      <link rel="stylesheet" type="text/css" href="/css/css_login.css">
-      <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    </head>
-											<!--akhir head-->
-		<body>
-        <div class="login-block">
-            <div class="logo">
-              <img src="image/logo-alfamarts.png" class="logo">
+<html>
+<head>
+    <title> POS | Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/css_login.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
+</head>
+<!--akhir head-->
+
+<body>
+<div class="login-block">
+    <div class="logo">
+        <img src="../image/blibli.png" class="logo" alt="Cinque terre"></img>
+    </div>
+    <h1>Login</h1>
+    <form class="form-horizontal" th:form="${form}" th:action="@{/Login/Enter}" method="post">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="number" class="form-control" id="Username" placeholder="ID" name="Username"
+                       th:value="${Username}"/>
             </div>
-            <h1>Login</h1>
-            <input type="text" value="" placeholder="Username" employee_Id="username" />
-            <input type="password" value="" placeholder="Password" employee_Id="password" />
-            <button>Submit</button>
+            <div class="col-sm-12">
+                <input type="password" class="form-control" id="Password" placeholder="Password" name="Password"
+                       th:value="${Password}"/>
+            </div>
+            <div class="col-sm-12">
+                <button type="submit" id="btn-search">Log In</button>
+            </div>
+            <div th:if="${loginError}">
+                <p>LOGIN ERROR</p>
+            </div>
         </div>
-    </body>
-  </html>
+    </form>
+</div>
+</body>
+</html>
 <!--==========head.end==========-->
