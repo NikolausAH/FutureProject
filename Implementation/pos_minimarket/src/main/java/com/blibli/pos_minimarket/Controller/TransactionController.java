@@ -65,4 +65,9 @@ public class TransactionController {
         model.addAttribute("transaction", transactionService.getById(transactionId));
         return "Receipt";
     }
+
+    @RequestMapping(value = "/Receipt", method = RequestMethod.GET)
+    public String Receipt(){
+        return "redirect:/Transaction";
+    }
 }

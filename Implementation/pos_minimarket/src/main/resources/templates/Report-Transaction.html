@@ -27,6 +27,23 @@
 //            console.log(localStorage.getItem("transactionList"));
         }
 	</script>
+	<script th:src="@{../js/jquery.table2excel.js}"></script>
+	<script type="text/javascript">
+        $(function() {
+            $(".download").click(function() {
+                $(".tb2excel").table2excel({
+                    exclude: ".noExl",
+                    name: "Excel Document Name",
+                    filename: "Laporan Transaksi",
+                    fileext: ".xls",
+                    exclude_img: true,
+                    exclude_links: true,
+                    exclude_inputs: true
+                });
+            });
+//            document.getElementById("hide").style.display="block";
+        });
+	</script>
 </head>
 
 <!--==========head.end==========-->
@@ -137,7 +154,7 @@
 						<button type="button" class="btn btn-success" id="btn-filter" onclick="openFilter()" >Filter</button>
 					</div>
 					<div class="col-sm-2">
-						<button type="button" class="btn btn-primary" id="btn-export">Export</button>
+						<button type="button" class="btn btn-primary download" id="btn-export">Export</button>
 					</div>
 				</div>
 			</section>
@@ -219,7 +236,7 @@
                     <div class="col-md-12 col-lg-12">
 						<br />
 						<div class="table-responsive">
-							<table class="table">
+							<table class="table tb2excel">
 								<thead>
 								<tr>
 									<th>ID</th>

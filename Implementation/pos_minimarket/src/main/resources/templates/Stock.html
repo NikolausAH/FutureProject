@@ -13,6 +13,23 @@
 	<script th:src="@{../js/script.js}" type="text/javascript" ></script>
 	<script th:src="@{../js/jquery.js}" type="text/javascript"></script>
 	<script th:src="@{../js/bootstrap.min.js}" type="text/javascript"></script>
+	<script th:src="@{../js/jquery.table2excel.js}"></script>
+	<script type="text/javascript">
+        $(function() {
+            $(".download").click(function() {
+                $(".tb2excel").table2excel({
+                    exclude: ".noExl",
+                    name: "Excel Document Name",
+                    filename: "Daftar Stok",
+                    fileext: ".xls",
+                    exclude_img: true,
+                    exclude_links: true,
+                    exclude_inputs: true
+                });
+            });
+//            document.getElementById("hide").style.display="block";
+        });
+	</script>
 </head>
 <!--==========head.end==========-->
 <body>
@@ -122,7 +139,7 @@
 						</form>
 					</div>
 					<div class="col-sm-2">
-						<button type="button" class="btn btn-primary" >Export</button>
+						<button type="button" class="btn btn-primary download" >Export</button>
 					</div>
 				</div>
 			</section>
@@ -131,7 +148,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<div class="table-responsive">
-					<table class="table">
+					<table class="table tb2excel">
 						<thead>
 						<tr>
 							<th>Kode</th>

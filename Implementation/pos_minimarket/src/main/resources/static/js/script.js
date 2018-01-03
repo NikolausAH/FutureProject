@@ -9,3 +9,7 @@ function closeNav() {
 function openNav() {
     document.getElementById("dr-down").style.display="block";
 }
+
+function hideColoum() {
+    document.getElementById("hide").style.display="none";
+}
