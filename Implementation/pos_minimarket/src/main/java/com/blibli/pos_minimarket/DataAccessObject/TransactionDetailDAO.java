@@ -1,12 +1,22 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
+import com.blibli.pos_minimarket.Model.PromoProduct;
+import com.blibli.pos_minimarket.Model.PromoXY;
 import com.blibli.pos_minimarket.Model.TransactionDetail;
 import org.springframework.stereotype.Repository;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Repository
 public class TransactionDetailDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
+    private ProductDAO productDAO = new ProductDAO();
+//    private promoDAO promoDAO = new promoDAO();
+    private TransactionDAO transactionDAO = new TransactionDAO();
 
     public TransactionDetailDAO() {
     }
@@ -31,11 +41,6 @@ public class TransactionDetailDAO extends ConnectionSettings {
     }
 
     public void add(TransactionDetail transactionDetail){
-        System.out.println(transactionDetail.getDiscount());
-        System.out.println(transactionDetail.getPrice());
-        System.out.println(transactionDetail.getQuantity());
-        System.out.println(transactionDetail.getProduct().getProductId());
-        System.out.println(transactionDetail.getTransaction().getTransactionId());
         String sql = "INSERT INTO transaction_detail (quantity, price, discount, product_id, transaction_id) "+
                 "VALUES("+
                 "   '"+transactionDetail.getQuantity()+"',"+
@@ -47,37 +52,69 @@ public class TransactionDetailDAO extends ConnectionSettings {
         String message = "Error TransactionDetailDAO add";
         generalDAO.executeSet(sql,message);
     }
-/*
-    public List<TransactionDetail> getAllTransactionDetail() {
+
+    public List<TransactionDetail> getByIdTransaction(Integer searchKey) {
         List<TransactionDetail> transactionDetailList = new ArrayList<>();
-
-        String sql = "select * from TransactionDetail";
+        String sql = "SELECT * FROM transaction_detail WHERE transaction_id = '"+searchKey+"';";
         try {
-            //c koneksi global dari extends myConn
-            Statement state = c.createStatement();
-            ResultSet rs = state.executeQuery(sql);
-            if (rs != null) {
-                while (rs.next()) {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
                     TransactionDetail transactionDetail = new TransactionDetail();
+                    transactionDetail.setDetail_Id(resultSet.getInt("detail_Id"));
+                    transactionDetail.setQuantity(resultSet.getInt("quantity"));
+                    transactionDetail.setPrice(resultSet.getDouble("price"));
+                    transactionDetail.setDiscount(resultSet.getDouble("discount"));
+                    transactionDetail.setProduct(productDAO.getById(resultSet.getInt("product_Id")));
 
-                    transactionDetail.setDetailId(rs.getInt("detailId"));
-                    transactionDetail.setQuantity(rs.getInt("quantity"));
-                    transactionDetail.setPrice(rs.getDouble("price"));
-                    transactionDetail.setDiscount(rs.getDouble("discount"));
-                    transactionDetail.setProductId(rs.getInt("productId"));
-                    transactionDetail.setTransactionId(rs.getInt("transactionId"));
-                    transactionDetail.setDiscountPId(rs.getInt("discountPId"));
-                    transactionDetail.setDiscountPxy(rs.getInt("discountPxy"));
+                    PromoProduct promoProduct = new PromoProduct();
+                    promoProduct.setProductId(0);
+                    PromoXY promoXY = new PromoXY();
+                    promoXY.setProductYId(0);
+                    if(resultSet.getInt("p_discount_id") != 0) {
+//                        transactionDetail.setPromoProduct(promoDAO.getPromoProduct(resultSet.getInt("p_discount_id")));
+                    }else transactionDetail.setPromoProduct(promoProduct);
+                    if(resultSet.getInt("p_bxgy_id") != 0) {
+//                        transactionDetail.setPromoXY(promoDAO.getPromoXY(resultSet.getInt("p_bxgy_id")));
+                    }else transactionDetail.setPromoXY(promoXY);
                     transactionDetailList.add(transactionDetail);
                 }
-            }
-            rs.close();
-            state.close();
+            }resultSet.close();
+            this.closeConnection();
         } catch (Exception EX) {
-            //System.out.println("Error TransactionDetailDAO getAllTransactionDetail");
+            System.out.println("Error TransactionDetailDAO getByIdTransaction");
             System.out.println(EX.toString());
         }
         return transactionDetailList;
     }
-    */
+
+    public TransactionDetail getOne(Integer searchKey) {
+        TransactionDetail transactionDetail = new TransactionDetail();
+        String sql = "SELECT * FROM TransactionDetail WHERE  detail_id= '"+searchKey+"';";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+//                    TransactionDetail transactionDetail = new TransactionDetail();
+                    transactionDetail.setDetail_Id(resultSet.getInt("detail_Id"));
+                    transactionDetail.setQuantity(resultSet.getInt("quantity"));
+                    transactionDetail.setPrice(resultSet.getDouble("price"));
+                    transactionDetail.setDiscount(resultSet.getDouble("discount"));
+                    transactionDetail.setProduct(productDAO.getById(resultSet.getInt("product_Id")));
+//                    transactionDetail.setTransaction(transactionDAOrs.getInt("transactionId"));
+//                    transactionDetail.setDiscountPId(rs.getInt("discountPId"));
+//                    transactionDetail.setDiscountPxy(rs.getInt("discountPxy"));
+                }
+            }resultSet.close();
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println("Error TransactionDetailDAO getByIdTransaction");
+            System.out.println(EX.toString());
+        }
+        return transactionDetail;
+    }
 }
