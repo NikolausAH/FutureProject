@@ -33,7 +33,12 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/employee/detail/{employee_Id}", method = RequestMethod.GET)
-    public String detailEmployee(@PathVariable Integer employee_Id, Model model){
+    public String detailEmployee(HttpServletRequest request ,@PathVariable Integer employee_Id, Model model){
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         model.addAttribute("roleList", employeeService.showAllRole());
         model.addAttribute("employee", employeeService.getById(employee_Id));
         return "EmployeeDetail";

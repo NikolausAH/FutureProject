@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -30,13 +29,12 @@ public class LoginController {
 
     @RequestMapping(value = "Login/Enter")
     public ModelAndView doLogin(HttpServletRequest request, @ModelAttribute("Username") Integer id, @ModelAttribute("Password") String password) {
-        Map map = loginService.doLogin(id, password);
+        Employee employee = loginService.doLogin(id, password);
         ModelAndView mav = new ModelAndView();
-        if ((boolean) map.get("loginError")) { //if true
+        if (employee == null) { //if true
             mav = new ModelAndView("Login");
-            mav.addObject("loginError", map.get("loginError"));
+            mav.addObject("loginError", true);
         } else {
-            Employee employee = (Employee) map.get("pegawai");
             if (employee.getRole().getName().equals("Admin")) {
                 mav = new ModelAndView("redirect:/MainMenu");
                 mav.addObject("pegawai", employee);
