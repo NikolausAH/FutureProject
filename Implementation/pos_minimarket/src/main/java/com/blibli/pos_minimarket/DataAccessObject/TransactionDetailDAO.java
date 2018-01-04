@@ -110,7 +110,7 @@ public class TransactionDetailDAO extends ConnectionSettings {
                     promoProduct.setProductId(0);
                     PromoXY promoXY = new PromoXY();
                     promoXY.setProductYId(0);
-                    if(resultSet.getInt("p_discount_id") != 0) {
+                    if(resultSet.getInt("p_discount_id") !=0) {
                         transactionDetail.setPromoProduct(promoProductDAO.getById(resultSet.getInt("p_discount_id")));
                     }else transactionDetail.setPromoProduct(promoProduct);
                     if(resultSet.getInt("p_bxgy_id") != 0) {

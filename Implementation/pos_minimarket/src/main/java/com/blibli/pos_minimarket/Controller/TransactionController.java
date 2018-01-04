@@ -49,21 +49,28 @@ public class TransactionController {
         return mav;
     }
 
-    @PostMapping(value = "Transaction/Payment")
-    public ModelAndView payment(@ModelAttribute("date_Time") String date_Time, @ModelAttribute("total") Double total, @ModelAttribute("tax") Double tax){
-        ModelAndView mav = new ModelAndView();
+    @RequestMapping(value = "Transaction/Payment", method = RequestMethod.POST)
+    public String payment(@ModelAttribute("date_Time") String date_Time, @ModelAttribute("total") Double total, @ModelAttribute("tax") Double tax, @ModelAttribute("payNominal") Double payNominal, Model model){
         transactionService.addTransaction(date_Time,total,tax);
-        mav.setViewName("redirect:/Transaction");
-        return mav;
+        model.addAttribute("payBack",payNominal - total);
+        model.addAttribute("transactionDetailList", transactionDetailService.showOne(transactionService.getNextId()-1));
+        model.addAttribute("transaction", transactionService.getById(transactionService.getNextId()-1));
+        return "Receipt";
     }
 
-    @RequestMapping(value = "Transaction/addToCart", params = "batal", method = RequestMethod.POST)
-    public ModelAndView updateProduct(){
-        ModelAndView mav = new ModelAndView();
+    @RequestMapping(value = "Transaction/addToCart",params = "cancel", method = RequestMethod.POST)
+    public String cancelTransaction(){
         transactionService.removeAllFromCart();
-        mav.setViewName("redirect:/Transaction");
-        return mav;
+        return "redirect:/Transaction";
     }
+
+//    @RequestMapping(value = "Transaction/addToCart", params = "batal", method = RequestMethod.POST)
+//    public ModelAndView updateProduct(){
+//        ModelAndView mav = new ModelAndView();
+//        transactionService.removeAllFromCart();
+//        mav.setViewName("redirect: Transaction");
+//        return mav;
+//    }
 
     @RequestMapping(value = "/Receipt/{transactionId}", method = RequestMethod.GET)
     public String showReceipt(@PathVariable Integer transactionId, Model model){
