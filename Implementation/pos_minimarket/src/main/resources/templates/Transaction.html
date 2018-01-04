@@ -129,8 +129,9 @@
                             <label class="control-label" for="transaction_nextId" style="text-align: justify">Nomor :</label>
                         </div>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" id="transaction_nextId" th:object="${transaction_nextId}" name="transaction_nextId" th:value="${transaction_nextId}" disabled="true"/>
+                            <!--<input type="number" class="form-control" id="transaction_nextId" th:object="${transaction_nextId}" name="transaction_nextId" th:value="${transaction_nextId}" disabled="true"/>-->
                             <input type="hidden" class="form-control" id="transaction_nextId" th:object="${transaction_nextId}" name="transaction_nextId" th:value="${transaction_nextId}" />
+                            <span style="font-size: 20px; text-align: center" th:text="${transaction_nextId}"/>
                         </div>
                     </div>
                     <div class="col-sm-5">
@@ -152,7 +153,7 @@
                 </div>
                 <br />
             </div>
-            <div style="border: 1px solid black;">
+            <div style="border: 1px solid #edeeee;">
                 <br />
                 <div class="row">
                     <div class="col-sm-8">

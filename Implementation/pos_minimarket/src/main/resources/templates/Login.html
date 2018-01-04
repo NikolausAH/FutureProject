@@ -3,14 +3,14 @@
 <head>
     <title> POS | Login</title>
     <link rel="stylesheet" type="text/css" href="/css/css_login.css"/>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>-->
 </head>
 <!--akhir head-->
 
 <body>
 <div class="login-block">
     <div class="logo">
-        <img src="../image/blibli.png" class="logo" alt="Cinque terre"></img>
+        <img src="/images/blibli.png" class="logo" alt="Cinque terre"></img>
     </div>
     <h1>Login</h1>
     <form class="form-horizontal" th:form="${form}" th:action="@{/Login/Enter}" method="post">
