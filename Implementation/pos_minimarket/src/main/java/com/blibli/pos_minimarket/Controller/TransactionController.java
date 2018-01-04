@@ -76,7 +76,12 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "Transaction/Payment", method = RequestMethod.POST)
-    public String payment(@ModelAttribute("date_Time") String date_Time, @ModelAttribute("total") Double total, @ModelAttribute("tax") Double tax, @ModelAttribute("payNominal") Double payNominal, Model model){
+    public String payment(HttpServletRequest request,@ModelAttribute("date_Time") String date_Time, @ModelAttribute("total") Double total, @ModelAttribute("tax") Double tax, @ModelAttribute("payNominal") Double payNominal, Model model){
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null) {
+            return "Login";
+        }
         transactionService.addTransaction(date_Time,total,tax);
         model.addAttribute("payBack",payNominal - total);
         model.addAttribute("transactionDetailList", transactionDetailService.showOne(transactionService.getNextId()-1));
