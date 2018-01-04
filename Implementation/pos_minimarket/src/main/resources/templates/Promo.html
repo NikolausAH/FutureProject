@@ -259,6 +259,7 @@
                                             <input type="number" class="form-control" id="id"
                                                    name="id"
                                                    placeholder="0"
+                                                   required = "required"
                                                    th:value="${id}"
                                             />
                                         </div>
@@ -269,7 +270,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="#" class="form-control" id="startDate"
-                                                   placeholder="0" name="startDate"
+                                                   placeholder="0" name="startDate" required = "required"
                                                    th:value="${startDate}"
                                             />
                                         </div>
@@ -281,6 +282,7 @@
                                         <div class="col-sm-9">
                                             <input type="#" class="form-control" id="endDate"
                                                    placeholder="0" name="endDate"
+                                                   required = "required"
                                                    th:value="${endDate}"
                                             />
                                         </div>
@@ -293,7 +295,7 @@
                                         <div class="col-sm-9">
                                             <input type="number" class="form-control" id="discountPercent"
                                                    placeholder="0" name="discountPercent"
-                                                   th:value="${discountPercent}"
+                                                   th:value="${discountPercent}" required = "required"
                                             />
                                         </div>
                                     </div>
@@ -302,7 +304,7 @@
                                             <label class="control-label" for="buyMin">Jumlah Min</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="buyMin" placeholder="0"
+                                            <input type="number" required = "required" class="form-control" id="buyMin" placeholder="0"
                                                    name="buyMin" th:value="${buyMin}"/>
                                         </div>
                                     </div>
@@ -332,7 +334,7 @@
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="id"
+                                            <input type="number" required = "required" class="form-control" id="id"
                                                    placeholder="0" name="id"
                                                    th:value="${id}"
                                             />
@@ -343,7 +345,7 @@
                                             <label class="control-label" for="discountPercent">Diskon (%)</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
+                                            <input type="number" required = "required" class="form-control" id="discountPercent"
                                                    placeholder="0" name="discountPercent"
                                                    th:value="${discountPercent}"
                                             />
@@ -354,7 +356,7 @@
                                             <label class="control-label" for="productId">ID Produk</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="productId" placeholder="0"
+                                            <input type="number" required = "required" class="form-control" id="productId" placeholder="0"
                                                    name="productId" th:value="${productId}"/>
                                         </div>
                                     </div>
@@ -363,7 +365,7 @@
                                             <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="startDate"
+                                            <input type="#" required = "required" class="form-control" id="startDate"
                                                    placeholder="0" name="startDate"
                                                    th:value="${startDate}"
                                             />
@@ -374,7 +376,7 @@
                                             <label class="control-label" for="endDate">Tanggal akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="endDate"
+                                            <input type="#" required = "required" class="form-control" id="endDate"
                                                    placeholder="0" name="endDate"
                                                    th:value="${endDate}"
                                             />
@@ -407,7 +409,7 @@
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="id"
+                                            <input type="number" required = "required" class="form-control" id="id"
                                                    placeholder="0" name="id"
                                                    th:value="${id}"
                                             />
@@ -418,7 +420,7 @@
                                             <label class="control-label" for="productXId">ID Barang X</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="productXId"
+                                            <input type="number" required = "required" class="form-control" id="productXId"
                                                    placeholder="0" name="productXId" th:value="${productXId}"/>
                                         </div>
                                     </div>
@@ -427,7 +429,7 @@
                                             <label class="control-label" for="quantityX">Jumlah Barang X</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="quantityX" placeholder="0"
+                                            <input type="number" required = "required" class="form-control" id="quantityX" placeholder="0"
                                                    name="quantityX" th:value="${quantityX}"/>
                                         </div>
                                     </div>
@@ -436,7 +438,7 @@
                                             <label class="control-label" for="productYId">ID Barang Y</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="productYId"
+                                            <input type="number" required = "required" class="form-control" id="productYId"
                                                    placeholder="0" name="productYId" th:value="${productYId}"/>
                                         </div>
                                     </div>
@@ -445,7 +447,7 @@
                                             <label class="control-label" for="quantityY">Jumlah Barang Y</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="quantityY" placeholder="0"
+                                            <input type="number" required = "required" class="form-control" id="quantityY" placeholder="0"
                                                    name="quantityY" th:value="${quantityY}"/>
                                         </div>
                                     </div>
@@ -454,7 +456,7 @@
                                             <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="startDate"
+                                            <input type="#" required = "required" class="form-control" id="startDate"
                                                    placeholder="0" name="startDate"
                                                    th:value="${startDate}"
                                             />
@@ -465,7 +467,7 @@
                                             <label class="control-label" for="endDate">Tanggal akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="endDate"
+                                            <input type="#" required = "required" class="form-control" id="endDate"
                                                    placeholder="0" name="endDate"
                                                    th:value="${endDate}"
                                             />
@@ -524,7 +526,7 @@
                                 <h5>Promo Total</h5>
                                 <form th:form="${form}" th:object="${promoTotal}" th:action="@{/Promo/UpdateTotal}"
                                       name="promoTotal" method="post">
-                                    <input type="hidden" name="jenis" id="jenis" value="Promo Total"></input>
+                                    <input type="hidden" required = "required" name="jenis" id="jenis" value="Promo Total"></input>
                                     <div class="col-sm-12">
                                         <div class="col-sm-3">
                                             <label class="control-label" for="id">ID:</label>
@@ -532,7 +534,7 @@
                                         <div class="col-sm-9">
                                             <input type="number" class="form-control" id="id"
                                                    name="id"
-                                                   placeholder="0"
+                                                   placeholder="0" required = "required"
                                                    th:value="${id}"
                                             />
                                         </div>
@@ -542,7 +544,7 @@
                                             <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="startDate"
+                                            <input type="#" required = "required" class="form-control" id="startDate"
                                                    placeholder="0" name="startDate"
                                                    th:value="${startDate}"
                                             />
@@ -553,7 +555,7 @@
                                             <label class="control-label" for="endDate">Tanggal Akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="endDate"
+                                            <input type="#" required = "required" class="form-control" id="endDate"
                                                    placeholder="0" name="endDate"
                                                    th:value="${endDate}"
                                             />
@@ -565,7 +567,7 @@
                                             <label class="control-label" for="discountPercent">Diskon(%)</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
+                                            <input required = "required" type="number" class="form-control" id="discountPercent"
                                                    placeholder="0" name="discountPercent"
                                                    th:value="${discountPercent}"
                                             />
@@ -576,7 +578,7 @@
                                             <label class="control-label" for="buyMin">Jumlah Min</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="buyMin" placeholder="0"
+                                            <input required = "required" type="number" class="form-control" id="buyMin" placeholder="0"
                                                    name="buyMin" th:value="${buyMin}"/>
                                         </div>
                                     </div>
@@ -606,7 +608,7 @@
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="id"
+                                            <input required = "required" type="number" class="form-control" id="id"
                                                    placeholder="0" name="id"
                                                    th:value="${id}"
                                             />
@@ -617,7 +619,7 @@
                                             <label class="control-label" for="discountPercent">Diskon (%)</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="discountPercent"
+                                            <input required = "required" type="number" class="form-control" id="discountPercent"
                                                    placeholder="0" name="discountPercent"
                                                    th:value="${discountPercent}"
                                             />
@@ -628,7 +630,7 @@
                                             <label class="control-label" for="productId">ID Produk</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="productId" placeholder="0"
+                                            <input required = "required" type="number" class="form-control" id="productId" placeholder="0"
                                                    name="productId" th:value="${productId}"/>
                                         </div>
                                     </div>
@@ -637,7 +639,7 @@
                                             <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="startDate"
+                                            <input required = "required" type="#" class="form-control" id="startDate"
                                                    placeholder="0" name="startDate"
                                                    th:value="${startDate}"
                                             />
@@ -648,7 +650,7 @@
                                             <label class="control-label" for="endDate">Tanggal akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="endDate"
+                                            <input required = "required" type="#" class="form-control" id="endDate"
                                                    placeholder="0" name="endDate"
                                                    th:value="${endDate}"
                                             />
@@ -681,7 +683,7 @@
                                             <label class="control-label" for="id">ID:</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="id"
+                                            <input required = "required" type="number" class="form-control" id="id"
                                                    placeholder="0" name="id"
                                                    th:value="${id}"
                                             />
@@ -692,7 +694,7 @@
                                             <label class="control-label" for="productXId">ID Barang X</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="productXId"
+                                            <input required = "required" type="number" class="form-control" id="productXId"
                                                    placeholder="0" name="productXId" th:value="${productXId}"/>
                                         </div>
                                     </div>
@@ -701,7 +703,7 @@
                                             <label class="control-label" for="quantityX">Jumlah Barang X</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="quantityX" placeholder="0"
+                                            <input required = "required" type="number" class="form-control" id="quantityX" placeholder="0"
                                                    name="quantityX" th:value="${quantityX}"/>
                                         </div>
                                     </div>
@@ -710,7 +712,7 @@
                                             <label class="control-label" for="productYId">ID Barang Y</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="productYId"
+                                            <input required = "required" type="number" class="form-control" id="productYId"
                                                    placeholder="0" name="productYId" th:value="${productYId}"/>
                                         </div>
                                     </div>
@@ -719,7 +721,7 @@
                                             <label class="control-label" for="quantityY">Jumlah Barang Y</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="quantityY" placeholder="0"
+                                            <input required = "required" type="number" class="form-control" id="quantityY" placeholder="0"
                                                    name="quantityY" th:value="${quantityY}"/>
                                         </div>
                                     </div>
@@ -728,7 +730,7 @@
                                             <label class="control-label" for="startDate">Tanggal Mulai</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="startDate"
+                                            <input required = "required" type="#" class="form-control" id="startDate"
                                                    placeholder="0" name="startDate"
                                                    th:value="${startDate}"
                                             />
@@ -739,7 +741,7 @@
                                             <label class="control-label" for="endDate">Tanggal akhir</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="#" class="form-control" id="endDate"
+                                            <input required = "required" type="#" class="form-control" id="endDate"
                                                    placeholder="0" name="endDate"
                                                    th:value="${endDate}"
                                             />
@@ -785,7 +787,7 @@
                                             <label class="control-label" for="deleteId">ID Promo :</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <input type="number" class="form-control" id="deleteId"
+                                            <input required = "required" type="number" class="form-control" id="deleteId"
                                                    placeholder="ID akan dihapus" name="deleteId"
                                                    th:value="${deleteId}"/>
                                         </div>

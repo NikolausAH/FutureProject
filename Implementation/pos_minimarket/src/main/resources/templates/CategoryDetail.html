@@ -127,7 +127,7 @@
                             <label class="control-label" for="name">Nama          : </label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="name" placeholder="Nama Kategori" name="name" th:field="*{name}"/>
+                            <input type="text" class="form-control" id="name" required = "required" placeholder="Nama Kategori" name="name" th:field="*{name}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -135,7 +135,7 @@
                             <label class="control-label" for="description">Deskripsi      : </label>
                         </div>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="5" id="description" name="description" th:field="*{description}"></textarea>
+                            <textarea class="form-control" rows="5" id="description" required = "required" name="description" th:field="*{description}"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

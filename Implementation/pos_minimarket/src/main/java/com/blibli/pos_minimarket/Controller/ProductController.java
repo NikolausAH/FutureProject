@@ -38,7 +38,12 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/detail/{productId}", method = RequestMethod.GET)
-    public String detailEmployee(@PathVariable Integer productId, Model model){
+    public String detailEmployee(HttpServletRequest request,@PathVariable Integer productId, Model model){
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         model.addAttribute("categoryList", categoryService.showAll());
         model.addAttribute("product", productService.getById(productId));
         return "ProductDetail";
