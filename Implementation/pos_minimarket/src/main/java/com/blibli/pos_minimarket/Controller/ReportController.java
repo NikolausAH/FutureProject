@@ -1,5 +1,6 @@
 package com.blibli.pos_minimarket.Controller;
 
+import com.blibli.pos_minimarket.Model.Employee;
 import com.blibli.pos_minimarket.Services.ReportService;
 import com.blibli.pos_minimarket.Services.TransactionDetailService;
 import com.blibli.pos_minimarket.Services.TransactionService;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ReportController {
@@ -24,7 +27,12 @@ public class ReportController {
     private ReportService reportService = new ReportService();
 
     @RequestMapping(value = "Report-Transaction")
-    public String showReportTransaction(Model model,@ModelAttribute("searchKey") String searchKey) {
+    public String showReportTransaction(HttpServletRequest request,Model model, @ModelAttribute("searchKey") String searchKey) {
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         model.addAttribute("transactionList",transactionService.showAllTransaction());
         if(!searchKey.equals("")) {
             model.addAttribute("transactionDetailList", transactionDetailService.showOne(Integer.parseInt(searchKey)));
@@ -32,13 +40,23 @@ public class ReportController {
     }
 
     @RequestMapping(value = "/report-transaction/detail/{transactionId}", method = RequestMethod.GET)
-    public String detailCategory(@PathVariable Integer transactionId, Model model){
+    public String detailCategory(HttpServletRequest request,@PathVariable Integer transactionId, Model model){
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         model.addAttribute("transactionDetailList", transactionDetailService.showOne(transactionId));
         return "Report-TransactionDetail";
     }
 
     @RequestMapping(value = "Report-Statistics")
-    public String showReportStatistics(Model model) {
+    public String showReportStatistics(HttpServletRequest request,Model model) {
+        Employee employee = (Employee) request.getSession().getAttribute("pegawai");
+        model.addAttribute("pegawai", employee);
+        if (employee == null || employee.getRole().getName().equals("Kasir")) {
+            return "Login";
+        }
         model.addAttribute("reports",reportService.getAll());
         return "Report-Statistics";
     }
