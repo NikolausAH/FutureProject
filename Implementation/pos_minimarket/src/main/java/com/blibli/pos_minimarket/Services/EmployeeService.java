@@ -4,7 +4,10 @@ import com.blibli.pos_minimarket.DataAccessObject.EmployeeDAO;
 import com.blibli.pos_minimarket.Model.Employee;
 import com.blibli.pos_minimarket.Model.Role;
 import org.springframework.stereotype.Service;
+
+import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service //menandakan class ini service
@@ -125,5 +128,18 @@ public class EmployeeService {
             System.out.println("Error EmployeeService softDelete");
             System.out.println(EX.toString());
         }
+    }
+
+    public String encrypt(String password) {
+        byte[] bytesOfMessage = password.getBytes();
+        byte[] arr = new byte[0];
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            arr = md.digest(bytesOfMessage);}
+        catch (Exception EX){
+            System.out.println(EX.toString());
+            System.out.println("Error ProfileService encrypt");
+        }
+        return Base64.getEncoder().encodeToString(arr);
     }
 }

@@ -4,7 +4,7 @@
     <title>POS | Kategori</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{../../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{../../css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../../css/Style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../../css/cdnjs_Icons.css}" rel="stylesheet"/>
     <link th:href="@{../../css/googleapis_Icons.css}" rel="stylesheet"/>
 
@@ -127,7 +127,7 @@
                             <label class="control-label" for="name">Nama          : </label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="name" placeholder="Nama Kategori" name="name" th:field="*{name}"/>
+                            <input type="text" class="form-control" id="name" required = "required" placeholder="Nama Kategori" name="name" th:field="*{name}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -135,7 +135,7 @@
                             <label class="control-label" for="description">Deskripsi      : </label>
                         </div>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="5" id="description" name="description" th:field="*{description}"></textarea>
+                            <textarea class="form-control" rows="5" id="description" required = "required" name="description" th:field="*{description}"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

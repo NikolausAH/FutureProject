@@ -4,7 +4,7 @@
     <title>POS | Pegawai</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../css/Style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../css/style_peg.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../css/style_lap.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../css/cdnjs_Icons.css}" rel="stylesheet"/>
@@ -193,7 +193,7 @@
                                         <label class="control-label" for="employee_nextId">ID Pegawai :</label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="employee_nextId" name="employee_nextId" th:value="${employee_nextId}" disabled="true"/>
+                                        <input type="text" required="required" class="form-control" id="employee_nextId" name="employee_nextId" th:value="${employee_nextId}" disabled="true"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -201,7 +201,7 @@
                                         <label class="control-label" for="name">Nama :</label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="name" placeholder="Nama Pegawai" name="name" th:value="${name}" />
+                                        <input type="text" required="required" class="form-control" id="name" placeholder="Nama Pegawai" name="name" th:value="${name}" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -209,7 +209,7 @@
                                         <label class="control-label" for="email">E-mail :</label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail Pegawai" name="email" th:value="${email}" />
+                                        <input type="email" class="form-control" required="required" id="email" placeholder="E-mail Pegawai" name="email" th:value="${email}" />
                                     </div>
                                 </div>
                                 <div class="form-group">

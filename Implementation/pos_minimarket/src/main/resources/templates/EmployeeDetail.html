@@ -4,7 +4,7 @@
     <title>POS | Pegawai</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{../../css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{../../css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{../../css/Style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{../../css/cdnjs_Icons.css}" rel="stylesheet"/>
     <link th:href="@{../../css/googleapis_Icons.css}" rel="stylesheet"/>
 
@@ -125,7 +125,7 @@
                             <label class="control-label" for="name">Nama : </label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="name" placeholder="Nama Pegawai" name="name" th:field="*{name}"/>
+                            <input type="text" required="required" class="form-control" id="name" placeholder="Nama Pegawai" name="name" th:field="*{name}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -133,7 +133,7 @@
                             <label class="control-label" for="email">E-mail : </label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="email" placeholder="E-mail Pegawai" name="email" th:field="*{email}"/>
+                            <input type="email" required="required" class="form-control" id="email" placeholder="E-mail Pegawai" name="email" th:field="*{email}"/>
                         </div>
                     </div>
                     <div class="form-group">
