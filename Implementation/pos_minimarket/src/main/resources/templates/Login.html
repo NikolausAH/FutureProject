@@ -3,16 +3,15 @@
 <head>
     <title> POS | Login</title>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="/css/css_login.css"/>
+    <link rel="stylesheet" href="/css/login.css"/>
 </head>
 <!--akhir head-->
 
 <body>
 <div class="login-block">
-    <div class="logo">
+    <div style="text-align: center">
         <img src="/images/blibli.png" class="logo" alt="Cinque terre"></img>
     </div>
-    <h1>Login</h1>
     <form class="form-horizontal" th:form="${form}" th:action="@{/Login/Enter}" method="post">
         <div class="form-group">
             <div class="col-sm-12">
@@ -23,6 +22,7 @@
                 <input type="password" class="form-control" id="Password" placeholder="Password" name="Password"
                        th:value="${Password}"/>
             </div>
+            <br />
             <div class="col-sm-12">
                 <button type="submit" id="btn-search">Log In</button>
             </div>
