@@ -29,6 +29,7 @@ public class LoginController {
 
     @RequestMapping(value = "Login/Enter")
     public ModelAndView doLogin(HttpServletRequest request, @ModelAttribute("Username") Integer id, @ModelAttribute("Password") String password) {
+        password = loginService.encrypt(password);
         Employee employee = loginService.doLogin(id, password);
         ModelAndView mav = new ModelAndView();
         if (employee == null) { //if true

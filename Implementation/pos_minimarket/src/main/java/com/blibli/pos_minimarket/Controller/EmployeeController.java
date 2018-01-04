@@ -49,6 +49,8 @@ public class EmployeeController {
         ModelAndView mav = new ModelAndView();
         employee.setRole(employeeService.getRoleById(role_id));
         employee.setEmployee_Id(employeeService.getNextId());
+        employee.setPassword("Password");
+        employee.setPassword(employeeService.encrypt(employee.getPassword()));
         employeeService.add(employee);
         mav.setViewName("redirect:/Employee");
         return mav;

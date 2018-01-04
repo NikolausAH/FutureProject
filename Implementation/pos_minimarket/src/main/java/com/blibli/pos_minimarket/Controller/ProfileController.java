@@ -51,6 +51,9 @@ public class ProfileController {
         String passwordLama = request.getParameter("passwordLama");
         String passwordBaru1 = request.getParameter("passwordBaru1");
         String passwordBaru2 = request.getParameter("passwordBaru2");
+        passwordBaru1 = profileService.encrypt(passwordBaru1);
+        passwordBaru2 = profileService.encrypt(passwordBaru2);
+        passwordLama = profileService.encrypt(passwordLama);
         Integer id = employee.getEmployee_Id();
         String password = profileService.getPasswordById(id);
         if(passwordLama.equals(password) && passwordBaru1.equals(passwordBaru2)){
