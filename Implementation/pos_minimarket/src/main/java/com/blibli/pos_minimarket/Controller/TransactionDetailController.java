@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TransactionDetailController {
-    private final TransactionDetailService transactionDetailService;
 
     @Autowired
-    public TransactionDetailController(TransactionDetailService transactionDetailService) {
-        this.transactionDetailService=transactionDetailService;
-    }
+    private TransactionDetailService transactionDetailService;
+
 /*
     @RequestMapping("/Transaction")
     public String showAllTransactionDetail(Model model) {

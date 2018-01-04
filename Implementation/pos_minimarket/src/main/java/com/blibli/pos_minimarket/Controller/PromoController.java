@@ -15,12 +15,9 @@ import javax.xml.ws.http.HTTPBinding;
 
 @Controller
 public class PromoController {
-    private final PromoService promoService;
 
     @Autowired
-    public PromoController(PromoService promoService) {
-        this.promoService = promoService;
-    }
+    private PromoService promoService;
 
     @RequestMapping(value = "Promo")
     public String getAll(HttpServletRequest request, Model model) {

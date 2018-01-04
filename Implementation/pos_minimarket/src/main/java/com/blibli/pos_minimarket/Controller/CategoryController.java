@@ -16,12 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class CategoryController {
 
-    private final CategoryService categoryService;
-
     @Autowired
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
+    private CategoryService categoryService;
 
     @RequestMapping(value = "Category")
     public String showAllCategory(HttpServletRequest request ,@ModelAttribute("searchKey")String searchKey,Model model) {

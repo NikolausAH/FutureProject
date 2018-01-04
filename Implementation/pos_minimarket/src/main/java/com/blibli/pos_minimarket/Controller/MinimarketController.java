@@ -15,11 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MinimarketController {
+
+    @Autowired
     private final MinimarketService minimarketService = new MinimarketService();
 
-    @Autowired //menandakan fungsi/konstruktor akan di init secara otomatis saat program di Run.
-    public MinimarketController() {
-    }
     @RequestMapping("/Minimarket")
     public String showMinimarket(HttpServletRequest request, Model model) {
         Employee employee = (Employee) request.getSession().getAttribute("pegawai");

@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ProductController {
 
-    private ProductService productService;
-    private CategoryService categoryService = new CategoryService();
 
     @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+    private ProductService productService;
+
+    @Autowired
+    private CategoryService categoryService;
+
 
     @RequestMapping("/Product")
     public String showAllProduct(HttpServletRequest request,@ModelAttribute("searchKey")String searchKey, Model model) {

@@ -14,12 +14,9 @@ import java.util.Map;
 
 @Controller
 public class LoginController {
-    private final LoginService loginService;
 
     @Autowired
-    public LoginController(LoginService loginService) {
-        this.loginService = loginService;
-    }
+    private LoginService loginService;
 
     @RequestMapping(value = "Login")
     public String Main(HttpServletRequest request)

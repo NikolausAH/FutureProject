@@ -13,12 +13,12 @@ import java.util.List;
 
 @Controller
 public class TransactionController {
-    private final TransactionService transactionService;
-    private final TransactionDetailService transactionDetailService =  new TransactionDetailService();
+
     @Autowired
-    public TransactionController(TransactionService transactionService) {
-        this.transactionService = transactionService;
-    }
+    private TransactionService transactionService;
+
+    @Autowired
+    private TransactionDetailService transactionDetailService =  new TransactionDetailService();
 
     @RequestMapping("/Transaction")
     public String initialTransaction(Model model) {

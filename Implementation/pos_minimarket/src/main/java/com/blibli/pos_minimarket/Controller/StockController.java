@@ -15,13 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class StockController {
 
+    @Autowired
     private ProductService productService = new ProductService();
-    private StockService stockService = new StockService();
 
     @Autowired
-    public StockController(ProductService productService) {
-        this.productService = productService;
-    }
+    private StockService stockService = new StockService();
+
 
     @RequestMapping("/Stock")
     public String showAllProduct(HttpServletRequest request ,@ModelAttribute("searchKey")String searchKey, Model model) {

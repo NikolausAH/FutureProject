@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ReportController {
-    private TransactionService transactionService = new TransactionService();
-    private TransactionDetailService transactionDetailService = new TransactionDetailService();
-    private ReportService reportService = new ReportService();
+
     @Autowired
-    public ReportController() {
-    }
+    private TransactionService transactionService = new TransactionService();
+
+    @Autowired
+    private TransactionDetailService transactionDetailService = new TransactionDetailService();
+
+    @Autowired
+    private ReportService reportService = new ReportService();
 
     @RequestMapping(value = "Report-Transaction")
     public String showReportTransaction(Model model,@ModelAttribute("searchKey") String searchKey) {

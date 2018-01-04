@@ -12,11 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class EmployeeController {
-    private final EmployeeService employeeService = new EmployeeService();
 
-    @Autowired //menandakan fungsi/konstruktor akan di init secara otomatis saat program di Run.
-    public EmployeeController() {
-    }
+    @Autowired
+    private final EmployeeService employeeService = new EmployeeService();
 
     @RequestMapping(value = "Employee")
     public String showAllEmployee(HttpServletRequest request,@ModelAttribute("searchKey")String searchKey, Model model) {
