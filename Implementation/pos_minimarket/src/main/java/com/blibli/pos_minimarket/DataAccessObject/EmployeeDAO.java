@@ -156,7 +156,6 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
                 PreparedStatement preparedStatement = this.connection.prepareStatement(sqlString);
                 resultSet = preparedStatement.executeQuery();
             }
-
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Employee employee = new Employee();

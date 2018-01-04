@@ -1,58 +1,65 @@
 /*============================================================================*/
 /*-----------------------------------GLOBAL-----------------------------------*/
 /*============================================================================*/
-*{
-    margin:0px;
+* {
+    margin: 0px;
     padding: 0px;
     font-family: sans-serif;
 }
 
-body{
+body {
     background: #edeeee;
     margin: 0;
     padding: 0;
 }
+
 /*============================================================================*/
 /*-----------------------------------HEADER-----------------------------------*/
 /*============================================================================*/
-.header{
+.header {
     background: #fff;
     height: 70px;
     border-top: 10px solid #edeeee;
     padding: 0;
     margin: 0px;
 }
+
 /*---------------------------LOGO.START---------------------------*/
-.logo{
+.logo {
     height: 100%;
     text-align: center;
     padding: 5px;
     margin: 0px;
 }
+
 /*---------------------------LOGO.END---------------------------*/
 /*---------------------------JUDUL.START------------------------*/
-.judul{
+.judul {
     padding: 0;
     height: 100%;
 }
-.judul h1{
+
+.judul h1 {
     color: #004b4b;
     text-align: center;
     font-size: 45px;
-    margin:0;
+    margin: 0;
     padding: 5px 0 0 0;
 }
+
 /*---------------------------JUDUL.END--------------------------*/
 /*---------------------------USER.START-------------------------*/
-.user{
+.user {
     height: 100%;
     padding: 0;
 }
+
 /*--------avatar.start--------*/
-.dropdown-avatar ul{
+.dropdown-avatar ul {
     list-style: none;
 }
-.user .icon-user{
+
+.user .icon-user {
     height: 100%;
     float: left;
     padding: 6px;
@@ -61,10 +68,12 @@ body{
     color: #037e83;
     cursor: pointer;
 }
-#dr-down{
+
+#dr-down {
     display: none;
 }
-.segitiga{
+
+.segitiga {
     display: block;
     font-size: 0;
     width: 0;
@@ -77,11 +86,12 @@ body{
     border-bottom: 10px solid #65e600;
     margin-left: -10px;
 }
-.dropdown-avatar{
+
+.dropdown-avatar {
     display: block;
     position: absolute;
     width: 130px;
-    top:60px;
+    top: 60px;
     left: -8%;
     word-spacing: 10px;
     border-radius: 5%;
@@ -90,7 +100,8 @@ body{
     box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);;
     z-index: 1;
 }
-.dropdown-avatar a{
+
+.dropdown-avatar a {
     display: block;
     line-height: 40px;
     text-decoration: none;
@@ -98,66 +109,76 @@ body{
     padding-left: 10%;
     font-size: 14px;
 }
-.dropdown-avatar #drop_u1:hover{
+
+.dropdown-avatar #drop_u1:hover {
     color: #168200;
     text-decoration: none;
     display: block;
     border-bottom: 1px solid #EAEAEB;
 }
-.dropdown-avatar #drop_u2:hover{
+
+.dropdown-avatar #drop_u2:hover {
     color: #cc0000;
     text-decoration: none;
     display: block;
     border-top: 1px solid #EAEAEB;
 }
-.material-icons{
+
+.material-icons {
     font-size: inherit;
 }
+
 /*--------avatar.end--------*/
 /*--------identitas.start--------*/
-.identitas{
+.identitas {
     height: 100%;
     position: absolute;
     top: 0px;
-    left:80px;
+    left: 80px;
 }
-.identitas h5{
+
+.identitas h5 {
     text-align: justify;
     font-size: 16px;
     overflow: hidden;
     color: #004b4b;
 }
+
 /*--------identitas.end--------*/
 /*---------------------------USER.END-------------------------*/
 
 /*============================================================================*/
 /*-----------------------------------NAVIGATION-------------------------------*/
 /*============================================================================*/
-.navigation{
+.navigation {
     background: #46c6cb;
     border-top: 10px solid #edeeee;
     width: 100%;
     color: #fff;
     height: 40px;
 }
-#home-icon{
+
+#home-icon {
     color: #fff;
     padding-left: 30px;
     font-size: 26px;
 }
-#home-icon:hover{
+
+#home-icon:hover {
     color: #2ef2ff;
 }
+
 /*============================================================================*/
 /*-----------------------------------SIDEBAR----------------------------------*/
 /*============================================================================*/
-.sidebar{
+.sidebar {
     padding: 0px;
     background: #fff;
     border-right: 10px solid #edeeee;
     border-top: 10px solid #edeeee;
 }
-.toggle h3{
+
+.toggle h3 {
     margin: 0;
     padding: 7px 0 0 0;
     border: 0px;
@@ -165,18 +186,22 @@ body{
     text-align: center;
     color: #004b4b;
 }
-#name{
+
+#name {
     word-spacing: 10px;
 }
-#role-text{
+
+#role-text {
     word-spacing: 69px;
 }
+
 .sidebar li {
     list-style: none;
     width: 100%;
     font-size: 100%;
 
 }
+
 .sidebar li a {
     display: block;
     line-height: 40px;
@@ -185,48 +210,59 @@ body{
     padding-left: 30px;
     font-size: 14px;
 }
-.sidebar li a:hover{
+
+.sidebar li a:hover {
     text-decoration: none;
     color: #fff;
 }
-#sid_1:hover{
-    background: #0038ff;
+
+#sid_1:hover {
+    background: #00ff9a;
 }
+
 #sid_2:hover {
-    background: #6a003f;
+    background: #91b9ee;
 }
+
 #sid_3:hover {
-    background: #cc0000;
+    background: #fb8585;
 }
+
 #sid_4:hover {
-    background: #00f919;
+    background: #ffaf54;
 }
+
 #sid_5:hover {
-    background: #adff00;
+    background: #00ff9a;
 }
+
 #sid_6:hover {
-    background: #14dbb1;
+    background: #91b9ee;
 }
+
 #sid_7:hover {
-    background: #004545;
+    background: #fb8585;
 }
+
 /*--------dropdown-produk.start--------*/
 .dropdown-content {
     display: none;
     position: absolute;
     left: 100%;
     width: 200px;
-    top:0%;
+    top: 0%;
     border-radius: 2%;
     border-top-left-radius: 0%;
     background-color: #fff;
     box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);
     z-index: 1;
 }
-#dr-laporan{
+
+#dr-laporan {
     border-top: 4px solid #004545;
 }
-#dr-produk{
+
+#dr-produk {
     border-top: 4px solid #cc0000;
 }
 
@@ -234,45 +270,52 @@ body{
     background-color: #cc0000;
     color: #fff;
 }
-.dropdown-content #drop_p1:hover{
+
+.dropdown-content #drop_p1:hover {
     color: #cc0000;
     text-decoration: none;
     display: block;
     border-bottom: 1px solid #EAEAEB;
 }
-.dropdown-content #drop_p2:hover{
+
+.dropdown-content #drop_p2:hover {
     color: #cc0000;
     text-decoration: none;
     display: block;
     border-top: 1px solid #EAEAEB;
 }
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 .cart {
     font-size: 32px;
 }
+
 /*--------dropdown-produk.end--------*/
 /*============================================================================*/
 /*-----------------------------------CONTENT----------------------------------*/
 /*============================================================================*/
-.content{
+.content {
     height: 80vh;
     background: #fff;
     border-top: 10px solid #edeeee;
 }
-.cart{
+
+.cart {
     font-size: 180px;
 }
 
 /*==============================under construction============================*/
 /*-----------------------------------HAMBURGER--------------------------------*/
 /*============================================================================*/
-.toggle{
+.toggle {
     height: 40px;
     border-bottom: 1px solid #EAEAEB;
 }
-.toggle .fa{
+
+.toggle .fa {
     padding: 0;
     margin: -30px 15px 0 0;
     font-size: 24px;
@@ -284,64 +327,77 @@ body{
     color: #004b4b;
     border: 1px solid #EAEAEB;
 }
-.icon-ublok{
+
+.icon-ublok {
     width: 15%;
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
 @media only screen and (max-width: 991px) {
-    .dropdown-content{
+    .dropdown-content {
         position: static;
         width: 100%;
         text-indent: 30%;
         box-shadow: 3px 3px 3px 3px rgba(70, 198, 203, 0.34);;
         z-index: 1;
     }
-    .sidebar{
+
+    .sidebar {
         border: 0;
     }
-    .toggle .fa{
+
+    .toggle .fa {
         display: block;
         cursor: pointer;
     }
-    .sidebar ul{
+
+    .sidebar ul {
         width: 100%;
         display: none;
     }
-    .sidebar ul li{
+
+    .sidebar ul li {
         width: 100%;
         text-indent: 16%;
-        overflow-x:inline;
+        overflow-x: inline;
     }
-    .sidebar li a{
+
+    .sidebar li a {
         display: block;
         border-bottom: 1px solid #EAEAEB;
         padding-left: 10%;
     }
-    .header .user h5{
+
+    .header .user h5 {
         display: none;
     }
-    .toggle .fa:hover{
+
+    .toggle .fa:hover {
         color: #0017da;
     }
-    .judul h1{
+
+    .judul h1 {
         font-size: 36px;
         height: 36px;
         padding: 0;
         margin-top: 15px;
         padding-left: 30px;
     }
-    .sidebar .active{
+
+    .sidebar .active {
         display: block;
     }
-    .dropdown-avatar{
+
+    .dropdown-avatar {
         left: -50px;
         width: 100px;
     }
 
 }
+
 /*hamburger end*/
-.control-label{
+.control-label {
     float: right;
 }
