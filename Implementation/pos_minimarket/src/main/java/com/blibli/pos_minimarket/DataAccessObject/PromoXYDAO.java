@@ -86,7 +86,8 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
     }
 
     public PromoXY getByProductId(Integer productId, String by){
-        PromoXY promoXY = null;
+        PromoXY promoXY = new PromoXY();
+        promoXY.setId(0);
         String sql;
         if(by.equals("bonus")){
             sql = "SELECT * FROM promo_buyx_gety WHERE producty_id = '"+productId+"';";
@@ -101,6 +102,7 @@ public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Inte
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 PromoXY tempPromoXY = new PromoXY();
+                tempPromoXY.setId(0);
                 while (resultSet.next()) {
                     tempPromoXY.setId(resultSet.getInt("p_bxgy_id"));
                     tempPromoXY.setQuantityX(resultSet.getInt("quantity_x"));

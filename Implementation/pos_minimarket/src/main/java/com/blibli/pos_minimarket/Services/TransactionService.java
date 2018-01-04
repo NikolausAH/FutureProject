@@ -37,18 +37,15 @@ public class TransactionService {
         return total * (minimarketService.getTax()/100);
     }
 
-//    private Double sumDiscount(Integer quantity, PromoProduct promoProduct, Double price, PromoXY promoXY){
-//        Double discount = 0.0;
-//        if(promoProduct!=null){
-//            discount += quantity * price * (promoProduct.getDiscountPercent() / 100);
-//        }
-//        if(promoXY!=null && quantity >= promoXY.getQuantityX()){
-//            Integer discountQuantity = (quantity / promoXY.getQuantityX()) * promoXY.getQuantityY();
-//            Product product = productDAO.getById(promoXY.getProductYId());
-//            discount += product.getPrice() * discountQuantity;
-//        }
-//        return discount;
-//    }
+    private Double sumDiscount(){
+        Double discount = 0.0;
+        List<TransactionDetail> transactionDetailList = new ArrayList<>();
+        transactionDetailList = this.getAllFromCart();
+        for(TransactionDetail transactionDetail : transactionDetailList){
+            discount += transactionDetail.getDiscount();
+        }
+        return discount;
+    }
     public Double getTotal(List<TransactionDetail> transactionDetailList){
         Double total = 0.0;
         try {
@@ -123,6 +120,7 @@ public class TransactionService {
             Product product = productDAO.getById(promoXY.getProductYId());
             if (this.isAnyInCart(product)){
                 transactionDAO.addQuantityInCart(product.getProductId(),newQuantity);
+                transactionDAO.updateStatusInCart(product.getProductId());
             }
             else {
                 transactionDAO.addToCart(product.getProductId(),newQuantity,1);
@@ -146,14 +144,68 @@ public class TransactionService {
     public void addDetail(Transaction transaction){
         List<TransactionDetail> transactionDetailList;
         try {
+            System.out.println("abc");
             transactionDetailList = this.getAllFromCart();
+            System.out.println("abc");
             for (TransactionDetail transactionDetail : transactionDetailList) {
-                transactionDetail.setTransaction(transaction);
-                transactionDetailDAO.add(transactionDetail);
+                System.out.println("abc1");
+                TransactionDetail temp = new TransactionDetail();
+                System.out.println("abc2");
+//                temp = transactionDetail;
+
+                temp.setDetail_Id(0);
+                System.out.println("abc2");
+                temp.setTransaction(transaction);
+                System.out.println("abc2");
+                temp.setPromoProduct(transactionDetail.getPromoProduct());
+                System.out.println("abc2");
+                temp.setProduct(transactionDetail.getProduct());
+                System.out.println("abc2");
+                temp.setPrice(transactionDetail.getPrice());
+                System.out.println("abc2");
+                temp.setDiscount(transactionDetail.getDiscount());
+                System.out.println("abc2");
+                temp.setQuantity(transactionDetail.getQuantity());
+                System.out.println("abc2");
+                temp.setPromoXY(transactionDetail.getPromoXY());
+                System.out.println("abc2");
+                if (temp.getPromoXY().getId() == 0)
+                    System.out.println("prekkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+//                if (temp.getPromoProduct().getId() == 0)
+                    System.out.println("prekkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkwaaaaaaaaaaaaaaa");
+                System.out.println(temp.getPromoXY().getId());
+                System.out.println(transactionDetail.getPromoProduct().getId());
+
+                System.out.println(transaction.getTransactionId());
+                System.out.println(transactionDetail.getDetail_Id());
+                System.out.println(transactionDetail.getPromoProduct().getId());
+//                System.out.println(transactionDetail.getTransaction().getTransactionId());
+                System.out.println(transactionDetail.getProduct().getProductId());
+                System.out.println(transactionDetail.getPrice());
+                System.out.println(transactionDetail.getDiscount());
+                System.out.println(transactionDetail.getQuantity());
+                PromoXY promoXY = new PromoXY();
+                promoXY.setId(12);
+                transactionDetail.setPromoXY(promoXY);
+                System.out.println(transactionDetail.getPromoXY().getId());
+                try {
+
+                    transactionDetailDAO.add(temp);
+                }catch (Exception EX){
+                    System.out.println(EX.toString());
+                }
+                System.out.println(temp.getDetail_Id());
+                System.out.println(temp.getPromoProduct().getId());
+                System.out.println(temp.getTransaction().getTransactionId());
+                System.out.println(temp.getProduct().getProductId());
+                System.out.println(temp.getPrice());
+                System.out.println(temp.getDiscount());
+                System.out.println(temp.getQuantity());
+                System.out.println(temp.getPromoXY().getProductXId());
             }
         }
         catch (Exception EX){
-            System.out.println("Error TransactionDetailService Add");
+            System.out.println("Error TransactionService Add Detail");
             System.out.println(EX.toString());
         }
     }
@@ -168,24 +220,28 @@ public class TransactionService {
                 TransactionDetail transactionDetail = new TransactionDetail();
                 Product product = productDAO.getById(ProductList.getProductId());
                 transactionDetail.setQuantity(ProductList.getQuantity());
+                transactionDetail.setPrice(product.getPrice());
                 transactionDetail.setProduct(product);
                 PromoXY promoXY = new PromoXY();
                 PromoProduct promoProduct = new PromoProduct();
-                promoXY.setId(0);promoProduct.setId(0);
+                promoXY.setId(0);
+                promoProduct.setId(0);
                 try{
-                   promoXY = promoService.getPromoXYByProductId(product.getProductId());
+                    promoXY = promoService.getPromoXYByProductId(product.getProductId());
                 }catch (Exception EX){
-                    System.out.println(EX.toString());
+                    System.out.println("Product "+product.getProductId()+"tidak mendapat bonus bxgy");
                 }
-
                 if(ProductList.getDescription().equals("1")){
                     try{
                         PromoXY promoXY2 = promoService.getPromoXYByBonusId(product.getProductId());
                         promoProduct = promoService.getPromoProductByProductId(product.getProductId());
-                        Integer multi = ProductList.getQuantity() / promoXY2.getQuantityY();
+                        if(ProductList.getQuantity() >= promoXY2.getQuantityY()) {
+                            Integer multi = ProductList.getQuantity() / promoXY2.getQuantityY();
+
+                            Integer newQuantity = promoXY2.getQuantityY() * multi;
+                            discount += newQuantity * product.getPrice();
+                        }
                         Integer mod = ProductList.getQuantity() % promoXY2.getQuantityY();
-                        Integer newQuantity = promoXY2.getQuantityY() * multi;
-                        discount += newQuantity * product.getPrice();
                         if(promoProduct != null) {
                          discount += mod * product.getPrice() * (promoProduct.getDiscountPercent() / 100);
                         }
@@ -194,19 +250,25 @@ public class TransactionService {
                     }
                 }else {
                     try{
+                        System.out.println("promoProductId nihhh" +promoProduct.getId());
                         promoProduct = promoService.getPromoProductByProductId(product.getProductId());
-                        if(promoProduct != null) {
+                        System.out.println("aaaaa");
+                        System.out.println("promoProductId nihhh" +promoProduct.getId());
+//                        if(promoProduct != null) {
                             discount += ProductList.getQuantity() * product.getPrice() * (promoProduct.getDiscountPercent() / 100);
-                        }
+//                        }
+                        System.out.println("promoProductId nihhh" +promoProduct.getId());
                     }catch (Exception EX){
-                        System.out.println(EX.toString());
+                        System.out.println("Product "+product.getProductId()+"tidak mendapat promo diskon");
                     }
                 }
                 transactionDetail.setDiscount(discount);
                 transactionDetail.setPromoProduct(promoProduct);
                 transactionDetail.setPromoXY(promoXY);
+                System.out.println("promoProductId nihhh" +promoProduct.getId());
                 transactionDetailList.add(transactionDetail);
                 discount = 0.0;
+
             }
         }
         catch (Exception EX){
@@ -218,19 +280,18 @@ public class TransactionService {
 
     public void addTransaction(String dateTime, Double total, Double tax) {
         Transaction transaction = new Transaction();
-        Double finalTotal = total + tax;
-        Double discountTotal = 0.0; //belum
+        Double discountTotal = this.sumDiscount(); //belum
         Integer p_total_id = 0; //belum
         Integer employee_id = 0; //belum
         try {
             transaction.setTax(tax);
-            transaction.setTotal(finalTotal);
+            transaction.setTotal(total);
             transaction.setDiscount(discountTotal);
             transaction.setDateTime(dateTime);
             transaction.setTransactionId(transactionDAO.getNextId());
             transactionDAO.add(transaction);
             this.addDetail(transaction);
-            transactionDAO.removeAllFromCart();
+//            transactionDAO.removeAllFromCart();
         }
         catch (Exception EX){
             System.out.println("Error TransactionService Add");

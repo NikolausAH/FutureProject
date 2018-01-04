@@ -91,6 +91,7 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO<
         String sql = "SELECT * FROM promo_product_discount WHERE product_id =" + productId + ";";
         String message = "Error PromoProductDAO getByProductId";
         PromoProduct promoProduct = new PromoProduct();
+        promoProduct.setId(0);
         try {
             this.makeConnection();
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

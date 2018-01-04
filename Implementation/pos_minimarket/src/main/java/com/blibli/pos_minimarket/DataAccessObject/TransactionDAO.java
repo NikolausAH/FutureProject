@@ -113,6 +113,12 @@ public class TransactionDAO extends ConnectionSettings {
         generalDAO.executeSet(sql, message);
     }
 
+    public void updateStatusInCart(Integer productId) {
+        String sql = "UPDATE temp_cart SET status = '1' WHERE product_id = '"+productId+"';";
+        String message = "Error ProductDAO update status in cart";
+        generalDAO.executeSet(sql,message);
+    }
+
     public List<Product> getFromCart(){
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM temp_cart";

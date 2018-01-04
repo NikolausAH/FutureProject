@@ -29,12 +29,11 @@ public class TransactionController {
             Double total = transactionService.getTotal(transactionDetailList);
             Double discountTotal = transactionService.getDiscountTotal(total,transactionService.initDate());
             Double tax = transactionService.getTax(total-discountTotal);
-            Double finalTotal = total-discountTotal + tax;
             model.addAttribute("transactionDetailList", transactionDetailList);
             model.addAttribute("date_Time", transactionService.initDate());
             model.addAttribute("transaction_nextId", transactionService.getNextId());
             model.addAttribute("tax", tax);
-            model.addAttribute("total",finalTotal);
+            model.addAttribute("total",total);
 //            model.addAttribute("discountTotal",discountTotal);
         } catch (Exception EX) {
             System.out.println("Error TransactionController initialTransaction");

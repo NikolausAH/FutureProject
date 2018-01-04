@@ -43,7 +43,7 @@ public class TransactionDetailDAO extends ConnectionSettings {
     }
 
     public void add(TransactionDetail transactionDetail){
-        String sql = "INSERT INTO transaction_detail (quantity, price, discount, product_id, transaction_id) "+
+        String sql1 = "INSERT INTO transaction_detail (quantity, price, discount, product_id, transaction_id) "+
                 "VALUES("+
                 "   '"+transactionDetail.getQuantity()+"',"+
                 "   '"+transactionDetail.getPrice()+"',"+
@@ -51,8 +51,43 @@ public class TransactionDetailDAO extends ConnectionSettings {
                 "   '"+transactionDetail.getProduct().getProductId()+"',"+
                 "   '"+transactionDetail.getTransaction().getTransactionId()+"'"+
                 ");";
+        String sql2 = "INSERT INTO transaction_detail (quantity, price, discount, product_id, transaction_id,p_discount_id) "+
+                "VALUES("+
+                "   '"+transactionDetail.getQuantity()+"',"+
+                "   '"+transactionDetail.getPrice()+"',"+
+                "   '"+transactionDetail.getDiscount()+"',"+
+                "   '"+transactionDetail.getProduct().getProductId()+"',"+
+                "   '"+transactionDetail.getTransaction().getTransactionId()+"',"+
+                "   '"+transactionDetail.getPromoProduct().getId()+"'"+
+                ");";
+        String sql3 = "INSERT INTO transaction_detail (quantity, price, discount, product_id, transaction_id,p_bxgy_id) "+
+                "VALUES("+
+                "   '"+transactionDetail.getQuantity()+"',"+
+                "   '"+transactionDetail.getPrice()+"',"+
+                "   '"+transactionDetail.getDiscount()+"',"+
+                "   '"+transactionDetail.getProduct().getProductId()+"',"+
+                "   '"+transactionDetail.getTransaction().getTransactionId()+"',"+
+                "   '"+transactionDetail.getPromoXY().getId()+"'"+
+                ");";
+        String sql4 = "INSERT INTO transaction_detail (quantity, price, discount, product_id, transaction_id,p_discount_id,p_bxgy_id) "+
+                "VALUES("+
+                "   '"+transactionDetail.getQuantity()+"',"+
+                "   '"+transactionDetail.getPrice()+"',"+
+                "   '"+transactionDetail.getDiscount()+"',"+
+                "   '"+transactionDetail.getProduct().getProductId()+"',"+
+                "   '"+transactionDetail.getTransaction().getTransactionId()+"',"+
+                "   '"+transactionDetail.getPromoProduct().getId()+"',"+
+                "   '"+transactionDetail.getPromoXY().getId()+"'"+
+                ");";
         String message = "Error TransactionDetailDAO add";
-        generalDAO.executeSet(sql,message);
+        if(transactionDetail.getPromoXY().getId()!=0 && transactionDetail.getPromoProduct().getProductId()!=0){
+            generalDAO.executeSet(sql4,message);
+        }else if(transactionDetail.getPromoXY().getId()!=0){
+            generalDAO.executeSet(sql3,message);
+        }else if(transactionDetail.getPromoProduct().getId()!=0){
+            generalDAO.executeSet(sql2,message);
+        }else
+            generalDAO.executeSet(sql1,message);
     }
 
     public List<TransactionDetail> getByIdTransaction(Integer searchKey) {

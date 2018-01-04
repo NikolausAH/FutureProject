@@ -35,7 +35,7 @@ public class PromoService {
 
     public PromoProduct getPromoProductByProductId(Integer productId){
         PromoProduct promoProduct = new PromoProduct();
-        promoProduct.setProductId(0);
+        promoProduct.setId(0);
         try{
             promoProduct = promoProductDAO.getByProductId(productId);
         }catch (Exception EX){
@@ -47,7 +47,7 @@ public class PromoService {
 
     public PromoXY getPromoXYByProductId(Integer productId){
         PromoXY promoXY = new PromoXY();
-        promoXY.setProductYId(0);
+        promoXY.setId(0);
         try{
             promoXY = promoXYDAO.getByProductId(productId,"productId");
         }catch (Exception EX){
@@ -59,7 +59,7 @@ public class PromoService {
 
     public PromoXY getPromoXYByBonusId(Integer productId){
         PromoXY promoXY = new PromoXY();
-        promoXY.setProductYId(0);
+        promoXY.setId(0);
         try{
             promoXY = promoXYDAO.getByProductId(productId,"bonus");
         }catch (Exception EX){
