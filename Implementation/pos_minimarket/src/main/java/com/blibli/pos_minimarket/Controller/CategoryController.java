@@ -62,7 +62,6 @@ public class CategoryController {
 
     @RequestMapping(value = "/Category/Detail", params = "delete", method = RequestMethod.POST)
     public ModelAndView deleteCategory(@ModelAttribute("category")Category category){
-        System.out.println(category.getCategoryId());
         ModelAndView mav = new ModelAndView();
         categoryService.softDelete(category.getCategoryId());
         mav.setViewName("redirect:/Category");
