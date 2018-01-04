@@ -66,15 +66,15 @@ public class TransactionController {
         return mav;
     }
 
-//    @RequestMapping(value = "/Receipt/{transactionId}", method = RequestMethod.GET)
-//    public String showReceipt(@PathVariable Integer transactionId, Model model){
-//        model.addAttribute("transactionDetailList", transactionDetailService.showOne(transactionId));
-//        model.addAttribute("transaction", transactionService.getById(transactionId));
-//        return "Receipt";
-//    }
+    @RequestMapping(value = "/Receipt/{transactionId}", method = RequestMethod.GET)
+    public String showReceipt(@PathVariable Integer transactionId, Model model){
+        model.addAttribute("transactionDetailList", transactionDetailService.showOne(transactionId));
+        model.addAttribute("transaction", transactionService.getById(transactionId));
+        return "Receipt";
+    }
 
-//    @RequestMapping(value = "/Receipt", method = RequestMethod.GET)
-//    public String Receipt(){
-//        return "redirect:/Transaction";
-//    }
+    @RequestMapping(value = "/Receipt", method = RequestMethod.GET)
+    public String Receipt(){
+        return "redirect:/Transaction";
+    }
 }

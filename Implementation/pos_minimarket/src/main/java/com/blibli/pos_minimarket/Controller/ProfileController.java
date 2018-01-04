@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProfileController {
-    private final ProfileService profileService = new ProfileService();
-    private final EmployeeService employeeService = new EmployeeService();
 
+    @Autowired //INJECT
+    private ProfileService profileService;
     @Autowired
-    public ProfileController() {
-    }
+    private EmployeeService employeeService;
+
     @RequestMapping("/Profile")
     public String Show(HttpServletRequest request, Model model) {
         Employee employee = (Employee) request.getSession().getAttribute("pegawai");

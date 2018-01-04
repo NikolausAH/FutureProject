@@ -56,7 +56,7 @@ public class LoginController {
         Employee employee = (Employee) request.getSession().getAttribute("pegawai");
         model.addAttribute("pegawai", employee);
         if (employee == null || employee.getRole().getName().equals("Kasir")) {
-            return "Login"; //????
+            return "Login";
         }
         return "MainMenu";
     }
