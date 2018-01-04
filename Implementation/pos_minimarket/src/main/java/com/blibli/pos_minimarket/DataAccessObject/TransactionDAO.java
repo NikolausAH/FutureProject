@@ -58,6 +58,36 @@ public class TransactionDAO extends ConnectionSettings {
         }
     }
 
+    public void addQuantityInCart(Integer productId, Integer plusQuantity){
+        Integer quantity = 0;
+        String sql = "SELECT quantity from temp_cart WHERE product_id = '"+productId+"'";
+        String message = "Error TransactionDAO getQuantityInCart by productId";
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    quantity = resultSet.getInt("quantity");
+                    break;
+                }
+                resultSet.close();
+            }
+            this.closeConnection();
+        }catch (Exception EX){
+            System.out.print(message);
+            System.out.print(EX.toString());
+        }
+        if(quantity>0){
+            quantity += plusQuantity;
+            //update quantity in cart
+            String sqlUpdate = "UPDATE temp_cart SET quantity = '"+quantity+"' WHERE product_id = '"+productId+"';";
+            String messageError = "Error TransactionDAO Update quantity";
+            generalDAO.executeSet(sqlUpdate,messageError);
+
+        }
+    }
+
     public Integer getNextId(){
         Integer nextId = 1;
         String sql = "SELECT transaction_transaction_id_seq.last_value FROM transaction_transaction_id_seq;";
@@ -66,14 +96,20 @@ public class TransactionDAO extends ConnectionSettings {
         return nextId;
     }
 
-    public void addToCart(Integer productId, Integer quantity) {
-        String sql = "INSERT INTO temp_cart (product_id,quantity) VALUES ('"+productId+"','"+quantity+"');";
+    public void addToCart(Integer productId, Integer quantity,Integer status) {
+        String sql = "INSERT INTO temp_cart (product_id,quantity,status) VALUES ('"+productId+"','"+quantity+"','"+status+"');";
         String message = "Error TransactionDAO addToCart";
         generalDAO.executeSet(sql, message);
     }
-    public void removeFromCart() {
+    public void removeAllFromCart() {
         String sql = "DELETE FROM temp_cart;";
         String message = "Error TransactionDAO removeFromCart";
+        generalDAO.executeSet(sql, message);
+    }
+
+    public void removeFromCartByProductId(Integer productId) {
+        String sql = "DELETE FROM temp_cart WHERE product_id = '"+productId+"';";
+        String message = "Error TransactionDAO removeFromCartByProductId";
         generalDAO.executeSet(sql, message);
     }
 
@@ -90,6 +126,8 @@ public class TransactionDAO extends ConnectionSettings {
                     Product product = new Product();
                     product.setProductId(resultSet.getInt("product_id"));
                     product.setQuantity(resultSet.getInt("quantity"));
+                    Integer status = resultSet.getInt("status");
+                    product.setDescription(status.toString());
                     productList.add(product);
                 }
                 resultSet.close();
@@ -167,7 +205,7 @@ public class TransactionDAO extends ConnectionSettings {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
-//                    promoTotal(resultSet.getInt("p_total_id"));
+                    promoTotal.setId(resultSet.getInt("p_total_id"));
                     promoTotal.setDiscountPercent(resultSet.getDouble("discount_percent"));
                     promoTotal.setBuyMin(resultSet.getDouble("buy_min"));
                     promoTotal.setStartDate(resultSet.getTimestamp("start_date"));

@@ -15,7 +15,9 @@ import java.util.List;
 public class TransactionDetailDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
     private ProductDAO productDAO = new ProductDAO();
-//    private promoDAO promoDAO = new promoDAO();
+    private PromoProductDAO promoProductDAO = new PromoProductDAO();
+    private PromoTotalDAO promoTotalDAO = new PromoTotalDAO();
+    private PromoXYDAO promoXYDAO = new PromoXYDAO();
     private TransactionDAO transactionDAO = new TransactionDAO();
 
     public TransactionDetailDAO() {
@@ -74,10 +76,10 @@ public class TransactionDetailDAO extends ConnectionSettings {
                     PromoXY promoXY = new PromoXY();
                     promoXY.setProductYId(0);
                     if(resultSet.getInt("p_discount_id") != 0) {
-//                        transactionDetail.setPromoProduct(promoDAO.getPromoProduct(resultSet.getInt("p_discount_id")));
+                        transactionDetail.setPromoProduct(promoProductDAO.getById(resultSet.getInt("p_discount_id")));
                     }else transactionDetail.setPromoProduct(promoProduct);
                     if(resultSet.getInt("p_bxgy_id") != 0) {
-//                        transactionDetail.setPromoXY(promoDAO.getPromoXY(resultSet.getInt("p_bxgy_id")));
+                        transactionDetail.setPromoXY(promoXYDAO.getById(resultSet.getInt("p_bxgy_id")));
                     }else transactionDetail.setPromoXY(promoXY);
                     transactionDetailList.add(transactionDetail);
                 }
@@ -99,15 +101,14 @@ public class TransactionDetailDAO extends ConnectionSettings {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
-//                    TransactionDetail transactionDetail = new TransactionDetail();
                     transactionDetail.setDetail_Id(resultSet.getInt("detail_Id"));
                     transactionDetail.setQuantity(resultSet.getInt("quantity"));
                     transactionDetail.setPrice(resultSet.getDouble("price"));
                     transactionDetail.setDiscount(resultSet.getDouble("discount"));
                     transactionDetail.setProduct(productDAO.getById(resultSet.getInt("product_Id")));
-//                    transactionDetail.setTransaction(transactionDAOrs.getInt("transactionId"));
-//                    transactionDetail.setDiscountPId(rs.getInt("discountPId"));
-//                    transactionDetail.setDiscountPxy(rs.getInt("discountPxy"));
+//                    transactionDetail.setTransaction(transactionDAO.s.getInt("transactionId"));
+                    transactionDetail.setPromoProduct(promoProductDAO.getById(resultSet.getInt("discountPId")));
+                    transactionDetail.setPromoXY(promoXYDAO.getById(resultSet.getInt("discountPxy")));
                 }
             }resultSet.close();
             this.closeConnection();

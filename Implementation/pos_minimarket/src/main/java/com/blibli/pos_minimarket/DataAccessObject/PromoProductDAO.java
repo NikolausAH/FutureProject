@@ -87,6 +87,32 @@ public class PromoProductDAO extends ConnectionSettings implements InterfaceDAO<
         return promoProduct;
     }
 
+    public PromoProduct getByProductId(Integer productId) {
+        String sql = "SELECT * FROM promo_product_discount WHERE product_id =" + productId + ";";
+        String message = "Error PromoProductDAO getByProductId";
+        PromoProduct promoProduct = new PromoProduct();
+        try {
+            this.makeConnection();
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    promoProduct.setId(resultSet.getInt("p_discount_id"));
+                    promoProduct.setDiscountPercent(resultSet.getDouble("discount_percent"));
+                    promoProduct.setStartDate(resultSet.getTimestamp("start_date"));
+                    promoProduct.setEndDate(resultSet.getTimestamp("end_date"));
+                    promoProduct.setProductId(resultSet.getInt("product_id"));
+                    promoProduct.setStatus(resultSet.getString("status"));
+                }
+            }
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println(message);
+            System.out.println(EX.toString());
+        }
+        return promoProduct;
+    }
+
     @Override
     public List<PromoProduct> search(String key) {
         return null;

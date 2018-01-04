@@ -1,12 +1,15 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
+import com.blibli.pos_minimarket.Model.ReportStatistic;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
-public class ReportDAO extends ConnectionSettings {
+public class ReportDAO extends ConnectionSettings{
     public ReportDAO(){}
 
     public Integer getTransactionAmount(Integer productId){

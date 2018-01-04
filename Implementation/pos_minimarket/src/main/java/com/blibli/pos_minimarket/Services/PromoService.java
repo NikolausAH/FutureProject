@@ -32,6 +32,43 @@ public class PromoService {
         }
     }
 
+
+    public PromoProduct getPromoProductByProductId(Integer productId){
+        PromoProduct promoProduct = new PromoProduct();
+        promoProduct.setProductId(0);
+        try{
+            promoProduct = promoProductDAO.getByProductId(productId);
+        }catch (Exception EX){
+            System.out.println("Error promoService getPromoProduct");
+            System.out.println(EX.toString());
+        }
+        return promoProduct;
+    }
+
+    public PromoXY getPromoXYByProductId(Integer productId){
+        PromoXY promoXY = new PromoXY();
+        promoXY.setProductYId(0);
+        try{
+            promoXY = promoXYDAO.getByProductId(productId,"productId");
+        }catch (Exception EX){
+            System.out.println("Error promoServices getPromoXY");
+            System.out.println(EX.toString());
+        }
+        return promoXY;
+    }
+
+    public PromoXY getPromoXYByBonusId(Integer productId){
+        PromoXY promoXY = new PromoXY();
+        promoXY.setProductYId(0);
+        try{
+            promoXY = promoXYDAO.getByProductId(productId,"bonus");
+        }catch (Exception EX){
+            System.out.println("Error promoServices getPromoXY");
+            System.out.println(EX.toString());
+        }
+        return promoXY;
+    }
+
     public List<Promo> showAll() {
 
         List<Promo> promoList = new ArrayList<>();

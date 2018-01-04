@@ -2,12 +2,15 @@ package com.blibli.pos_minimarket.Services;
 
 import com.blibli.pos_minimarket.DataAccessObject.ProductDAO;
 import com.blibli.pos_minimarket.DataAccessObject.TransactionDAO;
+import com.blibli.pos_minimarket.DataAccessObject.TransactionDetailDAO;
 import com.blibli.pos_minimarket.Model.*;
 import org.springframework.stereotype.Service;
 
+import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Service
 public class TransactionService {
@@ -16,7 +19,8 @@ public class TransactionService {
     private MinimarketService minimarketService = new MinimarketService();
     private ProductService productService = new ProductService();
     private TransactionDetailService transactionDetailService = new TransactionDetailService();
-//    private promoServices promoServices = new promoServices();
+    private PromoService promoService = new PromoService();
+    private TransactionDetailDAO transactionDetailDAO = new TransactionDetailDAO();
     public TransactionService() {
     }
 
@@ -33,18 +37,18 @@ public class TransactionService {
         return total * (minimarketService.getTax()/100);
     }
 
-    private Double sumDiscount(Integer quantity, PromoProduct promoProduct, Double price, PromoXY promoXY){
-        Double discount = 0.0;
-        if(promoProduct!=null){
-            discount += quantity * price * (promoProduct.getDiscountPercent() / 100);
-        }
-        if(promoXY!=null && quantity >= promoXY.getQuantityX()){
-            Integer discountQuantity = (quantity / promoXY.getQuantityX()) * promoXY.getQuantityY();
-            Product product = productDAO.getById(promoXY.getProductYId());
-            discount += product.getPrice() * discountQuantity;
-        }
-        return discount;
-    }
+//    private Double sumDiscount(Integer quantity, PromoProduct promoProduct, Double price, PromoXY promoXY){
+//        Double discount = 0.0;
+//        if(promoProduct!=null){
+//            discount += quantity * price * (promoProduct.getDiscountPercent() / 100);
+//        }
+//        if(promoXY!=null && quantity >= promoXY.getQuantityX()){
+//            Integer discountQuantity = (quantity / promoXY.getQuantityX()) * promoXY.getQuantityY();
+//            Product product = productDAO.getById(promoXY.getProductYId());
+//            discount += product.getPrice() * discountQuantity;
+//        }
+//        return discount;
+//    }
     public Double getTotal(List<TransactionDetail> transactionDetailList){
         Double total = 0.0;
         try {
@@ -53,11 +57,9 @@ public class TransactionService {
                     Integer quantity = TransactionDetailList.getQuantity();
                     Product product = TransactionDetailList.getProduct();
                     Double price = product.getPrice();
-                    PromoProduct promoProduct = TransactionDetailList.getPromoProduct();
-//                    PromoXY promoXY = promoServices.getPromoXY(product.getProductId());
-//                    Double discount = this.sumDiscount(quantity,promoProduct,price,promoXY);
+                    Double discount = TransactionDetailList.getDiscount();
 
-//                    total += (quantity * price)- discount;
+                    total += (quantity * price)- discount;
                 }
             }
         }catch (Exception EX){
@@ -90,12 +92,18 @@ public class TransactionService {
         return nextId;
     }
 
-    public void addToCart(Integer productId, Integer quantity){
-        Product product;
+    public void addToCart(String searchKey, Integer quantity){
         try {
-            product=productDAO.getById(productId);
-            if (productService.isAny(product)){
-                transactionDAO.addToCart(productId,quantity);
+            Product product = new Product();
+            product = productDAO.searchInCart(searchKey);
+            if(product!=null){
+                this.addIfBxGy(product.getProductId(),quantity);
+                if (this.isAnyInCart(product)){
+                    transactionDAO.addQuantityInCart(product.getProductId(),quantity);
+                }
+                else {
+                    transactionDAO.addToCart(product.getProductId(),quantity,0);
+                }
             }
             else {
                 System.out.println("TransactionService AddToCart Product can not add to Cart");
@@ -106,43 +114,107 @@ public class TransactionService {
         }
     }
 
-//    public List<TransactionDetail> getAllFromCart() {
-//        List<Product> productList;
-//        List<TransactionDetail> transactionDetailList = new ArrayList<>();
-//        try {
-//            productList = transactionDAO.getFromCart();
-//            for (Product ProductList : productList) {
-//                TransactionDetail transactionDetail = new TransactionDetail();
-//                Product product=productDAO.getById(ProductList.getProductId());
-//                transactionDetail.setQuantity(ProductList.getQuantity());
-//                transactionDetail.setProduct(product);
-//                PromoProduct promoProduct = promoServices.getPromoProduct(product.getProductId());
-//                PromoXY promoXY = promoServices.getPromoXY(product.getProductId());
-//                if(promoXY!=null && ProductList.getQuantity() >= promoXY.getQuantityX()){
-//                    TransactionDetail tempDetail = new TransactionDetail();
-//                    Integer multi = ProductList.getQuantity() / promoXY.getQuantityX();
-//                    tempDetail.setQuantity(promoXY.getQuantityY() * multi);
-//                    Product product1 = productDAO.getById(promoXY.getProductYId());
-//                    tempDetail.setProduct(product1);
-//                    tempDetail.setPrice(product1.getPrice());
-//                    tempDetail.setDiscount(product1.getPrice() * tempDetail.getQuantity());
-//                    transactionDetailList.add(tempDetail);
-//                }
-//                Double discount = 0.0;
-//                if(promoProduct!=null) {
-//                    discount = ProductList.getQuantity() * product.getPrice() * (promoProduct.getDiscountPercent() / 100);
-//                }
-//                transactionDetail.setDiscount(discount);
-//                transactionDetail.setPromoProduct(promoProduct);
-//                transactionDetailList.add(transactionDetail);
-//            }
-//        }
-//        catch (Exception EX){
-//            System.out.println("Error TransactionService getFromCart");
-//            System.out.println(EX.toString());
-//        }
-//        return transactionDetailList;
-//    }
+    public void addIfBxGy(Integer productId, Integer quantity){
+        PromoXY promoXY = new PromoXY();
+        try{
+            promoXY = promoService.getPromoXYByProductId(productId);
+            Integer multi = quantity / promoXY.getQuantityX();
+            Integer newQuantity = promoXY.getQuantityY() * multi;
+            Product product = productDAO.getById(promoXY.getProductYId());
+            if (this.isAnyInCart(product)){
+                transactionDAO.addQuantityInCart(product.getProductId(),newQuantity);
+            }
+            else {
+                transactionDAO.addToCart(product.getProductId(),newQuantity,1);
+            }
+        }catch (Exception EX){
+            System.out.println(EX.toString());
+        }
+    }
+
+    boolean isAnyInCart(Product product){
+        List<Product> productList;
+        productList = transactionDAO.getFromCart();
+        for (Product ProductList : productList) {
+            if (ProductList.getProductId().equals(product.getProductId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addDetail(Transaction transaction){
+        List<TransactionDetail> transactionDetailList;
+        try {
+            transactionDetailList = this.getAllFromCart();
+            for (TransactionDetail transactionDetail : transactionDetailList) {
+                transactionDetail.setTransaction(transaction);
+                transactionDetailDAO.add(transactionDetail);
+            }
+        }
+        catch (Exception EX){
+            System.out.println("Error TransactionDetailService Add");
+            System.out.println(EX.toString());
+        }
+    }
+
+    public List<TransactionDetail> getAllFromCart() {
+        List<Product> productList;
+        List<TransactionDetail> transactionDetailList = new ArrayList<>();
+        Double discount = 0.0;
+        try {
+            productList = transactionDAO.getFromCart();
+            for (Product ProductList : productList) {
+                TransactionDetail transactionDetail = new TransactionDetail();
+                Product product = productDAO.getById(ProductList.getProductId());
+                transactionDetail.setQuantity(ProductList.getQuantity());
+                transactionDetail.setProduct(product);
+                PromoXY promoXY = new PromoXY();
+                PromoProduct promoProduct = new PromoProduct();
+                promoXY.setId(0);promoProduct.setId(0);
+                try{
+                   promoXY = promoService.getPromoXYByProductId(product.getProductId());
+                }catch (Exception EX){
+                    System.out.println(EX.toString());
+                }
+
+                if(ProductList.getDescription().equals("1")){
+                    try{
+                        PromoXY promoXY2 = promoService.getPromoXYByBonusId(product.getProductId());
+                        promoProduct = promoService.getPromoProductByProductId(product.getProductId());
+                        Integer multi = ProductList.getQuantity() / promoXY2.getQuantityY();
+                        Integer mod = ProductList.getQuantity() % promoXY2.getQuantityY();
+                        Integer newQuantity = promoXY2.getQuantityY() * multi;
+                        discount += newQuantity * product.getPrice();
+                        if(promoProduct != null) {
+                         discount += mod * product.getPrice() * (promoProduct.getDiscountPercent() / 100);
+                        }
+                    }catch (Exception EX){
+                        System.out.println(EX.toString());
+                    }
+                }else {
+                    try{
+                        promoProduct = promoService.getPromoProductByProductId(product.getProductId());
+                        if(promoProduct != null) {
+                            discount += ProductList.getQuantity() * product.getPrice() * (promoProduct.getDiscountPercent() / 100);
+                        }
+                    }catch (Exception EX){
+                        System.out.println(EX.toString());
+                    }
+                }
+                transactionDetail.setDiscount(discount);
+                transactionDetail.setPromoProduct(promoProduct);
+                transactionDetail.setPromoXY(promoXY);
+                transactionDetailList.add(transactionDetail);
+                discount = 0.0;
+            }
+        }
+        catch (Exception EX){
+            System.out.println("Error TransactionService getFromCart");
+            System.out.println(EX.toString());
+        }
+        return transactionDetailList;
+    }
 
     public void addTransaction(String dateTime, Double total, Double tax) {
         Transaction transaction = new Transaction();
@@ -157,8 +229,8 @@ public class TransactionService {
             transaction.setDateTime(dateTime);
             transaction.setTransactionId(transactionDAO.getNextId());
             transactionDAO.add(transaction);
-            transactionDetailService.add(transaction);
-            transactionDAO.removeFromCart();
+            this.addDetail(transaction);
+            transactionDAO.removeAllFromCart();
         }
         catch (Exception EX){
             System.out.println("Error TransactionService Add");
@@ -202,5 +274,23 @@ public class TransactionService {
             System.out.println(EX.toString());
         }
         return discountTotal;
+    }
+
+    public void removeAllFromCart(){
+        try{
+            transactionDAO.removeAllFromCart();
+        }catch (Exception EX){
+            System.out.println("Error TransactionService removeAllFromCart");
+            System.out.println(EX.toString());
+        }
+    }
+
+    public void removeFromCartByProductId(Integer productId){
+        try{
+            transactionDAO.removeFromCartByProductId(productId);
+        }catch (Exception EX){
+            System.out.println("Error TransactionService removeFromCartByProductId");
+            System.out.println(EX.toString());
+        }
     }
 }

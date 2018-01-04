@@ -112,16 +112,4 @@ public class ProductService {
         return productList;
     }
 
-    boolean isAny(Product product){
-        List<Product> productList;
-        productList = productDAO.getAll();
-        for (Product ProductList : productList) {
-            if (ProductList.getProductId().equals(product.getProductId())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
 }

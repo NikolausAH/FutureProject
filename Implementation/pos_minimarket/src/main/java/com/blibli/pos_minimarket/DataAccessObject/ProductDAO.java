@@ -181,4 +181,41 @@ public class ProductDAO extends ConnectionSettings implements InterfaceDAO<Produ
         }
         return productList;
     }
+
+    public Product searchInCart(String searchKey) {
+        Scanner scanner = new Scanner(searchKey);
+        Product product = new Product();
+        String sqlString = "SELECT * FROM product WHERE name ='"+searchKey+"' ORDER BY product_id;";
+        String sqlInteger = "SELECT * FROM product WHERE product_id = '"+searchKey+"' OR name ='"+searchKey+"' ORDER BY product_id;";
+        String message = "Error ProductDAO search";
+        try {
+            this.makeConnection();
+            ResultSet resultSet;
+            if (scanner.hasNextInt()){
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlInteger);
+                resultSet = preparedStatement.executeQuery();
+            }else {
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlString);
+                resultSet = preparedStatement.executeQuery();
+            }
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    product.setProductId(resultSet.getInt("product_Id"));
+                    product.setPrice(resultSet.getDouble("price"));
+                    product.setName(resultSet.getString("name"));
+                    product.setQuantity(resultSet.getInt("quantity"));
+                    product.setDescription(resultSet.getString("description"));
+                    product.setCategory(categoryDAO.getById(resultSet.getInt("category_Id")));
+                    product.setStatus(resultSet.getString("status"));
+                    break;
+                }
+                resultSet.close();
+            }
+            this.closeConnection();
+        } catch (Exception EX) {
+            System.out.println(message);
+            System.out.println(EX.toString());
+        }
+        return product;
+    }
 }
