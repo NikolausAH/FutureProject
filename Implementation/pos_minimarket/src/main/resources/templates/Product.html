@@ -158,7 +158,6 @@
                             <th>Kategori</th>
                             <th>Harga</th>
                             <th>Stok</th>
-                            <th>Status</th>
                             <th id="hide">Aksi</th>
                         </tr>
                         </thead>
@@ -170,7 +169,6 @@
                                 <td th:text="${product.category.name}"/>
                                 <td th:text="${product.price}"/>
                                 <td th:text="${product.quantity}"/>
-                                <td th:text="${product.status}"/>
                                 <td id="hide">
                                     <a th:href="${'product/detail/'+product.productId}">detail</a>
                                 </td>

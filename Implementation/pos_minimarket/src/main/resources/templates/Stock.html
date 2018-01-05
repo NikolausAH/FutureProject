@@ -154,7 +154,6 @@
 							<th>Kode</th>
 							<th>Nama</th>
 							<th>Stok</th>
-							<th>Status</th>
 							<th>Aksi</th>
 						</tr>
 						</thead>
@@ -164,7 +163,6 @@
 								<td th:text="${product.productId}" />
 								<td th:text="${product.name}"/>
 								<td th:text="${product.quantity}"/>
-								<td th:text="${product.status}"/>
 								<td>
 									<a th:href="${'stock/detail/'+product.productId}">detail</a>
 								</td>

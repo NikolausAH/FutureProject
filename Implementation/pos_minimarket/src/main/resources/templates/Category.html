@@ -155,7 +155,6 @@
                         <tr>
                             <th>Kode</th>
                             <th>Nama</th>
-                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -164,7 +163,6 @@
                             <tr>
                                 <td th:text="${cat.categoryId}" />
                                 <td th:text="${cat.name}"/>
-                                <td th:text="${cat.status}"/>
                                 <td>
                                     <a th:href="${'category/detail/'+cat.categoryId}">detail</a>
                                 </td>

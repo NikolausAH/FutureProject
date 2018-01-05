@@ -12,7 +12,7 @@ public class LoginDAO extends GeneralDAO {
         Employee employee = new Employee();
         RoleDAO roleDAO = new RoleDAO();
         String sql = "SELECT * FROM employees WHERE employee_id = '" + employeeId +
-                "' AND password = '" + password + "';";
+                "' AND password = '" + password + "' AND status = 'active';";
         String message = "Error LoginDAO getByIdAndPassword";
         try {
             this.makeConnection();

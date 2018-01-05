@@ -97,7 +97,7 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
     @Override
     public List<Category> getAll() {
         List<Category> categoryList = new ArrayList<>();
-        String sql = "SELECT * FROM category ORDER BY category_id;";
+        String sql = "SELECT * FROM category WHERE status = 'active'  ORDER BY category_id;";
         String message = "Error CategoryDAO getAll";
         try {
             this.makeConnection();
@@ -127,8 +127,8 @@ public class CategoryDAO extends ConnectionSettings implements InterfaceDAO<Cate
         List<Category> categoryList = new ArrayList<>();
         Scanner scanner = new Scanner(searchKey);
 //        select * from category where cast(category_id as CHARACTER VARYING) like '%2%' or name like '%o%'
-        String sqlString = "SELECT category_id,name,description,status FROM category WHERE name LIKE '%"+searchKey+"%' ORDER BY category_id;";
-        String sqlInteger = "SELECT category_id,name,description,status FROM category WHERE category_id = '"+searchKey+"' OR name LIKE '%"+searchKey+"%' ORDER BY category_id;";
+        String sqlString = "SELECT category_id,name,description,status FROM category WHERE name LIKE '%"+searchKey+"%' AND status = 'active' ORDER BY category_id;";
+        String sqlInteger = "SELECT category_id,name,description,status FROM category WHERE category_id = '"+searchKey+"' AND status = 'active' OR name LIKE '%"+searchKey+"%' AND status = 'active' ORDER BY category_id;";
         String message = "Error CategoryDAO search";
         try {
             this.makeConnection();

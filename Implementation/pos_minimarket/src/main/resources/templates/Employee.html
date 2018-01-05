@@ -155,7 +155,6 @@
                             <th>Kode</th>
                             <th>Nama</th>
                             <th>Role</th>
-                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -165,7 +164,6 @@
                                 <td th:text="${employee.employee_Id}" />
                                 <td th:text="${employee.name}" />
                                 <td th:text="${employee.role.name}" />
-                                <td th:text="${employee.status}" />
                                 <td>
                                     <a th:href="${'employee/detail/'+employee.employee_Id}">detail</a>
                                 </td>

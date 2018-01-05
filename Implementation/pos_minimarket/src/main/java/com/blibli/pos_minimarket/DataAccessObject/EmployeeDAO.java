@@ -143,8 +143,8 @@ public class EmployeeDAO extends ConnectionSettings implements InterfaceDAO<Empl
         List<Employee> employeeList = new ArrayList<>();
         Scanner scanner = new Scanner(searchKey);
 //        select * from category where cast(category_id as CHARACTER VARYING) like '%2%' or name like '%o%'
-        String sqlString = "SELECT employee_id, name, email, role_id, status FROM employees WHERE name LIKE '%"+searchKey+"%' ORDER BY employee_id;";
-        String sqlInteger = "SELECT employee_id, name, email, role_id, status FROM employees WHERE employee_id = '"+searchKey+"' OR name LIKE '%"+searchKey+"%' ORDER BY employee_id;";
+        String sqlString = "SELECT employee_id, name, email, role_id, status FROM employees WHERE name LIKE '%"+searchKey+"%' AND status ='active' ORDER BY employee_id;";
+        String sqlInteger = "SELECT employee_id, name, email, role_id, status FROM employees WHERE employee_id = '"+searchKey+"' AND status ='active' OR name LIKE '%"+searchKey+"%' AND status ='active' ORDER BY employee_id;";
         String message = "Error EmployeeDAO search";
         try {
             this.makeConnection();
