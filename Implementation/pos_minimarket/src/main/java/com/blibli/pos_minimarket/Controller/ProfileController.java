@@ -6,10 +6,7 @@ import com.blibli.pos_minimarket.Services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +32,7 @@ public class ProfileController {
             return "ProfileAdmin";
         }
     }
-    @PostMapping(value = "/Profile/Update")
+    @RequestMapping(value = "/Profile/Update" , method = RequestMethod.POST)
     public ModelAndView update(HttpServletRequest request, @ModelAttribute("Employeeupdated") Employee pegawai){
         ModelAndView mav = new ModelAndView();
         profileService.updateProfile(pegawai);
@@ -44,7 +41,7 @@ public class ProfileController {
         request.getSession().setAttribute("pegawai", employee);
         return mav;
     }
-    @PostMapping(value = "/Profile/ChangePassword")
+    @RequestMapping(value = "/Profile/ChangePassword", method = RequestMethod.POST)
     public ModelAndView changePassword(HttpServletRequest request){
         ModelAndView mav = new ModelAndView();
         Employee employee = (Employee) request.getSession().getAttribute("pegawai");

@@ -67,7 +67,7 @@ public class TransactionController {
             return "Transaction";}
     }
 
-    @PostMapping(value = "Transaction/addToCart")
+    @RequestMapping(value = "Transaction/addToCart", method = RequestMethod.POST)
     public ModelAndView addToCart(@ModelAttribute("searchKey") String searchKey, @ModelAttribute("quantity") Integer quantity){
         ModelAndView mav = new ModelAndView();
         transactionService.addToCart(searchKey,quantity);

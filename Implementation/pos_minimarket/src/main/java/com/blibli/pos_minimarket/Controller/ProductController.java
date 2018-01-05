@@ -49,7 +49,7 @@ public class ProductController {
         return "ProductDetail";
     }
 
-    @PostMapping(value = "/Product/Add")
+    @RequestMapping(value = "/Product/Add", method = RequestMethod.POST)
     public ModelAndView createProduct(@ModelAttribute("product") Product product,@ModelAttribute("categoryId")Integer categoryId){
         ModelAndView mav = new ModelAndView();
         product.setCategory(categoryService.getById(categoryId));

@@ -42,7 +42,7 @@ public class EmployeeController {
         return "EmployeeDetail";
     }
 
-    @PostMapping(value = "Employee/Add")
+    @RequestMapping(value = "Employee/Add", method = RequestMethod.POST)
     public ModelAndView addEmployee(@ModelAttribute("employee") Employee employee, @ModelAttribute("role_id") Integer role_id){
         ModelAndView mav = new ModelAndView();
         employee.setRole(employeeService.getRoleById(role_id));

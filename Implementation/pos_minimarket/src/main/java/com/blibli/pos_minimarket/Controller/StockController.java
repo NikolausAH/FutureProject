@@ -45,7 +45,7 @@ public class StockController {
         return "StockDetail";
     }
 
-    @PostMapping(value = "/Stock/Update")
+    @RequestMapping(value = "/Stock/Update", method = RequestMethod.POST)
     public ModelAndView updateStock(@ModelAttribute("product") Product product, @ModelAttribute("addQuantity") Integer quantity){
         ModelAndView mav = new ModelAndView();
         stockService.updateQuantity(product,quantity);

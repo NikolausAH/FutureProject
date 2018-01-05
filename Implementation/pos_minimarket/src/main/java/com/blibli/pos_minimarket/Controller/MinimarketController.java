@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ public class MinimarketController {
         model.addAttribute("minimarket", minimarketService.showMinimarket());
         return "Minimarket";
     }
-    @PostMapping(value = "/Minimarket/Update")
+    @RequestMapping(value = "/Minimarket/Update", method = RequestMethod.POST)
     public ModelAndView updateMinimarket(@ModelAttribute("minimarket") Minimarket minimarket){
         ModelAndView mav = new ModelAndView();
         minimarketService.updateMinimarket(minimarket);

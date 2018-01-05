@@ -43,7 +43,7 @@ public class CategoryController {
         return "CategoryDetail";
     }
 
-    @PostMapping(value = "/Category/Add")
+    @RequestMapping(value = "/Category/Add", method = RequestMethod.POST)
     public ModelAndView addCategory(@ModelAttribute("category") Category category){
         ModelAndView mav = new ModelAndView();
         category.setCategoryId(categoryService.getNextId());
