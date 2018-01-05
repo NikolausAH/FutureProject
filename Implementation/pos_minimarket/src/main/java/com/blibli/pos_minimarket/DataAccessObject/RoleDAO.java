@@ -3,10 +3,12 @@ package com.blibli.pos_minimarket.DataAccessObject;
 import com.blibli.pos_minimarket.Model.Employee;
 import com.blibli.pos_minimarket.Model.PromoXY;
 import com.blibli.pos_minimarket.Model.Role;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@Repository
 public class RoleDAO extends GeneralDAO{
 
     public Role getRoleById(Integer id) {

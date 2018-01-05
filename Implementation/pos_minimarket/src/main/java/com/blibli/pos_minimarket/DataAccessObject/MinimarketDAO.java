@@ -1,10 +1,12 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Minimarket;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@Repository
 public class MinimarketDAO extends ConnectionSettings {
     private GeneralDAO generalDAO = new GeneralDAO();
 

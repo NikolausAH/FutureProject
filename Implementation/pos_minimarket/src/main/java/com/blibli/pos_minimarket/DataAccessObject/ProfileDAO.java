@@ -1,10 +1,12 @@
 package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Employee;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@Repository
 public class ProfileDAO extends GeneralDAO {
     public void update(Employee employee) {
         GeneralDAO generalDAO = new GeneralDAO();

@@ -2,6 +2,7 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 import com.blibli.pos_minimarket.Model.Promo;
 import com.blibli.pos_minimarket.Model.PromoXY;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PromoXYDAO extends GeneralDAO implements InterfaceDAO<PromoXY, Integer, String> {
     private GeneralDAO generalDAO = new GeneralDAO();
 

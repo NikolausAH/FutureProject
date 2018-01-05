@@ -2,10 +2,12 @@ package com.blibli.pos_minimarket.DataAccessObject;
 
 
 import com.blibli.pos_minimarket.Model.Employee;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@Repository
 public class LoginDAO extends GeneralDAO {
 
     public Employee getByIdAndPassword(Integer employeeId, String password) {
