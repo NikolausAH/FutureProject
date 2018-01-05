@@ -144,64 +144,26 @@ public class TransactionService {
     public void addDetail(Transaction transaction){
         List<TransactionDetail> transactionDetailList;
         try {
-            System.out.println("abc");
             transactionDetailList = this.getAllFromCart();
-            System.out.println("abc");
             for (TransactionDetail transactionDetail : transactionDetailList) {
-                System.out.println("abc1");
                 TransactionDetail temp = new TransactionDetail();
-                System.out.println("abc2");
-//                temp = transactionDetail;
-
                 temp.setDetail_Id(0);
-                System.out.println("abc2");
                 temp.setTransaction(transaction);
-                System.out.println("abc2");
                 temp.setPromoProduct(transactionDetail.getPromoProduct());
-                System.out.println("abc2");
                 temp.setProduct(transactionDetail.getProduct());
-                System.out.println("abc2");
                 temp.setPrice(transactionDetail.getPrice());
-                System.out.println("abc2");
                 temp.setDiscount(transactionDetail.getDiscount());
-                System.out.println("abc2");
                 temp.setQuantity(transactionDetail.getQuantity());
-                System.out.println("abc2");
                 temp.setPromoXY(transactionDetail.getPromoXY());
-                System.out.println("abc2");
-                if (temp.getPromoXY().getId() == 0)
-                    System.out.println("prekkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-//                if (temp.getPromoProduct().getId() == 0)
-                    System.out.println("prekkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkwaaaaaaaaaaaaaaa");
-                System.out.println(temp.getPromoXY().getId());
-                System.out.println(transactionDetail.getPromoProduct().getId());
-
-                System.out.println(transaction.getTransactionId());
-                System.out.println(transactionDetail.getDetail_Id());
-                System.out.println(transactionDetail.getPromoProduct().getId());
-//                System.out.println(transactionDetail.getTransaction().getTransactionId());
-                System.out.println(transactionDetail.getProduct().getProductId());
-                System.out.println(transactionDetail.getPrice());
-                System.out.println(transactionDetail.getDiscount());
-                System.out.println(transactionDetail.getQuantity());
                 PromoXY promoXY = new PromoXY();
                 promoXY.setId(12);
                 transactionDetail.setPromoXY(promoXY);
-                System.out.println(transactionDetail.getPromoXY().getId());
                 try {
 
                     transactionDetailDAO.add(temp);
                 }catch (Exception EX){
                     System.out.println(EX.toString());
                 }
-                System.out.println(temp.getDetail_Id());
-                System.out.println(temp.getPromoProduct().getId());
-                System.out.println(temp.getTransaction().getTransactionId());
-                System.out.println(temp.getProduct().getProductId());
-                System.out.println(temp.getPrice());
-                System.out.println(temp.getDiscount());
-                System.out.println(temp.getQuantity());
-                System.out.println(temp.getPromoXY().getProductXId());
             }
         }
         catch (Exception EX){
@@ -250,14 +212,10 @@ public class TransactionService {
                     }
                 }else {
                     try{
-                        System.out.println("promoProductId nihhh" +promoProduct.getId());
                         promoProduct = promoService.getPromoProductByProductId(product.getProductId());
-                        System.out.println("aaaaa");
-                        System.out.println("promoProductId nihhh" +promoProduct.getId());
-//                        if(promoProduct != null) {
+                          if(promoProduct != null) {
                             discount += ProductList.getQuantity() * product.getPrice() * (promoProduct.getDiscountPercent() / 100);
-//                        }
-                        System.out.println("promoProductId nihhh" +promoProduct.getId());
+                        }
                     }catch (Exception EX){
                         System.out.println("Product "+product.getProductId()+"tidak mendapat promo diskon");
                     }
@@ -265,7 +223,6 @@ public class TransactionService {
                 transactionDetail.setDiscount(discount);
                 transactionDetail.setPromoProduct(promoProduct);
                 transactionDetail.setPromoXY(promoXY);
-                System.out.println("promoProductId nihhh" +promoProduct.getId());
                 transactionDetailList.add(transactionDetail);
                 discount = 0.0;
 
